@@ -1,0 +1,14 @@
+{
+  "extends": "./base",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true
+  },
+  "files": ["emotion.d.ts", "process.d.ts"]
+}

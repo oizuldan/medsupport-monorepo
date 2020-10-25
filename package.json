@@ -1,0 +1,81 @@
+{
+  "name": "@medsupportkz/root",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Medsupportkz Mono-Repo",
+  "repository": "https://gitlab.com/oizuldan/medsupportkz",
+  "license": "MIT",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "ci": "run-p ci:*",
+    "ci:lint": "eslint --cache --max-warnings 0 .",
+    "ci:test": "lerna run ci:test --parallel",
+    "ci:tsc": "lerna run ci:tsc --parallel",
+    "compile": "lerna run compile --stream"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional",
+      "@commitlint/config-lerna-scopes"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": "eslint --no-ignore --cache --max-warnings 0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@azimutlabs"
+    ]
+  },
+  "eslintIgnore": [
+    "**/node_modules",
+    "**/lib",
+    "**/build"
+  ],
+  "devDependencies": {
+    "@azimutlabs/eslint-config": "^0.2.2",
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@commitlint/config-lerna-scopes": "^9.0.1",
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "babel-eslint": "^10.1.0",
+    "bootstrap-4-grid": "^3.4.0",
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-array-func": "^3.1.6",
+    "eslint-plugin-functional": "^3.0.1",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.17.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-simple-import-sort": "^5.0.3",
+    "fp-ts": "^2.8.1",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.9",
+    "next": "^9.5.2",
+    "normalize.css": "^8.0.1",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "3.8.3"
+  },
+  "engines": {
+    "node": ">=10 <13"
+  }
+}

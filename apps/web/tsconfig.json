@@ -1,0 +1,8 @@
+{
+  "extends": "@medsupportkz/config/tsc/next.server",
+  "compilerOptions": {
+    "baseUrl": "./src"
+  },
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "src"]
+}

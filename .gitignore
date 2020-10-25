@@ -1,0 +1,45 @@
+# macOS
+**/.DS_Store
+
+# Node.js
+**/node_modules/
+**/npm-debug.log
+**/yarn-error.log
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# JetBrains IDE
+/.idea/
+
+# Private environment variables
+/.env
+**/*.env
+
+# Optional eslint cache
+.eslintcache
+**/.eslintcache
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Next.js build output
+.next
+**/.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+**/build
+
+# Typescript compilation output
+**/lib
