@@ -1,6 +1,6 @@
 {
   "name": "@medsupportkz/config",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": false,
   "description": "Sharable development configurations",
   "repository": "https://gitlab.com/oizuldan/medsupportkz",
