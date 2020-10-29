@@ -1,0 +1,81 @@
+{
+  "name": "@medsupportkz/next",
+  "version": "0.0.0",
+  "private": false,
+  "description": "Next.js application tools and configurations",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/oizuldan/medsupportkz",
+    "directory": "packages/next"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm",
+  "typings": "lib/ts/index.d.ts",
+  "files": [
+    "config",
+    "lib"
+  ],
+  "scripts": {
+    "ci": "run-p ci:*",
+    "ci:lint": "eslint --cache --max-warnings 0 src",
+    "clean": "rm -rf lib",
+    "compile": "yarn clean && run-p compile:*",
+    "compile:cjs": "NODE_ENV=test babel --out-dir lib/cjs --extensions '.ts,.tsx' src",
+    "compile:esm": "NODE_ENV=production babel --out-dir lib/esm --extensions '.ts,.tsx' src",
+    "compile:ts": "tsc --outDir lib/ts -p src"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@medsupportkz/babel-preset",
+        {
+          "react": true,
+          "moduleResolver": {
+            "root": "./src"
+          }
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@azimutlabs"
+    ]
+  },
+  "eslintIgnore": [
+    "lib"
+  ],
+  "dependencies": {
+    "@azimutlabs/next-config": "^0.2.2",
+    "@next/bundle-analyzer": "^9.4.4",
+    "eslint-loader": "^4.0.2",
+    "eslint-webpack-plugin": "^2.1.0",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "next-pwa": "^2.5.0",
+    "next-routes": "^1.4.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@medsupportkz/babel-preset": "^0.0.0",
+    "@medsupportkz/config": "^0.1.0",
+    "@types/express": "^4.17.6",
+    "@types/express-http-proxy": "^1.6.1",
+    "@types/node": "^12.12.41",
+    "fp-ts": "^2.8.1",
+    "next": "^9.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "3.8.3",
+    "webpack": "^4.43.0",
+    "yarn-run-all": "^3.1.1"
+  },
+  "peerDependencies": {
+    "fp-ts": "^2.8.1",
+    "next": "^9.5.2"
+  }
+}

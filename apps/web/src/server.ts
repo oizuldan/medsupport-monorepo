@@ -1,19 +1,23 @@
+import { server } from '@medsupportkz/next';
 import express from 'express';
-import next from 'next';
+import { sequenceT } from 'fp-ts/lib/Apply';
+import { pipe } from 'fp-ts/lib/pipeable';
+import * as T from 'fp-ts/lib/Task';
 import path from 'path';
 
+import conf from '../next.config';
 import { registry } from './routes';
 
-const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const dir = path.resolve(__dirname, '../');
-const nextApp = next({ dir, dev, conf: require('../next.config') });
-const handleNext = registry.getRequestHandler(nextApp);
+const port = process.env.PORT || 3000;
 
-(async () => {
-  await nextApp.prepare();
-  express()
-    .use(handleNext)
+pipe(
+  T.of(express()),
+  T.chain((app) => sequenceT(T.task)(server({ dev, dir, conf, registry }), T.of(app))),
+  T.chain(([handler, app]) => T.of(app.use(handler))),
+  T.chain((app) =>
     // eslint-disable-next-line no-console
-    .listen(port, () => console.log(`> Ready on http://localhost:${port}`));
-})();
+    T.of(app.listen(port, () => console.log(`> Ready on http://localhost:${port}`))),
+  ),
+)();

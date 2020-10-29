@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": false,
   "description": "Sharable development configurations",
-  "repository": "https://gitlab.com/oizuldan/medsupportkz",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/oizuldan/medsupportkz",
+    "directory": "packages/config"
+  },
   "license": "MIT"
 }

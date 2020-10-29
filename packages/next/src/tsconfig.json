@@ -1,0 +1,7 @@
+{
+  "extends": "@medsupportkz/config/tsc/typecheck.emit",
+  "compilerOptions": {
+    "baseUrl": "./"
+  },
+  "include": ["**/*"]
+}
