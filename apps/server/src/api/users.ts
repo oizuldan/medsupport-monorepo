@@ -1,14 +1,9 @@
 import express, { Request, Response } from 'express';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const router: express.Application = new (express.Router as any)();
+const router = express.Router();
 
-router.get('/api/users', (_req: Request, res: Response) => {
-  return res.send('user');
-});
+router.get('/api/users', (_req: Request, res: Response) => res.send('user'));
 
-router.post('/api/users', (_req: Request, res: Response) => {
-  return res.send('user has been created');
-});
+router.post('/api/users', (_req: Request, res: Response) => res.send('user has been created'));
 
 export { router as userRouter };

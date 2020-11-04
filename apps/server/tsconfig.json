@@ -1,8 +1,5 @@
 {
   "extends": "@medsupportkz/config/tsc/node",
-  "outFile": "./",
-  "outDir": "./",
-  "rootDir": "./",
   "compilerOptions": {
     "baseUrl": "./src"
   },

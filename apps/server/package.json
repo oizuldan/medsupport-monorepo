@@ -1,6 +1,6 @@
 {
   "name": "@medsupportkz/server",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": false,
   "description": "Medsupportkz server application",
   "repository": {
@@ -17,11 +17,12 @@
     "ci:lint": "eslint --cache --max-warnings 0 src",
     "ci:test": "NODE_PATH=src jest --passWithNoTests",
     "ci:tsc": "tsc",
-    "start": "ts-node-dev src/server.ts",
-    "start:prod": "cd src && tsc && node build/server.js"
+    "start": "ts-node-dev src/server.ts"
   },
   "babel": {
-    "presets": []
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "eslintConfig": {
     "extends": [
