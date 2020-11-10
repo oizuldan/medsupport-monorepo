@@ -38,7 +38,9 @@
     "cors": "^2.8.5",
     "mongoose": "^5.10.11",
     "protobufjs": "^6.10.1",
-    "grpc": "^1.24.3"
+    "grpc": "^1.24.3",
+    "dotenv": "^8.2.0",
+    "body-parser": "^1.19.0"
   },
   "devDependencies" : {
     "ts-node-dev": "^1.0.0"

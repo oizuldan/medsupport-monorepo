@@ -1,44 +1,41 @@
 import express, { Request, Response } from 'express';
+import path from 'path';
 import { load } from 'protobufjs';
 
-import UserModel from '../schemas/user';
+import UserModel from '../models/user';
 
+const protoFilePath = path.join(process.cwd(), '/src/protos/user.proto');
 const router = express.Router();
 
-router.get('/api/userss', (_req: Request, res: Response) => {
-  load('/home/oizuldan/Desktop/medsupportkz/apps/server/src/protos/user.proto', async function (
-    err,
-    root,
-  ) {
+router.get('/api/users', (req: Request, res: Response) => {
+  load(protoFilePath, async function (err, root) {
     if (err || !root) {
-      res.status(500).send(err || 'did not find root');
+      res.status(500).send(err || 'Error: could not find proto file.');
       return;
     }
 
-    const result = UserModel.find({
-      username: 'ais',
-    });
+    const result = UserModel.find({ username: req.body.username });
     const [{ username, password }] = await result.exec();
-    // example code
-    const User = root.lookupType('user.User');
 
-    const errMsg = User.verify({ username, password });
+    const userProto = root.lookupType('user.User');
+    const errMsg = userProto.verify({ username, password });
+    if (errMsg) res.status(500).send(errMsg);
+    const message = userProto.encode(userProto.create({ username, password })).finish();
 
-    if (errMsg) {
-      res.status(500).send(errMsg);
-      return;
-    }
-
-    const message = User.create({ username, password });
-
-    const buffer = User.encode(message).finish();
-
-    // const decoded = User.decode(buffer);
-
-    res.status(200).send(buffer);
+    res.status(200).send(message); // Receives JSON and sends Protobuf
   });
 });
 
-router.post('/api/users', (_req: Request, res: Response) => res.send('user has been created'));
+router.post('/api/users', (req: Request, res: Response) => {
+  load(protoFilePath, async function (err, root) {
+    if (err || !root) {
+      res.status(500).send(err || 'Error: could not find proto file.');
+      return;
+    }
+
+    UserModel.create(req.body);
+    res.status(200).send('Success: user has been created.'); // Receives JSON and saves JSON to DB
+  });
+});
 
 export { router as userRouter };
