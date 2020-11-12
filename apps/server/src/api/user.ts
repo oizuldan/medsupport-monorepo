@@ -14,7 +14,8 @@ router.get('/api/users', (req: Request, res: Response) => {
       return;
     }
 
-    const result = UserModel.find({ username: req.body.username });
+    const queryUsername: string = req.query.username as string;
+    const result = UserModel.find({ username: queryUsername });
     const [{ username, password }] = await result.exec();
 
     const userProto = root.lookupType('user.User');
