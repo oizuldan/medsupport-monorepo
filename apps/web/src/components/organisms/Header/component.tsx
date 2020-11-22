@@ -1,17 +1,19 @@
 import 'bootstrap-4-grid/css/grid.css';
 
-import css from '@emotion/css';
-import { NextPage } from 'next';
-import React from 'react';
+import React, { FC } from 'react';
 
-export const Header: NextPage = () => {
+export const Header: FC = () => {
   return (
     <div
-      css={css`
-        height: 56px;
-        background-color: #343a40;
-      `}
-      className="w-100"
-    ></div>
+      css={{
+        height: 56,
+        backgroundColor: '#a32cc4',
+      }}
+      className="d-flex w-100 align-items-center px-3"
+    >
+      <h1 className="m-0 " css={{ color: 'white' }}>
+        Medsupport
+      </h1>
+    </div>
   );
 };

@@ -1,42 +1,37 @@
 import 'bootstrap-4-grid/css/grid.css';
 
-import css from '@emotion/css';
-import { NextPage } from 'next';
-import React from 'react';
+import { css } from '@emotion/core';
+import React, { FC, useCallback } from 'react';
 
 import { Props } from './props';
 
-export const Table: NextPage<Props> = (props: Props) => {
-  const { bodyData, headerData } = props;
-  const openDocument = (link: string) => (): void => {
-    window.open(link);
-  };
+export const Table: FC<Props> = ({ bodyData, headerData }: Props) => {
+  const openDocument = useCallback((link: string) => () => window.open(link), []);
 
   return (
     <table
-      css={css`
-        width: 100%;
-        color: #212529;
-        border-collapse: collapse;
-      `}
+      className="w-100"
+      css={{
+        color: '#212529',
+        borderCollapse: 'collapse',
+      }}
     >
       <thead>
         <tr
-          css={css`
-            text-align: left;
-          `}
+          css={{
+            textAlign: 'left',
+          }}
         >
           {headerData &&
             headerData.map((item, index) => (
               <th
                 scope="col"
-                css={css`
-                  vertical-align: bottom;
-                  border-bottom: 2px solid #dee2e6;
-                  padding: 0.75rem;
-                  vertical-align: top;
-                  border-top: 1px solid #dee2e6;
-                `}
+                css={{
+                  verticalAlign: 'bottom',
+                  borderBottom: '2px solid #dee2e6',
+                  padding: '0.75rem',
+                  borderTop: '1px solid #dee2e6',
+                }}
                 key={index}
               >
                 {item}
@@ -45,52 +40,55 @@ export const Table: NextPage<Props> = (props: Props) => {
         </tr>
       </thead>
       <tbody
-        css={css`
-          border-top: 2px solid #dee2e6;
-        `}
+        css={{
+          borderTop: '2px solid #dee2e6',
+        }}
       >
         {bodyData.map((item, index) => (
           <tr
             css={css`
               text-align: left;
               cursor: pointer;
+              &:hover {
+                background-color: rgba(64, 17, 77, 0.05);
+              }
             `}
             onClick={openDocument(item.link)}
             key={index}
           >
             <td
-              css={css`
-                padding: 0.75rem;
-                vertical-align: top;
-                border-top: 1px solid #dee2e6;
-              `}
+              css={{
+                padding: '0.75rem',
+                verticalAlign: 'top',
+                borderTop: '1px solid #dee2e6',
+              }}
             >
               {item && item.name}
             </td>
             <td
-              css={css`
-                padding: 0.75rem;
-                vertical-align: top;
-                border-top: 1px solid #dee2e6;
-              `}
+              css={{
+                padding: '0.75rem',
+                verticalAlign: 'top',
+                borderTop: '1px solid #dee2e6',
+              }}
             >
               {item && item.date.toString()}
             </td>
             <td
-              css={css`
-                padding: 0.75rem;
-                vertical-align: top;
-                border-top: 1px solid #dee2e6;
-              `}
+              css={{
+                padding: '0.75rem',
+                verticalAlign: 'top',
+                borderTop: '1px solid #dee2e6',
+              }}
             >
               {item && item.size}
             </td>
             <td
-              css={css`
-                padding: 0.75rem;
-                vertical-align: top;
-                border-top: 1px solid #dee2e6;
-              `}
+              css={{
+                padding: '0.75rem',
+                verticalAlign: 'top',
+                borderTop: '1px solid #dee2e6',
+              }}
             >
               {item && item.posted}
             </td>

@@ -2,8 +2,7 @@
 
 import Routes from 'next-routes';
 
-const registry = new Routes().add('home', '/', 'home');
-registry.add('document', '/', 'docume');
+const registry = new Routes().add('home', '/', 'home').add('documents', '/documents', 'documents');
 
 const { Link, Router } = registry;
 export { registry, Link, Router };
