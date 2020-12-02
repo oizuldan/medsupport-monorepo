@@ -1,6 +1,7 @@
 import 'bootstrap-4-grid/css/grid.css';
 
 import css from '@emotion/css';
+import axios from 'axios';
 import { Button } from 'components/atoms/Button';
 import { Layout } from 'components/molecules/Layout';
 import { Table } from 'components/molecules/Table';
@@ -19,8 +20,12 @@ export const DocumentsPage: NextPage = () => {
   const onUploadDocument = useCallback(() => {
     if (ref && ref.current && ref.current.files) {
       const { files } = ref.current;
-      // eslint-disable-next-line no-console
-      console.log(files);
+      const data = new FormData();
+      data.append('file', files[0]);
+      axios
+        .post('http://localhost:8000/api/create-document', data, {})
+        // eslint-disable-next-line no-console
+        .then((resp) => console.log('FG', resp));
     }
   }, []);
   return (
@@ -36,7 +41,7 @@ export const DocumentsPage: NextPage = () => {
           <Table headerData={HEADER_DATA} bodyData={BODY_DATA} />
         </div>
         <div className="d-flex flex-column p-3">
-          <input ref={ref} type="file" css={{ color: '#a32cc4', display: 'none' }} />
+          <input ref={ref} name="file" type="file" css={{ color: '#a32cc4', display: 'none' }} />
           <Button className="py-2 mt-2" css={{ width: 150 }} onClick={onSelectDocument}>
             <span css={{ color: '#a32cc4' }}>Выбрать документ</span>
           </Button>

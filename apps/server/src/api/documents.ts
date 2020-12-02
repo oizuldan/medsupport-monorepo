@@ -1,11 +1,17 @@
 import express, { Request, Response } from 'express';
-import * as fs from 'fs';
 import { google } from 'googleapis';
+import Multer from 'multer';
+import stream from 'stream';
 
 import creds from '../../client_secret.json';
 
 const router = express.Router();
-
+const multer = Multer({
+  storage: Multer.memoryStorage(),
+  limits: {
+    fileSize: 20 * 1024 * 1024, // no larger than 20mb, you can change as needed.
+  },
+});
 // type File = {
 //   readonly mimeType: string;
 //   readonly parents: ReadonlyArray<string>;
@@ -46,14 +52,17 @@ router.get('/api/list-documents', async (_req: Request, res: Response) => {
   }
 });
 
-router.post('/api/create-document', async (_req: Request, res: Response) => {
+router.post('/api/create-document', multer.single('file'), async (_req: Request, res: Response) => {
+  const bufferStream = new stream.PassThrough();
+  bufferStream.end(_req.file.buffer);
   try {
     const resp = await drive.files.create({
       requestBody: {
         parents: ['1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk'],
+        name: _req.file.originalname,
       },
       media: {
-        body: fs.createReadStream('/home/oizuldan/Downloads/KassenovNurlan.pdf'),
+        body: bufferStream,
       },
     });
     res.status(resp.status).send(resp.statusText);
