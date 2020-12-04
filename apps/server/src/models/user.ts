@@ -1,17 +1,13 @@
 import { Document, model, Schema } from 'mongoose';
 
-export type IUser = Document & {
-  readonly username: string;
-  readonly password: string;
-  readonly firstName: string;
-  readonly lastName: string;
-};
+import UserType from '../types/user';
 
 const UserSchema: Schema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
+  email: { type: String, required: true },
 });
 
-export default model<IUser>('User', UserSchema);
+export default model<Document & UserType>('User', UserSchema);
