@@ -4,14 +4,15 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import router from './api';
+import router from './routes';
 
 dotenv.config({ path: __dirname + '/.env' });
+const corsOptions = { origin: 'http://localhost:8000' };
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(router);
 
 app.listen(process.env.PORT, async () => {
