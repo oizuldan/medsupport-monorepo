@@ -1,6 +1,5 @@
-import { HTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
-export type Props = HTMLAttributes<HTMLButtonElement> & {
-  readonly size?: 10;
-  readonly backgroundColor?: 'red';
-};
+import { RootProps } from './libs/Root';
+
+export type Props = ButtonHTMLAttributes<HTMLButtonElement> & RootProps;

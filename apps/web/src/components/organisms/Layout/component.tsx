@@ -1,6 +1,6 @@
 import 'bootstrap-4-grid/css/grid.css';
 
-import { Header } from 'components/organisms/Header';
+import { Header } from 'components/index';
 import { NextPage } from 'next';
 import React from 'react';
 
