@@ -8,7 +8,7 @@ export const Card = styled.div<Props>`
   ${(props) =>
     !props.disableBorder &&
     css`
-      border: 1px solid ${colors.variants.All.Grey};
+      border: 1px solid ${colors.variants.Neutral.Grey};
       border-radius: 4px;
       border-color: ${props.borderColor};
     `}

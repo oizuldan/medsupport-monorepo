@@ -27,33 +27,33 @@ export const P = styled.p<ParagraphProps>(
 
 export const H1 = styled.h1<HeadingProps>(
   defaultStyles,
-  typography.styles.titleBold60,
+  typography.styles.titleBold34,
   colors.styles.extendByVariant(colorSelectors),
 );
 
 export const H1Regular = styled.h1<HeadingProps>(
   defaultStyles,
-  typography.styles.titleRegular60,
+  typography.styles.titleRegular34,
   colors.styles.extendByVariant(colorSelectors),
 );
 
 export const H2 = styled.h2<HeadingProps>(
   defaultStyles,
-  typography.styles.titleBold34,
+  typography.styles.subtitleBold28,
   colors.styles.extendByVariant(colorSelectors),
 );
 export const H3 = styled.h3<HeadingProps>(
   defaultStyles,
-  typography.styles.titleBold24,
+  typography.styles.mainBold22,
   colors.styles.extendByVariant(colorSelectors),
 );
 export const H4 = styled.h4<HeadingProps>(
   defaultStyles,
-  typography.styles.titleBold20,
+  typography.styles.menuBold17,
   colors.styles.extendByVariant(colorSelectors),
 );
 export const H5 = styled.h6<HeadingProps>(
   defaultStyles,
-  typography.styles.titleBold16,
+  typography.styles.elementBold12,
   colors.styles.extendByVariant(colorSelectors),
 );

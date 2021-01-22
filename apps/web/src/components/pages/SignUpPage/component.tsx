@@ -76,7 +76,7 @@ export const SignUpPage: NextPage = () => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.All.White} typography={typography.variants.Main.Regular16}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Main.Regular22}>
         {message}
       </P>,
     );
@@ -107,10 +107,10 @@ export const SignUpPage: NextPage = () => {
           <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
-          <H1 color={colors.variants.All.Purple}>Sign up</H1>
-          <P color={colors.variants.All.Grey}>
+          <H1 color={colors.variants.Primary.Purple1}>Sign up</H1>
+          <P color={colors.variants.Neutral.Grey}>
             Already have an account?{' '}
-            <Anchor onClick={onGoToLogIn} color={colors.variants.All.GreenLight}>
+            <Anchor onClick={onGoToLogIn} color={colors.variants.Success.Green3}>
               Log In
             </Anchor>
           </P>
@@ -127,7 +127,7 @@ export const SignUpPage: NextPage = () => {
             className="mt-3"
             htmlFor="email"
             mainText="Email"
-            color={emailError ? colors.variants.System.Danger : undefined}
+            color={emailError ? colors.variants.Error.Red1 : undefined}
             helperText={emailError}
           >
             <Input
@@ -141,7 +141,7 @@ export const SignUpPage: NextPage = () => {
             className="w-100 mt-3"
             htmlFor="password"
             mainText="Password"
-            color={passwordsError ? colors.variants.System.Danger : undefined}
+            color={passwordsError ? colors.variants.Error.Red1 : undefined}
             helperText={passwordsError}
           >
             <InputGroup
@@ -149,7 +149,7 @@ export const SignUpPage: NextPage = () => {
                 <Button
                   variant={ButtonVariants.Flat}
                   size={ButtonSizes.ExtraSmall}
-                  typography={typography.variants.Small.Regular12}
+                  typography={typography.variants.Element.Regular12}
                   onClick={toggleShowPassword}
                 >
                   {showPassword ? 'hide' : 'show'}
@@ -168,7 +168,7 @@ export const SignUpPage: NextPage = () => {
             className="w-100 mt-3"
             htmlFor="repeatPassword"
             mainText="Repeat Password"
-            color={passwordsError ? colors.variants.System.Danger : undefined}
+            color={passwordsError ? colors.variants.Error.Red1 : undefined}
             helperText={passwordsError}
           >
             <InputGroup
@@ -176,7 +176,7 @@ export const SignUpPage: NextPage = () => {
                 <Button
                   variant={ButtonVariants.Flat}
                   size={ButtonSizes.ExtraSmall}
-                  typography={typography.variants.Small.Regular12}
+                  typography={typography.variants.Element.Regular12}
                   onClick={toggleShowRepeatPassword}
                 >
                   {showRepeatPassword ? 'hide' : 'show'}
@@ -194,7 +194,7 @@ export const SignUpPage: NextPage = () => {
           <div className="d-flex justify-content-between align-items-center">
             <Button
               className="mt-4 px-4"
-              color={colors.variants.All.PurpleLight}
+              color={colors.variants.Primary.Purple1}
               disabled={buttonDisabled}
               onClick={onSignUp}
             >

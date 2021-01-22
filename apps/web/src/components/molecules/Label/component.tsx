@@ -9,8 +9,8 @@ export const Label: FC<Props> = ({ children, mainText, helperText, color, ...res
     <Typography
       as="p"
       className="mb-1"
-      color={colors.variants.All.Grey}
-      typography={typography.variants.Small.Bold12}
+      color={colors.variants.Neutral.Grey}
+      typography={typography.variants.Element.Bold12}
     >
       {mainText}
     </Typography>
@@ -20,7 +20,7 @@ export const Label: FC<Props> = ({ children, mainText, helperText, color, ...res
         as="p"
         className="mt-1"
         color={color}
-        typography={typography.variants.Small.Regular12}
+        typography={typography.variants.Element.Regular12}
       >
         {helperText}
       </Typography>
@@ -29,5 +29,5 @@ export const Label: FC<Props> = ({ children, mainText, helperText, color, ...res
 );
 
 Label.defaultProps = {
-  color: colors.variants.All.Grey,
+  color: colors.variants.Neutral.Grey,
 };

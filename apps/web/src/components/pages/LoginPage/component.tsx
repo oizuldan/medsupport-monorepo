@@ -43,7 +43,7 @@ export const LoginPage: NextPage = () => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.All.White} typography={typography.variants.Main.Regular16}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Main.Regular22}>
         {message}
       </P>,
     );
@@ -71,10 +71,10 @@ export const LoginPage: NextPage = () => {
           <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
-          <H1 color={colors.variants.All.Purple}>Log In</H1>
-          <P color={colors.variants.All.Grey}>
+          <H1 color={colors.variants.Primary.Purple1}>Log In</H1>
+          <P color={colors.variants.Neutral.Grey}>
             Do not have an account?{' '}
-            <Anchor onClick={onGoToSignUp} color={colors.variants.All.GreenLight}>
+            <Anchor onClick={onGoToSignUp} color={colors.variants.Success.Green1}>
               Create account
             </Anchor>
           </P>
@@ -94,7 +94,7 @@ export const LoginPage: NextPage = () => {
                 <Button
                   variant={ButtonVariants.Flat}
                   size={ButtonSizes.ExtraSmall}
-                  typography={typography.variants.Small.Regular12}
+                  typography={typography.variants.Element.Regular12}
                   onClick={toggleShowPassword}
                 >
                   {showPassword ? 'hide' : 'show'}
@@ -115,14 +115,14 @@ export const LoginPage: NextPage = () => {
             ) : (
               <Button
                 className="px-4"
-                color={colors.variants.All.PurpleLight}
+                color={colors.variants.Primary.Purple4}
                 onClick={onLogIn}
                 disabled={buttonDisabled}
               >
                 Log in
               </Button>
             )}
-            <Anchor href="/restore-password" color={colors.variants.All.Purple}>
+            <Anchor href="/restore-password" color={colors.variants.Primary.Purple1}>
               Forgot Password?
             </Anchor>
           </div>

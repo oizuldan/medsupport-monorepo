@@ -8,10 +8,10 @@ export const Item = styled.li<Props>`
   ${(props) =>
     props.interactive &&
     services.match('color', {
-      [colors.variants.All.White]: css`
-        color: ${colors.variants.All.Black};
+      [colors.variants.Background.Primary]: css`
+        color: ${colors.variants.Text.Primary};
         &:hover {
-          background-color: ${colors.variants.All.GreyLight};
+          background-color: ${colors.variants.Neutral.LightGrey};
         }
       `,
     })}
@@ -19,6 +19,6 @@ export const Item = styled.li<Props>`
 `;
 
 Item.defaultProps = {
-  typography: typography.variants.Main.Regular16,
-  color: colors.variants.All.White,
+  typography: typography.variants.Main.Regular22,
+  color: colors.variants.Neutral.White,
 };

@@ -17,5 +17,5 @@ export const Spinner = styled.div<Props>`
 Spinner.defaultProps = {
   size: 35,
   rotationTime: 0.75,
-  color: colors.variants.All.Orange,
+  color: colors.variants.Warning.Orange1,
 };
