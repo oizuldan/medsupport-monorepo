@@ -19,6 +19,6 @@ export const Item = styled.li<Props>`
 `;
 
 Item.defaultProps = {
-  typography: typography.variants.Main.Regular22,
+  typography: typography.variants.Heading.Regular22,
   color: colors.variants.Neutral.White,
 };

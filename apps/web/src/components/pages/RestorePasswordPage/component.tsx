@@ -25,7 +25,7 @@ export const RestorePasswordPage: NextPage = () => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.Neutral.White} typography={typography.variants.Main.Regular22}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Heading.Regular22}>
         {message}
       </P>,
     );
@@ -59,7 +59,7 @@ export const RestorePasswordPage: NextPage = () => {
           <H1 color={colors.variants.Primary.Purple1}>Forgot password</H1>
           <P
             color={colors.variants.Neutral.Grey}
-            typography={typography.variants.Subtitle.Regular28}
+            typography={typography.variants.Heading.Regular28}
           >
             Enter your email and we will send you a temporary password
           </P>

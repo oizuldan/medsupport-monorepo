@@ -36,7 +36,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.Neutral.White} typography={typography.variants.Main.Regular22}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Heading.Regular22}>
         {message}
       </P>,
     );
@@ -98,20 +98,20 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                         width={20}
                         height={20}
                       />
-                      <P typography={typography.variants.Main.Regular22}>{file.name}</P>
+                      <P typography={typography.variants.Heading.Regular22}>{file.name}</P>
                     </>
                   ) : (
-                    <P typography={typography.variants.Menu.Bold17}>Name</P>
+                    <P typography={typography.variants.Heading.Bold17}>Name</P>
                   )}
                 </div>
                 <P
                   className="d-flex col-4 justify-content-center"
-                  typography={typography.variants.Main.Regular22}
+                  typography={typography.variants.Heading.Regular22}
                 >
                   {i !== 0 ? (
                     parseDate(file.createdTime)
                   ) : (
-                    <Typography as="span" typography={typography.variants.Menu.Bold17}>
+                    <Typography as="span" typography={typography.variants.Heading.Bold17}>
                       Date created
                     </Typography>
                   )}
@@ -140,7 +140,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                       </ButtonLink>{' '}
                     </>
                   ) : (
-                    <P typography={typography.variants.Menu.Bold17}>Links</P>
+                    <P typography={typography.variants.Heading.Bold17}>Links</P>
                   )}
                 </div>
               </ListItem>
@@ -180,7 +180,10 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
             )}
           </div>
           {selectedFileName && (
-            <P typography={typography.variants.Main.Regular22} color={colors.variants.Neutral.Grey}>
+            <P
+              typography={typography.variants.Heading.Regular22}
+              color={colors.variants.Neutral.Grey}
+            >
               Selected file:{' '}
               <Typography as="span" color={colors.variants.Text.Primary}>
                 {selectedFileName}

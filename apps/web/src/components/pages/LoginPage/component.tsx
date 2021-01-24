@@ -43,7 +43,7 @@ export const LoginPage: NextPage = () => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.Neutral.White} typography={typography.variants.Main.Regular22}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Heading.Regular22}>
         {message}
       </P>,
     );

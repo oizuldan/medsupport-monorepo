@@ -35,5 +35,5 @@ export const Input = styled(InputBase)<Props>`
 `;
 
 Input.defaultProps = {
-  typography: typography.variants.Main.Regular22,
+  typography: typography.variants.Heading.Regular22,
 };

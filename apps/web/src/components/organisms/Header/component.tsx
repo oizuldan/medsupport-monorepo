@@ -26,14 +26,14 @@ export const Header: FC = () => (
         href="/documents"
         className="mr-5"
         color={colors.variants.Neutral.White}
-        typography={typography.variants.Menu.Bold17}
+        typography={typography.variants.Heading.Bold17}
       >
         Documents
       </Anchor>
       <Anchor
         href="/"
         color={colors.variants.Neutral.White}
-        typography={typography.variants.Menu.Bold17}
+        typography={typography.variants.Heading.Bold17}
       >
         Live Stream
       </Anchor>
@@ -43,7 +43,7 @@ export const Header: FC = () => (
         href="/signup"
         variant={ButtonVariants.Flat}
         size={ButtonSizes.Small}
-        typography={typography.variants.Menu.Bold17}
+        typography={typography.variants.Heading.Bold17}
         color={colors.variants.Neutral.White}
       >
         Sign up
@@ -51,7 +51,7 @@ export const Header: FC = () => (
       <ButtonLink
         href="/login"
         size={ButtonSizes.Small}
-        typography={typography.variants.Menu.Bold17}
+        typography={typography.variants.Heading.Bold17}
         color={colors.variants.Success.Green1}
       >
         Log in

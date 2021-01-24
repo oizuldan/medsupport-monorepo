@@ -47,7 +47,7 @@ export const Root = styled('button', {
 
   ${services.match('size', {
     [Sizes.Medium]: typography.styles.elementBold12,
-    [Sizes.Large]: typography.styles.mainBold22,
+    [Sizes.Large]: typography.styles.headingBold22,
   })}
 
   ${typography.styles.extendByVariant}
@@ -81,7 +81,7 @@ export const Root = styled('button', {
 
 Root.defaultProps = {
   textTransform: 'uppercase',
-  typography: typography.variants.Main.Bold22,
+  typography: typography.variants.Heading.Bold22,
   color: variants.Primary.Purple1,
   variant: Variants.Raised,
   size: Sizes.Large,
