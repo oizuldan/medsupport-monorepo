@@ -5,14 +5,6 @@ import DocumentService from '../services/DocumentService';
 
 const router = express.Router();
 
-// type File = {
-//   readonly mimeType: string;
-//   readonly parents: ReadonlyArray<string>;
-//   readonly webViewLink: string;
-//   readonly thumbnailLink: string;
-//   readonly createdTime: string;
-// };
-
 const multer = Multer({
   storage: Multer.memoryStorage(),
   limits: {
