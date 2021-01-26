@@ -36,7 +36,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.All.White} typography={typography.variants.Main.Regular16}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Heading.Regular22}>
         {message}
       </P>,
     );
@@ -98,20 +98,20 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                         width={20}
                         height={20}
                       />
-                      <P typography={typography.variants.Main.Regular16}>{file.name}</P>
+                      <P typography={typography.variants.Heading.Regular22}>{file.name}</P>
                     </>
                   ) : (
-                    <P typography={typography.variants.Menu.Bold14}>Name</P>
+                    <P typography={typography.variants.Heading.Bold17}>Name</P>
                   )}
                 </div>
                 <P
                   className="d-flex col-4 justify-content-center"
-                  typography={typography.variants.Main.Regular16}
+                  typography={typography.variants.Heading.Regular22}
                 >
                   {i !== 0 ? (
                     parseDate(file.createdTime)
                   ) : (
-                    <Typography as="span" typography={typography.variants.Menu.Bold14}>
+                    <Typography as="span" typography={typography.variants.Heading.Bold17}>
                       Date created
                     </Typography>
                   )}
@@ -124,7 +124,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                         target="_blank"
                         variant={ButtonVariants.Flat}
                         size={ButtonSizes.Small}
-                        typography={typography.variants.Small.Bold12}
+                        typography={typography.variants.Element.Bold12}
                       >
                         View
                       </ButtonLink>
@@ -133,14 +133,14 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                         target="_blank"
                         variant={ButtonVariants.Flat}
                         size={ButtonSizes.Small}
-                        typography={typography.variants.Small.Bold12}
-                        color={colors.variants.All.GreenLight}
+                        typography={typography.variants.Element.Bold12}
+                        color={colors.variants.Success.Green1}
                       >
                         Download
                       </ButtonLink>{' '}
                     </>
                   ) : (
-                    <P typography={typography.variants.Menu.Bold14}>Links</P>
+                    <P typography={typography.variants.Heading.Bold17}>Links</P>
                   )}
                 </div>
               </ListItem>
@@ -160,18 +160,18 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
               <>
                 <Button
                   className="mr-3"
-                  color={colors.variants.All.GreenLight}
+                  color={colors.variants.Success.Green1}
                   onClick={onSelectDocument}
-                  typography={typography.variants.Small.Bold12}
+                  typography={typography.variants.Element.Bold12}
                   size={ButtonSizes.Small}
                 >
                   Select the document
                 </Button>
 
                 <Button
-                  color={colors.variants.All.GreenLight}
+                  color={colors.variants.Success.Green1}
                   onClick={onUploadDocument}
-                  typography={typography.variants.Small.Bold12}
+                  typography={typography.variants.Element.Bold12}
                   size={ButtonSizes.Small}
                 >
                   Upload the document
@@ -180,9 +180,12 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
             )}
           </div>
           {selectedFileName && (
-            <P typography={typography.variants.Main.Regular16} color={colors.variants.All.Grey}>
+            <P
+              typography={typography.variants.Heading.Regular22}
+              color={colors.variants.Neutral.Grey}
+            >
               Selected file:{' '}
-              <Typography as="span" color={colors.variants.All.Black}>
+              <Typography as="span" color={colors.variants.Text.Primary}>
                 {selectedFileName}
               </Typography>
             </P>

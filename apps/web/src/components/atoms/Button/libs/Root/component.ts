@@ -46,8 +46,8 @@ export const Root = styled('button', {
     `}
 
   ${services.match('size', {
-    [Sizes.Medium]: typography.styles.smallBold12,
-    [Sizes.Large]: typography.styles.mainBold16,
+    [Sizes.Medium]: typography.styles.elementBold12,
+    [Sizes.Large]: typography.styles.headingBold22,
   })}
 
   ${typography.styles.extendByVariant}
@@ -56,24 +56,24 @@ export const Root = styled('button', {
 
   ${services.match('variant', {
     [Variants.Raised]: services.match('color', {
-      [variants.All.Purple]: styles.raisedVariantColors(
-        variants.All.White,
-        variants.All.Purple,
-        variants.All.PurpleDark,
+      [variants.Button.Primary1]: styles.raisedVariantColors(
+        variants.Button.Primary1,
+        variants.Button.Secondary1,
+        variants.Button.Secondary2,
       ),
-      [variants.All.PurpleLight]: styles.raisedVariantColors(
-        variants.All.White,
-        variants.All.PurpleLight,
-        variants.All.PurpleDark,
+      [variants.Warning.Orange1]: styles.raisedVariantColors(
+        variants.Warning.Orange1,
+        variants.Warning.Orange2,
+        variants.Warning.Orange3,
       ),
-      [variants.All.GreenLight]: styles.raisedVariantColors(
-        variants.All.White,
-        variants.All.GreenLight,
-        variants.All.GreenDark,
+      [variants.Success.Green1]: styles.raisedVariantColors(
+        variants.Success.Green1,
+        variants.Success.Green2,
+        variants.Success.Green3,
       ),
     }),
     [Variants.Outlined]: services.match('color', {
-      [variants.All.Purple]: styles.outlinedVariantColors(variants.All.Purple),
+      [variants.Primary.Purple1]: styles.outlinedVariantColors(variants.Primary.Purple1),
     }),
     [Variants.Flat]: services.match('color', {}, styles.flatVariantColors),
   })}
@@ -81,8 +81,8 @@ export const Root = styled('button', {
 
 Root.defaultProps = {
   textTransform: 'uppercase',
-  typography: typography.variants.Main.Bold16,
-  color: variants.All.PurpleLight,
+  typography: typography.variants.Heading.Bold22,
+  color: variants.Primary.Purple1,
   variant: Variants.Raised,
   size: Sizes.Large,
 };

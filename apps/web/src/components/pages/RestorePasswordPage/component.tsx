@@ -25,7 +25,7 @@ export const RestorePasswordPage: NextPage = () => {
     services.toast(
       Toast,
       type,
-      <P color={colors.variants.All.White} typography={typography.variants.Main.Regular16}>
+      <P color={colors.variants.Neutral.White} typography={typography.variants.Heading.Regular22}>
         {message}
       </P>,
     );
@@ -56,15 +56,18 @@ export const RestorePasswordPage: NextPage = () => {
           <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
-          <H1 color={colors.variants.All.Purple}>Forgot password</H1>
-          <P typography={typography.variants.Subtitle.Regular24} color={colors.variants.All.Grey}>
+          <H1 color={colors.variants.Primary.Purple1}>Forgot password</H1>
+          <P
+            color={colors.variants.Neutral.Grey}
+            typography={typography.variants.Heading.Regular28}
+          >
             Enter your email and we will send you a temporary password
           </P>
           <div className="mb-3 mt-5">
             <Label
               htmlFor="email"
               mainText="Email"
-              color={emailError ? colors.variants.System.Danger : undefined}
+              color={emailError ? colors.variants.Error.Red1 : undefined}
               helperText={emailError}
             >
               <Input
@@ -81,7 +84,7 @@ export const RestorePasswordPage: NextPage = () => {
             ) : (
               <Button
                 className="px-4"
-                color={colors.variants.All.PurpleLight}
+                color={colors.variants.Primary.Purple4}
                 onClick={onLogIn}
                 disabled={buttonDisabled}
               >

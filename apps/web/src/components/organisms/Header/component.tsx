@@ -8,7 +8,7 @@ export const Header: FC = () => (
   <div
     css={{
       height: 60,
-      backgroundColor: colors.variants.All.Purple,
+      backgroundColor: colors.variants.Primary.Purple1,
     }}
     className="d-flex w-100 align-items-center px-3 justify-content-between"
   >
@@ -25,15 +25,15 @@ export const Header: FC = () => (
       <Anchor
         href="/documents"
         className="mr-5"
-        color={colors.variants.All.White}
-        typography={typography.variants.Menu.Bold14}
+        color={colors.variants.Neutral.White}
+        typography={typography.variants.Heading.Bold17}
       >
         Documents
       </Anchor>
       <Anchor
         href="/"
-        color={colors.variants.All.White}
-        typography={typography.variants.Menu.Bold14}
+        color={colors.variants.Neutral.White}
+        typography={typography.variants.Heading.Bold17}
       >
         Live Stream
       </Anchor>
@@ -43,16 +43,16 @@ export const Header: FC = () => (
         href="/signup"
         variant={ButtonVariants.Flat}
         size={ButtonSizes.Small}
-        typography={typography.variants.Menu.Bold14}
-        color={colors.variants.All.White}
+        typography={typography.variants.Heading.Bold17}
+        color={colors.variants.Neutral.White}
       >
         Sign up
       </ButtonLink>
       <ButtonLink
         href="/login"
         size={ButtonSizes.Small}
-        typography={typography.variants.Menu.Bold14}
-        color={colors.variants.All.GreenLight}
+        typography={typography.variants.Heading.Bold17}
+        color={colors.variants.Success.Green1}
       >
         Log in
       </ButtonLink>

@@ -23,5 +23,5 @@ export const Divider = styled.hr<Props>`
 
 Divider.defaultProps = {
   direction: Directions.Horizontal,
-  color: colors.variants.All.GreyLight,
+  color: colors.variants.Neutral.LightGrey,
 };

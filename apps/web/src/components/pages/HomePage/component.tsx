@@ -16,7 +16,7 @@ export const HomePage: NextPage<InitProps, Props> = (props: Props) => {
       <div className="d-flex h-100 align-items-center">
         <div className="h-100 w-50 mr-5 p-5 d-flex flex-column justify-content-center">
           <H1 className="mt-5">Content is comming soon...</H1>
-          <P typography={typography.variants.Subtitle.Regular24}>
+          <P typography={typography.variants.Heading.Regular28}>
             For now you can proceed to Log in/Sign up pages and Documents page
           </P>
         </div>

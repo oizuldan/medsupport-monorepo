@@ -25,6 +25,6 @@ export const Interactive = styled(InteractiveBase)<Props>`
   color: inherit;
 
   &:hover {
-    background-color: ${(props) => props.color || colors.variants.All.GreyLight};
+    background-color: ${(props) => props.color || colors.variants.Neutral.LightGrey};
   }
 `;

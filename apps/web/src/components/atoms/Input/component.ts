@@ -16,13 +16,13 @@ export const Input = styled(InputBase)<Props>`
   height: 40px;
   width: 100%;
   transition: 0.1s padding;
-  background-color: ${colors.variants.All.White};
+  background-color: ${colors.variants.Background.Primary};
   border: 0;
-  border-bottom: 1px solid ${(props) => props.color || colors.variants.All.Grey};
+  border-bottom: 1px solid ${(props) => props.color || colors.variants.Neutral.Grey};
   ${typography.styles.extendByVariant}
 
   &::placeholder {
-    color: ${colors.variants.All.Grey};
+    color: ${colors.variants.Neutral.Grey};
     line-height: normal;
   }
 
@@ -30,10 +30,10 @@ export const Input = styled(InputBase)<Props>`
     outline: none;
     border-bottom-width: 2px;
     border-bottom-color: ${(props) =>
-      props.focusColor || props.color || colors.variants.All.Purple};
+      props.focusColor || props.color || colors.variants.Primary.Purple1};
   }
 `;
 
 Input.defaultProps = {
-  typography: typography.variants.Main.Regular16,
+  typography: typography.variants.Heading.Regular22,
 };
