@@ -6,8 +6,7 @@ import UserType from '../types/user';
 export default {
   createToken: (user: UserType): TokenData => {
     const expiresIn = 60 * 60;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const secret: string = process.env.JWT_SECRET!;
+    const secret: string = process.env.JWT_SECRET || 'get secret for env';
     const dataStoredInToken: DataStoredInToken = { _id: user._id };
     return {
       expiresIn,
