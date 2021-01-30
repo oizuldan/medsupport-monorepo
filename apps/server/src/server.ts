@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 
-import router from './routes';
+import router from './api';
 
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config({ path: __dirname + '/config/.env' });
 const corsOptions = { origin: 'http://localhost:8000' };
 
 const app = express();
