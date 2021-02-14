@@ -20,19 +20,25 @@ export default {
       const resp = await drive.files.list({
         pageSize: 10,
         fields:
-          'nextPageToken, files(webViewLink, thumbnailLink, createdTime, size, parents, mimeType)',
+          'nextPageToken, files(webViewLink, webContentLink, iconLink, createdTime, name, exportLinks)',
+        q: "'1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk' in parents",
       });
       const { files } = resp.data;
-      const valueToReturn =
-        files &&
-        files.filter(
-          (file) =>
-            file.mimeType &&
-            file.webViewLink &&
-            file.createdTime &&
-            file.parents?.includes('1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk'),
-        );
-      return { success: 'Documents received.', files: valueToReturn };
+      const formattedFiles = files
+        ? files.map(({ exportLinks, ...rest }) => ({
+            ...rest,
+            exportLinks: exportLinks
+              ? {
+                  docx:
+                    exportLinks[
+                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                    ],
+                  pdf: exportLinks['application/pdf'],
+                }
+              : undefined,
+          }))
+        : [];
+      return { success: 'Documents received.', files: formattedFiles };
     } catch (e) {
       const { code, message } = e.response.data.error;
       return { error: message, code };
@@ -53,7 +59,32 @@ export default {
           body: bufferStream,
         },
       });
-      return { success: resp.statusText, code: resp.status };
+      const filesToReturn = await drive.files.list({
+        pageSize: 10,
+        fields:
+          'nextPageToken, files(webViewLink, webContentLink, iconLink, createdTime, name, exportLinks)',
+        q: "'1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk' in parents",
+      });
+      const { files } = filesToReturn.data;
+      const formattedFiles = files
+        ? files.map(({ exportLinks, ...rest }) => ({
+            ...rest,
+            exportLinks: exportLinks
+              ? {
+                  docx:
+                    exportLinks[
+                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                    ],
+                  pdf: exportLinks['application/pdf'],
+                }
+              : undefined,
+          }))
+        : [];
+      return {
+        success: `Successfully uploaded file ${originalName} to the Google Drive`,
+        code: resp.status,
+        files: formattedFiles,
+      };
     } catch (e) {
       const { code, message } = e.response.data.error;
       return { error: message, code };

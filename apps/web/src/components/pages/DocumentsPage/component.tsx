@@ -54,7 +54,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
         const { files } = ref.current;
         const data = new FormData();
         data.append('file', files[0]);
-        const res = await axios.post('http://localhost:3000/proxy/documents/create', data, {});
+        const res = await axios.post('http://localhost:3000/proxy/api/create-document', data, {});
         setSelectedFileName(undefined);
         if (formRef?.current) formRef.current.reset();
         setFiles(res.data.files && [res.data.files[0], ...res.data.files]);
@@ -197,7 +197,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
 };
 
 DocumentsPage.getInitialProps = async () => {
-  const files = await axios.get('http://localhost:3000/proxy/documents/list-all');
+  const files = await axios.get('http://localhost:3000/proxy/api/list-documents');
   return {
     files: files.data as ReadonlyArray<File>,
   };

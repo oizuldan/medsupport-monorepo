@@ -56,7 +56,7 @@ export const LoginPage: NextPage = () => {
         password,
       });
       Cookies.set('token', res.data.token, { expires: 60 * 60 });
-      callToastAndRefresh(true, res.data.message);
+      callToastAndRefresh(true, res.data);
       await router.push('/documents');
     } catch (e) {
       callToastAndRefresh(false, e.response.data);

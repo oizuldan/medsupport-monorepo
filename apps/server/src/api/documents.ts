@@ -24,7 +24,7 @@ router.get('/api/list-documents', async (_req: Request, res: Response) => {
 router.post('/api/create-document', multer.single('file'), async (req: Request, res: Response) => {
   const result = await DocumentService.createDocument(req.file.buffer, req.file.originalname);
   if (result.success) {
-    res.status(result.code).send(result.success);
+    res.status(result.code).send({ message: result.success, files: result.files });
   } else {
     res.status(result.code).send(result.error);
   }

@@ -6,7 +6,13 @@ import TokenService from './TokenService';
 
 export default {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  register: async (email: string, username: string, password: string) => {
+  register: async (
+    email: string,
+    username: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+  ) => {
     try {
       if (await User.findOne({ email })) {
         return { error: 'User with such email already exists.' };
@@ -14,7 +20,13 @@ export default {
         return { error: 'User with such username already exists.' };
       } else {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const createdUser = await User.create({ email, password: hashedPassword });
+        const createdUser = await User.create({
+          username,
+          email,
+          password: hashedPassword,
+          firstName,
+          lastName,
+        });
         const tokenData = TokenService.createToken(createdUser);
         return {
           message: `User ${createdUser.username} successfully registered.`,

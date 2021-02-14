@@ -5,7 +5,13 @@ import AuthService from '../services/AuthService';
 const router = express.Router();
 
 router.post('/auth/register', async (req: Request, res: Response) => {
-  const result = await AuthService.register(req.body.email, req.body.username, req.body.password);
+  const result = await AuthService.register(
+    req.body.email,
+    req.body.username,
+    req.body.password,
+    req.body.firstName,
+    req.body.lastName,
+  );
   if (result.message) {
     res.setHeader('Set-Cookie', result.token);
     res.status(200).send(result.message);

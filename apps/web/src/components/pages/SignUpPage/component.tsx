@@ -92,7 +92,7 @@ export const SignUpPage: NextPage = () => {
           firstName,
           lastName,
         });
-        callToastAndRefresh(true, res.data.message);
+        callToastAndRefresh(true, res.data);
         await router.push('/login');
       }
     } catch (e) {
