@@ -19,6 +19,7 @@ import { colors, services, typography } from 'core';
 import { NextPage } from 'next';
 import React, { ChangeEventHandler, Fragment, useCallback, useRef, useState } from 'react';
 
+import { BasicCarousel } from '../../molecules/Carousel';
 import { Props } from './props';
 import { File } from './types/File';
 
@@ -192,6 +193,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
           )}
         </div>
       </div>
+      <BasicCarousel />
     </Layout>
   );
 };
