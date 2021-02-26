@@ -5,3 +5,4 @@ export * from './Input';
 export * from './Spinner';
 export * from './Toast';
 export * from './Typography';
+export * from './Overflow';

@@ -27,7 +27,7 @@ export const Root = styled('button', {
   transition: 0.1s background-color;
   height: ${(props) => props.size}px;
   min-width: ${(props) => props.size}px;
-  border-radius: ${(props) => (props.bordered ? 4 : props.size)}px;
+  border-radius: ${(props) => (props.bordered ? 8 : props.size)}px;
 
   ${(props) =>
     props.disabled &&
@@ -56,33 +56,28 @@ export const Root = styled('button', {
 
   ${services.match('variant', {
     [Variants.Raised]: services.match('color', {
-      [variants.Button.Primary1]: styles.raisedVariantColors(
-        variants.Button.Primary1,
-        variants.Button.Secondary1,
-        variants.Button.Secondary2,
+      [variants.Brand.Purple]: styles.raisedVariantColors(
+        variants.Neutral.White,
+        variants.Brand.Purple,
+        variants.Brand.DarkPurple,
       ),
-      [variants.Warning.Orange1]: styles.raisedVariantColors(
-        variants.Warning.Orange1,
-        variants.Warning.Orange2,
-        variants.Warning.Orange3,
-      ),
-      [variants.Success.Green1]: styles.raisedVariantColors(
-        variants.Success.Green1,
-        variants.Success.Green2,
-        variants.Success.Green3,
+      [variants.Brand.ExtraLightPurple]: styles.raisedVariantColors(
+        variants.Brand.Purple,
+        variants.Brand.ExtraLightPurple,
+        variants.Brand.LightPurple,
       ),
     }),
     [Variants.Outlined]: services.match('color', {
-      [variants.Primary.Purple1]: styles.outlinedVariantColors(variants.Primary.Purple1),
+      [variants.Brand.Purple]: styles.outlinedVariantColors(variants.Brand.Purple),
     }),
     [Variants.Flat]: services.match('color', {}, styles.flatVariantColors),
   })}
 `;
 
 Root.defaultProps = {
-  textTransform: 'uppercase',
-  typography: typography.variants.Heading.Bold22,
-  color: variants.Primary.Purple1,
+  textTransform: 'none',
+  typography: typography.variants.Element.Bold20,
+  color: variants.Brand.Purple,
   variant: Variants.Raised,
   size: Sizes.Large,
 };

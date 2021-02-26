@@ -12,15 +12,14 @@ export enum Neutral {
 
 export enum Background {
   Primary = '#FFFFFF',
+  Grey = '#18191F',
 }
 
-export enum Primary {
-  Purple1 = '#6019B7',
-  Purple2 = '#8F27D7',
-  Purple3 = '#BF63FF',
-  Purple4 = '#D6B1FF',
-  Purple5 = '#F1E4FF',
-  Purple6 = '#8C30F5',
+export enum Brand {
+  Purple = '#8C30F5',
+  DarkPurple = '#6019B7',
+  LightPurple = '#D6B1FF',
+  ExtraLightPurple = '#F1E4FF',
 }
 
 export enum Warning {
@@ -42,12 +41,4 @@ export enum Error {
   Red4 = '#F03333',
 }
 
-export enum Button {
-  Primary1 = '#8C30F5',
-  Secondary1 = '#F1E4FF',
-  Secondary2 = '#FFFFFF',
-  Hover = '#F4901E',
-  Click = '#6100D0',
-  Disabled = '#D9DBE1',
-}
-export type AnyColor = Text | Neutral | Background | Primary | Warning | Success | Error | Button;
+export type AllColors = Text | Neutral | Background | Brand | Warning | Success | Error;

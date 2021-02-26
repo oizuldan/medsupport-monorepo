@@ -30,7 +30,7 @@ export const Input = styled(InputBase)<Props>`
     outline: none;
     border-bottom-width: 2px;
     border-bottom-color: ${(props) =>
-      props.focusColor || props.color || colors.variants.Primary.Purple1};
+      props.focusColor || props.color || colors.variants.Brand.Purple};
   }
 `;
 

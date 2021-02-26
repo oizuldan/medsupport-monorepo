@@ -56,7 +56,7 @@ export const RestorePasswordPage: NextPage = () => {
           <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
-          <H1 color={colors.variants.Primary.Purple1}>Forgot password</H1>
+          <H1 color={colors.variants.Brand.Purple}>Forgot password</H1>
           <P
             color={colors.variants.Neutral.Grey}
             typography={typography.variants.Heading.Regular28}
@@ -84,7 +84,7 @@ export const RestorePasswordPage: NextPage = () => {
             ) : (
               <Button
                 className="px-4"
-                color={colors.variants.Primary.Purple4}
+                color={colors.variants.Brand.Purple}
                 onClick={onLogIn}
                 disabled={buttonDisabled}
               >

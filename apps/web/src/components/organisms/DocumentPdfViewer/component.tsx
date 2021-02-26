@@ -1,4 +1,4 @@
-import { Button } from 'components';
+import { Button, ButtonVariants } from 'components';
 import { NextPage } from 'next';
 import React, { useCallback, useState } from 'react';
 import Modal from 'react-modal';
@@ -32,7 +32,7 @@ export const DocumentPdfViewer: NextPage<Prop> = ({ file, onClose }: Prop) => {
 
   return url ? (
     <Modal isOpen>
-      <Button onClick={handleClose}>
+      <Button onClick={handleClose} variant={ButtonVariants.Flat}>
         <img alt="close" src="/static/closeButton.png" />
       </Button>
       <div

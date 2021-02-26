@@ -107,7 +107,7 @@ export const SignUpPage: NextPage = () => {
           <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
-          <H1 color={colors.variants.Primary.Purple1}>Sign up</H1>
+          <H1 color={colors.variants.Brand.Purple}>Sign up</H1>
           <P color={colors.variants.Neutral.Grey}>
             Already have an account?{' '}
             <Anchor onClick={onGoToLogIn} color={colors.variants.Success.Green3}>
@@ -194,7 +194,7 @@ export const SignUpPage: NextPage = () => {
           <div className="d-flex justify-content-between align-items-center">
             <Button
               className="mt-4 px-4"
-              color={colors.variants.Primary.Purple1}
+              color={colors.variants.Brand.Purple}
               disabled={buttonDisabled}
               onClick={onSignUp}
             >

@@ -3,7 +3,7 @@ import { Card } from 'components';
 import { colors, services } from 'core';
 import React, { FC } from 'react';
 
-const toastStyles: Record<string, colors.variants.AnyColor> = {
+const toastStyles: Record<string, colors.variants.AllColors> = {
   [services.ToastTypes.Success]: colors.variants.Success.Green1,
   [services.ToastTypes.Warning]: colors.variants.Warning.Orange1,
   [services.ToastTypes.Error]: colors.variants.Error.Red1,

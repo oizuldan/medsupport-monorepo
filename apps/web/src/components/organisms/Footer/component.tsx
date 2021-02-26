@@ -7,7 +7,7 @@ import React, { FC } from 'react';
 export const Footer: FC = () => (
   <div
     css={{
-      backgroundColor: colors.variants.Primary.Purple1,
+      backgroundColor: colors.variants.Brand.DarkPurple,
     }}
     className="d-flex w-100 px-5 justify-content-between py-4 position-relative"
   >

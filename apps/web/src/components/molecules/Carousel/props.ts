@@ -19,6 +19,7 @@ export type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
   /**
    * @default false
    */
+  readonly withDots?: boolean;
   readonly draggable?: boolean;
   /**
    * @description elements to show per page.
