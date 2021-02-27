@@ -31,7 +31,7 @@ export const Header: FC = () => (
         Documents
       </Anchor>
       <Anchor
-        href="/"
+        href="/live-stream"
         color={colors.variants.Neutral.White}
         typography={typography.variants.Heading.Bold17}
       >

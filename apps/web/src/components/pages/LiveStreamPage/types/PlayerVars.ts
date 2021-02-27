@@ -1,0 +1,23 @@
+export type PlayerVars = {
+  readonly autoplay?: 0 | 1;
+  readonly cc_load_policy?: 1;
+  readonly color?: 'red' | 'white';
+  readonly controls?: 0 | 1 | 2;
+  readonly disablekb?: 0 | 1;
+  readonly enablejsapi?: 0 | 1;
+  readonly end?: number;
+  readonly fs?: 0 | 1;
+  readonly hl?: string;
+  readonly iv_load_policy?: 1 | 3;
+  readonly list?: string;
+  readonly listType?: 'playlist' | 'search' | 'user_uploads';
+  readonly loop?: 0 | 1;
+  readonly modestbranding?: 1;
+  readonly origin?: string;
+  readonly playlist?: string;
+  readonly playsinline?: 0 | 1;
+  readonly rel?: 0 | 1;
+  readonly showinfo?: 0 | 1;
+  readonly start?: number;
+  readonly mute?: 0 | 1;
+};
