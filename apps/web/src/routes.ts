@@ -8,7 +8,8 @@ const registry = new Routes()
   .add('liveStream', '/live-stream', 'liveStream')
   .add('login', '/login', 'login')
   .add('signup', '/signup', 'signup')
-  .add('restorePassword', '/restore-password', 'restorePassword');
+  .add('restorePassword', '/restore-password', 'restorePassword')
+  .add('userDocuments', '/user-documents', 'userDocuments');
 
 const { Link, Router } = registry;
 export { registry, Link, Router };

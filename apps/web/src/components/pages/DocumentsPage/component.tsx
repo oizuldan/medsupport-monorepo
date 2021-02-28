@@ -5,6 +5,7 @@ import {
   ButtonSizes,
   ButtonVariants,
   Divider,
+  DocumentPdfViewer,
   H2,
   Input,
   Layout,
@@ -19,7 +20,6 @@ import { colors, services, typography } from 'core';
 import { NextPage } from 'next';
 import React, { ChangeEventHandler, Fragment, useCallback, useRef, useState } from 'react';
 
-import { BasicCarousel } from '../../molecules/Carousel';
 import { Props } from './props';
 import { File } from './types/File';
 
@@ -28,9 +28,10 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [files, setFiles] = useState(filesProp && [filesProp[0], ...filesProp]);
-
   const [selectedFileName, setSelectedFileName] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
+  const [showFile, setShowFile] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(undefined);
 
   const callToastAndRefresh = useCallback((success: boolean, message: string) => {
     const type = success ? services.ToastTypes.Success : services.ToastTypes.Error;
@@ -77,6 +78,16 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
       month: 'long',
     })}, ${date.getFullYear()}`;
   }, []);
+  const onViewFile = useCallback(
+    (file) => () => {
+      setShowFile(true);
+      setSelectedFile(file);
+    },
+    [],
+  );
+  const onCloseFile = useCallback(() => {
+    setShowFile(false);
+  }, []);
 
   return (
     <Layout>
@@ -121,11 +132,10 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                   {i !== 0 ? (
                     <>
                       <ButtonLink
-                        href={file.webViewLink}
-                        target="_blank"
                         variant={ButtonVariants.Flat}
                         size={ButtonSizes.Small}
                         typography={typography.variants.Element.Bold12}
+                        onClick={onViewFile(file)}
                       >
                         View
                       </ButtonLink>
@@ -149,7 +159,6 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
             </Fragment>
           ))}
         </List>
-
         <div className="mt-4">
           <form ref={formRef}>
             <Input className="d-none" ref={ref} name="file" type="file" onChange={onChange} />
@@ -193,7 +202,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
           )}
         </div>
       </div>
-      <BasicCarousel />
+      {showFile && <DocumentPdfViewer file={selectedFile} onClose={onCloseFile} />}
     </Layout>
   );
 };
