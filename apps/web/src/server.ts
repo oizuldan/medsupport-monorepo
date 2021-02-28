@@ -1,4 +1,4 @@
-import { proxy, server } from '@medsupportkz/next';
+import { proxy, proxy2, server } from '@medsupportkz/next';
 import express from 'express';
 import { sequenceT } from 'fp-ts/lib/Apply';
 import { pipe } from 'fp-ts/lib/pipeable';
@@ -16,6 +16,7 @@ const port = process.env.PORT || 3000;
 pipe(
   T.of(express()),
   T.chain(proxy('/proxy', packageJson)),
+  T.chain(proxy2('/proxy2', packageJson)),
   T.chain((app) => sequenceT(T.task)(server({ dev, dir, conf, registry }), T.of(app))),
   T.chain(([handler, app]) => T.of(app.use(handler))),
   T.chain((app) =>

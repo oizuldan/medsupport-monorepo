@@ -7,6 +7,7 @@ export enum Neutral {
   Grey = '#969BAB',
   LightGrey = '#D9DBE1',
   White = '#FFFFFF',
+  Black = '#000000',
 }
 
 export enum Background {
@@ -19,6 +20,7 @@ export enum Primary {
   Purple3 = '#BF63FF',
   Purple4 = '#D6B1FF',
   Purple5 = '#F1E4FF',
+  Purple6 = '#8C30F5',
 }
 
 export enum Warning {
@@ -37,6 +39,7 @@ export enum Error {
   Red1 = '#ED2F3A',
   Red2 = '#FF646D',
   Red3 = '#FF9CA2',
+  Red4 = '#F03333',
 }
 
 export enum Button {

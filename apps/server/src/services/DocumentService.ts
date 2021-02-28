@@ -20,7 +20,7 @@ export default {
       const resp = await drive.files.list({
         pageSize: 10,
         fields:
-          'nextPageToken, files(webViewLink, webContentLink, iconLink, createdTime, name, exportLinks)',
+          'nextPageToken, files(webViewLink, webContentLink, iconLink, createdTime, name, exportLinks, mimeType)',
         q: "'1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk' in parents",
       });
       const { files } = resp.data;
