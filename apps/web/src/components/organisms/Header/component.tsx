@@ -61,33 +61,29 @@ export const Header: FC = () => (
     </Anchor>
 
     <div className="d-flex align-items-center">
-      <Button className="mr-1">
+      <Button className="mr-1" variant={ButtonVariants.Flat}>
         <img height={20} alt="logoSearch" src="/static/iconSearch.png" />
       </Button>
-      <Button className="mr-1">
+      <Button className="mr-1" variant={ButtonVariants.Flat}>
         <img height={24} alt="logoSearch" src="/static/language.png" />
         <div>RU</div>
       </Button>
-      <div
-        css={{ background: colors.variants.Primary.Purple5, borderRadius: 8 }}
-        className="p-1 mr-2"
+      <ButtonLink
+        href="/login"
+        className="mr-2"
+        size={ButtonSizes.Small}
+        typography={typography.variants.Heading.SemiBold17}
+        color={colors.variants.Brand.ExtraLightPurple}
+        bordered
       >
-        <ButtonLink
-          href="/login"
-          size={ButtonSizes.Small}
-          typography={typography.variants.Heading.SemiBold17}
-          color={colors.variants.Primary.Purple6}
-        >
-          Войти
-        </ButtonLink>
-      </div>
-      <div css={{ background: colors.variants.Primary.Purple6, borderRadius: 8 }} className="p-1">
+        Войти
+      </ButtonLink>
+      <div>
         <ButtonLink
           href="/signup"
-          variant={ButtonVariants.Flat}
           size={ButtonSizes.Small}
           typography={typography.variants.Heading.SemiBold17}
-          color={colors.variants.Neutral.White}
+          bordered
         >
           Регистрация
         </ButtonLink>

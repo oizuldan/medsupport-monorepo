@@ -145,10 +145,10 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                         variant={ButtonVariants.Flat}
                         size={ButtonSizes.Small}
                         typography={typography.variants.Element.Bold12}
-                        color={colors.variants.Success.Green1}
+                        color={colors.variants.Success.Green2}
                       >
                         Download
-                      </ButtonLink>{' '}
+                      </ButtonLink>
                     </>
                   ) : (
                     <P typography={typography.variants.Heading.Bold17}>Links</P>
@@ -170,7 +170,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
               <>
                 <Button
                   className="mr-3"
-                  color={colors.variants.Success.Green1}
+                  color={colors.variants.Brand.ExtraLightPurple}
                   onClick={onSelectDocument}
                   typography={typography.variants.Element.Bold12}
                   size={ButtonSizes.Small}
@@ -179,7 +179,7 @@ export const DocumentsPage: NextPage<Props> = ({ files: filesProp }: Props) => {
                 </Button>
 
                 <Button
-                  color={colors.variants.Success.Green1}
+                  color={colors.variants.Brand.Purple}
                   onClick={onUploadDocument}
                   typography={typography.variants.Element.Bold12}
                   size={ButtonSizes.Small}

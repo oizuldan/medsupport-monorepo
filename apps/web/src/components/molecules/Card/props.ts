@@ -7,5 +7,5 @@ export type Props = HTMLAttributes<HTMLDivElement> &
     /**
      * @default Element.Line
      */
-    readonly borderColor?: colors.variants.AnyColor;
+    readonly borderColor?: colors.variants.AllColors;
   };

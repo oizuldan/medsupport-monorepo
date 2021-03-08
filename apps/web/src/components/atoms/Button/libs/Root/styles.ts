@@ -11,7 +11,7 @@ export const flatVariantColors: services.FI<colors.PropsBase> = ({ color }) => c
 `;
 
 export const outlinedVariantColors = (
-  color: colors.AnyColor,
+  color: colors.variants.AllColors,
 ): services.FI<Partial<services.LoadingProps>> => ({ loading }) => css`
   border: 1px solid ${color};
   ${flatVariantColors({ color })}
@@ -23,9 +23,9 @@ export const outlinedVariantColors = (
 `;
 
 export const raisedVariantColors = (
-  staleInner: colors.AnyColor,
-  staleBackground: colors.AnyColor,
-  active: colors.AnyColor,
+  staleInner: colors.variants.AllColors,
+  staleBackground: colors.variants.AllColors,
+  active: colors.variants.AllColors,
 ): services.FI<Partial<services.LoadingProps>> => () => css`
   color: ${staleInner};
   fill: ${staleInner};

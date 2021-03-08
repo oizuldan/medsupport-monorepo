@@ -71,7 +71,7 @@ export const LoginPage: NextPage = () => {
           <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
-          <H1 color={colors.variants.Primary.Purple1}>Log In</H1>
+          <H1 color={colors.variants.Brand.Purple}>Log In</H1>
           <P color={colors.variants.Neutral.Grey}>
             Do not have an account?{' '}
             <Anchor onClick={onGoToSignUp} color={colors.variants.Success.Green1}>
@@ -115,14 +115,14 @@ export const LoginPage: NextPage = () => {
             ) : (
               <Button
                 className="px-4"
-                color={colors.variants.Primary.Purple4}
+                color={colors.variants.Brand.Purple}
                 onClick={onLogIn}
                 disabled={buttonDisabled}
               >
                 Log in
               </Button>
             )}
-            <Anchor href="/restore-password" color={colors.variants.Primary.Purple1}>
+            <Anchor href="/restore-password" color={colors.variants.Brand.Purple}>
               Forgot Password?
             </Anchor>
           </div>

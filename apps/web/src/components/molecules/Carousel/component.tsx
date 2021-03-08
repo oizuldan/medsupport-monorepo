@@ -17,6 +17,7 @@ export const Carousel: FC<Props> = (props: Props) => {
     onRest: propOnRest,
     activeSlide: propActiveSlide,
     horizontalMargins = 0,
+    withDots = false,
     ...rest
   } = props;
 
@@ -168,22 +169,24 @@ export const Carousel: FC<Props> = (props: Props) => {
         ))}
       </animated.div>
 
-      <div
-        className="d-flex align-items-center justify-content-center position-absolute "
-        css={{ bottom: '0.5rem', left: 0, right: 0 }}
-      >
-        {children.map((_, i) => (
-          <Dot
-            key={i}
-            className="mx-1"
-            active={
-              i === activeSlide ||
-              (i > activeSlide && i === 0) ||
-              (i < activeSlide && i === children.length - 1)
-            }
-          />
-        ))}
-      </div>
+      {withDots && (
+        <div
+          className="d-flex align-items-center justify-content-center position-absolute "
+          css={{ bottom: '0.5rem', left: 0, right: 0 }}
+        >
+          {children.map((_, i) => (
+            <Dot
+              key={i}
+              className="mx-1"
+              active={
+                i === activeSlide ||
+                (i > activeSlide && i === 0) ||
+                (i < activeSlide && i === children.length - 1)
+              }
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
