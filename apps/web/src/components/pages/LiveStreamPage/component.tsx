@@ -1,14 +1,26 @@
-import { H2, Layout } from 'components';
+import { Layout } from 'components';
 import { NextPage } from 'next';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
 
 import { Options } from './types/Options';
 
 export const LiveStreamPage: NextPage = () => {
+  const [playerWidth, setPlayerWidth] = useState('');
+  const [playerHeight, setPlayerHeight] = useState('450');
+
+  useEffect(() => {
+    if (window.innerWidth < 480) {
+      setPlayerHeight('380');
+      setPlayerWidth(String(window.innerWidth * 0.9));
+    } else {
+      setPlayerWidth(String(window.innerWidth * 0.8));
+    }
+  }, []);
+
   const opts: Options = {
-    height: '450',
-    width: '640',
+    height: playerHeight,
+    width: playerWidth,
     playerVars: {
       autoplay: 1,
     },
@@ -16,9 +28,8 @@ export const LiveStreamPage: NextPage = () => {
 
   return (
     <Layout>
-      <div className="container">
-        <H2 className="m-0 my-3">Live Stream</H2>
-        <YouTube videoId="5qap5aO4i9A" opts={opts} />
+      <div className="container my-4 d-flex justify-content-center">
+        {playerWidth.length && <YouTube videoId="5qap5aO4i9A" opts={opts} />}
       </div>
     </Layout>
   );
