@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news_items",
+  "info": {
+    "name": "NewsItem"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

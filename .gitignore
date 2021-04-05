@@ -43,3 +43,8 @@ dist
 
 # Typescript compilation output
 **/lib
+
+# CMS
+**/.cache
+**/cms/build
+**/.strapi-updater.json

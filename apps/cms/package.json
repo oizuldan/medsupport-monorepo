@@ -1,0 +1,33 @@
+{
+  "name": "@medsupport/cms",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Medsupport cms application (Strapi)",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/oizuldan/medsupportkz",
+    "directory": "apps/cms"
+  },
+  "license": "MIT",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "strapi": "3.5.4",
+    "strapi-admin": "3.5.4",
+    "strapi-utils": "3.5.4",
+    "strapi-plugin-content-type-builder": "3.5.4",
+    "strapi-plugin-content-manager": "3.5.4",
+    "strapi-plugin-users-permissions": "3.5.4",
+    "strapi-plugin-email": "3.5.4",
+    "strapi-plugin-upload": "3.5.4",
+    "strapi-connector-mongoose": "3.5.4"
+  },
+  "strapi": {
+    "uuid": "8add2972-1257-46f1-8638-2642698aa23b"
+  }
+}
