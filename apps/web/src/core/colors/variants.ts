@@ -8,6 +8,7 @@ export enum Neutral {
   LightGrey = '#D9DBE1',
   White = '#FFFFFF',
   Black = '#000000',
+  WhiteWithOpacity20 = 'rgba(255,255,255,0.2)',
 }
 
 export enum Background {

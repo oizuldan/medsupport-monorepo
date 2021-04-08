@@ -141,42 +141,42 @@ export const contentRegular16 = css`
 export const elementRegular20 = css`
   font-weight: 400;
   font-size: 20px;
-  line-height: 30px;
+  line-height: 22px;
   ${fonts.openSans}
 `;
 
 export const elementSemiBold20 = css`
   font-weight: 600;
   font-size: 20px;
-  line-height: 30px;
+  line-height: 22px;
   ${fonts.openSans}
 `;
 
 export const elementBold20 = css`
   font-weight: 700;
   font-size: 20px;
-  line-height: 30px;
+  line-height: 22px;
   ${fonts.openSans}
 `;
 
 export const elementRegular16 = css`
   font-weight: 400;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 18px;
   ${fonts.openSans}
 `;
 
 export const elementSemiBold16 = css`
   font-weight: 600;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 18px;
   ${fonts.openSans}
 `;
 
 export const elementBold16 = css`
   font-weight: 700;
   font-size: 16px;
-  line-height: 20px;
+  line-height: 18px;
   ${fonts.openSans}
 `;
 

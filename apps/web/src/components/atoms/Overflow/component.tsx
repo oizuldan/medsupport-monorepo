@@ -1,4 +1,4 @@
-import { colors } from 'core';
+import { css, Global } from '@emotion/core';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { Background } from './libs/Background';
@@ -7,7 +7,7 @@ import { Props } from './props';
 
 export const Overflow: FC<Props> = (props: Props) => {
   const {
-    color = colors.variants.Background.Grey,
+    color = 'rgba(0, 0, 0, 0.5)',
     active: propActive,
     closeOnEscape,
     closeOnClick,
@@ -50,6 +50,13 @@ export const Overflow: FC<Props> = (props: Props) => {
 
   return shouldRender ? (
     <Wrapper {...rest}>
+      <Global
+        styles={css`
+          body {
+            overflow: hidden;
+          }
+        `}
+      />
       {children}
       <Background
         color={color}
