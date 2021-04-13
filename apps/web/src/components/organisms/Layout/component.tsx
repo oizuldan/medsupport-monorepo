@@ -1,17 +1,18 @@
-import 'bootstrap-4-grid/css/grid.css';
-
-import { Footer, Header } from 'components/index';
+import { Footer } from 'components';
 import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { Props } from './props';
 
-export const Layout: NextPage<Props> = (props: Props) => {
-  return (
-    <div className="d-flex flex-column h-100 justify-content-between" css={{ minHeight: '100vh' }}>
-      <Header />
-      <div>{props.children}</div>
-      <Footer />
-    </div>
-  );
-};
+const Header = dynamic(() => import('./libs/Header'), {
+  ssr: false,
+});
+
+export const Layout: NextPage<Props> = (props: Props) => (
+  <div className="d-flex flex-column h-100 justify-content-between" css={{ minHeight: '100vh' }}>
+    <Header />
+    <div>{props.children}</div>
+    <Footer />
+  </div>
+);

@@ -9,4 +9,5 @@ export const Wrapper = styled.div<Props>`
   width: 100%;
   height: 100%;
   z-index: ${(props) => props.zIndex};
+  overflow: hidden;
 `;

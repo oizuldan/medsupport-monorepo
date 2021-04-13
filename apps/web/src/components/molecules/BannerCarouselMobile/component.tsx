@@ -6,15 +6,16 @@ import React, { FC } from 'react';
 import { Props } from './props';
 
 export const BannerCarouselMobile: FC<Props> = ({ data, ...rest }: Props) => (
-  <Carousel draggable css={{ height: 500 }} {...rest}>
+  <Carousel draggable css={{ height: 500 }} withDots {...rest}>
     {data.map((banner, i) => (
-      <div key={i} className="d-flex justify-content-center ">
+      <div key={i} className="d-flex justify-content-center">
         <div
           className="w-100"
           css={css`
             background-image: url(${banner.imageURL});
             background-repeat: no-repeat;
             background-size: auto 100%;
+            background-position: center;
             height: 500px;
           `}
         >

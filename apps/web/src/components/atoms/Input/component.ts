@@ -17,20 +17,22 @@ export const Input = styled(InputBase)<Props>`
   width: 100%;
   transition: 0.1s padding;
   background-color: ${colors.variants.Background.Primary};
-  border: 0;
-  border-bottom: 1px solid ${(props) => props.color || colors.variants.Neutral.Grey};
+  border: 1px solid ${(props) => props.color || colors.variants.Neutral.Grey};
+  border-radius: 5px;
+  padding: 0.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
   ${typography.styles.extendByVariant}
 
   &::placeholder {
-    color: ${colors.variants.Neutral.Grey};
+    color: ${colors.variants.Neutral.LightGrey};
     line-height: normal;
   }
 
   :focus {
     outline: none;
-    border-bottom-width: 2px;
-    border-bottom-color: ${(props) =>
-      props.focusColor || props.color || colors.variants.Brand.Purple};
+    border-width: 1.5px;
+    border-color: ${(props) => props.focusColor || props.color || colors.variants.Brand.Purple};
   }
 `;
 

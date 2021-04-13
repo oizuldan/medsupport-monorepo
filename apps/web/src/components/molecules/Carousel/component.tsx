@@ -1,3 +1,5 @@
+import { Button, ButtonSizes, ButtonVariants, Icon } from 'components';
+import { colors, icons } from 'core';
 import React, { cloneElement, FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { animated, useSpring, useSprings } from 'react-spring';
 import { useGesture } from 'react-use-gesture';
@@ -18,6 +20,7 @@ export const Carousel: FC<Props> = (props: Props) => {
     activeSlide: propActiveSlide,
     horizontalMargins = 0,
     withDots = false,
+    withButtons = false,
     ...rest
   } = props;
 
@@ -51,6 +54,7 @@ export const Carousel: FC<Props> = (props: Props) => {
 
   const [wrapperWidth, setWrapperWidth] = useState(initialWidth);
   const [innerActiveSlide, setInnerActiveSlide] = useState(0);
+  const [buttonsDisabled, setButtonsDisabled] = useState(false);
   const activeSlide = propActiveSlide !== undefined ? propActiveSlide : innerActiveSlide;
 
   const [wrapper, setWrapper] = useSpring(() => ({ x: 0, onFrame }));
@@ -63,6 +67,25 @@ export const Carousel: FC<Props> = (props: Props) => {
     [elementsPerPage, wrapperWidth],
   );
 
+  const onDotClick = useCallback(
+    (index: number) => () => {
+      if (onChange) onChange(index);
+      setInnerActiveSlide(index);
+    },
+    [onChange],
+  );
+  const onLeftButtonClick = useCallback(() => {
+    setButtonsDisabled(true);
+    const newSlide = activeSlide === -1 ? children.length - 1 : activeSlide - 1;
+    setInnerActiveSlide(newSlide);
+    if (onChange) onChange(newSlide);
+  }, [activeSlide, children.length, onChange]);
+  const onRightButtonClick = useCallback(() => {
+    setButtonsDisabled(true);
+    const newSlide = activeSlide === children.length ? 0 : activeSlide + 1;
+    setInnerActiveSlide(newSlide);
+    if (onChange) onChange(newSlide);
+  }, [activeSlide, children.length, onChange]);
   const onResize = useCallback(
     () => setWrapperWidth(wrapperRef.current?.getBoundingClientRect()?.width || initialWidth),
     [initialWidth],
@@ -80,6 +103,7 @@ export const Carousel: FC<Props> = (props: Props) => {
       setInnerActiveSlide(toGoIndex);
     }
     if (propOnRest) propOnRest();
+    setButtonsDisabled(false);
     setWrapper({ immediate: false });
   }, [activeSlide, children.length, onChange, propOnRest, setWrapper]);
 
@@ -113,7 +137,7 @@ export const Carousel: FC<Props> = (props: Props) => {
         }
       },
       onDragEnd: ({ direction: [dirX], distance }) => {
-        if (wrapperWidth && distance >= wrapperWidth / 2) {
+        if (wrapperWidth && distance >= wrapperWidth / 3) {
           setWrapper({
             x: dirX > 0 ? activeSlide - 1 : activeSlide + 1,
             immediate: false,
@@ -130,6 +154,9 @@ export const Carousel: FC<Props> = (props: Props) => {
     },
     {
       enabled: draggable,
+      drag: {
+        useTouch: true,
+      },
     },
   );
 
@@ -169,22 +196,49 @@ export const Carousel: FC<Props> = (props: Props) => {
         ))}
       </animated.div>
 
-      {withDots && (
+      {(withDots || withButtons) && (
         <div
           className="d-flex align-items-center justify-content-center position-absolute "
-          css={{ bottom: '0.5rem', left: 0, right: 0 }}
+          css={{ bottom: 0, left: 0, right: 0 }}
         >
-          {children.map((_, i) => (
-            <Dot
-              key={i}
-              className="mx-1"
-              active={
-                i === activeSlide ||
-                (i > activeSlide && i === 0) ||
-                (i < activeSlide && i === children.length - 1)
-              }
-            />
-          ))}
+          {withButtons && (
+            <Button
+              className="mr-3"
+              onClick={onLeftButtonClick}
+              disabled={buttonsDisabled}
+              variant={ButtonVariants.Flat}
+              size={ButtonSizes.ExtraSmall}
+              color={colors.variants.Neutral.Grey}
+            >
+              <Icon icon={icons.arrows.keyboardArrowLeft} />
+            </Button>
+          )}
+          {withDots &&
+            children.map((_, i) => (
+              <Dot
+                key={i}
+                className="mx-1"
+                active={
+                  i === activeSlide ||
+                  (i > activeSlide && i === 0) ||
+                  (i < activeSlide && i === children.length - 1)
+                }
+                onClick={onDotClick(i)}
+              />
+            ))}
+
+          {withButtons && (
+            <Button
+              className="ml-3"
+              onClick={onRightButtonClick}
+              disabled={buttonsDisabled}
+              variant={ButtonVariants.Flat}
+              size={ButtonSizes.ExtraSmall}
+              color={colors.variants.Neutral.Grey}
+            >
+              <Icon icon={icons.arrows.keyboardArrowRight} />
+            </Button>
+          )}
         </div>
       )}
     </div>

@@ -68,16 +68,26 @@ export const Drawer: FC<Props> = (props: Props) => {
   const bind = useGesture({
     onDrag: ({ down, movement: [xDistance, yDistance] }) => {
       if (!closeOnSwipe || !active) return;
-      set({
-        y: direction === Directions.FromBottom && down && yDistance > 0 ? yDistance : 0,
-        x: direction === Directions.FromRight && down && xDistance > 0 ? xDistance : 0,
-      });
+      if (direction === Directions.FromRight) {
+        set({
+          x: down && xDistance > 0 ? xDistance : 0,
+        });
+      } else if (direction === Directions.FromLeft) {
+        set({
+          x: down && xDistance < 0 ? -xDistance : 0,
+        });
+      } else if (direction === Directions.FromBottom) {
+        set({
+          y: down && yDistance > 0 ? yDistance : 0,
+        });
+      }
     },
     onDragEnd: ({ movement: [xDistance, yDistance] }) => {
       if (!closeOnSwipe || !active) return;
       if (
         (direction === Directions.FromRight && xDistance >= swipeDistance) ||
-        (direction === Directions.FromBottom && yDistance >= swipeDistance)
+        (direction === Directions.FromBottom && yDistance >= swipeDistance) ||
+        (direction === Directions.FromLeft && -xDistance >= swipeDistance)
       ) {
         if (propOnChange) propOnChange(false);
         setInnerActive(false);
@@ -87,7 +97,10 @@ export const Drawer: FC<Props> = (props: Props) => {
 
   useEffect(() => {
     set({
-      x: !active && direction === Directions.FromRight ? xWidth : 0,
+      x:
+        !active && (direction === Directions.FromRight || direction === Directions.FromLeft)
+          ? xWidth
+          : 0,
       y: !active && direction === Directions.FromBottom ? yHeight : 0,
       config: { duration: active ? undefined : 250 },
     });
@@ -110,7 +123,10 @@ export const Drawer: FC<Props> = (props: Props) => {
         active={active}
         direction={direction}
         style={{
-          transform: interpolate([x, y], (x, y) => `translate(${x}px, ${y}px)`),
+          transform: interpolate(
+            [x, y],
+            (x, y) => `translate(${direction === Directions.FromLeft ? -x : x}px, ${y}px)`,
+          ),
           ...style,
         }}
         {...rest}
