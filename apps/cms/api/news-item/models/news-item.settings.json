@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "news_items",
   "info": {
-    "name": "NewsItem"
+    "name": "NewsItem",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -12,6 +13,12 @@
   "attributes": {
     "content": {
       "type": "richtext"
+    },
+    "author": {
+      "type": "string"
+    },
+    "datePublishedText": {
+      "type": "string"
     }
   }
 }

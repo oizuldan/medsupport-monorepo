@@ -65,35 +65,42 @@ export const Drawer: FC<Props> = (props: Props) => {
     },
   }));
 
-  const bind = useGesture({
-    onDrag: ({ down, movement: [xDistance, yDistance] }) => {
-      if (!closeOnSwipe || !active) return;
-      if (direction === Directions.FromRight) {
-        set({
-          x: down && xDistance > 0 ? xDistance : 0,
-        });
-      } else if (direction === Directions.FromLeft) {
-        set({
-          x: down && xDistance < 0 ? -xDistance : 0,
-        });
-      } else if (direction === Directions.FromBottom) {
-        set({
-          y: down && yDistance > 0 ? yDistance : 0,
-        });
-      }
+  const bind = useGesture(
+    {
+      onDrag: ({ down, movement: [xDistance, yDistance] }) => {
+        if (!closeOnSwipe || !active) return;
+        if (direction === Directions.FromRight) {
+          set({
+            x: down && xDistance > 0 ? xDistance : 0,
+          });
+        } else if (direction === Directions.FromLeft) {
+          set({
+            x: down && xDistance < 0 ? -xDistance : 0,
+          });
+        } else if (direction === Directions.FromBottom) {
+          set({
+            y: down && yDistance > 0 ? yDistance : 0,
+          });
+        }
+      },
+      onDragEnd: ({ movement: [xDistance, yDistance] }) => {
+        if (!closeOnSwipe || !active) return;
+        if (
+          (direction === Directions.FromRight && xDistance >= swipeDistance) ||
+          (direction === Directions.FromBottom && yDistance >= swipeDistance) ||
+          (direction === Directions.FromLeft && -xDistance >= swipeDistance)
+        ) {
+          if (propOnChange) propOnChange(false);
+          setInnerActive(false);
+        }
+      },
     },
-    onDragEnd: ({ movement: [xDistance, yDistance] }) => {
-      if (!closeOnSwipe || !active) return;
-      if (
-        (direction === Directions.FromRight && xDistance >= swipeDistance) ||
-        (direction === Directions.FromBottom && yDistance >= swipeDistance) ||
-        (direction === Directions.FromLeft && -xDistance >= swipeDistance)
-      ) {
-        if (propOnChange) propOnChange(false);
-        setInnerActive(false);
-      }
+    {
+      drag: {
+        useTouch: true,
+      },
     },
-  });
+  );
 
   useEffect(() => {
     set({
