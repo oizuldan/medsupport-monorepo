@@ -9,6 +9,7 @@ const registry = new Routes()
   .add('login', '/login', 'login')
   .add('signup', '/signup', 'signup')
   .add('restorePassword', '/restore-password', 'restorePassword')
+  .add('newsPage', '/news', 'newsPage')
   .add('userDocuments', '/user-documents', 'userDocuments');
 
 const { Link, Router } = registry;

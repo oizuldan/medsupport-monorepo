@@ -6,3 +6,4 @@ export * from './InputGroup';
 export * from './Drawer';
 export * from './Label';
 export * from './Table';
+export * from './Markdown';
