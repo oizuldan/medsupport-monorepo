@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 import router from './api';
 
 dotenv.config({ path: __dirname + '/config/.env' });
-const corsOptions = { origin: 'http://localhost:8000' };
+const corsOptions = { origin: '*' };
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));

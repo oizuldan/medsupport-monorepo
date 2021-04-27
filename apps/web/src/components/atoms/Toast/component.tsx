@@ -4,9 +4,9 @@ import { colors, services } from 'core';
 import React, { FC } from 'react';
 
 const toastStyles: Record<string, colors.variants.AllColors> = {
-  [services.ToastTypes.Success]: colors.variants.Success.Green1,
-  [services.ToastTypes.Warning]: colors.variants.Warning.Orange1,
-  [services.ToastTypes.Error]: colors.variants.Error.Red1,
+  [services.ToastTypes.Success]: colors.variants.Success.Green2,
+  [services.ToastTypes.Warning]: colors.variants.Warning.Orange2,
+  [services.ToastTypes.Error]: colors.variants.Error.Red2,
 };
 
 export const Toast: FC<services.ToastProps> = ({

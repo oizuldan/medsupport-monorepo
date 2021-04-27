@@ -1,13 +1,14 @@
+import { css } from '@emotion/core';
 import {
   Anchor,
   Button,
   ButtonLink,
   ButtonSizes,
   ButtonVariants,
+  Divider,
   Drawer,
   DrawerDirections,
   H2,
-  H4,
   Icon,
   P,
 } from 'components';
@@ -56,7 +57,7 @@ export const Header: FC = () => {
                 Документы
               </Anchor>
               <Anchor
-                href="/"
+                href="/news"
                 color={colors.variants.Neutral.Black}
                 className="mb-4"
                 typography={typography.variants.Heading.SemiBold17}
@@ -82,127 +83,165 @@ export const Header: FC = () => {
           </div>
         </Drawer>
       )}
-      <div css={{ borderBottom: !isMobile ? `1px solid ${colors.variants.Neutral.LightGrey}` : 0 }}>
-        <div
-          className="d-flex align-items-center justify-content-between px-lg-5 py-3 px-1"
-          css={{ maxWidth: 1440, margin: 'auto' }}
-        >
-          {isMobile && (
-            <Button
-              variant={ButtonVariants.Flat}
-              size={ButtonSizes.Small}
-              onClick={onToggleMobileMenu}
+      <div
+        className="container-xl d-flex align-items-center justify-content-between py-3 "
+        css={{ margin: 'auto' }}
+      >
+        {isMobile && (
+          <Button
+            variant={ButtonVariants.Flat}
+            size={ButtonSizes.Small}
+            onClick={onToggleMobileMenu}
+          >
+            <Icon icon={icons.ui.menuHamburger} color={colors.variants.Neutral.Black} />
+          </Button>
+        )}
+        {!isMobile && (
+          <div className="d-flex align-items-center" css={{ overflowX: 'auto' }}>
+            <Anchor
+              href="/documents"
+              className="mr-lg-5 mr-md-3"
+              color={colors.variants.Text.Primary}
+              css={css(
+                typography.styles.headingSemiBold17,
+                media.queryStyled([
+                  typography.styles.headingSemiBold17,
+                  typography.styles.headingSemiBold17,
+                  typography.styles.headingSemiBold22,
+                ]),
+              )}
             >
-              <Icon icon={icons.ui.menuHamburger} color={colors.variants.Neutral.Black} />
-            </Button>
-          )}
-          {!isMobile && (
-            <div className="d-flex align-items-center" css={{ overflowX: 'auto' }}>
-              <Anchor
-                href="/documents"
-                className="mr-lg-5 mr-md-3"
-                color={colors.variants.Neutral.Black}
-                typography={typography.variants.Heading.SemiBold22}
-              >
-                Документы
-              </Anchor>
-              <Anchor
-                href="/"
-                color={colors.variants.Neutral.Black}
-                className="mr-lg-5 mr-md-3"
-                typography={typography.variants.Heading.SemiBold22}
-              >
-                Новости
-              </Anchor>
-              <div
-                css={{
-                  border: '1px solid',
-                  borderColor: colors.variants.Error.Red4,
-                  borderRadius: 4,
-                }}
-                className="px-3 py-1"
-              >
-                <Anchor
-                  href="/liveStream"
-                  color={colors.variants.Error.Red4}
-                  typography={typography.variants.Heading.SemiBold22}
-                >
-                  LIVE
-                </Anchor>
-              </div>
-            </div>
-          )}
-
-          <Anchor href="/" className="justify-content-center mx-5">
-            <div className="d-flex align-items-center">
-              <img alt="logo" src="/static/logoSmall.svg" />
-              {!isMobile && (
-                <H2 className="ml-2 " css={{ color: colors.variants.Text.Primary }}>
-                  MedSupport
-                </H2>
+              Документы
+            </Anchor>
+            <Anchor
+              href="/news"
+              className="mr-lg-5 mr-md-3"
+              color={colors.variants.Text.Primary}
+              css={css(
+                typography.styles.headingSemiBold17,
+                media.queryStyled([
+                  typography.styles.headingSemiBold17,
+                  typography.styles.headingSemiBold17,
+                  typography.styles.headingSemiBold22,
+                ]),
               )}
-              {isMobile && (
-                <H4 className="ml-2 " css={{ color: colors.variants.Text.Primary }}>
-                  MedSupport
-                </H4>
-              )}
+            >
+              Новости
+            </Anchor>
+            <div
+              css={{
+                border: '1px solid',
+                borderColor: colors.variants.Error.Red4,
+                borderRadius: 8,
+              }}
+              className="px-3 py-1"
+            >
+              <Anchor
+                href="/liveStream"
+                color={colors.variants.Error.Red4}
+                css={css(
+                  typography.styles.headingSemiBold17,
+                  media.queryStyled([
+                    typography.styles.headingSemiBold17,
+                    typography.styles.headingSemiBold17,
+                    typography.styles.headingSemiBold22,
+                  ]),
+                )}
+              >
+                LIVE
+              </Anchor>
             </div>
-          </Anchor>
-
-          <div className="d-flex align-items-center">
-            {!isMobile && (
-              <>
-                <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
-                  <Icon icon={icons.actions.search} color={colors.variants.Neutral.Black} />
-                </Button>
-                <Button
-                  className="mr-1"
-                  variant={ButtonVariants.Flat}
-                  size={ButtonSizes.ExtraSmall}
-                >
-                  <Icon icon={icons.actions.language} />
-                  <P
-                    typography={typography.variants.Heading.SemiBold17}
-                    color={colors.variants.Text.Primary}
-                  >
-                    RU
-                  </P>
-                </Button>
-                <div className="d-flex flex-lg-row flex-column">
-                  <ButtonLink
-                    href="/login"
-                    className="mr-lg-2 mr-0 mb-lg-0 mb-2"
-                    size={ButtonSizes.Small}
-                    typography={typography.variants.Heading.SemiBold17}
-                    color={colors.variants.Brand.ExtraLightPurple}
-                    bordered
-                  >
-                    Войти
-                  </ButtonLink>
-                  <ButtonLink
-                    href="/signup"
-                    size={ButtonSizes.Small}
-                    typography={typography.variants.Heading.SemiBold17}
-                    bordered
-                  >
-                    Регистрация
-                  </ButtonLink>
-                </div>
-              </>
-            )}
-            {isMobile && (
-              <div className="d-flex">
-                <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
-                  <Icon icon={icons.actions.language} color={colors.variants.Neutral.Black} />
-                </Button>
-                <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
-                  <Icon icon={icons.actions.search} color={colors.variants.Neutral.Black} />
-                </Button>
-              </div>
-            )}
           </div>
+        )}
+
+        <Anchor href="/" className="justify-content-center mx-5">
+          <div className="d-flex align-items-center">
+            <img alt="logo" src="/static/images/logoSmall.svg" />
+            <H2
+              className="ml-2 "
+              css={css(
+                typography.styles.headingBold17,
+                media.queryStyled([
+                  typography.styles.headingBold17,
+                  typography.styles.headingBold17,
+                  typography.styles.headingBold28,
+                ]),
+              )}
+            >
+              MedSupport
+            </H2>
+          </div>
+        </Anchor>
+
+        <div className="d-flex align-items-center">
+          {!isMobile && (
+            <>
+              {/* <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>*/}
+              {/*  <Icon icon={icons.actions.search} color={colors.variants.Neutral.Black} />*/}
+              {/* </Button>*/}
+              <Button className="mr-1" variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
+                <Icon icon={icons.actions.language} color={colors.variants.Neutral.Black} />
+                <P
+                  typography={typography.variants.Heading.SemiBold17}
+                  css={css(
+                    typography.styles.elementSemiBold12,
+                    media.queryStyled([
+                      typography.styles.elementSemiBold12,
+                      typography.styles.elementSemiBold12,
+                      typography.styles.headingSemiBold17,
+                    ]),
+                  )}
+                >
+                  RU
+                </P>
+              </Button>
+              <ButtonLink
+                href="/login"
+                className="mr-2"
+                size={ButtonSizes.Small}
+                css={css(
+                  typography.styles.elementSemiBold12,
+                  media.queryStyled([
+                    typography.styles.elementSemiBold12,
+                    typography.styles.elementSemiBold12,
+                    typography.styles.headingSemiBold17,
+                  ]),
+                )}
+                color={colors.variants.Brand.ExtraLightPurple}
+                bordered
+              >
+                Войти
+              </ButtonLink>
+              <ButtonLink
+                href="/signup"
+                size={ButtonSizes.Small}
+                css={css(
+                  typography.styles.elementSemiBold12,
+                  media.queryStyled([
+                    typography.styles.elementSemiBold12,
+                    typography.styles.elementSemiBold12,
+                    typography.styles.headingSemiBold17,
+                  ]),
+                )}
+                bordered
+              >
+                Регистрация
+              </ButtonLink>
+            </>
+          )}
+          {isMobile && (
+            <div className="d-flex">
+              <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
+                <Icon icon={icons.actions.language} color={colors.variants.Neutral.Black} />
+              </Button>
+              {/* <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>*/}
+              {/*  <Icon icon={icons.actions.search} color={colors.variants.Neutral.Black} />*/}
+              {/* </Button>*/}
+            </div>
+          )}
         </div>
       </div>
+      {!isMobile && <Divider />}
     </>
   );
 };

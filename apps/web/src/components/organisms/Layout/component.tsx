@@ -5,14 +5,12 @@ import React from 'react';
 
 import { Props } from './props';
 
-const Header = dynamic(() => import('./libs/Header'), {
-  ssr: false,
-});
+const Header = dynamic(() => import('./libs/Header'));
 
 export const Layout: NextPage<Props> = (props: Props) => (
-  <div className="d-flex flex-column h-100 justify-content-between" css={{ minHeight: '100vh' }}>
+  <>
     <Header />
-    <div>{props.children}</div>
+    {props.children}
     <Footer />
-  </div>
+  </>
 );

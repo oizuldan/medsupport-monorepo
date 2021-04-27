@@ -13,7 +13,7 @@ export enum Neutral {
 
 export enum Background {
   Primary = '#FFFFFF',
-  Grey = '#18191F',
+  Secondary = '#18191F',
 }
 
 export enum Brand {

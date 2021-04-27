@@ -6,7 +6,6 @@ import { Props } from './props';
 
 // eslint-disable-next-line react/display-name
 const InputBase = forwardRef<HTMLInputElement, Props>(
-  // No, its not missing.
   // eslint-disable-next-line react/prop-types
   ({ element = createElement('input'), ...rest }: Props, ref) =>
     cloneElement(element, { ...rest, ref }),
@@ -19,13 +18,11 @@ export const Input = styled(InputBase)<Props>`
   background-color: ${colors.variants.Background.Primary};
   border: 1px solid ${(props) => props.color || colors.variants.Neutral.Grey};
   border-radius: 5px;
-  padding: 0.5rem;
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
+  padding: 1rem;
   ${typography.styles.extendByVariant}
 
   &::placeholder {
-    color: ${colors.variants.Neutral.LightGrey};
+    color: ${(props) => props.placeholderColor || colors.variants.Neutral.Grey};
     line-height: normal;
   }
 

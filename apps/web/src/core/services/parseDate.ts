@@ -17,5 +17,5 @@ const localizedMonthFrom = (date: Date, lang: string): string => {
 
 export const parseDate = (isoDate: string, lang: string): string => {
   const dateObj = new Date(isoDate);
-  return `${dateObj.getDate()} ${localizedMonthFrom(dateObj, lang)} ${dateObj.getFullYear()}`;
+  return `${dateObj.getDate()} ${localizedMonthFrom(dateObj, lang)}, ${dateObj.getFullYear()}`;
 };

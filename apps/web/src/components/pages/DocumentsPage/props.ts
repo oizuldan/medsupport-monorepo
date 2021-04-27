@@ -1,6 +1,6 @@
-import { File } from './types/File';
+import { Data } from './types/Data';
 
 export type InitProps = {
-  readonly files?: ReadonlyArray<File>;
+  readonly documents?: ReadonlyArray<Data>;
 };
 export type Props = InitProps;
