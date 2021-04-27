@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { google } from 'googleapis';
 import stream from 'stream';
 
@@ -15,75 +16,51 @@ const drive = google.drive({
 
 export default {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  listDocuments: async () => {
-    try {
-      const resp = await drive.files.list({
-        pageSize: 10,
-        fields:
-          'nextPageToken, files(webViewLink, webContentLink, iconLink, createdTime, name, exportLinks, mimeType)',
-        q: "'1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk' in parents",
-      });
-      const { files } = resp.data;
-      const formattedFiles = files
-        ? files.map(({ exportLinks, ...rest }) => ({
-            ...rest,
-            exportLinks: exportLinks
-              ? {
-                  docx:
-                    exportLinks[
-                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                    ],
-                  pdf: exportLinks['application/pdf'],
-                }
-              : undefined,
-          }))
-        : [];
-      return { success: 'Documents received.', files: formattedFiles };
-    } catch (e) {
-      const { code, message } = e.response.data.error;
-      return { error: message, code };
-    }
-  },
-
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  createDocument: async (buffer: Buffer, originalName: string) => {
+  createDocument: async (
+    buffer: Buffer,
+    name: string,
+    title: string,
+    author: string,
+    description: string,
+  ) => {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(buffer);
     try {
-      const resp = await drive.files.create({
+      const {
+        data: { jwt },
+      } = await axios.post('http://localhost:1337/auth/local', {
+        identifier: 'oizuldan',
+        password: 'Aisultan1098820',
+      });
+      const createdFile = await drive.files.create({
         requestBody: {
           parents: ['1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk'],
-          name: originalName,
+          name,
+          mimeType: 'application/vnd.google-apps.document',
         },
         media: {
           body: bufferStream,
         },
+        fields: 'webViewLink, exportLinks',
       });
-      const filesToReturn = await drive.files.list({
-        pageSize: 10,
-        fields:
-          'nextPageToken, files(webViewLink, webContentLink, iconLink, createdTime, name, exportLinks)',
-        q: "'1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk' in parents",
-      });
-      const { files } = filesToReturn.data;
-      const formattedFiles = files
-        ? files.map(({ exportLinks, ...rest }) => ({
-            ...rest,
-            exportLinks: exportLinks
-              ? {
-                  docx:
-                    exportLinks[
-                      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-                    ],
-                  pdf: exportLinks['application/pdf'],
-                }
-              : undefined,
-          }))
-        : [];
+
+      const response = await axios.post(
+        'http://localhost:1337/documents',
+        {
+          title: title,
+          author: author,
+          description: description,
+          viewLink: createdFile.data.webViewLink,
+          downloadLink: createdFile.data.exportLinks?.['application/pdf'],
+        },
+        {
+          headers: { Authorization: `Bearer ${jwt}` },
+        },
+      );
+
       return {
-        success: `Successfully uploaded file ${originalName} to the Google Drive`,
-        code: resp.status,
-        files: formattedFiles,
+        success: `Successfully uploaded file ${name} to the Google Drive`,
+        code: response.status,
       };
     } catch (e) {
       const { code, message } = e.response.data.error;

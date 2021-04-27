@@ -1,4 +1,5 @@
 import { css } from '@emotion/core';
+import classNames from 'classnames';
 import {
   Anchor,
   Button,
@@ -14,9 +15,10 @@ import { colors, icons, media, typography } from 'core';
 import React, { ChangeEventHandler, FC, useCallback, useState } from 'react';
 
 import * as mock from './mock';
+import { Props } from './props';
 import { SectionData } from './types/SectionData';
 
-export const Footer: FC = () => {
+export const Footer: FC<Props> = ({ className, ...rest }: Props) => {
   const [email, setEmail] = useState('');
   const onChangeEmail = useCallback<ChangeEventHandler<HTMLInputElement>>(
     (event) => setEmail(event.target.value),
@@ -24,7 +26,7 @@ export const Footer: FC = () => {
   );
   const getSection = useCallback(
     (data: SectionData) => (
-      <div className="d-flex flex-column col-md-4 col-6 p-3">
+      <div className={'d-flex flex-column col-md-4 col-6 p-3'} css={{ wordBreak: 'break-word' }}>
         <Typography
           as="p"
           className="mb-lg-3 mb-2"
@@ -75,15 +77,16 @@ export const Footer: FC = () => {
 
   return (
     <div
-      className="d-flex flex-column p-lg-3 p-2"
+      className={classNames(className, 'd-flex flex-column p-lg-3 p-2')}
       css={{
         backgroundColor: colors.variants.Brand.DarkPurple,
       }}
+      {...rest}
     >
       <div className="container-xl d-flex flex-lg-row flex-column w-100 align-items-center">
         <img
           alt="footer"
-          src="/static/logoWhite.svg"
+          src="/static/images/logoWhite.svg"
           className="mr-lg-4 mr-0"
           css={{ maxWidth: 300 }}
         />
@@ -136,6 +139,7 @@ export const Footer: FC = () => {
                   )}
                   type="email"
                   placeholder="Ваш email"
+                  placeholderColor={colors.variants.Neutral.LightGrey}
                 />
               </InputGroup>
             </div>

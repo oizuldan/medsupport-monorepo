@@ -12,19 +12,16 @@ const multer = Multer({
   },
 });
 
-router.get('/api/list-documents', async (_req: Request, res: Response) => {
-  const result = await DocumentService.listDocuments();
-  if (result.success) {
-    res.status(200).send(result.files);
-  } else {
-    res.status(result.code).send(result.error);
-  }
-});
-
 router.post('/api/create-document', multer.single('file'), async (req: Request, res: Response) => {
-  const result = await DocumentService.createDocument(req.file.buffer, req.file.originalname);
+  const result = await DocumentService.createDocument(
+    req.file.buffer,
+    req.file.originalname,
+    req.body.title,
+    req.body.author,
+    req.body.description,
+  );
   if (result.success) {
-    res.status(result.code).send({ message: result.success, files: result.files });
+    res.status(result.code).send({ message: result.success });
   } else {
     res.status(result.code).send(result.error);
   }

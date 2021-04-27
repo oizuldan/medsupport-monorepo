@@ -10,3 +10,8 @@ export const keyboardArrowLeft = createIcon(
   24,
   'M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z',
 );
+export const arrowBack = createIcon(
+  24,
+  24,
+  'M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z',
+);

@@ -5,6 +5,7 @@ export type Props = InputHTMLAttributes<HTMLInputElement> &
   Partial<typography.Props> &
   Partial<colors.Props> & {
     readonly focusColor?: colors.variants.AllColors;
+    readonly placeholderColor?: colors.variants.AllColors;
     /**
      * @default <input>
      */

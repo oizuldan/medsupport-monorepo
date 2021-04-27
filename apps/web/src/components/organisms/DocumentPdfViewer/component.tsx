@@ -11,14 +11,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export const DocumentPdfViewer: NextPage<Prop> = ({ file, onClose }: Prop) => {
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
-  const [url] = useState(
-    file?.exportLinks?.pdf.replace('https://drive.google.com/', 'http://localhost:3000/proxy2/') ||
-      (file?.mimeType === 'application/pdf' &&
-        file?.webContentLink?.replace(
-          'https://drive.google.com/',
-          'http://localhost:3000/proxy2/',
-        )),
-  );
+  const [url] = useState(file?.downloadLink);
 
   const onDocumentLoadSuccess = useCallback((pdf) => {
     setNumPages(pdf?._pdfInfo?.numPages);
@@ -33,7 +26,7 @@ export const DocumentPdfViewer: NextPage<Prop> = ({ file, onClose }: Prop) => {
   return url ? (
     <Modal isOpen>
       <Button onClick={handleClose} variant={ButtonVariants.Flat}>
-        <img alt="close" src="/static/closeButton.png" />
+        <img alt="close" src="/static/images/images/closeButton.png" />
       </Button>
       <div
         style={{ border: '1px solid black', borderRadius: 4 }}

@@ -66,6 +66,11 @@ export const Root = styled('button', {
         variants.Brand.ExtraLightPurple,
         variants.Brand.LightPurple,
       ),
+      [variants.Brand.DarkPurple]: styles.raisedVariantColors(
+        variants.Neutral.White,
+        variants.Brand.DarkPurple,
+        variants.Brand.LightPurple,
+      ),
     }),
     [Variants.Outlined]: services.match('color', {
       [variants.Brand.Purple]: styles.outlinedVariantColors(variants.Brand.Purple),

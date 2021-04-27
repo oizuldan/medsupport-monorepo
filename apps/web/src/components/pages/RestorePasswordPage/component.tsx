@@ -53,7 +53,7 @@ export const RestorePasswordPage: NextPage = () => {
     <Layout>
       <div className="d-flex h-100 align-items-center">
         <div className="w-50">
-          <img className="h-100 w-100" alt="logo" src="/static/logoBig.png" />
+          <img className="h-100 w-100" alt="logo" src="/static/images/logoBig.png" />
         </div>
         <div className="h-100 w-50 p-5 d-flex flex-column justify-content-center">
           <H1 color={colors.variants.Brand.Purple}>Forgot password</H1>

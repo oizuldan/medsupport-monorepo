@@ -26,7 +26,7 @@ export const sectionData: ReadonlyArray<SectionData> = [
         icons: [
           {
             alt: 'phone',
-            url: '/static/phoneIcon.png',
+            url: '/static/images/phoneIcon.png',
           },
         ],
       },
@@ -34,19 +34,19 @@ export const sectionData: ReadonlyArray<SectionData> = [
         icons: [
           {
             alt: 'instagram',
-            url: '/static/instagramIcon.png',
+            url: '/static/images/instagramIcon.png',
           },
           {
             alt: 'dribble',
-            url: '/static/dribbbleIcon.png',
+            url: '/static/images/dribbbleIcon.png',
           },
           {
             alt: 'twitter',
-            url: '/static/twitterIcon.png',
+            url: '/static/images/twitterIcon.png',
           },
           {
             alt: 'youtube',
-            url: '/static/youtubeIcon.png',
+            url: '/static/images/youtubeIcon.png',
           },
         ],
       },

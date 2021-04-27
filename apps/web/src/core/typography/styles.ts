@@ -9,112 +9,112 @@ export const headingSemiBold34 = css`
   font-weight: 600;
   font-size: 34px;
   line-height: 41px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingBold34 = css`
   font-weight: 700;
   font-size: 34px;
   line-height: 41px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingMedium34 = css`
   font-weight: 500;
   font-size: 34px;
   line-height: 41px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingRegular34 = css`
   font-weight: 400;
   font-size: 34px;
   line-height: 41px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingSemiBold28 = css`
   font-weight: 600;
   font-size: 28px;
   line-height: 34px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingBold28 = css`
   font-weight: 700;
   font-size: 28px;
   line-height: 34px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingMedium28 = css`
   font-weight: 500;
   font-size: 28px;
   line-height: 34px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingRegular28 = css`
   font-weight: 400;
   font-size: 28px;
   line-height: 34px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingSemiBold22 = css`
   font-weight: 600;
   font-size: 22px;
   line-height: 28px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingBold22 = css`
   font-weight: 700;
   font-size: 22px;
   line-height: 28px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingMedium22 = css`
   font-weight: 500;
   font-size: 22px;
   line-height: 28px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingRegular22 = css`
   font-weight: 400;
   font-size: 22px;
   line-height: 28px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingSemiBold17 = css`
   font-weight: 600;
   font-size: 17px;
   line-height: 22px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingBold17 = css`
   font-weight: 700;
   font-size: 17px;
   line-height: 22px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingMedium17 = css`
   font-weight: 500;
   font-size: 17px;
   line-height: 22px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const headingRegular17 = css`
   font-weight: 400;
   font-size: 17px;
   line-height: 22px;
-  ${fonts.montserrat}
+  ${fonts.poppins}
 `;
 
 export const contentRegular24 = css`

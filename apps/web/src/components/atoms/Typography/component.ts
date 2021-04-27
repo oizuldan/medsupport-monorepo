@@ -8,7 +8,8 @@ import { HeadingProps } from './types/HeadingProps';
 import { ParagraphProps } from './types/ParagraphProps';
 
 const colorSelectors: ReadonlyArray<keyof CSSProperties> = ['color', 'fill'];
-const defaultStyles: (props: unknown) => SerializedStyles = () => css({ margin: 0, padding: 0 });
+const defaultStyles: (props: unknown) => SerializedStyles = () =>
+  css({ margin: 0, padding: 0, color: colors.variants.Text.Primary });
 
 const TypographyBase: FC<Props> = ({ as, children, ...rest }: Props) =>
   createElement(as, rest, children);

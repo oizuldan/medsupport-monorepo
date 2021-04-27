@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import { css } from '@emotion/core';
 import { H1, H2, H3, H4, H5, P } from 'components';
 import { media, services, typography } from 'core';
 import React, { HTMLAttributes, ImgHTMLAttributes, useCallback, useMemo } from 'react';
@@ -11,12 +12,12 @@ import { Component } from './types/Component';
 export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: Props) => {
   const children = useMemo(() => services.transformMarkdownImages(childrenProp), [childrenProp]);
   const transformUri = useCallback(
-    (uri: string) => (uri.startsWith('http') ? uri : `http://192.168.1.65:1337${uri}`),
+    (uri: string) => (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`),
     [],
   );
   return (
     <ReactMarkdown
-      className="container d-flex flex-column"
+      className="d-flex flex-column"
       rehypePlugins={[rehypeRaw]}
       transformLinkUri={transformUri}
       transformImageUri={transformUri}
@@ -26,16 +27,60 @@ export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: P
           <P typography={typography.variants.Content.Regular16} className="mb-3" {...props} />
         ),
         h1: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLHeadingElement>>) => (
-          <H1 className="my-3" {...props} />
+          <H1
+            className="my-3"
+            css={css(
+              typography.styles.headingBold28,
+              media.queryStyled([
+                typography.styles.headingBold28,
+                typography.styles.headingBold28,
+                typography.styles.headingBold34,
+              ]),
+            )}
+            {...props}
+          />
         ),
         h2: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLHeadingElement>>) => (
-          <H2 className="my-3" {...props} />
+          <H2
+            className="my-3"
+            css={css(
+              typography.styles.headingBold22,
+              media.queryStyled([
+                typography.styles.headingBold22,
+                typography.styles.headingBold22,
+                typography.styles.headingBold28,
+              ]),
+            )}
+            {...props}
+          />
         ),
         h3: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLHeadingElement>>) => (
-          <H3 className="my-3" {...props} />
+          <H3
+            className="my-3"
+            css={css(
+              typography.styles.headingBold17,
+              media.queryStyled([
+                typography.styles.headingBold17,
+                typography.styles.headingBold17,
+                typography.styles.headingBold22,
+              ]),
+            )}
+            {...props}
+          />
         ),
         h4: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLHeadingElement>>) => (
-          <H4 className="my-3" {...props} />
+          <H4
+            className="my-3"
+            css={css(
+              typography.styles.elementBold12,
+              media.queryStyled([
+                typography.styles.elementBold12,
+                typography.styles.elementBold12,
+                typography.styles.headingBold17,
+              ]),
+            )}
+            {...props}
+          />
         ),
         h5: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLHeadingElement>>) => (
           <H5 className="my-3" {...props} />

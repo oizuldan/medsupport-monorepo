@@ -12,13 +12,29 @@
   },
   "attributes": {
     "content": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "author": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "datePublishedText": {
-      "type": "string"
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "previewImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
     }
   }
 }
