@@ -30,6 +30,10 @@ export default {
         const tokenData = TokenService.createToken(createdUser);
         return {
           message: `User ${createdUser.username} successfully registered.`,
+          firstName: createdUser.firstName,
+          lastName: createdUser.lastName,
+          username: createdUser.username,
+          email: createdUser.email,
           token: TokenService.createCookie(tokenData),
         };
       }
@@ -48,6 +52,10 @@ export default {
           const tokenData = TokenService.createToken(user);
           return {
             message: `Logged in as ${username}.`,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            username: user.username,
+            email: user.email,
             token: TokenService.createCookie(tokenData),
           };
         }
