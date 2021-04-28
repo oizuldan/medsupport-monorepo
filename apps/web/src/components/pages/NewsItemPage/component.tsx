@@ -11,8 +11,8 @@ import { Item } from './types/Item';
 
 export const NewsItemPage: NextPage<Props> = ({ data }: Props) => {
   const router = useRouter();
-  const onBack = useCallback(() => {
-    router.back();
+  const onGoToAllNews = useCallback(() => {
+    router.push('/news');
   }, [router]);
   return (
     <Layout>
@@ -20,8 +20,8 @@ export const NewsItemPage: NextPage<Props> = ({ data }: Props) => {
         <ButtonLink
           variant={ButtonVariants.Flat}
           size={ButtonSizes.Small}
-          className="p-0"
-          onClick={onBack}
+          className="pl-0"
+          onClick={onGoToAllNews}
         >
           <Icon
             icon={icons.arrows.arrowBack}

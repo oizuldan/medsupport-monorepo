@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { BannerCarouselSkeleton, CardInteractive, Divider, H2, Layout, P } from 'components';
-import { colors, media, services, typography } from 'core';
+import { colors, media, typography } from 'core';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';
@@ -40,7 +40,7 @@ export const HomePage: NextPage<Props> = ({ news }: Props) => {
       <div className="mb-5 container d-flex flex-column">
         <H2 className="mb-4">Новости</H2>
         <div className="row justify-content-center">
-          {news.map(({ previewImage, createdAt, title, id }, i) => (
+          {news.map(({ previewImage, title, id }, i) => (
             <CardInteractive
               key={title + i}
               link
@@ -68,15 +68,15 @@ export const HomePage: NextPage<Props> = ({ news }: Props) => {
                   }}
                   src={`${process.env.BASE_URL}${previewImage.url}`}
                 />
-                <P className="mb-1" typography={typography.variants.Content.Regular16}>
+                <P className="mb-3" typography={typography.variants.Content.Regular16}>
                   {title}
                 </P>
                 <P
-                  className="mb-1"
-                  typography={typography.variants.Element.Regular16}
-                  color={colors.variants.Neutral.Grey}
+                  className="mb-1 text-right"
+                  typography={typography.variants.Heading.SemiBold17}
+                  color={colors.variants.Brand.Purple}
                 >
-                  {services.parseDate(createdAt, 'ru')}
+                  Читать далее...
                 </P>
               </div>
               {i !== news.length - 1 && <Divider className="d-md-none d-block mt-4" />}

@@ -6,14 +6,16 @@ import { Props } from './props';
 
 export const Label: FC<Props> = ({ children, mainText, helperText, color, ...rest }: Props) => (
   <label {...rest}>
-    <Typography
-      as="p"
-      className="mb-1"
-      color={colors.variants.Neutral.Grey}
-      typography={typography.variants.Element.Bold12}
-    >
-      {mainText}
-    </Typography>
+    {mainText && (
+      <Typography
+        as="p"
+        className="mb-1"
+        color={colors.variants.Neutral.Grey}
+        typography={typography.variants.Element.SemiBold12}
+      >
+        {mainText}
+      </Typography>
+    )}
     {children}
     {helperText && (
       <Typography

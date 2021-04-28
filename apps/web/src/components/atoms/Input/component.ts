@@ -16,7 +16,7 @@ export const Input = styled(InputBase)<Props>`
   width: 100%;
   transition: 0.1s padding;
   background-color: ${colors.variants.Background.Primary};
-  border: 1px solid ${(props) => props.color || colors.variants.Neutral.Grey};
+  border: 1px solid ${(props) => props.color || colors.variants.Neutral.LightGrey};
   border-radius: 5px;
   padding: 1rem;
   ${typography.styles.extendByVariant}
@@ -34,5 +34,5 @@ export const Input = styled(InputBase)<Props>`
 `;
 
 Input.defaultProps = {
-  typography: typography.variants.Heading.Regular22,
+  typography: typography.variants.Element.Regular16,
 };

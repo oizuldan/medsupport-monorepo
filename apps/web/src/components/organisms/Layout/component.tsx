@@ -11,6 +11,6 @@ export const Layout: NextPage<Props> = (props: Props) => (
   <>
     <Header />
     {props.children}
-    <Footer />
+    z<Footer />
   </>
 );
