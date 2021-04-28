@@ -11,6 +11,7 @@ const registry = new Routes()
   .add('restorePassword', '/restore-password', 'restorePassword')
   .add('newsPage', '/news', 'newsPage')
   .add('newsItemPage', '/news-item/:id', 'newsItemPage')
+  .add('searchArticlesPage', '/search-articles', 'searchArticlesPage')
   .add('documentUpload', '/document-upload', 'documentUpload');
 
 const { Link, Router } = registry;

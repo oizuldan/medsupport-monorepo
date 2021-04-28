@@ -77,7 +77,7 @@ export const Footer: FC<Props> = ({ className, ...rest }: Props) => {
 
   return (
     <div
-      className={classNames(className, 'd-flex flex-column p-lg-3 p-2')}
+      className={classNames(className, 'd-flex flex-column p-lg-3 p-2 mt-auto')}
       css={{
         backgroundColor: colors.variants.Brand.DarkPurple,
       }}
