@@ -81,7 +81,9 @@ export default {
         const newPassword =
           Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
         const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
         user.set('password', hashedNewPassword);
+
         await user.save();
         await transporter.sendMail({
           from: process.env.GMAIL_USER,
@@ -89,6 +91,7 @@ export default {
           subject: 'Restoring password',
           html: `<div><h3>Here is your temporary password:</h3><h4>${newPassword}</h4></div>`,
         });
+
         return { message: `We have sent a temporary password to ${user.email}` };
       } else {
         return { error: 'No such user found' };

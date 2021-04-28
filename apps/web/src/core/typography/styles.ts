@@ -162,21 +162,21 @@ export const elementBold20 = css`
 export const elementRegular16 = css`
   font-weight: 400;
   font-size: 16px;
-  line-height: 18px;
+  line-height: 20px;
   ${fonts.openSans}
 `;
 
 export const elementSemiBold16 = css`
   font-weight: 600;
   font-size: 16px;
-  line-height: 18px;
+  line-height: 20px;
   ${fonts.openSans}
 `;
 
 export const elementBold16 = css`
   font-weight: 700;
   font-size: 16px;
-  line-height: 18px;
+  line-height: 20px;
   ${fonts.openSans}
 `;
 

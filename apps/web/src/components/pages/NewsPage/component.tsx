@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
 import axios from 'axios';
 import { CardInteractive, Divider, H1, Layout, P } from 'components';
-import { colors, media, services, typography } from 'core';
+import { colors, media, typography } from 'core';
 import { NextPage } from 'next';
 import React from 'react';
 
@@ -24,7 +24,7 @@ export const NewsPage: NextPage<Props> = ({ news }: Props) => (
         Новости
       </H1>
       <div className="row">
-        {news.map(({ previewImage, createdAt, title, id }, i) => (
+        {news.map(({ previewImage, title, id }, i) => (
           <CardInteractive
             key={title + i}
             link
@@ -52,15 +52,15 @@ export const NewsPage: NextPage<Props> = ({ news }: Props) => (
                 }}
                 src={`${process.env.BASE_URL}${previewImage.url}`}
               />
-              <P className="mb-1" typography={typography.variants.Content.Regular16}>
+              <P className="mb-3" typography={typography.variants.Content.Regular16}>
                 {title}
               </P>
               <P
-                className="mb-1"
-                typography={typography.variants.Element.Regular16}
-                color={colors.variants.Neutral.Grey}
+                className="mb-1 text-right"
+                typography={typography.variants.Heading.SemiBold17}
+                color={colors.variants.Brand.Purple}
               >
-                {services.parseDate(createdAt, 'ru')}
+                Читать далее...
               </P>
             </div>
             {i !== news.length - 1 && <Divider className="d-md-none d-block mt-4" />}
