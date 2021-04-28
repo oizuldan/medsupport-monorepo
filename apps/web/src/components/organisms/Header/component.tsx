@@ -83,10 +83,7 @@ export const Header: FC = () => {
           </div>
         </Drawer>
       )}
-      <div
-        className="container-xl d-flex align-items-center justify-content-between py-3 "
-        css={{ margin: 'auto' }}
-      >
+      <div className="container-xl d-flex align-items-center justify-content-between py-3 mx-auto">
         {isMobile && (
           <Button
             variant={ButtonVariants.Flat}
