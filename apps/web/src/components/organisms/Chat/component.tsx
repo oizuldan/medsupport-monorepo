@@ -1,9 +1,14 @@
+import Cookies from 'js-cookie';
 import React, { ChangeEvent, FC, useCallback, useState } from 'react';
 
 import { useChat } from './hooks/useChat';
 
 export const Chat: FC = () => {
-  const { messages, sendMessage } = useChat('live');
+  const firstName = Cookies.get('firstName') || '';
+  const lastName = Cookies.get('lastName') || '';
+  const email = Cookies.get('email') || '';
+  const user = { firstName, lastName, email };
+  const { messages, sendMessage } = useChat('live', user);
   const [newMessage, setNewMessage] = useState('');
 
   const handleNewMessageChange = useCallback((event: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -49,39 +54,38 @@ export const Chat: FC = () => {
       >
         <ul
           style={{ width: '100%', overflow: 'hidden auto', listStyleType: 'none' }}
-          className="d-block px-2"
+          className="d-block px-1"
         >
           {messages.map((message, i) => (
-            <li
-              key={i}
-              className="d-block my-3"
-              style={message.ownedByCurrentUser ? { float: 'right' } : {}}
-            >
-              <div
-                style={{
-                  color: '#000',
-                  opacity: '0.5',
-                  marginTop: '5px',
-                  width: '100%',
-                  fontSize: '11px',
-                }}
-              >
-                {message.senderId}
-              </div>
-              <div
-                style={{
-                  color: '#000',
-                  borderRadius: '12px',
-                  maxWidth: '218px',
-                  fontSize: '15px',
-                  textAlign: 'left',
-                  padding: '5px 10px',
-                  background: '#fff',
-                  border: '1px solid rgba(0,0,0,.08)',
-                  marginLeft: '0',
-                }}
-              >
-                {message.body}
+            <li key={i} className="d-block my-3">
+              <div style={message.ownedByCurrentUser ? {} : {}}>
+                <div
+                  style={{
+                    color: '#000',
+                    opacity: '0.5',
+                    marginTop: '5px',
+                    marginLeft: '5px',
+                    width: '100%',
+                    fontSize: '11px',
+                  }}
+                >
+                  {`${message.user.firstName} ${message.user.lastName}`}
+                </div>
+                <div
+                  style={{
+                    color: '#000',
+                    borderRadius: '12px',
+                    maxWidth: '218px',
+                    fontSize: '15px',
+                    textAlign: 'left',
+                    padding: '5px 10px',
+                    background: '#fff',
+                    border: '1px solid rgba(0,0,0,.08)',
+                    marginLeft: '0',
+                  }}
+                >
+                  {message.body}
+                </div>
               </div>
             </li>
           ))}

@@ -103,6 +103,10 @@ export const SignUpPage: NextPage = () => {
         });
         setLoading(false);
         Cookies.set('token', res.data.token, { expires: 60 * 60 });
+        Cookies.set('firstName', res.data.firstName);
+        Cookies.set('lastName', res.data.lastName);
+        Cookies.set('username', res.data.username);
+        Cookies.set('email', res.data.email);
         callToastAndRefresh(true, res.data);
         await router.push('/');
       }

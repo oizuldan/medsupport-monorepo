@@ -59,7 +59,11 @@ export const LoginPage: NextPage = () => {
         password,
       });
       Cookies.set('token', res.data.token, { expires: 60 * 60 });
-      callToastAndRefresh(true, res.data);
+      Cookies.set('firstName', res.data.firstName);
+      Cookies.set('lastName', res.data.lastName);
+      Cookies.set('username', res.data.username);
+      Cookies.set('email', res.data.email);
+      callToastAndRefresh(true, res.data.message);
       await router.push('/');
     } catch (e) {
       callToastAndRefresh(false, e.response.data);

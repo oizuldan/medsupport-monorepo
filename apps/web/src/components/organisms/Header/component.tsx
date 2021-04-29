@@ -13,6 +13,7 @@ import {
   P,
 } from 'components';
 import { colors, icons, media, typography } from 'core';
+import Cookies from 'js-cookie';
 import React, { FC, useCallback, useState } from 'react';
 
 export const Header: FC = () => {
@@ -21,6 +22,9 @@ export const Header: FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const onToggleMobileMenu = useCallback(() => setMobileMenuOpen((prev) => !prev), []);
+
+  const firstName = Cookies.get('firstName');
+  const lastName = Cookies.get('lastName');
 
   return (
     <>
@@ -192,38 +196,56 @@ export const Header: FC = () => {
                   RU
                 </P>
               </Button>
-              <ButtonLink
-                href="/login"
-                className="mr-2"
-                size={ButtonSizes.Small}
-                css={css(
-                  typography.styles.elementSemiBold12,
-                  media.queryStyled([
+              {firstName && lastName ? (
+                <P
+                  typography={typography.variants.Heading.SemiBold17}
+                  css={css(
                     typography.styles.elementSemiBold12,
-                    typography.styles.elementSemiBold12,
-                    typography.styles.headingSemiBold17,
-                  ]),
-                )}
-                color={colors.variants.Brand.ExtraLightPurple}
-                bordered
-              >
-                Войти
-              </ButtonLink>
-              <ButtonLink
-                href="/signup"
-                size={ButtonSizes.Small}
-                css={css(
-                  typography.styles.elementSemiBold12,
-                  media.queryStyled([
-                    typography.styles.elementSemiBold12,
-                    typography.styles.elementSemiBold12,
-                    typography.styles.headingSemiBold17,
-                  ]),
-                )}
-                bordered
-              >
-                Регистрация
-              </ButtonLink>
+                    media.queryStyled([
+                      typography.styles.elementSemiBold12,
+                      typography.styles.elementSemiBold12,
+                      typography.styles.headingSemiBold17,
+                    ]),
+                  )}
+                >
+                  {`${firstName} ${lastName}`}
+                </P>
+              ) : (
+                <>
+                  <ButtonLink
+                    href="/login"
+                    className="mr-2"
+                    size={ButtonSizes.Small}
+                    css={css(
+                      typography.styles.elementSemiBold12,
+                      media.queryStyled([
+                        typography.styles.elementSemiBold12,
+                        typography.styles.elementSemiBold12,
+                        typography.styles.headingSemiBold17,
+                      ]),
+                    )}
+                    color={colors.variants.Brand.ExtraLightPurple}
+                    bordered
+                  >
+                    Войти
+                  </ButtonLink>
+                  <ButtonLink
+                    href="/signup"
+                    size={ButtonSizes.Small}
+                    css={css(
+                      typography.styles.elementSemiBold12,
+                      media.queryStyled([
+                        typography.styles.elementSemiBold12,
+                        typography.styles.elementSemiBold12,
+                        typography.styles.headingSemiBold17,
+                      ]),
+                    )}
+                    bordered
+                  >
+                    Регистрация
+                  </ButtonLink>
+                </>
+              )}
             </>
           )}
           {isMobile && (
