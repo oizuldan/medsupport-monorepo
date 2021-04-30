@@ -107,7 +107,6 @@ export const SignUpPage: NextPage = () => {
         Cookies.set('lastName', res.data.lastName);
         Cookies.set('username', res.data.username);
         Cookies.set('email', res.data.email);
-        callToastAndRefresh(true, res.data);
         await router.push('/');
       }
       setLoading(false);
