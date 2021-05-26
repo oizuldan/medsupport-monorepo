@@ -23,8 +23,18 @@ export const Header: FC = () => {
 
   const onToggleMobileMenu = useCallback(() => setMobileMenuOpen((prev) => !prev), []);
 
-  const firstName = Cookies.get('firstName');
-  const lastName = Cookies.get('lastName');
+  const [firstName, setFirstName] = useState<string | undefined>(Cookies.get('firstName'));
+  const [lastName, setLastName] = useState<string | undefined>(Cookies.get('lastName'));
+
+  const onLogOut = useCallback(() => {
+    Cookies.remove('token');
+    Cookies.remove('firstName');
+    Cookies.remove('lastName');
+    Cookies.remove('email');
+    Cookies.remove('username');
+    setFirstName(undefined);
+    setLastName(undefined);
+  }, []);
 
   return (
     <>
@@ -197,19 +207,37 @@ export const Header: FC = () => {
                 </P>
               </Button>
               {firstName && lastName ? (
-                <P
-                  typography={typography.variants.Heading.SemiBold17}
-                  css={css(
-                    typography.styles.elementSemiBold12,
-                    media.queryStyled([
+                <div className="d-flex flex-column align-items-center">
+                  <P
+                    typography={typography.variants.Heading.SemiBold17}
+                    css={css(
                       typography.styles.elementSemiBold12,
+                      media.queryStyled([
+                        typography.styles.elementSemiBold12,
+                        typography.styles.elementSemiBold12,
+                        typography.styles.headingSemiBold17,
+                      ]),
+                    )}
+                  >
+                    {`${firstName} ${lastName}`}
+                  </P>
+                  <Button
+                    size={ButtonSizes.Small}
+                    css={css(
                       typography.styles.elementSemiBold12,
-                      typography.styles.headingSemiBold17,
-                    ]),
-                  )}
-                >
-                  {`${firstName} ${lastName}`}
-                </P>
+                      media.queryStyled([
+                        typography.styles.elementSemiBold12,
+                        typography.styles.elementSemiBold12,
+                        typography.styles.headingSemiBold17,
+                      ]),
+                    )}
+                    onClick={onLogOut}
+                    color={colors.variants.Brand.ExtraLightPurple}
+                    bordered
+                  >
+                    Выйти
+                  </Button>
+                </div>
               ) : (
                 <>
                   <ButtonLink
