@@ -45,7 +45,7 @@ export default {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   login: async (username: string, password: string) => {
     try {
-      const user = (await User.findOne({ username })) || (await User.findOne({ username }));
+      const user = (await User.findOne({ email: username })) || (await User.findOne({ username }));
       if (user) {
         const isPasswordMatching = await bcrypt.compare(password, user.password);
         if (isPasswordMatching) {
