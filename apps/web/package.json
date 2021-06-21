@@ -13,12 +13,17 @@
     "src"
   ],
   "scripts": {
+    "apollo:clean": "find . -path ./node_modules -prune -o -name '__generated__' -exec rm -rf '{}' \\; || true",
+    "apollo:codegen": "dotenv-load apollo client:codegen --includes=**/graphql.ts --target=typescript --passthroughCustomScalars --useReadOnlyTypes",
     "ci": "run-p ci:*",
     "ci:lint": "eslint --cache --max-warnings 0 src",
     "ci:test": "NODE_PATH=src jest --passWithNoTests",
     "ci:tsc": "tsc",
     "web:start": "ts-node -P tsconfig.json src/server.ts",
-    "web:start:prod": "NODE_ENV=production ts-node -P tsconfig.json src/server.ts"
+    "web:start:prod": "NODE_ENV=production ts-node -P tsconfig.json src/server.ts",
+    "clean": "yarn apollo:clean",
+    "build": "next build",
+    "analyze": "ANALYZE=true next build"
   },
   "babel": {
     "presets": [
@@ -64,7 +69,11 @@
     "mobile-detect": "^1.4.4",
     "socket.io-client": "^4.0.1",
     "react-timeago": "^5.2.0",
-    "rehype-raw": "^5.1.0"
+    "rehype-raw": "^5.1.0",
+    "graphql": "^15.5.0",
+    "@apollo/client": "^3.3.19",
+    "apollo": "^2.33.4",
+    "next-with-apollo": "^5.1.1"
   },
   "devDependencies": {
     "@types/dotenv-load": "^2.0.0",
