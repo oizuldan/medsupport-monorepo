@@ -14,5 +14,5 @@
     "resolveJsonModule": true,
     "jsx": "preserve"
   },
-  "files": ["emotion.d.ts", "process.d.ts"]
+  "files": ["emotion.d.ts", "process.d.ts", "apollo.scalars.d.ts"]
 }

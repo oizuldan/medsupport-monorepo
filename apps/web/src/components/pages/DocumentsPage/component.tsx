@@ -1,5 +1,4 @@
 import { css } from '@emotion/core';
-import axios from 'axios';
 import {
   ButtonLink,
   ButtonSizes,
@@ -13,15 +12,36 @@ import {
   P,
 } from 'components';
 import { colors, icons, media, services, typography } from 'core';
-import { NextPage } from 'next';
+import { sequence } from 'fp-ts/Array';
+import * as O from 'fp-ts/Option';
+import { pipe } from 'fp-ts/pipeable';
+import { NextComponentType } from 'next';
+import { ApolloPageContext } from 'next-with-apollo';
 import { useRouter } from 'next/router';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
-import { Props } from './props';
-import { Data } from './types/Data';
+import { Documents } from './__generated__/Documents';
+import { queryDocuments } from './graphql';
+import { InitProps, Props } from './props';
 
-export const DocumentsPage: NextPage<Props> = ({ documents }: Props) => {
+export const DocumentsPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
+  props: Props,
+) => {
+  const { data } = props;
   const router = useRouter();
+
+  const documents = useMemo(
+    () =>
+      pipe(
+        O.fromNullable(data?.documents),
+        O.chain(O.fromPredicate((v) => Array.isArray(v))),
+        O.chain((docs) => sequence(O.option)(docs.map((doc) => pipe(O.fromNullable(doc))))),
+        O.map((a) => a),
+        O.getOrElseW(() => undefined),
+      ),
+    [data?.documents],
+  );
+
   const onGoToDocUpload = useCallback(() => router.push('/document-upload'), [router]);
   return (
     <Layout>
@@ -155,9 +175,5 @@ export const DocumentsPage: NextPage<Props> = ({ documents }: Props) => {
   );
 };
 
-DocumentsPage.getInitialProps = async () => {
-  const documents = await axios.get('http://localhost:3000/proxy3/documents');
-  return {
-    documents: documents.data as ReadonlyArray<Data>,
-  };
-};
+DocumentsPage.getInitialProps = async (ctx) =>
+  await ctx.apolloClient.query<Documents>({ query: queryDocuments });

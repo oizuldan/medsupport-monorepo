@@ -10,5 +10,5 @@
     "noEmit": true,
     "resolveJsonModule": true
   },
-  "files": ["emotion.d.ts", "process.d.ts"]
+  "files": ["emotion.d.ts", "process.d.ts", "apollo.scalars.d.ts"]
 }

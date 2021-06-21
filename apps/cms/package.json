@@ -17,15 +17,16 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "strapi": "3.5.4",
-    "strapi-admin": "3.5.4",
-    "strapi-utils": "3.5.4",
-    "strapi-plugin-content-type-builder": "3.5.4",
-    "strapi-plugin-content-manager": "3.5.4",
-    "strapi-plugin-users-permissions": "3.5.4",
-    "strapi-plugin-email": "3.5.4",
-    "strapi-plugin-upload": "3.5.4",
-    "strapi-connector-mongoose": "3.5.4"
+    "strapi": "3.6.3",
+    "strapi-admin": "3.6.3",
+    "strapi-connector-mongoose": "3.6.3",
+    "strapi-plugin-content-manager": "3.6.3",
+    "strapi-plugin-content-type-builder": "3.6.3",
+    "strapi-plugin-email": "3.6.3",
+    "strapi-plugin-graphql": "^3.6.3",
+    "strapi-plugin-upload": "3.6.3",
+    "strapi-plugin-users-permissions": "3.6.3",
+    "strapi-utils": "3.6.3"
   },
   "strapi": {
     "uuid": "8add2972-1257-46f1-8638-2642698aa23b"
