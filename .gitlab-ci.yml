@@ -3,6 +3,7 @@ stages:
   - lint-and-test
 
 update-node-modules:
+  image: node:12-alpine
   stage: update-node-modules
   only:
     refs:
@@ -12,6 +13,8 @@ update-node-modules:
       - 'package.json'
       - 'apps/*/package.json'
       - 'packages/*/package.json'
+  tags:
+    - docker
   artifacts:
     untracked: true
     expire_in: 1 year
