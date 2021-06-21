@@ -1,12 +1,37 @@
 stages:
+  - update-node-modules
   - lint-and-test
+
+update-node-modules:
+  stage: update-node-modules
+  only:
+    refs:
+      - master
+    changes:
+      - yarn.lock
+      - 'package.json'
+      - 'apps/*/package.json'
+      - 'packages/*/package.json'
+  artifacts:
+    untracked: true
+    expire_in: 1 year
+    name: node_modules
+  script:
+    - yarn
 
 lint-and-test:
   image: node:12-alpine
   stage: lint-and-test
+  only:
+    refs:
+      - master
   tags:
     - docker
+  dependencies:
+    - update-node-modules
   script:
     - yarn
+    - git log -1 --pretty=%B | npx commitlint
+    - yarn start
     - yarn compile
     - yarn ci
