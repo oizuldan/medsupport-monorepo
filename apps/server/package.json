@@ -45,7 +45,8 @@
     "stream": "0.0.2",
     "nodemailer": "^6.4.16",
     "socket.io": "^4.0.1",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "amazon-cognito-identity-js": "^5.0.3"
   },
   "devDependencies" : {
     "ts-node-dev": "^1.0.0",

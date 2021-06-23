@@ -1,42 +1,50 @@
 import express, { Request, Response } from 'express';
-
-import AuthService from '../services/AuthService';
-
+import { SignUpRequestDTO } from '../usecases/signUp/SignUpRequsetDTO';
+import { SignUpUseCase } from '../usecases/signUp/SignUpUseCase';
+import { SignInRequestDTO } from '../usecases/signIn/SignInRequsetDTO';
+import { SignInUseCase } from '../usecases/signIn/SignInUseCase';
+import { ChangePasswordRequestDTO } from '../usecases/changePassword/ChangePasswordRequsetDTO';
+import { ChangePasswordUseCase } from '../usecases/changePassword/ChangePasswordUseCase';
 const router = express.Router();
 
 router.post('/auth/register', async (req: Request, res: Response) => {
-  const result = await AuthService.register(
-    req.body.email,
-    req.body.username,
-    req.body.password,
-    req.body.firstName,
-    req.body.lastName,
-  );
-  if (result.message) {
-    res.setHeader('Set-Cookie', result.token);
-    res.status(200).send(result);
-  } else {
-    res.status(403).send(result.error);
-  }
+  const signUpRequestDTO = new SignUpRequestDTO(req);
+  const signUpUseCase = new SignUpUseCase();
+
+  signUpUseCase.execute(signUpRequestDTO, (error: any, result: any) => {
+    if (error) {
+      res.status(500).send(error);
+    } else {
+      res.status(200).send(result);
+    }
+  });
 });
 
 router.post('/auth/login', async (req: Request, res: Response) => {
-  const result = await AuthService.login(req.body.username, req.body.password);
-  if (result.message) {
-    res.setHeader('Set-Cookie', result.token);
-    res.status(200).send(result);
-  } else {
-    res.status(401).send(result.error);
-  }
+  const signInRequestDTO = new SignInRequestDTO(req);
+  const signUpUseCase = new SignInUseCase();
+
+  signUpUseCase.execute(signInRequestDTO, {
+    onSuccess: function (result: any) {
+      res.status(200).send(result);
+    },
+    onFailure: function(err: any) {
+      res.status(500).send(err);
+    }
+  });
 });
 
 router.post('/auth/restore-password', async (req: Request, res: Response) => {
-  const result = await AuthService.resetPassword(req.body.email);
-  if (result.message) {
-    res.status(200).send(result.message);
-  } else {
-    res.status(403).send(result.error);
-  }
+  const changePasswordRequestDTO = new ChangePasswordRequestDTO(req);
+  const changePasswordUseCase = new ChangePasswordUseCase();
+
+  changePasswordUseCase.execute(changePasswordRequestDTO, (error: any, result: any) => {
+    if (error) {
+      res.status(500).send(error);
+    } else {
+      res.status(200).send(result);
+    }
+  });
 });
 
 export { router as auth };
