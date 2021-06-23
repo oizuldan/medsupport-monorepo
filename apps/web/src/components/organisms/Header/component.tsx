@@ -1,4 +1,5 @@
 import { css } from '@emotion/core';
+import { useAction, useAtom } from '@reatom/react';
 import {
   Anchor,
   Button,
@@ -13,28 +14,19 @@ import {
   P,
 } from 'components';
 import { colors, icons, media, typography } from 'core';
-import Cookies from 'js-cookie';
 import React, { FC, useCallback, useState } from 'react';
+import { logout } from 'store/actions';
+import { userAuth } from 'store/atoms';
 
 export const Header: FC = () => {
+  const authState = useAtom(userAuth);
+  const logOut = useAction(logout);
+
   const isMobile = media.useMobileDetector().mobile();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const onToggleMobileMenu = useCallback(() => setMobileMenuOpen((prev) => !prev), []);
-
-  const [firstName, setFirstName] = useState<string | undefined>(Cookies.get('firstName'));
-  const [lastName, setLastName] = useState<string | undefined>(Cookies.get('lastName'));
-
-  const onLogOut = useCallback(() => {
-    Cookies.remove('token');
-    Cookies.remove('firstName');
-    Cookies.remove('lastName');
-    Cookies.remove('email');
-    Cookies.remove('username');
-    setFirstName(undefined);
-    setLastName(undefined);
-  }, []);
 
   return (
     <>
@@ -206,7 +198,7 @@ export const Header: FC = () => {
                   RU
                 </P>
               </Button>
-              {firstName && lastName ? (
+              {authState.firstName && authState.lastName ? (
                 <div className="d-flex flex-column align-items-center">
                   <P
                     typography={typography.variants.Heading.SemiBold17}
@@ -219,7 +211,7 @@ export const Header: FC = () => {
                       ]),
                     )}
                   >
-                    {`${firstName} ${lastName}`}
+                    {`${authState.firstName} ${authState.lastName}`}
                   </P>
                   <Button
                     size={ButtonSizes.Small}
@@ -231,7 +223,7 @@ export const Header: FC = () => {
                         typography.styles.headingSemiBold17,
                       ]),
                     )}
-                    onClick={onLogOut}
+                    onClick={logOut}
                     color={colors.variants.Brand.ExtraLightPurple}
                     bordered
                   >

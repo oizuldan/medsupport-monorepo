@@ -2,11 +2,12 @@ import 'bootstrap-4-grid';
 import 'normalize.css';
 
 import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import { context } from '@reatom/react';
 import withApollo, { WithApolloProps } from 'next-with-apollo';
 import NextApp, { AppProps } from 'next/app';
 import React from 'react';
 
-import { AuthProvider } from '../context/authContext';
+import { store } from '../store';
 
 // eslint-disable-next-line functional/no-class
 class App extends NextApp<AppProps & WithApolloProps<NormalizedCacheObject>> {
@@ -14,11 +15,11 @@ class App extends NextApp<AppProps & WithApolloProps<NormalizedCacheObject>> {
     // eslint-disable-next-line functional/no-this-expression
     const { Component, pageProps, apollo } = this.props;
     return (
-      <AuthProvider>
+      <context.Provider value={store}>
         <ApolloProvider client={apollo}>
           <Component {...pageProps} />
         </ApolloProvider>
-      </AuthProvider>
+      </context.Provider>
     );
   }
 }

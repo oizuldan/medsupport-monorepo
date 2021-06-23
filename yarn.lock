@@ -3826,6 +3826,16 @@
   resolved "https://registry.yarnpkg.com/@react-dnd/shallowequal/-/shallowequal-2.0.0.tgz#a3031eb54129f2c66b2753f8404266ec7bf67f0a"
   integrity sha512-Pc/AFTdwZwEKJxFJvlxrSmGe/di+aAOBn60sremrpLo6VI/6cmiUYNNwlI5KNYttg7uypzA3ILPMPgxB2GYZEg==
 
+"@reatom/core@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@reatom/core/-/core-1.1.5.tgz#ad80dc83dfabe222c840d56ae3e8571c242b4f34"
+  integrity sha512-Bi28IltJDsY6+3v+DsK6NGXRGBuB/2S7mYsRM9xvASH63IwnVF7h3B5p3egt3NGLI3UUfK8CLA65EvD577rTZg==
+
+"@reatom/react@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@reatom/react/-/react-1.1.5.tgz#6dff2cf3cdbd6d675a5d96c81fb56bb341523dd8"
+  integrity sha512-hKBWRwRPALwU3n1k7OJxACrQFdpGgayIDXbYg3KKNPvILEKncCpQDDJgoMTxOTdPaT38YHi5S6EBz9ByEx4ISg==
+
 "@request/api@^0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@request/api/-/api-0.6.0.tgz#e46e4c32e21db9ca72639701cba1ebfee06c1666"

@@ -1,3 +1,4 @@
+import { useAction } from '@reatom/react';
 import axios from 'axios';
 import {
   Anchor,
@@ -17,12 +18,15 @@ import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import React, { ChangeEventHandler, useCallback, useState } from 'react';
+import { authorize } from 'store/actions';
 
 const Header = dynamic(() => import('./libs/Header'));
 
 export const LoginPage: NextPage = () => {
   const router = useRouter();
   const isMobile = media.useMobileDetector().phone();
+
+  const authorizeUser = useAction(authorize);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -58,18 +62,20 @@ export const LoginPage: NextPage = () => {
         username,
         password,
       });
+      authorizeUser({
+        firstName: res.data.firstName,
+        lastName: res.data.lastName,
+        email: res.data.email,
+        username: res.data.username,
+      });
       Cookies.set('token', res.data.token, { expires: 60 * 60 });
-      Cookies.set('firstName', res.data.firstName);
-      Cookies.set('lastName', res.data.lastName);
-      Cookies.set('username', res.data.username);
-      Cookies.set('email', res.data.email);
       callToastAndRefresh(true, res.data.message);
       await router.push('/');
     } catch (e) {
       callToastAndRefresh(false, e.response.data);
     }
     setLoading(false);
-  }, [username, password, callToastAndRefresh, router]);
+  }, [username, password, authorizeUser, callToastAndRefresh, router]);
   const onGoToSignUp = useCallback(() => router.push('/signup'), [router]);
 
   return (
