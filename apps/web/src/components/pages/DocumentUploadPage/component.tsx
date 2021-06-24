@@ -2,10 +2,17 @@ import { css } from '@emotion/core';
 import axios from 'axios';
 import { Button, Dropzone, H1, Input, Layout, P, Toast } from 'components';
 import { colors, media, services, typography } from 'core';
+import Cookies from 'js-cookie';
 import { NextPage } from 'next';
-import React, { ChangeEventHandler, useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { ChangeEventHandler, useCallback, useEffect, useState } from 'react';
+
+// import { HomePage } from '../HomePage';
+// import { NewsItem } from '../NewsItemPage';
 
 export const DocumentUploadPage: NextPage = () => {
+  const router = useRouter();
+
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
@@ -52,6 +59,13 @@ export const DocumentUploadPage: NextPage = () => {
     }
     setLoading(false);
   }, [author, callToast, description, file, title]);
+
+  useEffect(() => {
+    if (!Cookies.get('token')) {
+      router.push('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout>

@@ -1,6 +1,6 @@
 {
   "kind": "collectionType",
-  "collectionName": "news_items",
+  "collectionName": "news-items",
   "info": {
     "name": "NewsItem",
     "description": ""
@@ -10,22 +10,29 @@
     "timestamps": true,
     "draftAndPublish": true
   },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
   "attributes": {
     "content": {
       "type": "richtext",
-      "required": true
-    },
-    "author": {
-      "type": "string",
-      "required": true
-    },
-    "datePublishedText": {
-      "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     },
     "previewImage": {
       "model": "file",
@@ -34,7 +41,12 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

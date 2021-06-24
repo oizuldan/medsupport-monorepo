@@ -41,6 +41,134 @@ type UserPermissionsPasswordPayload {
   ok: Boolean!
 }
 
+type Article {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  content: String!
+  title: String!
+  previewImage: UploadFile
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Article]
+}
+
+type ArticleConnection {
+  values: [Article]
+  groupBy: ArticleGroupBy
+  aggregate: ArticleAggregator
+}
+
+type ArticleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ArticleGroupBy {
+  id: [ArticleConnectionId]
+  _id: [ArticleConnection_id]
+  createdAt: [ArticleConnectionCreatedAt]
+  updatedAt: [ArticleConnectionUpdatedAt]
+  content: [ArticleConnectionContent]
+  title: [ArticleConnectionTitle]
+  previewImage: [ArticleConnectionPreviewImage]
+  locale: [ArticleConnectionLocale]
+  published_at: [ArticleConnectionPublished_at]
+}
+
+type ArticleConnectionId {
+  key: ID
+  connection: ArticleConnection
+}
+
+type ArticleConnection_id {
+  key: ID
+  connection: ArticleConnection
+}
+
+type ArticleConnectionCreatedAt {
+  key: DateTime
+  connection: ArticleConnection
+}
+
+type ArticleConnectionUpdatedAt {
+  key: DateTime
+  connection: ArticleConnection
+}
+
+type ArticleConnectionContent {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionTitle {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionPreviewImage {
+  key: ID
+  connection: ArticleConnection
+}
+
+type ArticleConnectionLocale {
+  key: String
+  connection: ArticleConnection
+}
+
+type ArticleConnectionPublished_at {
+  key: DateTime
+  connection: ArticleConnection
+}
+
+input ArticleInput {
+  content: String!
+  title: String!
+  previewImage: ID
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editArticleInput {
+  content: String
+  title: String
+  previewImage: ID
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createArticleInput {
+  data: ArticleInput
+}
+
+type createArticlePayload {
+  article: Article
+}
+
+input updateArticleInput {
+  where: InputID
+  data: editArticleInput
+}
+
+type updateArticlePayload {
+  article: Article
+}
+
+input deleteArticleInput {
+  where: InputID
+}
+
+type deleteArticlePayload {
+  article: Article
+}
+
 type Document {
   id: ID!
   _id: ID!
@@ -51,7 +179,9 @@ type Document {
   description: String!
   downloadLink: String!
   viewLink: String!
+  locale: String
   published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [Document]
 }
 
 type DocumentConnection {
@@ -75,6 +205,7 @@ type DocumentGroupBy {
   description: [DocumentConnectionDescription]
   downloadLink: [DocumentConnectionDownloadLink]
   viewLink: [DocumentConnectionViewLink]
+  locale: [DocumentConnectionLocale]
   published_at: [DocumentConnectionPublished_at]
 }
 
@@ -123,6 +254,11 @@ type DocumentConnectionViewLink {
   connection: DocumentConnection
 }
 
+type DocumentConnectionLocale {
+  key: String
+  connection: DocumentConnection
+}
+
 type DocumentConnectionPublished_at {
   key: DateTime
   connection: DocumentConnection
@@ -134,6 +270,8 @@ input DocumentInput {
   description: String!
   downloadLink: String!
   viewLink: String!
+  localizations: [ID]
+  locale: String
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -145,6 +283,8 @@ input editDocumentInput {
   description: String
   downloadLink: String
   viewLink: String
+  localizations: [ID]
+  locale: String
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -181,11 +321,11 @@ type NewsItem {
   createdAt: DateTime!
   updatedAt: DateTime!
   content: String!
-  author: String!
-  datePublishedText: String!
   title: String!
   previewImage: UploadFile
+  locale: String
   published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [NewsItem]
 }
 
 type NewsItemConnection {
@@ -205,10 +345,9 @@ type NewsItemGroupBy {
   createdAt: [NewsItemConnectionCreatedAt]
   updatedAt: [NewsItemConnectionUpdatedAt]
   content: [NewsItemConnectionContent]
-  author: [NewsItemConnectionAuthor]
-  datePublishedText: [NewsItemConnectionDatePublishedText]
   title: [NewsItemConnectionTitle]
   previewImage: [NewsItemConnectionPreviewImage]
+  locale: [NewsItemConnectionLocale]
   published_at: [NewsItemConnectionPublished_at]
 }
 
@@ -237,16 +376,6 @@ type NewsItemConnectionContent {
   connection: NewsItemConnection
 }
 
-type NewsItemConnectionAuthor {
-  key: String
-  connection: NewsItemConnection
-}
-
-type NewsItemConnectionDatePublishedText {
-  key: String
-  connection: NewsItemConnection
-}
-
 type NewsItemConnectionTitle {
   key: String
   connection: NewsItemConnection
@@ -257,6 +386,11 @@ type NewsItemConnectionPreviewImage {
   connection: NewsItemConnection
 }
 
+type NewsItemConnectionLocale {
+  key: String
+  connection: NewsItemConnection
+}
+
 type NewsItemConnectionPublished_at {
   key: DateTime
   connection: NewsItemConnection
@@ -264,10 +398,10 @@ type NewsItemConnectionPublished_at {
 
 input NewsItemInput {
   content: String!
-  author: String!
-  datePublishedText: String!
   title: String!
   previewImage: ID
+  localizations: [ID]
+  locale: String
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -275,10 +409,10 @@ input NewsItemInput {
 
 input editNewsItemInput {
   content: String
-  author: String
-  datePublishedText: String
   title: String
   previewImage: ID
+  localizations: [ID]
+  locale: String
   published_at: DateTime
   created_by: ID
   updated_by: ID
@@ -307,6 +441,29 @@ input deleteNewsItemInput {
 
 type deleteNewsItemPayload {
   newsItem: NewsItem
+}
+
+type I18NLocale {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
 }
 
 type UploadFile {
@@ -779,7 +936,7 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Document | DocumentConnection | DocumentAggregator | DocumentGroupBy | DocumentConnectionId | DocumentConnection_id | DocumentConnectionCreatedAt | DocumentConnectionUpdatedAt | DocumentConnectionTitle | DocumentConnectionAuthor | DocumentConnectionDescription | DocumentConnectionDownloadLink | DocumentConnectionViewLink | DocumentConnectionPublished_at | createDocumentPayload | updateDocumentPayload | deleteDocumentPayload | NewsItem | NewsItemConnection | NewsItemAggregator | NewsItemGroupBy | NewsItemConnectionId | NewsItemConnection_id | NewsItemConnectionCreatedAt | NewsItemConnectionUpdatedAt | NewsItemConnectionContent | NewsItemConnectionAuthor | NewsItemConnectionDatePublishedText | NewsItemConnectionTitle | NewsItemConnectionPreviewImage | NewsItemConnectionPublished_at | createNewsItemPayload | updateNewsItemPayload | deleteNewsItemPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnection_id | ArticleConnectionCreatedAt | ArticleConnectionUpdatedAt | ArticleConnectionContent | ArticleConnectionTitle | ArticleConnectionPreviewImage | ArticleConnectionLocale | ArticleConnectionPublished_at | createArticlePayload | updateArticlePayload | deleteArticlePayload | Document | DocumentConnection | DocumentAggregator | DocumentGroupBy | DocumentConnectionId | DocumentConnection_id | DocumentConnectionCreatedAt | DocumentConnectionUpdatedAt | DocumentConnectionTitle | DocumentConnectionAuthor | DocumentConnectionDescription | DocumentConnectionDownloadLink | DocumentConnectionViewLink | DocumentConnectionLocale | DocumentConnectionPublished_at | createDocumentPayload | updateDocumentPayload | deleteDocumentPayload | NewsItem | NewsItemConnection | NewsItemAggregator | NewsItemGroupBy | NewsItemConnectionId | NewsItemConnection_id | NewsItemConnectionCreatedAt | NewsItemConnectionUpdatedAt | NewsItemConnectionContent | NewsItemConnectionTitle | NewsItemConnectionPreviewImage | NewsItemConnectionLocale | NewsItemConnectionPublished_at | createNewsItemPayload | updateNewsItemPayload | deleteNewsItemPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
 
 input InputID {
   id: ID!
@@ -798,12 +955,15 @@ type AdminUser {
 }
 
 type Query {
+  article(id: ID!, publicationState: PublicationState): Article
+  articles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [Article]
+  articlesConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ArticleConnection
   document(id: ID!, publicationState: PublicationState): Document
-  documents(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Document]
-  documentsConnection(sort: String, limit: Int, start: Int, where: JSON): DocumentConnection
+  documents(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [Document]
+  documentsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): DocumentConnection
   newsItem(id: ID!, publicationState: PublicationState): NewsItem
-  newsItems(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [NewsItem]
-  newsItemsConnection(sort: String, limit: Int, start: Int, where: JSON): NewsItemConnection
+  newsItems(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [NewsItem]
+  newsItemsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): NewsItemConnection
   files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
   filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
@@ -820,6 +980,9 @@ type Query {
 }
 
 type Mutation {
+  createArticle(input: createArticleInput): createArticlePayload
+  updateArticle(input: updateArticleInput): updateArticlePayload
+  deleteArticle(input: deleteArticleInput): deleteArticlePayload
   createDocument(input: createDocumentInput): createDocumentPayload
   updateDocument(input: updateDocumentInput): updateDocumentPayload
   deleteDocument(input: deleteDocumentInput): deleteDocumentPayload
@@ -847,6 +1010,9 @@ type Mutation {
 
   """Delete an existing user"""
   deleteUser(input: deleteUserInput): deleteUserPayload
+  createArticleLocalization(input: updateArticleInput!): Article!
+  createDocumentLocalization(input: updateDocumentInput!): Document!
+  createNewsItemLocalization(input: updateNewsItemInput!): NewsItem!
   upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
   multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
   updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
