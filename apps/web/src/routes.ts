@@ -1,17 +1,15 @@
-// import 'bootstrap-4-grid';
-
 import Routes from 'next-routes';
 
 const registry = new Routes()
   .add('home', '/', 'home')
   .add('documents', '/documents', 'documents')
-  .add('liveStream', '/live-stream', 'liveStream')
+  // .add('liveStream', '/live-stream', 'liveStream')
   .add('login', '/login', 'login')
-  .add('signup', '/signup', 'signup')
-  .add('restorePassword', '/restore-password', 'restorePassword')
-  .add('newsPage', '/news', 'newsPage')
-  .add('newsItemPage', '/news-item/:id', 'newsItemPage')
-  .add('searchArticlesPage', '/search-articles', 'searchArticlesPage')
+  // .add('signup', '/signup', 'signup')
+  // .add('restorePassword', '/restore-password', 'restorePassword')
+  .add('articles', '/articles', 'articles')
+  .add('article', '/article/:id', 'article')
+  // .add('searchArticlesPage', '/search-articles', 'searchArticlesPage')
   .add('documentUpload', '/document-upload', 'documentUpload');
 
 const { Link, Router } = registry;

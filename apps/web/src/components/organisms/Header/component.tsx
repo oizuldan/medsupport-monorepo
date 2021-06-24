@@ -10,31 +10,59 @@ import {
   DrawerDirections,
   H2,
   Icon,
+  List,
+  ListItem,
+  ListItemButton,
   P,
+  Popover,
 } from 'components';
 import { colors, icons, media, typography } from 'core';
 import Cookies from 'js-cookie';
-import React, { FC, useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { FC, useCallback, useMemo, useState } from 'react';
+
+import { popoverListContent } from './styles';
 
 export const Header: FC = () => {
+  const router = useRouter();
   const isMobile = media.useMobileDetector().mobile();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState<string>(
+    Cookies.get('lang') === 'kk-Cyrl-KZ' ? 'KZ' : 'RU',
+  );
+
+  const hasToken = useMemo(() => Cookies.get('token'), []);
 
   const onToggleMobileMenu = useCallback(() => setMobileMenuOpen((prev) => !prev), []);
-
-  const [firstName, setFirstName] = useState<string | undefined>(Cookies.get('firstName'));
-  const [lastName, setLastName] = useState<string | undefined>(Cookies.get('lastName'));
-
   const onLogOut = useCallback(() => {
     Cookies.remove('token');
-    Cookies.remove('firstName');
-    Cookies.remove('lastName');
-    Cookies.remove('email');
-    Cookies.remove('username');
-    setFirstName(undefined);
-    setLastName(undefined);
+    const checkInterval = setInterval(() => {
+      if (!Cookies.get('token')) {
+        clearInterval(checkInterval);
+        window.location.assign(window.location.href);
+      }
+    }, 10);
   }, []);
+
+  const onSetLanguage = useCallback(
+    (lang: string) => () => {
+      Cookies.set('lang', lang);
+      setLanguage(lang === 'kk-Cyrl-KZ' ? 'KZ' : 'RU');
+      const checkInterval = setInterval(() => {
+        if (Cookies.get('lang') === lang) {
+          clearInterval(checkInterval);
+          if (window.location.href.includes('/article/')) {
+            const newURL = window.location.href.replace(/article\/.+/, 'articles');
+            window.location.assign(newURL);
+          } else {
+            window.location.assign(window.location.href);
+          }
+        }
+      }, 10);
+    },
+    [router],
+  );
 
   return (
     <>
@@ -71,20 +99,12 @@ export const Header: FC = () => {
                 Документы
               </Anchor>
               <Anchor
-                href="/news"
+                href="/articles"
                 color={colors.variants.Neutral.Black}
                 className="mb-4"
                 typography={typography.variants.Heading.SemiBold17}
               >
                 Новости
-              </Anchor>
-              <Anchor
-                className="mt-4"
-                href="/liveStream"
-                color={colors.variants.Error.Red4}
-                typography={typography.variants.Heading.SemiBold17}
-              >
-                LIVE
               </Anchor>
             </div>
             <Anchor
@@ -125,7 +145,7 @@ export const Header: FC = () => {
               Документы
             </Anchor>
             <Anchor
-              href="/news"
+              href="/articles"
               className="mr-lg-5 mr-md-3"
               color={colors.variants.Text.Primary}
               css={css(
@@ -137,31 +157,8 @@ export const Header: FC = () => {
                 ]),
               )}
             >
-              Новости
+              Статьи
             </Anchor>
-            <div
-              css={{
-                border: '1px solid',
-                borderColor: colors.variants.Error.Red4,
-                borderRadius: 8,
-              }}
-              className="px-3 py-1"
-            >
-              <Anchor
-                href="/liveStream"
-                color={colors.variants.Error.Red4}
-                css={css(
-                  typography.styles.headingSemiBold17,
-                  media.queryStyled([
-                    typography.styles.headingSemiBold17,
-                    typography.styles.headingSemiBold17,
-                    typography.styles.headingSemiBold22,
-                  ]),
-                )}
-              >
-                LIVE
-              </Anchor>
-            </div>
           </div>
         )}
 
@@ -187,13 +184,52 @@ export const Header: FC = () => {
         <div className="d-flex align-items-center">
           {!isMobile && (
             <>
-              {/* <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>*/}
-              {/*  <Icon icon={icons.actions.search} color={colors.variants.Neutral.Black} />*/}
-              {/* </Button>*/}
-              <Button className="mr-1" variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
-                <Icon icon={icons.actions.language} color={colors.variants.Neutral.Black} />
-                <P
-                  typography={typography.variants.Heading.SemiBold17}
+              <Popover
+                target={
+                  <Button
+                    className="mr-3 px-1"
+                    variant={ButtonVariants.Flat}
+                    size={ButtonSizes.ExtraSmall}
+                  >
+                    <Icon
+                      className="mr-1"
+                      icon={icons.actions.language}
+                      color={colors.variants.Neutral.Black}
+                    />
+                    <P
+                      typography={typography.variants.Heading.SemiBold17}
+                      css={css(
+                        typography.styles.elementSemiBold12,
+                        media.queryStyled([
+                          typography.styles.elementSemiBold12,
+                          typography.styles.elementSemiBold12,
+                          typography.styles.headingSemiBold17,
+                        ]),
+                      )}
+                    >
+                      {language}
+                    </P>
+                  </Button>
+                }
+              >
+                <List css={popoverListContent}>
+                  <ListItem interactive>
+                    <ListItemButton onClick={onSetLanguage('ru-RU')}>
+                      <P typography={typography.variants.Content.Regular16}>RU</P>
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                  <ListItem interactive>
+                    <ListItemButton onClick={onSetLanguage('kk-Cyrl-KZ')}>
+                      <P typography={typography.variants.Content.Regular16}>KZ</P>
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Popover>
+
+              {hasToken ? (
+                <Button
+                  size={ButtonSizes.Small}
                   css={css(
                     typography.styles.elementSemiBold12,
                     media.queryStyled([
@@ -202,47 +238,16 @@ export const Header: FC = () => {
                       typography.styles.headingSemiBold17,
                     ]),
                   )}
+                  onClick={onLogOut}
+                  color={colors.variants.Brand.ExtraLightPurple}
+                  bordered
                 >
-                  RU
-                </P>
-              </Button>
-              {firstName && lastName ? (
-                <div className="d-flex flex-column align-items-center">
-                  <P
-                    typography={typography.variants.Heading.SemiBold17}
-                    css={css(
-                      typography.styles.elementSemiBold12,
-                      media.queryStyled([
-                        typography.styles.elementSemiBold12,
-                        typography.styles.elementSemiBold12,
-                        typography.styles.headingSemiBold17,
-                      ]),
-                    )}
-                  >
-                    {`${firstName} ${lastName}`}
-                  </P>
-                  <Button
-                    size={ButtonSizes.Small}
-                    css={css(
-                      typography.styles.elementSemiBold12,
-                      media.queryStyled([
-                        typography.styles.elementSemiBold12,
-                        typography.styles.elementSemiBold12,
-                        typography.styles.headingSemiBold17,
-                      ]),
-                    )}
-                    onClick={onLogOut}
-                    color={colors.variants.Brand.ExtraLightPurple}
-                    bordered
-                  >
-                    Выйти
-                  </Button>
-                </div>
+                  Выйти
+                </Button>
               ) : (
                 <>
                   <ButtonLink
                     href="/login"
-                    className="mr-2"
                     size={ButtonSizes.Small}
                     css={css(
                       typography.styles.elementSemiBold12,
@@ -257,33 +262,69 @@ export const Header: FC = () => {
                   >
                     Войти
                   </ButtonLink>
-                  <ButtonLink
-                    href="/signup"
-                    size={ButtonSizes.Small}
-                    css={css(
-                      typography.styles.elementSemiBold12,
-                      media.queryStyled([
-                        typography.styles.elementSemiBold12,
-                        typography.styles.elementSemiBold12,
-                        typography.styles.headingSemiBold17,
-                      ]),
-                    )}
-                    bordered
-                  >
-                    Регистрация
-                  </ButtonLink>
+                  {/* <ButtonLink*/}
+                  {/*  href="/signup"*/}
+                  {/*  size={ButtonSizes.Small}*/}
+                  {/*  css={css(*/}
+                  {/*    typography.styles.elementSemiBold12,*/}
+                  {/*    media.queryStyled([*/}
+                  {/*      typography.styles.elementSemiBold12,*/}
+                  {/*      typography.styles.elementSemiBold12,*/}
+                  {/*      typography.styles.headingSemiBold17,*/}
+                  {/*    ]),*/}
+                  {/*  )}*/}
+                  {/*  bordered*/}
+                  {/* >*/}
+                  {/*  Регистрация*/}
+                  {/* </ButtonLink>*/}
                 </>
               )}
             </>
           )}
           {isMobile && (
             <div className="d-flex">
-              <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>
-                <Icon icon={icons.actions.language} color={colors.variants.Neutral.Black} />
-              </Button>
-              {/* <Button variant={ButtonVariants.Flat} size={ButtonSizes.ExtraSmall}>*/}
-              {/*  <Icon icon={icons.actions.search} color={colors.variants.Neutral.Black} />*/}
-              {/* </Button>*/}
+              <Popover
+                target={
+                  <Button
+                    className="px-1"
+                    variant={ButtonVariants.Flat}
+                    size={ButtonSizes.ExtraSmall}
+                  >
+                    <Icon
+                      className="mr-1"
+                      icon={icons.actions.language}
+                      color={colors.variants.Neutral.Black}
+                    />
+                    <P
+                      typography={typography.variants.Heading.SemiBold17}
+                      css={css(
+                        typography.styles.elementSemiBold12,
+                        media.queryStyled([
+                          typography.styles.elementSemiBold12,
+                          typography.styles.elementSemiBold12,
+                          typography.styles.headingSemiBold17,
+                        ]),
+                      )}
+                    >
+                      {language}
+                    </P>
+                  </Button>
+                }
+              >
+                <List css={popoverListContent}>
+                  <ListItem interactive>
+                    <ListItemButton onClick={onSetLanguage('ru')}>
+                      <P typography={typography.variants.Content.Regular16}>RU</P>
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                  <ListItem interactive>
+                    <ListItemButton onClick={onSetLanguage('kz')}>
+                      <P typography={typography.variants.Content.Regular16}>KZ</P>
+                    </ListItemButton>
+                  </ListItem>
+                </List>
+              </Popover>
             </div>
           )}
         </div>

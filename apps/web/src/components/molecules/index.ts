@@ -8,3 +8,4 @@ export * from './Label';
 export * from './Table';
 export * from './Markdown';
 export * from './Pagination';
+export * from './Popover';

@@ -1,33 +1,22 @@
-import { ApolloQueryResult } from '@apollo/client';
-import { BannerCarouselSkeleton, CardInteractive, Divider, H2, Layout, P } from 'components';
+import { css } from '@emotion/core';
+import { CardInteractive, Divider, H1, Layout, P } from 'components';
 import { colors, media, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
 import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
-import dynamic from 'next/dynamic';
-import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
+import React, { useCallback, useMemo } from 'react';
 
-import { Articles, ArticlesVariables } from '../ArticlesPage/__generated__/Articles';
-import { queryArticles } from '../ArticlesPage/graphql';
-import * as mock from './mock';
+import { Articles, ArticlesVariables } from './__generated__/Articles';
+import { queryArticles } from './graphql';
 import { InitProps, Props } from './props';
 
-const BannerCarouselMobile = dynamic(() => import('./libs/BannerCarouselMobile'), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => <BannerCarouselSkeleton />,
-});
-const BannerCarousel = dynamic(() => import('./libs/BannerCarousel'), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => <BannerCarouselSkeleton />,
-});
-
-export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
+export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
+  props: Props,
+) => {
   const { data } = props;
-  const isMobile = media.useMobileDetector().phone();
 
   const articles = useMemo(
     () =>
@@ -40,23 +29,39 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
     [data?.data?.articles],
   );
 
+  // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
+
   return (
     <Layout>
-      {isMobile ? (
-        <div>
-          <BannerCarouselMobile data={mock.bannerCarouselData} />
+      <div className="container d-flex flex-column py-md-5 py-3">
+        <div className="d-flex justify-content-between align-items-center mb-md-3 mb-2">
+          <H1
+            css={css(
+              typography.styles.headingBold22,
+              media.queryStyled([
+                typography.styles.headingBold22,
+                typography.styles.headingBold22,
+                typography.styles.headingBold34,
+              ]),
+            )}
+          >
+            Статьи
+          </H1>
+          {/* <ButtonLink*/}
+          {/*  type="a"*/}
+          {/*  onClick={onGoToSearchArticles}*/}
+          {/*  variant={ButtonVariants.Flat}*/}
+          {/*  size={ButtonSizes.Small}*/}
+          {/*  color={colors.variants.Text.Primary}*/}
+          {/*  css={css(*/}
+          {/*    typography.styles.elementBold12,*/}
+          {/*    media.queryStyled([typography.styles.headingBold17]),*/}
+          {/*  )}*/}
+          {/* >*/}
+          {/*  Искать новости*/}
+          {/* </ButtonLink>*/}
         </div>
-      ) : (
-        <div className="py-3">
-          <BannerCarousel data={mock.bannerCarouselData} />
-        </div>
-      )}
-
-      <Divider className="my-5" />
-
-      <div className="mb-5 container d-flex flex-column">
-        <H2 className="mb-4">Статьи</H2>
-        <div className="row justify-content-center">
+        <div className="row">
           {articles?.map((article, i) => (
             <CardInteractive
               key={article.title + i}
@@ -85,7 +90,7 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
                   }}
                   src={`${process.env.BASE_URL}${article.previewImage?.url}`}
                 />
-                <P className="mb-3" typography={typography.variants.Content.Regular16}>
+                <P className="mb-2" typography={typography.variants.Content.Regular16}>
                   {article.title}
                 </P>
                 <P
@@ -105,12 +110,12 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
   );
 };
 
-HomePage.getInitialProps = async (ctx) => {
+ArticlesPage.getInitialProps = async (ctx) => {
   const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
 
   const data = await ctx.apolloClient.query<Articles, ArticlesVariables>({
     query: queryArticles,
-    variables: { locale: lang, limit: 6 },
+    variables: { locale: lang },
   });
   return { data };
 };

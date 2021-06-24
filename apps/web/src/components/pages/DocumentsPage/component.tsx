@@ -15,6 +15,7 @@ import { colors, icons, media, services, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
 import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
+import Cookies from 'js-cookie';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import { useRouter } from 'next/router';
@@ -30,13 +31,13 @@ export const DocumentsPage: NextComponentType<ApolloPageContext, InitProps, Prop
   const { data } = props;
   const router = useRouter();
 
+  const hasToken = useMemo(() => Cookies.get('token'), []);
   const documents = useMemo(
     () =>
       pipe(
         O.fromNullable(data?.documents),
         O.chain(O.fromPredicate((v) => Array.isArray(v))),
         O.chain((docs) => sequence(O.option)(docs.map((doc) => pipe(O.fromNullable(doc))))),
-        O.map((a) => a),
         O.getOrElseW(() => undefined),
       ),
     [data?.documents],
@@ -59,19 +60,21 @@ export const DocumentsPage: NextComponentType<ApolloPageContext, InitProps, Prop
           >
             Документы
           </H1>
-          <ButtonLink
-            type="a"
-            onClick={onGoToDocUpload}
-            variant={ButtonVariants.Flat}
-            size={ButtonSizes.Small}
-            color={colors.variants.Text.Primary}
-            css={css(
-              typography.styles.elementBold12,
-              media.queryStyled([typography.styles.headingBold17]),
-            )}
-          >
-            Загрузить документ
-          </ButtonLink>
+          {hasToken && (
+            <ButtonLink
+              type="a"
+              onClick={onGoToDocUpload}
+              variant={ButtonVariants.Flat}
+              size={ButtonSizes.Small}
+              color={colors.variants.Text.Primary}
+              css={css(
+                typography.styles.elementBold12,
+                media.queryStyled([typography.styles.headingBold17]),
+              )}
+            >
+              Загрузить документ
+            </ButtonLink>
+          )}
         </div>
         <P
           className="mb-5"

@@ -59,10 +59,6 @@ export const LoginPage: NextPage = () => {
         password,
       });
       Cookies.set('token', res.data.token, { expires: 60 * 60 });
-      Cookies.set('firstName', res.data.firstName);
-      Cookies.set('lastName', res.data.lastName);
-      Cookies.set('username', res.data.username);
-      Cookies.set('email', res.data.email);
       callToastAndRefresh(true, res.data.message);
       await router.push('/');
     } catch (e) {
@@ -70,7 +66,7 @@ export const LoginPage: NextPage = () => {
     }
     setLoading(false);
   }, [username, password, callToastAndRefresh, router]);
-  const onGoToSignUp = useCallback(() => router.push('/signup'), [router]);
+  // const onGoToSignUp = useCallback(() => router.push('/signup'), [router]);
 
   return (
     <>
@@ -156,16 +152,16 @@ export const LoginPage: NextPage = () => {
                 placeholder="Пароль"
               />
             </InputGroup>
-            {!isMobile && (
-              <Anchor
-                className="align-self-end mt-3"
-                href="/restore-password"
-                typography={typography.variants.Element.Regular16}
-                color={colors.variants.Text.Primary}
-              >
-                Забыли пароль?
-              </Anchor>
-            )}
+            {/* {!isMobile && (*/}
+            {/*  <Anchor*/}
+            {/*    className="align-self-end mt-3"*/}
+            {/*    href="/restore-password"*/}
+            {/*    typography={typography.variants.Element.Regular16}*/}
+            {/*    color={colors.variants.Text.Primary}*/}
+            {/*  >*/}
+            {/*    Забыли пароль?*/}
+            {/*  </Anchor>*/}
+            {/* )}*/}
 
             <Button
               disabled={buttonDisabled}
@@ -181,27 +177,27 @@ export const LoginPage: NextPage = () => {
             >
               Вход
             </Button>
-            {isMobile && (
-              <Anchor
-                className="mb-3"
-                href="/restore-password"
-                typography={typography.variants.Element.Regular16}
-                color={colors.variants.Text.Primary}
-              >
-                Забыли пароль?
-              </Anchor>
-            )}
+            {/* {isMobile && (*/}
+            {/*  <Anchor*/}
+            {/*    className="mb-3"*/}
+            {/*    href="/restore-password"*/}
+            {/*    typography={typography.variants.Element.Regular16}*/}
+            {/*    color={colors.variants.Text.Primary}*/}
+            {/*  >*/}
+            {/*    Забыли пароль?*/}
+            {/*  </Anchor>*/}
+            {/* )}*/}
 
-            <P typography={typography.variants.Element.Regular16}>
-              Нет аккаунта?{' '}
-              <Anchor
-                onClick={onGoToSignUp}
-                typography={typography.variants.Element.Bold16}
-                color={colors.variants.Text.Primary}
-              >
-                Зарегистрируйтесь
-              </Anchor>
-            </P>
+            {/* <P typography={typography.variants.Element.Regular16}>*/}
+            {/*  Нет аккаунта?{' '}*/}
+            {/*  <Anchor*/}
+            {/*    onClick={onGoToSignUp}*/}
+            {/*    typography={typography.variants.Element.Bold16}*/}
+            {/*    color={colors.variants.Text.Primary}*/}
+            {/*  >*/}
+            {/*    Зарегистрируйтесь*/}
+            {/*  </Anchor>*/}
+            {/* </P>*/}
           </div>
         </div>
       </div>

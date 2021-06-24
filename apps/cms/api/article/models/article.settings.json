@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "documents",
+  "collectionName": "articles",
   "info": {
-    "name": "Document",
+    "name": "Article",
     "description": ""
   },
   "options": {
@@ -16,44 +16,31 @@
     }
   },
   "attributes": {
+    "content": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext",
+      "required": true
+    },
     "title": {
-      "type": "string",
-      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      }
-    },
-    "author": {
+      },
       "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "required": true
     },
-    "description": {
-      "type": "text",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "downloadLink": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "viewLink": {
-      "type": "string",
+    "previewImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
       "required": true,
       "pluginOptions": {
         "i18n": {
