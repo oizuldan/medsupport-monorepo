@@ -22,7 +22,6 @@
     "start": "ts-node -P tsconfig.json src/server.ts",
     "start:prod": "NODE_ENV=production ts-node -P tsconfig.json src/server.ts",
     "clean": "yarn apollo:clean",
-    "compile": "yarn apollo:codegen",
     "build": "next build",
     "analyze": "ANALYZE=true next build"
   },
