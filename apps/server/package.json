@@ -17,7 +17,7 @@
     "ci:lint": "eslint --cache --max-warnings 0 src",
     "ci:test": "NODE_PATH=src jest --passWithNoTests",
     "ci:tsc": "tsc",
-    "server:start": "ts-node-dev src/server.ts"
+    "start": "ts-node-dev src/server.ts"
   },
   "babel": {
     "presets": [

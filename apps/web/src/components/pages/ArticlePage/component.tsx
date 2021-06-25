@@ -3,7 +3,7 @@ import { colors, icons, typography } from 'core';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import { useRouter } from 'next/router';
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { Article, ArticleVariables } from './__generated__/Article';
 import { queryArticle } from './graphql';

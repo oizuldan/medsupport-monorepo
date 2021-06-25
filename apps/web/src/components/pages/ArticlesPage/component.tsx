@@ -6,8 +6,7 @@ import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
-import { useRouter } from 'next/router';
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { Articles, ArticlesVariables } from './__generated__/Articles';
 import { queryArticles } from './graphql';
