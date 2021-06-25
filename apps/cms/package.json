@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "develop": "strapi develop",
-    "cms:start": "strapi start",
+    "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },

@@ -1,4 +1,3 @@
-import { ApolloQueryResult } from '@apollo/client';
 import { BannerCarouselSkeleton, CardInteractive, Divider, H2, Layout, P } from 'components';
 import { colors, media, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
