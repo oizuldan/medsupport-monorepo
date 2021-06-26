@@ -96,7 +96,7 @@
     "publicURL": "/",
     "preset": "next"
   },
-  "proxy": "http://localhost:8000",
+  "proxy": "http://185.146.3.108:8000",
   "proxy2": "https://drive.google.com/",
-  "proxy3": "http://localhost:1337"
+  "proxy3": "http://185.146.3.108:1337"
 }
