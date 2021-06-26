@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var TargetTypes;\n\n(function (TargetTypes) {\n  TargetTypes[TargetTypes[\"Ref\"] = 0] = \"Ref\";\n  TargetTypes[TargetTypes[\"Element\"] = 1] = \"Element\";\n})(TargetTypes || (TargetTypes = {}));","map":null,"metadata":{},"sourceType":"module"}
