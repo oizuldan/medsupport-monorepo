@@ -36,10 +36,6 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 node_modules/
 jspm_packages/
 
-# Next.js build output
-.next
-**/.next
-
 # Nuxt.js build / generate output
 .nuxt
 dist
