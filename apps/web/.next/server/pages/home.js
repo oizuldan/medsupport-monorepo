@@ -221,9 +221,6 @@ __webpack_require__.r(__webpack_exports__);
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "default", function() { return /* reexport */ HomePage; });
 
-// EXTERNAL MODULE: external "@emotion/core"
-var core_ = __webpack_require__("3vLF");
-
 // EXTERNAL MODULE: ./src/components/index.ts + 110 modules
 var components = __webpack_require__("Nhdc");
 
@@ -246,6 +243,9 @@ var dynamic_default = /*#__PURE__*/__webpack_require__.n(dynamic_);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: ./src/components/pages/ArticlesPage/index.ts + 3 modules
+var ArticlesPage = __webpack_require__("S82M");
 
 // EXTERNAL MODULE: ./src/components/pages/ArticlesPage/graphql.ts
 var graphql = __webpack_require__("bIO2");
@@ -274,6 +274,9 @@ const newsData = [{
   imageURL: '/static/images/news3.png',
   imageAlt: 'news3'
 }];
+// EXTERNAL MODULE: external "@emotion/core"
+var core_ = __webpack_require__("3vLF");
+
 // CONCATENATED MODULE: ./src/components/pages/HomePage/component.tsx
 var __jsx = external_react_default.a.createElement;
 
@@ -321,10 +324,8 @@ const HomePage = props => {
     data: bannerCarouselData
   }) : Object(core_["jsx"])(BannerCarousel, {
     data: bannerCarouselData
-  }), Object(core_["jsx"])(components["k" /* Divider */], {
-    className: "my-5"
   }), Object(core_["jsx"])("div", {
-    className: "mb-5 container d-flex flex-column"
+    className: "my-5 container d-flex flex-column"
   }, Object(core_["jsx"])("div", {
     className: "d-flex justify-content-between"
   }, Object(core_["jsx"])(components["q" /* H2 */], {
@@ -340,19 +341,9 @@ const HomePage = props => {
     icon: core["b" /* icons */].arrows.keyboardArrowRight,
     color: core["a" /* colors */].variants.Neutral.Black,
     className: "mr-1"
-  }))), Object(core_["jsx"])(components["B" /* List */], {
-    className: "row justify-content-center"
-  }, articles === null || articles === void 0 ? void 0 : articles.map((article, i) => Object(core_["jsx"])(components["D" /* ListItemButton */], {
-    key: article.title + i,
-    link: true,
-    type: "a",
-    href: `article/${article.id}`,
-    className: "px-0"
-  }, Object(core_["jsx"])(components["G" /* P */], {
-    className: "mb-2",
-    typography: core["e" /* typography */].variants.Content.Regular16,
-    css: /*#__PURE__*/Object(core_["css"])("&:hover{color:", core["a" /* colors */].variants.Brand.Purple, ";}" + (true ? "" : undefined))
-  }, article.title))))));
+  }))), Object(core_["jsx"])(ArticlesPage["a" /* ArticlesList */], {
+    articles: articles
+  })));
 };
 
 HomePage.getInitialProps = async ctx => {
@@ -1701,48 +1692,59 @@ var BannerCarousel_component_jsx = external_react_default.a.createElement;
 
 function BannerCarousel_component_extends() { BannerCarousel_component_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return BannerCarousel_component_extends.apply(this, arguments); }
 
-function BannerCarousel_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
-
 function BannerCarousel_component_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = BannerCarousel_component_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function BannerCarousel_component_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+function BannerCarousel_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 
 
 
 
+
+
+var BannerCarousel_component_ref = true ? {
+  name: "tmu6z3",
+  styles: "max-width:1440px;height:500px;"
+} : undefined;
 
 var component_ref2 = true ? {
+  name: "1ttywp7",
+  styles: "width:45%;"
+} : undefined;
+
+var component_ref4 = true ? {
   name: "imtqqp",
   styles: "height:500px;"
 } : undefined;
 
-var component_ref3 = true ? {
+var component_ref5 = true ? {
   name: "12g6n3b",
   styles: "max-width:305px;"
 } : undefined;
 
-const BannerCarousel = (_ref) => {
+const BannerCarousel = (_ref3) => {
   let {
     data
-  } = _ref,
-      rest = BannerCarousel_component_objectWithoutProperties(_ref, ["data"]);
+  } = _ref3,
+      rest = BannerCarousel_component_objectWithoutProperties(_ref3, ["data"]);
 
   return Object(core_["jsx"])(Carousel, BannerCarousel_component_extends({
     draggable: true,
-    css: component_ref2,
-    withDots: true
+    css: component_ref4
   }, rest), data.map((banner, i) => Object(core_["jsx"])("div", {
     key: i,
     className: "d-flex justify-content-center "
   }, Object(core_["jsx"])("div", {
     className: "w-100",
-    css: /*#__PURE__*/Object(core_["css"])("background-image:url(", banner.imageURL, ");background-repeat:no-repeat;background-size:auto 100%;background-position:right;max-width:1440px;height:500px;" + (true ? "" : undefined))
+    css: BannerCarousel_component_ref
   }, Object(core_["jsx"])("div", {
-    className: "container h-100"
+    className: "container h-100 px-5",
+    css: /*#__PURE__*/Object(core_["css"])("background-image:url(", banner.imageURL, ");background-repeat:no-repeat;background-size:auto 100%;background-position:center;" + (true ? "" : undefined))
   }, Object(core_["jsx"])("div", {
-    className: "h-100 w-50 d-flex flex-column justify-content-center"
+    className: "h-100 d-flex flex-column justify-content-center",
+    css: component_ref2
   }, Object(core_["jsx"])(H1, {
     className: "mb-3"
   }, banner.title), Object(core_["jsx"])(P, {
@@ -1750,7 +1752,7 @@ const BannerCarousel = (_ref) => {
     typography: core["e" /* typography */].variants.Heading.Medium22
   }, banner.subtitle), Object(core_["jsx"])(Button, {
     className: "w-100",
-    css: component_ref3,
+    css: component_ref5,
     bordered: true
   }, banner.buttonText)))))));
 };
@@ -1774,33 +1776,32 @@ var BannerCarouselSkeleton_component_ref2 = true ? {
   styles: "height:500px;width:100%;"
 } : undefined;
 
-var BannerCarouselSkeleton_component_ref3 = true ? {
+var component_ref3 = true ? {
   name: "vz3yqf",
   styles: "height:500px;width:100%;"
 } : undefined;
 
-var component_ref4 = true ? {
+var BannerCarouselSkeleton_component_ref4 = true ? {
   name: "vz3yqf",
   styles: "height:500px;width:100%;"
 } : undefined;
 
-var component_ref5 = true ? {
+var BannerCarouselSkeleton_component_ref5 = true ? {
   name: "imtqqp",
   styles: "height:500px;"
 } : undefined;
 
 const BannerCarouselSkeleton = () => Object(core_["jsx"])(Carousel, {
   draggable: true,
-  css: component_ref5,
-  withDots: true
+  css: BannerCarouselSkeleton_component_ref5
 }, Object(core_["jsx"])(Skeleton, {
   css: BannerCarouselSkeleton_component_ref
 }), Object(core_["jsx"])(Skeleton, {
   css: BannerCarouselSkeleton_component_ref2
 }), Object(core_["jsx"])(Skeleton, {
-  css: BannerCarouselSkeleton_component_ref3
+  css: component_ref3
 }), Object(core_["jsx"])(Skeleton, {
-  css: component_ref4
+  css: BannerCarouselSkeleton_component_ref4
 }));
 // CONCATENATED MODULE: ./src/components/molecules/BannerCarousel/libs/BannerCarouselSkeleton/index.ts
 
@@ -1842,8 +1843,7 @@ const BannerCarouselMobile = (_ref) => {
 
   return Object(core_["jsx"])(Carousel, BannerCarouselMobile_component_extends({
     draggable: true,
-    css: BannerCarouselMobile_component_ref2,
-    withDots: true
+    css: BannerCarouselMobile_component_ref2
   }, rest), data.map((banner, i) => Object(core_["jsx"])("div", {
     key: i,
     className: "d-flex justify-content-center"
@@ -3433,6 +3433,127 @@ const extendByVariant = selectors => ({
 /***/ (function(module, exports) {
 
 module.exports = require("rehype-raw");
+
+/***/ }),
+
+/***/ "S82M":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ List; });
+__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ ArticlesPage; });
+
+// EXTERNAL MODULE: external "@emotion/core"
+var core_ = __webpack_require__("3vLF");
+
+// EXTERNAL MODULE: ./src/components/index.ts + 110 modules
+var components = __webpack_require__("Nhdc");
+
+// EXTERNAL MODULE: ./src/core/index.ts + 6 modules
+var core = __webpack_require__("UzkQ");
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/libs/List/component.tsx
+var __jsx = external_react_default.a.createElement;
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+
+const List = (_ref) => {
+  let {
+    articles
+  } = _ref,
+      rest = _objectWithoutProperties(_ref, ["articles"]);
+
+  return Object(core_["jsx"])(components["B" /* List */], rest, articles === null || articles === void 0 ? void 0 : articles.map((article, i) => Object(core_["jsx"])(components["D" /* ListItemButton */], {
+    key: article.title + i,
+    link: true,
+    type: "a",
+    href: `article/${article.id}`,
+    className: "px-0"
+  }, Object(core_["jsx"])(components["G" /* P */], {
+    className: "mb-2",
+    typography: core["e" /* typography */].variants.Content.Regular16,
+    css: /*#__PURE__*/Object(core_["css"])("overflow:hidden;text-overflow:ellipsis;&:hover{color:", core["a" /* colors */].variants.Brand.Purple, ";}" + (true ? "" : undefined))
+  }, article.title))));
+};
+// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/libs/List/index.ts
+
+// EXTERNAL MODULE: external "fp-ts/Array"
+var Array_ = __webpack_require__("ikZp");
+
+// EXTERNAL MODULE: external "fp-ts/Option"
+var Option_ = __webpack_require__("0U3A");
+
+// EXTERNAL MODULE: external "fp-ts/pipeable"
+var pipeable_ = __webpack_require__("iasY");
+
+// EXTERNAL MODULE: ./src/components/pages/ArticlesPage/graphql.ts
+var graphql = __webpack_require__("bIO2");
+
+// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/component.tsx
+var component_jsx = external_react_default.a.createElement;
+
+
+
+
+
+
+
+
+
+
+const ArticlesPage = props => {
+  var _data$data2;
+
+  const {
+    data
+  } = props;
+  const articles = Object(external_react_["useMemo"])(() => {
+    var _data$data;
+
+    return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.articles), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](arts => Object(Array_["sequence"])(Option_["option"])(arts.map(art => Object(pipeable_["pipe"])(Option_["fromNullable"](art))))), Option_["getOrElseW"](() => undefined));
+  }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]); // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
+
+  return Object(core_["jsx"])(components["A" /* Layout */], null, Object(core_["jsx"])("div", {
+    className: "container d-flex flex-column py-md-5 py-3"
+  }, Object(core_["jsx"])("div", {
+    className: "d-flex justify-content-between align-items-center mb-md-3 mb-2"
+  }, Object(core_["jsx"])(components["p" /* H1 */], {
+    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold22, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold34]), true ? "" : undefined)
+  }, "\u0421\u0442\u0430\u0442\u044C\u0438")), Object(core_["jsx"])(List, {
+    articles: articles
+  })));
+};
+
+ArticlesPage.getInitialProps = async ctx => {
+  var _ctx$req, _ctx$req$headers, _ctx$req$headers$cook, _ctx$req$headers$cook2;
+
+  const lang = ((_ctx$req = ctx.req) === null || _ctx$req === void 0 ? void 0 : (_ctx$req$headers = _ctx$req.headers) === null || _ctx$req$headers === void 0 ? void 0 : (_ctx$req$headers$cook = _ctx$req$headers.cookie) === null || _ctx$req$headers$cook === void 0 ? void 0 : (_ctx$req$headers$cook2 = _ctx$req$headers$cook.match(/(kk-Cyrl-KZ|ru-RU)/)) === null || _ctx$req$headers$cook2 === void 0 ? void 0 : _ctx$req$headers$cook2[0]) || 'ru-RU';
+  const data = await ctx.apolloClient.query({
+    query: graphql["a" /* queryArticles */],
+    variables: {
+      locale: lang
+    }
+  });
+  return {
+    data
+  };
+};
+// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/index.ts
+
+
 
 /***/ }),
 

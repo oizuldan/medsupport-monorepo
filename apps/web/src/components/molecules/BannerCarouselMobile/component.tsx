@@ -6,7 +6,7 @@ import React, { FC } from 'react';
 import { Props } from './props';
 
 export const BannerCarouselMobile: FC<Props> = ({ data, ...rest }: Props) => (
-  <Carousel draggable css={{ height: 500 }} withDots {...rest}>
+  <Carousel draggable css={{ height: 500 }} {...rest}>
     {data.map((banner, i) => (
       <div key={i} className="d-flex justify-content-center">
         <div

@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
-import { H1, Layout, List, ListItemButton, P } from 'components';
-import { colors, media, typography } from 'core';
+import { H1, Layout } from 'components';
+import { media, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
 import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
@@ -10,6 +10,7 @@ import React, { useMemo } from 'react';
 
 import { Articles, ArticlesVariables } from './__generated__/Articles';
 import { queryArticles } from './graphql';
+import { List } from './libs/List';
 import { InitProps, Props } from './props';
 
 export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
@@ -60,29 +61,7 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
           {/*  Искать новости*/}
           {/* </ButtonLink>*/}
         </div>
-        <List>
-          {articles?.map((article, i) => (
-            <ListItemButton
-              key={article.title + i}
-              link
-              type="a"
-              href={`article/${article.id}`}
-              className="px-0"
-            >
-              <P
-                className="mb-2"
-                typography={typography.variants.Content.Regular16}
-                css={css`
-                  &:hover {
-                    color: ${colors.variants.Brand.Purple};
-                  }
-                `}
-              >
-                {article.title}
-              </P>
-            </ListItemButton>
-          ))}
-        </List>
+        <List articles={articles} />
       </div>
     </Layout>
   );

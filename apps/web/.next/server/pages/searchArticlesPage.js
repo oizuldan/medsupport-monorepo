@@ -1665,48 +1665,59 @@ var BannerCarousel_component_jsx = external_react_default.a.createElement;
 
 function BannerCarousel_component_extends() { BannerCarousel_component_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return BannerCarousel_component_extends.apply(this, arguments); }
 
-function BannerCarousel_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
-
 function BannerCarousel_component_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = BannerCarousel_component_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function BannerCarousel_component_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+function BannerCarousel_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
 
 
 
 
 
+
+
+var BannerCarousel_component_ref = true ? {
+  name: "tmu6z3",
+  styles: "max-width:1440px;height:500px;"
+} : undefined;
 
 var component_ref2 = true ? {
+  name: "1ttywp7",
+  styles: "width:45%;"
+} : undefined;
+
+var component_ref4 = true ? {
   name: "imtqqp",
   styles: "height:500px;"
 } : undefined;
 
-var component_ref3 = true ? {
+var component_ref5 = true ? {
   name: "12g6n3b",
   styles: "max-width:305px;"
 } : undefined;
 
-const BannerCarousel = (_ref) => {
+const BannerCarousel = (_ref3) => {
   let {
     data
-  } = _ref,
-      rest = BannerCarousel_component_objectWithoutProperties(_ref, ["data"]);
+  } = _ref3,
+      rest = BannerCarousel_component_objectWithoutProperties(_ref3, ["data"]);
 
   return Object(core_["jsx"])(Carousel, BannerCarousel_component_extends({
     draggable: true,
-    css: component_ref2,
-    withDots: true
+    css: component_ref4
   }, rest), data.map((banner, i) => Object(core_["jsx"])("div", {
     key: i,
     className: "d-flex justify-content-center "
   }, Object(core_["jsx"])("div", {
     className: "w-100",
-    css: /*#__PURE__*/Object(core_["css"])("background-image:url(", banner.imageURL, ");background-repeat:no-repeat;background-size:auto 100%;background-position:right;max-width:1440px;height:500px;" + (true ? "" : undefined))
+    css: BannerCarousel_component_ref
   }, Object(core_["jsx"])("div", {
-    className: "container h-100"
+    className: "container h-100 px-5",
+    css: /*#__PURE__*/Object(core_["css"])("background-image:url(", banner.imageURL, ");background-repeat:no-repeat;background-size:auto 100%;background-position:center;" + (true ? "" : undefined))
   }, Object(core_["jsx"])("div", {
-    className: "h-100 w-50 d-flex flex-column justify-content-center"
+    className: "h-100 d-flex flex-column justify-content-center",
+    css: component_ref2
   }, Object(core_["jsx"])(H1, {
     className: "mb-3"
   }, banner.title), Object(core_["jsx"])(P, {
@@ -1714,7 +1725,7 @@ const BannerCarousel = (_ref) => {
     typography: core["e" /* typography */].variants.Heading.Medium22
   }, banner.subtitle), Object(core_["jsx"])(Button, {
     className: "w-100",
-    css: component_ref3,
+    css: component_ref5,
     bordered: true
   }, banner.buttonText)))))));
 };
@@ -1738,33 +1749,32 @@ var BannerCarouselSkeleton_component_ref2 = true ? {
   styles: "height:500px;width:100%;"
 } : undefined;
 
-var BannerCarouselSkeleton_component_ref3 = true ? {
+var component_ref3 = true ? {
   name: "vz3yqf",
   styles: "height:500px;width:100%;"
 } : undefined;
 
-var component_ref4 = true ? {
+var BannerCarouselSkeleton_component_ref4 = true ? {
   name: "vz3yqf",
   styles: "height:500px;width:100%;"
 } : undefined;
 
-var component_ref5 = true ? {
+var BannerCarouselSkeleton_component_ref5 = true ? {
   name: "imtqqp",
   styles: "height:500px;"
 } : undefined;
 
 const BannerCarouselSkeleton = () => Object(core_["jsx"])(Carousel, {
   draggable: true,
-  css: component_ref5,
-  withDots: true
+  css: BannerCarouselSkeleton_component_ref5
 }, Object(core_["jsx"])(Skeleton, {
   css: BannerCarouselSkeleton_component_ref
 }), Object(core_["jsx"])(Skeleton, {
   css: BannerCarouselSkeleton_component_ref2
 }), Object(core_["jsx"])(Skeleton, {
-  css: BannerCarouselSkeleton_component_ref3
+  css: component_ref3
 }), Object(core_["jsx"])(Skeleton, {
-  css: component_ref4
+  css: BannerCarouselSkeleton_component_ref4
 }));
 // CONCATENATED MODULE: ./src/components/molecules/BannerCarousel/libs/BannerCarouselSkeleton/index.ts
 
@@ -1806,8 +1816,7 @@ const BannerCarouselMobile = (_ref) => {
 
   return Object(core_["jsx"])(Carousel, BannerCarouselMobile_component_extends({
     draggable: true,
-    css: BannerCarouselMobile_component_ref2,
-    withDots: true
+    css: BannerCarouselMobile_component_ref2
   }, rest), data.map((banner, i) => Object(core_["jsx"])("div", {
     key: i,
     className: "d-flex justify-content-center"
