@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var toMedia = function toMedia(pixels) {\n  var point = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'min-width';\n  return \"@media(\".concat(point, \": \").concat(Number(pixels), \"px)\");\n};","map":null,"metadata":{},"sourceType":"module"}

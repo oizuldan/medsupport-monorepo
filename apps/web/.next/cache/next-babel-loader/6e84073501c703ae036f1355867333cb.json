@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const createIcon = (width, height, path) => ({\n  width,\n  height,\n  path\n});","map":null,"metadata":{},"sourceType":"module"}

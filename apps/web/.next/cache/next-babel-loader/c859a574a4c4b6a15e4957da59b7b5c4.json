@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { Sizes as IconSizes } from './types/Sizes';\nexport * from './component';","map":null,"metadata":{},"sourceType":"module"}

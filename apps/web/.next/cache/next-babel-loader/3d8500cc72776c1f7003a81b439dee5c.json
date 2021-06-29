@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var createIcon = function createIcon(width, height, path) {\n  return {\n    width: width,\n    height: height,\n    path: path\n  };\n};","map":null,"metadata":{},"sourceType":"module"}

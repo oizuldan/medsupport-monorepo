@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { keyframes } from '@emotion/core';\nexport const spin = keyframes`\n  0% { transform: rotate(0deg); }\n  100% { transform: rotate(360deg); }\n`;","map":null,"metadata":{},"sourceType":"module"}
