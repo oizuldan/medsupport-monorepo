@@ -1,15 +1,11 @@
-import { css } from '@emotion/core';
 import {
   BannerCarouselSkeleton,
   ButtonLink,
   ButtonSizes,
   ButtonVariants,
-  Divider,
   H2,
   Icon,
   Layout,
-  List,
-  ListItemButton,
   P,
 } from 'components';
 import { colors, icons, media, typography } from 'core';
@@ -21,6 +17,7 @@ import { ApolloPageContext } from 'next-with-apollo';
 import dynamic from 'next/dynamic';
 import React, { useMemo } from 'react';
 
+import { ArticlesList } from '../ArticlesPage';
 import { Articles, ArticlesVariables } from '../ArticlesPage/__generated__/Articles';
 import { queryArticles } from '../ArticlesPage/graphql';
 import * as mock from './mock';
@@ -60,9 +57,7 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
         <BannerCarousel data={mock.bannerCarouselData} />
       )}
 
-      <Divider className="my-5" />
-
-      <div className="mb-5 container d-flex flex-column">
+      <div className="my-5 container d-flex flex-column">
         <div className="d-flex justify-content-between">
           <H2 className="mb-4">Статьи</H2>
           <ButtonLink href="/articles" variant={ButtonVariants.Flat} size={ButtonSizes.Small}>
@@ -79,29 +74,7 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
             />
           </ButtonLink>
         </div>
-        <List className="row justify-content-center">
-          {articles?.map((article, i) => (
-            <ListItemButton
-              key={article.title + i}
-              link
-              type="a"
-              href={`article/${article.id}`}
-              className="px-0"
-            >
-              <P
-                className="mb-2"
-                typography={typography.variants.Content.Regular16}
-                css={css`
-                  &:hover {
-                    color: ${colors.variants.Brand.Purple};
-                  }
-                `}
-              >
-                {article.title}
-              </P>
-            </ListItemButton>
-          ))}
-        </List>
+        <ArticlesList articles={articles} />
       </div>
     </Layout>
   );

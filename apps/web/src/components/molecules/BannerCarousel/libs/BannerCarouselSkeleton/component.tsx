@@ -3,7 +3,7 @@ import { Carousel, Skeleton } from 'components';
 import React, { FC } from 'react';
 
 export const BannerCarouselSkeleton: FC = () => (
-  <Carousel draggable css={{ height: 500 }} withDots>
+  <Carousel draggable css={{ height: 500 }}>
     <Skeleton
       css={css`
         height: 500px;
