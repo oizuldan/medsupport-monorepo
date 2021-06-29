@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { gql } from '@apollo/client';\nexport const queryDocuments = gql`\n  query Documents {\n    documents {\n      id\n      title\n      author\n      description\n      downloadLink\n      viewLink\n      createdAt\n    }\n  }\n`;","map":null,"metadata":{},"sourceType":"module"}

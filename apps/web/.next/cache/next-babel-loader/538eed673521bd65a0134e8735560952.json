@@ -1,1 +1,0 @@
-{"ast":null,"code":"var regexp = /!\\[([\\w\\s\\d.]+)\\]\\(((?:\\/|https?:\\/\\/)[\\w\\d./?=#]+)\\)/g;\nexport var transformMarkdownImages = function transformMarkdownImages(c) {\n  return c.replace(regexp, function (_, g1, g2) {\n    return \"<img src=\\\"\".concat(g2, \"\\\" alt=\\\"\").concat(g1, \"\\\" />\");\n  });\n};","map":null,"metadata":{},"sourceType":"module"}

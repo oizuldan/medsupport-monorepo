@@ -1,9 +1,9 @@
 export const bannerCarouselData = [
   {
-    title: 'Получите последние научно обоснованные данные о COVID-19 прямо сейчас!',
-    subtitle: 'Там, где есть помощь, есть и надежда',
+    subtitle: 'Получите последние научно обоснованные данные о COVID-19 прямо сейчас!',
+    title: 'Там, где есть помощь, есть и надежда',
     buttonText: 'Подпишитесь на новости',
-    imageURL: '/static/images/banner1.png',
+    imageURL: '/static/images/banner1.jpg',
     imageAlt: 'banner1',
   },
 ];

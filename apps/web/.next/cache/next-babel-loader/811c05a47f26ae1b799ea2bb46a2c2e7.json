@@ -1,1 +1,0 @@
-{"ast":null,"code":"import * as styles from './styles';\nimport * as variants from './variants';\nexport { styles, variants };\nexport * from './props';\nexport * from './types/AnyColor';\nexport * from './types/PropsBase';","map":null,"metadata":{},"sourceType":"module"}

@@ -23,7 +23,8 @@
     "start:prod": "NODE_ENV=production ts-node -P tsconfig.json src/server.ts",
     "clean": "yarn apollo:clean",
     "build": "next build",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "compile": "yarn apollo"
   },
   "babel": {
     "presets": [
@@ -96,7 +97,7 @@
     "publicURL": "/",
     "preset": "next"
   },
-  "proxy": "http://185.146.3.108:8000",
+  "proxy": "https://medsupport.dev/api",
   "proxy2": "https://drive.google.com/",
-  "proxy3": "http://185.146.3.108:1337"
+  "proxy3": "https://medsupport.dev/cms"
 }

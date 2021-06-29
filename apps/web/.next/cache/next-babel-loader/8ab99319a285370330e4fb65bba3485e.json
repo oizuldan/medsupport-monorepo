@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './component';\nexport * from './Mock';","map":null,"metadata":{},"sourceType":"module"}

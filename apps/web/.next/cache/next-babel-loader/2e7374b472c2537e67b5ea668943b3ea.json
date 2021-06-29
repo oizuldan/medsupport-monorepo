@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { createElement, isValidElement } from 'react';\nexport const createSvgPath = path => /*#__PURE__*/isValidElement(path) ? path : Array.isArray(path) ? path.map((n, i) => /*#__PURE__*/createElement('path', {\n  d: n,\n  key: i\n})) : /*#__PURE__*/createElement('path', {\n  d: path\n});","map":null,"metadata":{},"sourceType":"module"}

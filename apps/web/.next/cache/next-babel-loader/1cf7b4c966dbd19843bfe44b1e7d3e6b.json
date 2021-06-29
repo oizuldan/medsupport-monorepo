@@ -1,1 +1,0 @@
-{"ast":null,"code":"export let Sizes;\n\n(function (Sizes) {\n  Sizes[Sizes[\"ExtraSmall\"] = 24] = \"ExtraSmall\";\n  Sizes[Sizes[\"Small\"] = 28] = \"Small\";\n  Sizes[Sizes[\"Medium\"] = 36] = \"Medium\";\n  Sizes[Sizes[\"Large\"] = 48] = \"Large\";\n})(Sizes || (Sizes = {}));","map":null,"metadata":{},"sourceType":"module"}

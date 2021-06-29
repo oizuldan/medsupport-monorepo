@@ -1,5 +1,18 @@
-import { BannerCarouselSkeleton, CardInteractive, Divider, H2, Layout, P } from 'components';
-import { colors, media, typography } from 'core';
+import { css } from '@emotion/core';
+import {
+  BannerCarouselSkeleton,
+  ButtonLink,
+  ButtonSizes,
+  ButtonVariants,
+  Divider,
+  H2,
+  Icon,
+  Layout,
+  List,
+  ListItemButton,
+  P,
+} from 'components';
+import { colors, icons, media, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
 import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
@@ -42,63 +55,53 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
   return (
     <Layout>
       {isMobile ? (
-        <div>
-          <BannerCarouselMobile data={mock.bannerCarouselData} />
-        </div>
+        <BannerCarouselMobile data={mock.bannerCarouselData} />
       ) : (
-        <div className="py-3">
-          <BannerCarousel data={mock.bannerCarouselData} />
-        </div>
+        <BannerCarousel data={mock.bannerCarouselData} />
       )}
 
       <Divider className="my-5" />
 
       <div className="mb-5 container d-flex flex-column">
-        <H2 className="mb-4">Статьи</H2>
-        <div className="row justify-content-center">
+        <div className="d-flex justify-content-between">
+          <H2 className="mb-4">Статьи</H2>
+          <ButtonLink href="/articles" variant={ButtonVariants.Flat} size={ButtonSizes.Small}>
+            <P
+              color={colors.variants.Neutral.Grey}
+              typography={typography.variants.Element.Regular12}
+            >
+              Посмотреть все статьи
+            </P>
+            <Icon
+              icon={icons.arrows.keyboardArrowRight}
+              color={colors.variants.Neutral.Black}
+              className="mr-1"
+            />
+          </ButtonLink>
+        </div>
+        <List className="row justify-content-center">
           {articles?.map((article, i) => (
-            <CardInteractive
+            <ListItemButton
               key={article.title + i}
               link
               type="a"
-              className="col-lg-4 col-md-6 col-12 p-3"
-              color={colors.variants.Background.Primary}
               href={`article/${article.id}`}
+              className="px-0"
             >
-              <div
-                className="d-flex flex-column"
-                css={{
-                  marginTop: i === 0 ? '0 !important' : 'initial',
-                  marginBottom: i === articles.length - 1 ? '0 !important' : 'initial',
-                  marginRight: i === articles.length - 1 ? '0 !important' : 'initial',
-                  marginLeft: i === 0 ? '0 !important' : 'initial',
-                  maxWidth: 400,
-                }}
+              <P
+                className="mb-2"
+                typography={typography.variants.Content.Regular16}
+                css={css`
+                  &:hover {
+                    color: ${colors.variants.Brand.Purple};
+                  }
+                `}
               >
-                <img
-                  className="mb-3"
-                  alt={article.previewImage?.name}
-                  height={250}
-                  css={{
-                    objectFit: 'cover',
-                  }}
-                  src={`${process.env.BASE_URL}${article.previewImage?.url}`}
-                />
-                <P className="mb-3" typography={typography.variants.Content.Regular16}>
-                  {article.title}
-                </P>
-                <P
-                  className="mb-1 text-right"
-                  typography={typography.variants.Heading.SemiBold17}
-                  color={colors.variants.Brand.Purple}
-                >
-                  Читать далее...
-                </P>
-              </div>
-              {i !== articles.length - 1 && <Divider className="d-md-none d-block mt-4" />}
-            </CardInteractive>
+                {article.title}
+              </P>
+            </ListItemButton>
           ))}
-        </div>
+        </List>
       </div>
     </Layout>
   );
@@ -111,5 +114,6 @@ HomePage.getInitialProps = async (ctx) => {
     query: queryArticles,
     variables: { locale: lang, limit: 6 },
   });
+
   return { data };
 };

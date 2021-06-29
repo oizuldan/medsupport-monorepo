@@ -199,7 +199,7 @@ export const Carousel: FC<Props> = (props: Props) => {
       {(withDots || withButtons) && (
         <div
           className="d-flex align-items-center justify-content-center position-absolute "
-          css={{ bottom: 0, left: 0, right: 0 }}
+          css={{ bottom: '1rem', left: 0, right: 0 }}
         >
           {withButtons && (
             <Button

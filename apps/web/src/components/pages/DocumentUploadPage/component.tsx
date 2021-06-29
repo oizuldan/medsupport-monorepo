@@ -51,7 +51,7 @@ export const DocumentUploadPage: NextPage = () => {
         data.append('description', description);
         data.append('title', title);
         data.append('author', author);
-        const res = await axios.post('http://localhost:3000/proxy/api/create-document', data, {});
+        const res = await axios.post('https://medsupport.dev/api/create-document', data, {});
         callToast(true, res.data.message);
       } catch (e) {
         callToast(false, e);

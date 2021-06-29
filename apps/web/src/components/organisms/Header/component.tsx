@@ -18,13 +18,11 @@ import {
 } from 'components';
 import { colors, icons, media, typography } from 'core';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
 import React, { FC, useCallback, useMemo, useState } from 'react';
 
 import { popoverListContent } from './styles';
 
 export const Header: FC = () => {
-  const router = useRouter();
   const isMobile = media.useMobileDetector().mobile();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -61,7 +59,7 @@ export const Header: FC = () => {
         }
       }, 10);
     },
-    [router],
+    [],
   );
 
   return (

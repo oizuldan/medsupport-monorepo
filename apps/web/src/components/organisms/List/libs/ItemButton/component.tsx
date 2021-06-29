@@ -14,7 +14,7 @@ const ItemButtonBase = forwardRef(({ className, children, ...rest }: Props, ref)
       variant={ButtonVariants.Flat}
       color={colors.variants.Text.Primary}
       typography={typography.variants.Heading.Regular22}
-      className={classNames('w-100', 'px-3', 'justify-content-between', className)}
+      className={classNames('w-100', 'justify-content-between', className)}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       {...(rest as any)}
       ref={ref}

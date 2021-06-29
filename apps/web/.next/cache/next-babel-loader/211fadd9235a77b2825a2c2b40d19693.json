@@ -1,1 +1,0 @@
-{"ast":null,"code":"import MobileDetect from 'mobile-detect';\nimport { useMemo } from 'react';\nexport const useMobileDetector = md => useMemo(() => md || new MobileDetect(false ? window.navigator.userAgent : ''), [md]);","map":null,"metadata":{},"sourceType":"module"}

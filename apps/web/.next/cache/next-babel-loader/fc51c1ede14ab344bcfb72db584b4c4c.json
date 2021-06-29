@@ -1,1 +1,0 @@
-{"ast":null,"code":"import * as skeletonStyles from './styles';\nexport * from './component';\nexport { skeletonStyles };","map":null,"metadata":{},"sourceType":"module"}
