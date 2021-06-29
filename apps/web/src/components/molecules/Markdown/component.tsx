@@ -1,8 +1,14 @@
 /* eslint-disable react/display-name */
 import { css } from '@emotion/core';
-import { H1, H2, H3, H4, H5, P } from 'components';
+import { Anchor, H1, H2, H3, H4, H5, List, ListItem, OrderedList, P } from 'components';
 import { media, services, typography } from 'core';
-import React, { HTMLAttributes, ImgHTMLAttributes, useCallback, useMemo } from 'react';
+import React, {
+  HTMLAttributes,
+  ImgHTMLAttributes,
+  LiHTMLAttributes,
+  useCallback,
+  useMemo,
+} from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
@@ -95,14 +101,44 @@ export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: P
             alt={alt}
             src={src}
             className="mb-3"
-            css={media.query({
-              objectFit: 'scale-down',
-              maxWidth: '-webkit-fill-available',
-              width: ['100%', '100%', 'auto'],
+            css={css({
               marginLeft: 'auto',
               marginRight: 'auto',
+              maxWidth: 350,
+              height: 'auto',
             })}
             {...props}
+          />
+        ),
+        ol: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLOListElement>>) => (
+          <OrderedList
+            {...props}
+            className="pl-5 mb-4"
+            typography={typography.variants.Content.Regular16}
+          />
+        ),
+        ul: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLUListElement>>) => (
+          <List
+            {...props}
+            className="pl-5 mb-4"
+            css={css`
+              list-style: disc;
+            `}
+          />
+        ),
+        li: ({ node: _node, ...props }: Component<LiHTMLAttributes<HTMLLIElement>>) => (
+          <ListItem
+            {...props}
+            className="mb-2"
+            typography={typography.variants.Content.Regular16}
+          />
+        ),
+        a: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLAnchorElement>>) => (
+          <Anchor
+            {...props}
+            css={css`
+              word-break: break-all;
+            `}
           />
         ),
       }}

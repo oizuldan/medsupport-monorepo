@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './component';","map":{"version":3,"sources":["/Users/icett/Desktop/SP/medsupportkz/apps/web/src/components/organisms/List/libs/Item/index.ts"],"names":[],"mappings":"AAGA,cAAc,aAAd","sourcesContent":["import { Props } from './props';\n\nexport type ItemProps = Props;\nexport * from './component';\n"]},"metadata":{},"sourceType":"module"}

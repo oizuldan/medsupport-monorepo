@@ -49,7 +49,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"16":"3405e255aace74581f21"}[chunkId] + ".js");
+/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"16":"22387a03934416cb6de0"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -400,19 +400,19 @@ __webpack_require__.d(__webpack_exports__, "k", function() { return /* reexport 
 __webpack_require__.d(__webpack_exports__, "w", function() { return /* reexport */ Sizes_Sizes; });
 __webpack_require__.d(__webpack_exports__, "v", function() { return /* reexport */ Icon; });
 __webpack_require__.d(__webpack_exports__, "x", function() { return /* reexport */ Input; });
-__webpack_require__.d(__webpack_exports__, "K", function() { return /* reexport */ Spinner; });
-__webpack_require__.d(__webpack_exports__, "L", function() { return /* reexport */ Toast; });
-__webpack_require__.d(__webpack_exports__, "M", function() { return /* reexport */ Typography; });
-__webpack_require__.d(__webpack_exports__, "G", function() { return /* reexport */ P; });
+__webpack_require__.d(__webpack_exports__, "L", function() { return /* reexport */ Spinner; });
+__webpack_require__.d(__webpack_exports__, "M", function() { return /* reexport */ Toast; });
+__webpack_require__.d(__webpack_exports__, "N", function() { return /* reexport */ Typography; });
+__webpack_require__.d(__webpack_exports__, "H", function() { return /* reexport */ P; });
 __webpack_require__.d(__webpack_exports__, "p", function() { return /* reexport */ H1; });
 __webpack_require__.d(__webpack_exports__, "q", function() { return /* reexport */ H2; });
 __webpack_require__.d(__webpack_exports__, "r", function() { return /* reexport */ H3; });
 __webpack_require__.d(__webpack_exports__, "s", function() { return /* reexport */ H4; });
 __webpack_require__.d(__webpack_exports__, "t", function() { return /* reexport */ H5; });
-__webpack_require__.d(__webpack_exports__, "F", function() { return /* reexport */ Overflow; });
+__webpack_require__.d(__webpack_exports__, "G", function() { return /* reexport */ Overflow; });
 __webpack_require__.d(__webpack_exports__, "n", function() { return /* reexport */ Dropzone; });
-__webpack_require__.d(__webpack_exports__, "J", function() { return /* reexport */ Skeleton; });
-__webpack_require__.d(__webpack_exports__, "N", function() { return /* reexport */ Skeleton_styles_namespaceObject; });
+__webpack_require__.d(__webpack_exports__, "K", function() { return /* reexport */ Skeleton; });
+__webpack_require__.d(__webpack_exports__, "O", function() { return /* reexport */ Skeleton_styles_namespaceObject; });
 __webpack_require__.d(__webpack_exports__, "i", function() { return /* reexport */ Card; });
 __webpack_require__.d(__webpack_exports__, "j", function() { return /* reexport */ Carousel; });
 __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ BannerCarousel; });
@@ -423,13 +423,14 @@ __webpack_require__.d(__webpack_exports__, "m", function() { return /* reexport 
 __webpack_require__.d(__webpack_exports__, "l", function() { return /* reexport */ Drawer; });
 __webpack_require__.d(__webpack_exports__, "z", function() { return /* reexport */ component_Label; });
 __webpack_require__.d(__webpack_exports__, "E", function() { return /* reexport */ Markdown; });
-__webpack_require__.d(__webpack_exports__, "H", function() { return /* reexport */ Pagination; });
-__webpack_require__.d(__webpack_exports__, "I", function() { return /* reexport */ Popover; });
+__webpack_require__.d(__webpack_exports__, "I", function() { return /* reexport */ Pagination; });
+__webpack_require__.d(__webpack_exports__, "J", function() { return /* reexport */ Popover; });
 __webpack_require__.d(__webpack_exports__, "u", function() { return /* reexport */ Header; });
 __webpack_require__.d(__webpack_exports__, "A", function() { return /* reexport */ Layout; });
 __webpack_require__.d(__webpack_exports__, "C", function() { return /* reexport */ component_Item; });
 __webpack_require__.d(__webpack_exports__, "D", function() { return /* reexport */ ItemButton; });
 __webpack_require__.d(__webpack_exports__, "B", function() { return /* reexport */ List; });
+__webpack_require__.d(__webpack_exports__, "F", function() { return /* reexport */ OrderedList; });
 __webpack_require__.d(__webpack_exports__, "o", function() { return /* reexport */ Footer; });
 
 // UNUSED EXPORTS: DividerDirections, H1Regular, CardTitle, CardContent, CardInteractive, BasicCarousel, Table, PaginationItemTypes, popoverModifiers, PopoverTargetTypes, PopoverModifierNames, PopoverCoverStrategies
@@ -2044,7 +2045,7 @@ var component_ref8 = true ? {
   styles: "padding:0.75rem;vertical-align:top;border-top:1px solid #dee2e6;"
 } : undefined;
 
-var _ref9 = true ? {
+var component_ref9 = true ? {
   name: "1a1tdnk",
   styles: "padding:0.75rem;vertical-align:top;border-top:1px solid #dee2e6;"
 } : undefined;
@@ -2076,7 +2077,7 @@ const Table = ({
   }, item && item.date.toString()), Object(core_["jsx"])("td", {
     css: component_ref8
   }, item && item.size), Object(core_["jsx"])("td", {
-    css: _ref9
+    css: component_ref9
   }, item && item.posted)))));
 };
 // CONCATENATED MODULE: ./src/components/molecules/Table/index.ts
@@ -2098,6 +2099,8 @@ function Markdown_component_objectWithoutProperties(source, excluded) { if (sour
 
 function Markdown_component_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
+function Markdown_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
 /* eslint-disable react/display-name */
 
 
@@ -2106,11 +2109,27 @@ function Markdown_component_objectWithoutPropertiesLoose(source, excluded) { if 
 
 
 
-const Markdown = (_ref) => {
+
+var Markdown_component_ref = true ? {
+  name: "h7701x",
+  styles: "margin-left:auto;margin-right:auto;max-width:350px;height:auto;"
+} : undefined;
+
+var Markdown_component_ref2 = true ? {
+  name: "1e1em8u",
+  styles: "list-style:disc;"
+} : undefined;
+
+var Markdown_component_ref3 = true ? {
+  name: "1hg9omi",
+  styles: "word-break:break-all;"
+} : undefined;
+
+const Markdown = (_ref4) => {
   let {
     children: childrenProp
-  } = _ref,
-      rest = Markdown_component_objectWithoutProperties(_ref, ["children"]);
+  } = _ref4,
+      rest = Markdown_component_objectWithoutProperties(_ref4, ["children"]);
 
   const children = Object(external_react_["useMemo"])(() => core["d" /* services */].transformMarkdownImages(childrenProp), [childrenProp]);
   const transformUri = Object(external_react_["useCallback"])(uri => uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`, []);
@@ -2121,91 +2140,128 @@ const Markdown = (_ref) => {
     transformImageUri: transformUri,
     skipHtml: false,
     components: {
-      p: (_ref2) => {
+      p: (_ref5) => {
         let {
           node: _node
-        } = _ref2,
-            props = Markdown_component_objectWithoutProperties(_ref2, ["node"]);
+        } = _ref5,
+            props = Markdown_component_objectWithoutProperties(_ref5, ["node"]);
 
         return Object(core_["jsx"])(P, Markdown_component_extends({
           typography: core["e" /* typography */].variants.Content.Regular16,
           className: "mb-3"
         }, props));
       },
-      h1: (_ref3) => {
+      h1: (_ref6) => {
         let {
           node: _node
-        } = _ref3,
-            props = Markdown_component_objectWithoutProperties(_ref3, ["node"]);
+        } = _ref6,
+            props = Markdown_component_objectWithoutProperties(_ref6, ["node"]);
 
         return Object(core_["jsx"])(H1, Markdown_component_extends({
           className: "my-3",
           css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold28, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold28, core["e" /* typography */].styles.headingBold28, core["e" /* typography */].styles.headingBold34]), true ? "" : undefined)
         }, props));
       },
-      h2: (_ref4) => {
+      h2: (_ref7) => {
         let {
           node: _node
-        } = _ref4,
-            props = Markdown_component_objectWithoutProperties(_ref4, ["node"]);
+        } = _ref7,
+            props = Markdown_component_objectWithoutProperties(_ref7, ["node"]);
 
         return Object(core_["jsx"])(H2, Markdown_component_extends({
           className: "my-3",
           css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold22, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold28]), true ? "" : undefined)
         }, props));
       },
-      h3: (_ref5) => {
+      h3: (_ref8) => {
         let {
           node: _node
-        } = _ref5,
-            props = Markdown_component_objectWithoutProperties(_ref5, ["node"]);
+        } = _ref8,
+            props = Markdown_component_objectWithoutProperties(_ref8, ["node"]);
 
         return Object(core_["jsx"])(H3, Markdown_component_extends({
           className: "my-3",
           css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold17, core["e" /* typography */].styles.headingBold17, core["e" /* typography */].styles.headingBold22]), true ? "" : undefined)
         }, props));
       },
-      h4: (_ref6) => {
+      h4: (_ref9) => {
         let {
           node: _node
-        } = _ref6,
-            props = Markdown_component_objectWithoutProperties(_ref6, ["node"]);
+        } = _ref9,
+            props = Markdown_component_objectWithoutProperties(_ref9, ["node"]);
 
         return Object(core_["jsx"])(H4, Markdown_component_extends({
           className: "my-3",
           css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementBold12, core["e" /* typography */].styles.elementBold12, core["e" /* typography */].styles.headingBold17]), true ? "" : undefined)
         }, props));
       },
-      h5: (_ref7) => {
+      h5: (_ref10) => {
         let {
           node: _node
-        } = _ref7,
-            props = Markdown_component_objectWithoutProperties(_ref7, ["node"]);
+        } = _ref10,
+            props = Markdown_component_objectWithoutProperties(_ref10, ["node"]);
 
         return Object(core_["jsx"])(H5, Markdown_component_extends({
           className: "my-3"
         }, props));
       },
-      img: (_ref8) => {
+      img: (_ref11) => {
         let {
           node: _node,
           alt,
           src
-        } = _ref8,
-            props = Markdown_component_objectWithoutProperties(_ref8, ["node", "alt", "src"]);
+        } = _ref11,
+            props = Markdown_component_objectWithoutProperties(_ref11, ["node", "alt", "src"]);
 
         return Object(core_["jsx"])("img", Markdown_component_extends({
           alt: alt,
           src: src,
           className: "mb-3",
-          css: core["c" /* media */].query({
-            objectFit: 'scale-down',
-            maxWidth: '-webkit-fill-available',
-            width: ['100%', '100%', 'auto'],
-            marginLeft: 'auto',
-            marginRight: 'auto'
-          })
+          css: Markdown_component_ref
         }, props));
+      },
+      ol: (_ref12) => {
+        let {
+          node: _node
+        } = _ref12,
+            props = Markdown_component_objectWithoutProperties(_ref12, ["node"]);
+
+        return Object(core_["jsx"])(OrderedList, Markdown_component_extends({}, props, {
+          className: "pl-5 mb-4",
+          typography: core["e" /* typography */].variants.Content.Regular16
+        }));
+      },
+      ul: (_ref13) => {
+        let {
+          node: _node
+        } = _ref13,
+            props = Markdown_component_objectWithoutProperties(_ref13, ["node"]);
+
+        return Object(core_["jsx"])(List, Markdown_component_extends({}, props, {
+          className: "pl-5 mb-4",
+          css: Markdown_component_ref2
+        }));
+      },
+      li: (_ref14) => {
+        let {
+          node: _node
+        } = _ref14,
+            props = Markdown_component_objectWithoutProperties(_ref14, ["node"]);
+
+        return Object(core_["jsx"])(component_Item, Markdown_component_extends({}, props, {
+          className: "mb-2",
+          typography: core["e" /* typography */].variants.Content.Regular16
+        }));
+      },
+      a: (_ref15) => {
+        let {
+          node: _node
+        } = _ref15,
+            props = Markdown_component_objectWithoutProperties(_ref15, ["node"]);
+
+        return Object(core_["jsx"])(Anchor, Markdown_component_extends({}, props, {
+          css: Markdown_component_ref3
+        }));
       }
     }
   }, rest), children);
@@ -2999,6 +3055,12 @@ const ItemButton = /*#__PURE__*/styled_base_default()(ItemButtonBase, {
 const List = styled_base_default()("ul", {
   target: "e10mkx0i0"
 })("margin:0;padding:0;list-style:none;", core["a" /* colors */].styles.extendByVariant('backgroundColor'), true ? "" : undefined);
+const OrderedList = styled_base_default()("ol", {
+  target: "e10mkx0i1"
+})("margin:0;padding:0;", core["e" /* typography */].styles.extendByVariant, true ? "" : undefined);
+OrderedList.defaultProps = {
+  typography: core["e" /* typography */].variants.Content.Regular16
+};
 // CONCATENATED MODULE: ./src/components/organisms/List/index.ts
 
 
@@ -3337,7 +3399,7 @@ const List = (_ref) => {
     type: "a",
     href: `article/${article.id}`,
     className: "px-0"
-  }, Object(core_["jsx"])(components["G" /* P */], {
+  }, Object(core_["jsx"])(components["H" /* P */], {
     className: "mb-2",
     typography: core["e" /* typography */].variants.Content.Regular16,
     css: /*#__PURE__*/Object(core_["css"])("overflow:hidden;text-overflow:ellipsis;&:hover{color:", core["a" /* colors */].variants.Brand.Purple, ";}" + (true ? "" : undefined))
