@@ -1,5 +1,5 @@
 import { css } from '@emotion/core';
-import { CardInteractive, Divider, H1, Layout, P } from 'components';
+import { H1, Layout, List, ListItemButton, P } from 'components';
 import { colors, media, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
 import * as O from 'fp-ts/Option';
@@ -60,50 +60,29 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
           {/*  Искать новости*/}
           {/* </ButtonLink>*/}
         </div>
-        <div className="row">
+        <List>
           {articles?.map((article, i) => (
-            <CardInteractive
+            <ListItemButton
               key={article.title + i}
               link
               type="a"
-              className="col-lg-4 col-md-6 col-12 p-3"
-              color={colors.variants.Background.Primary}
               href={`article/${article.id}`}
+              className="px-0"
             >
-              <div
-                className="d-flex flex-column"
-                css={{
-                  marginTop: i === 0 ? '0 !important' : 'initial',
-                  marginBottom: i === articles.length - 1 ? '0 !important' : 'initial',
-                  marginRight: i === articles.length - 1 ? '0 !important' : 'initial',
-                  marginLeft: i === 0 ? '0 !important' : 'initial',
-                  maxWidth: 400,
-                }}
+              <P
+                className="mb-2"
+                typography={typography.variants.Content.Regular16}
+                css={css`
+                  &:hover {
+                    color: ${colors.variants.Brand.Purple};
+                  }
+                `}
               >
-                <img
-                  className="mb-3"
-                  alt={article.previewImage?.name}
-                  height={250}
-                  css={{
-                    objectFit: 'cover',
-                  }}
-                  src={`${process.env.BASE_URL}${article.previewImage?.url}`}
-                />
-                <P className="mb-2" typography={typography.variants.Content.Regular16}>
-                  {article.title}
-                </P>
-                <P
-                  className="mb-1 text-right"
-                  typography={typography.variants.Heading.SemiBold17}
-                  color={colors.variants.Brand.Purple}
-                >
-                  Читать далее...
-                </P>
-              </div>
-              {i !== articles.length - 1 && <Divider className="d-md-none d-block mt-4" />}
-            </CardInteractive>
+                {article.title}
+              </P>
+            </ListItemButton>
           ))}
-        </div>
+        </List>
       </div>
     </Layout>
   );
