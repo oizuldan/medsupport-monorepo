@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const queryDocuments = gql`
-  query Documents {
+  query Documents($locale: String) {
     documents {
       id
       title
@@ -10,6 +10,27 @@ export const queryDocuments = gql`
       downloadLink
       viewLink
       createdAt
+    }
+    headerButtons(locale: $locale) {
+      buttons {
+        title
+        link
+      }
+    }
+    footerSections(locale: $locale) {
+      sections {
+        title
+        links {
+          link
+          title
+        }
+      }
+    }
+    headerLinks(locale: $locale) {
+      links {
+        title
+        link
+      }
     }
   }
 `;

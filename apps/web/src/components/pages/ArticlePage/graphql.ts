@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const queryArticle = gql`
-  query Article($id: ID!) {
+  query Article($id: ID!, $locale: String) {
     article(id: $id) {
       id
       title

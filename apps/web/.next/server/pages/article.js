@@ -3897,7 +3897,7 @@ var client_ = __webpack_require__("z+8S");
 // CONCATENATED MODULE: ./src/components/pages/ArticlePage/graphql.ts
 
 const queryArticle = client_["gql"]`
-  query Article($id: ID!) {
+  query Article($id: ID!, $locale: String) {
     article(id: $id) {
       id
       title
@@ -3948,17 +3948,18 @@ var __jsx = external_react_default.a.createElement;
 
 
 const ArticlePage = props => {
-  var _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2, _props$data5, _props$data5$data, _props$data5$data$art, _props$data5$data$art2, _data$data2;
+  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2, _props$data5, _props$data5$data, _props$data5$data$art, _props$data5$data$art2, _data$data3, _data$data4, _data$data4$article;
 
   const {
     data
   } = props;
   const router = Object(router_["useRouter"])();
+  console.log(data);
   Object(external_react_["useEffect"])(() => {
     var _data$data;
 
     if (!((_data$data = data.data) !== null && _data$data !== void 0 && _data$data.article)) router.push('/articles');
-  }, [data.data.article, router]);
+  }, [(_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.article, router]);
   return Object(core_["jsx"])(components["A" /* Layout */], {
     headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
     footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
@@ -3977,20 +3978,24 @@ const ArticlePage = props => {
   }), Object(core_["jsx"])(components["H" /* P */], {
     color: core["a" /* colors */].variants.Neutral.Grey,
     typography: core["e" /* typography */].variants.Element.Regular12
-  }, (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$art = _props$data5$data.artilcesPageBackButton) === null || _props$data5$data$art === void 0 ? void 0 : (_props$data5$data$art2 = _props$data5$data$art.backButton) === null || _props$data5$data$art2 === void 0 ? void 0 : _props$data5$data$art2.title)), data.data.article && Object(core_["jsx"])(components["E" /* Markdown */], null, data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.article.content)));
+  }, (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$art = _props$data5$data.artilcesPageBackButton) === null || _props$data5$data$art === void 0 ? void 0 : (_props$data5$data$art2 = _props$data5$data$art.backButton) === null || _props$data5$data$art2 === void 0 ? void 0 : _props$data5$data$art2.title)), (data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : _data$data3.article) && Object(core_["jsx"])(components["E" /* Markdown */], null, data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$article = _data$data4.article) === null || _data$data4$article === void 0 ? void 0 : _data$data4$article.content)));
 };
 
 ArticlePage.getInitialProps = async ctx => {
-  var _ctx$query;
+  var _ctx$query, _ctx$req, _ctx$req$headers, _ctx$req$headers$cook, _ctx$req$headers$cook2;
 
   const id = (_ctx$query = ctx.query) === null || _ctx$query === void 0 ? void 0 : _ctx$query.id.toString();
-  const res = await ctx.apolloClient.query({
+  const lang = ((_ctx$req = ctx.req) === null || _ctx$req === void 0 ? void 0 : (_ctx$req$headers = _ctx$req.headers) === null || _ctx$req$headers === void 0 ? void 0 : (_ctx$req$headers$cook = _ctx$req$headers.cookie) === null || _ctx$req$headers$cook === void 0 ? void 0 : (_ctx$req$headers$cook2 = _ctx$req$headers$cook.match(/(kk-Cyrl-KZ|ru-RU)/)) === null || _ctx$req$headers$cook2 === void 0 ? void 0 : _ctx$req$headers$cook2[0]) || 'ru-RU';
+  const data = await ctx.apolloClient.query({
     query: queryArticle,
     variables: {
-      id
+      id,
+      locale: lang
     }
   });
-  return res;
+  return {
+    data
+  };
 };
 // CONCATENATED MODULE: ./src/components/pages/ArticlePage/index.ts
 
