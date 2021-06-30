@@ -1,31 +1,15 @@
 import { css } from '@emotion/core';
 import classNames from 'classnames';
-import {
-  Anchor,
-  Button,
-  ButtonSizes,
-  ButtonVariants,
-  Icon,
-  Input,
-  InputGroup,
-  P,
-  Typography,
-} from 'components';
-import { colors, icons, media, typography } from 'core';
-import React, { ChangeEventHandler, FC, useCallback, useState } from 'react';
+import { Anchor, P, Typography } from 'components';
+import { MainPage_footerSections_sections } from 'components/pages/HomePage/__generated__/MainPage';
+import { colors, media, typography } from 'core';
+import React, { FC, useCallback } from 'react';
 
-import * as mock from './mock';
 import { Props } from './props';
-import { SectionData } from './types/SectionData';
 
-export const Footer: FC<Props> = ({ className, ...rest }: Props) => {
-  const [email, setEmail] = useState('');
-  const onChangeEmail = useCallback<ChangeEventHandler<HTMLInputElement>>(
-    (event) => setEmail(event.target.value),
-    [],
-  );
+export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props) => {
   const getSection = useCallback(
-    (data: SectionData) => (
+    (section: MainPage_footerSections_sections | null) => (
       <div className={'d-flex flex-column col-md-4 col-6 p-3'} css={{ wordBreak: 'break-word' }}>
         <Typography
           as="p"
@@ -40,21 +24,19 @@ export const Footer: FC<Props> = ({ className, ...rest }: Props) => {
           )}
           color={colors.variants.Text.Secondary}
         >
-          {data.title}
+          {section?.title}
         </Typography>
-        {data.links?.map((link, i) => (
+        {section?.links?.map((link, i) => (
           <div
             key={i}
             className={`d-flex align-items-center ${
-              data.links && i !== data.links.length - 1 ? 'mb-lg-3 mb-2' : ''
+              section?.links && i !== section.links.length - 1 ? 'mb-lg-3 mb-2' : ''
             }`}
           >
-            {link.icons?.map((icon) => (
-              <img className="mr-2" key={icon.alt} alt={icon.alt} src={icon.url} />
-            ))}
-            {link.name && (
+            {link?.title && link?.link && (
               <Anchor
-                key={link.name + i}
+                key={link.title + i}
+                href={link.link}
                 color={colors.variants.Text.Secondary}
                 css={css(
                   typography.styles.elementRegular12,
@@ -65,7 +47,7 @@ export const Footer: FC<Props> = ({ className, ...rest }: Props) => {
                   ]),
                 )}
               >
-                {link.name}
+                {link.title}
               </Anchor>
             )}
           </div>
@@ -93,56 +75,7 @@ export const Footer: FC<Props> = ({ className, ...rest }: Props) => {
 
         <div className="d-flex w-100 flex-lg-row flex-column-reverse ">
           <div className="d-flex flex-wrap p-0">
-            {mock.sectionData.map((data) => getSection(data))}
-          </div>
-          <div className="d-flex  p-3 justify-content-lg-start justify-content-center">
-            <div>
-              <Typography
-                as="p"
-                className="mb-lg-3 mb-2"
-                css={css(
-                  typography.styles.elementBold16,
-                  media.queryStyled([
-                    typography.styles.elementBold16,
-                    typography.styles.elementBold16,
-                    typography.styles.elementSemiBold20,
-                  ]),
-                )}
-                color={colors.variants.Text.Secondary}
-              >
-                Будьте в курсе
-              </Typography>
-              <InputGroup
-                css={{ maxWidth: 250 }}
-                rightElement={
-                  <Button variant={ButtonVariants.Flat} size={ButtonSizes.Small}>
-                    <Icon icon={icons.actions.send} color={colors.variants.Neutral.White} />
-                  </Button>
-                }
-              >
-                <Input
-                  value={email}
-                  onChange={onChangeEmail}
-                  css={css(
-                    {
-                      backgroundColor: colors.variants.Neutral.WhiteWithOpacity20,
-                      border: 0,
-                      borderRadius: 8,
-                      color: colors.variants.Neutral.White,
-                    },
-                    typography.styles.elementRegular12,
-                    media.queryStyled([
-                      typography.styles.elementRegular12,
-                      typography.styles.elementRegular12,
-                      typography.styles.elementRegular16,
-                    ]),
-                  )}
-                  type="email"
-                  placeholder="Ваш email"
-                  placeholderColor={colors.variants.Neutral.LightGrey}
-                />
-              </InputGroup>
-            </div>
+            {footerSections?.[0]?.sections?.map((data) => getSection(data))}
           </div>
         </div>
       </div>

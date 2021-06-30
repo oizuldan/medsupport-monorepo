@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_link_links",
+  "info": {
+    "name": "Link",
+    "icon": "unlink"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

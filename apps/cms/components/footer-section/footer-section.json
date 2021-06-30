@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_footer_section_footer_sections",
+  "info": {
+    "name": "FooterSection",
+    "icon": "at"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "link.link",
+      "required": true
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { ApolloQueryResult } from '@apollo/client';
 
-import { Articles } from './__generated__/Articles';
+import { ArticlesPage } from './__generated__/ArticlesPage';
 
 export type InitProps = {
-  readonly data: ApolloQueryResult<Articles>;
+  readonly data: ApolloQueryResult<ArticlesPage>;
 };
 export type Props = InitProps;

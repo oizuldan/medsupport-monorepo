@@ -1,5 +1,9 @@
 import React from 'react';
 
-export type Props = {
-  readonly children: React.ReactFragment;
-};
+import { FooterProps } from '../Footer';
+import { HeaderProps } from '../Header';
+
+export type Props = HeaderProps &
+  FooterProps & {
+    readonly children: React.ReactFragment;
+  };

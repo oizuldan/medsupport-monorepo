@@ -1576,36 +1576,45 @@ var component_ref5 = true ? {
 } : undefined;
 
 const BannerCarousel = (_ref3) => {
-  let {
-    data
-  } = _ref3,
-      rest = BannerCarousel_component_objectWithoutProperties(_ref3, ["data"]);
+  var _banners$;
 
-  return Object(core_["jsx"])(Carousel, BannerCarousel_component_extends({
+  let {
+    banners
+  } = _ref3,
+      rest = BannerCarousel_component_objectWithoutProperties(_ref3, ["banners"]);
+
+  return banners !== null && banners !== void 0 && (_banners$ = banners[0]) !== null && _banners$ !== void 0 && _banners$.banners ? Object(core_["jsx"])(Carousel, BannerCarousel_component_extends({
     draggable: true,
     css: component_ref4
-  }, rest), data.map((banner, i) => Object(core_["jsx"])("div", {
-    key: i,
-    className: "d-flex justify-content-center "
-  }, Object(core_["jsx"])("div", {
-    className: "w-100",
-    css: BannerCarousel_component_ref
-  }, Object(core_["jsx"])("div", {
-    className: "container h-100 px-5",
-    css: /*#__PURE__*/Object(core_["css"])("background-image:url(", banner.imageURL, ");background-repeat:no-repeat;background-size:auto 100%;background-position:center;" + (true ? "" : undefined))
-  }, Object(core_["jsx"])("div", {
-    className: "h-100 d-flex flex-column justify-content-center",
-    css: component_ref2
-  }, Object(core_["jsx"])(H1, {
-    className: "mb-3"
-  }, banner.title), Object(core_["jsx"])(P, {
-    className: "mb-5",
-    typography: core["e" /* typography */].variants.Heading.Medium22
-  }, banner.subtitle), Object(core_["jsx"])(Button, {
-    className: "w-100",
-    css: component_ref5,
-    bordered: true
-  }, banner.buttonText)))))));
+  }, rest), banners[0].banners.map((banner, i) => {
+    var _banner$image;
+
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'http://localhost:1337'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    return Object(core_["jsx"])("div", {
+      key: i,
+      className: "d-flex justify-content-center "
+    }, Object(core_["jsx"])("div", {
+      className: "w-100",
+      css: BannerCarousel_component_ref
+    }, Object(core_["jsx"])("div", {
+      className: "container h-100 px-5",
+      css: /*#__PURE__*/Object(core_["css"])("background-image:url(", link, ");background-repeat:no-repeat;background-size:auto 100%;background-position:center;" + (true ? "" : undefined))
+    }, Object(core_["jsx"])("div", {
+      className: "h-100 d-flex flex-column justify-content-center",
+      css: component_ref2
+    }, Object(core_["jsx"])(H1, {
+      className: "mb-3"
+    }, banner === null || banner === void 0 ? void 0 : banner.title), Object(core_["jsx"])(P, {
+      className: "mb-5",
+      typography: core["e" /* typography */].variants.Heading.Medium22
+    }, banner === null || banner === void 0 ? void 0 : banner.subtitle), Object(core_["jsx"])(ButtonLink, {
+      href: (banner === null || banner === void 0 ? void 0 : banner.buttonLink) || '',
+      className: "w-100",
+      css: component_ref5,
+      bordered: true,
+      target: "_blank"
+    }, banner === null || banner === void 0 ? void 0 : banner.buttonTitle)))));
+  })) : null;
 };
 // CONCATENATED MODULE: ./src/components/molecules/BannerCarousel/libs/BannerCarouselSkeleton/component.tsx
 var BannerCarouselSkeleton_component_jsx = external_react_default.a.createElement;
@@ -1687,34 +1696,43 @@ var BannerCarouselMobile_component_ref3 = true ? {
 } : undefined;
 
 const BannerCarouselMobile = (_ref) => {
-  let {
-    data
-  } = _ref,
-      rest = BannerCarouselMobile_component_objectWithoutProperties(_ref, ["data"]);
+  var _banners$;
 
-  return Object(core_["jsx"])(Carousel, BannerCarouselMobile_component_extends({
+  let {
+    banners
+  } = _ref,
+      rest = BannerCarouselMobile_component_objectWithoutProperties(_ref, ["banners"]);
+
+  return banners !== null && banners !== void 0 && (_banners$ = banners[0]) !== null && _banners$ !== void 0 && _banners$.banners ? Object(core_["jsx"])(Carousel, BannerCarouselMobile_component_extends({
     draggable: true,
     css: BannerCarouselMobile_component_ref2
-  }, rest), data.map((banner, i) => Object(core_["jsx"])("div", {
-    key: i,
-    className: "d-flex justify-content-center"
-  }, Object(core_["jsx"])("div", {
-    className: "w-100",
-    css: /*#__PURE__*/Object(core_["css"])("background-image:url(", banner.imageURL, ");background-repeat:no-repeat;background-size:auto 100%;background-position:center;height:500px;" + (true ? "" : undefined))
-  }, Object(core_["jsx"])("div", {
-    className: "container h-100"
-  }, Object(core_["jsx"])("div", {
-    className: "h-100 w-100 d-flex flex-column justify-content-center"
-  }, Object(core_["jsx"])(H2, {
-    className: "mb-3"
-  }, banner.title), Object(core_["jsx"])(P, {
-    className: "mb-5",
-    typography: core["e" /* typography */].variants.Element.SemiBold16
-  }, banner.subtitle), Object(core_["jsx"])(Button, {
-    className: "w-100",
-    css: BannerCarouselMobile_component_ref3,
-    bordered: true
-  }, banner.buttonText)))))));
+  }, rest), banners[0].banners.map((banner, i) => {
+    var _banner$image;
+
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'http://localhost:1337'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    return Object(core_["jsx"])("div", {
+      key: i,
+      className: "d-flex justify-content-center"
+    }, Object(core_["jsx"])("div", {
+      className: "w-100",
+      css: /*#__PURE__*/Object(core_["css"])("background-image:url(", link, ");background-repeat:no-repeat;background-size:auto 100%;background-position:center;height:500px;" + (true ? "" : undefined))
+    }, Object(core_["jsx"])("div", {
+      className: "container h-100"
+    }, Object(core_["jsx"])("div", {
+      className: "h-100 w-100 d-flex flex-column justify-content-center"
+    }, Object(core_["jsx"])(H2, {
+      className: "mb-3"
+    }, banner === null || banner === void 0 ? void 0 : banner.title), Object(core_["jsx"])(P, {
+      className: "mb-5",
+      typography: core["e" /* typography */].variants.Element.SemiBold16
+    }, banner === null || banner === void 0 ? void 0 : banner.subtitle), Object(core_["jsx"])(ButtonLink, {
+      href: (banner === null || banner === void 0 ? void 0 : banner.buttonLink) || '',
+      className: "w-100",
+      css: BannerCarouselMobile_component_ref3,
+      bordered: true,
+      target: "_blank"
+    }, banner === null || banner === void 0 ? void 0 : banner.buttonTitle)))));
+  })) : null;
 };
 // CONCATENATED MODULE: ./src/components/molecules/BannerCarouselMobile/index.ts
 
@@ -2777,7 +2795,9 @@ var Header_component_ref3 = true ? {
   styles: "overflow-x:auto;"
 } : undefined;
 
-const Header = () => {
+const Header = props => {
+  var _props$headerLinks, _props$headerLinks$, _props$headerLinks$$l, _props$headerButtons, _props$headerButtons$, _props$headerButtons$2, _props$headerLinks2, _props$headerLinks2$, _props$headerLinks2$$, _props$headerButtons2, _props$headerButtons3, _props$headerButtons4;
+
   const isMobile = core["c" /* media */].useMobileDetector().mobile();
   const {
     0: mobileMenuOpen,
@@ -2786,7 +2806,7 @@ const Header = () => {
   const {
     0: language,
     1: setLanguage
-  } = Object(external_react_["useState"])(external_js_cookie_default.a.get('lang') === 'kk-Cyrl-KZ' ? 'KZ' : 'RU');
+  } = Object(external_react_["useState"])(external_js_cookie_default.a.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
   const hasToken = Object(external_react_["useMemo"])(() => external_js_cookie_default.a.get('token'), []);
   const onToggleMobileMenu = Object(external_react_["useCallback"])(() => setMobileMenuOpen(prev => !prev), []);
   const onLogOut = Object(external_react_["useCallback"])(() => {
@@ -2800,7 +2820,7 @@ const Header = () => {
   }, []);
   const onSetLanguage = Object(external_react_["useCallback"])(lang => () => {
     external_js_cookie_default.a.set('lang', lang);
-    setLanguage(lang === 'kk-Cyrl-KZ' ? 'KZ' : 'RU');
+    setLanguage(lang === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
     const checkInterval = setInterval(() => {
       if (external_js_cookie_default.a.get('lang') === lang) {
         clearInterval(checkInterval);
@@ -2828,26 +2848,22 @@ const Header = () => {
     css: Header_component_ref2
   }, Object(core_["jsx"])("div", {
     className: "d-flex flex-column"
-  }, Object(core_["jsx"])(Anchor, {
-    href: "/login",
+  }, (_props$headerLinks = props.headerLinks) === null || _props$headerLinks === void 0 ? void 0 : (_props$headerLinks$ = _props$headerLinks[0]) === null || _props$headerLinks$ === void 0 ? void 0 : (_props$headerLinks$$l = _props$headerLinks$.links) === null || _props$headerLinks$$l === void 0 ? void 0 : _props$headerLinks$$l.map(link => Object(core_["jsx"])(Anchor, {
+    key: link === null || link === void 0 ? void 0 : link.title,
+    href: link === null || link === void 0 ? void 0 : link.link,
     className: "mb-4",
     color: core["a" /* colors */].variants.Neutral.Black,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, "\u041B\u043E\u0433\u0438\u043D"), Object(core_["jsx"])(Anchor, {
-    href: "/documents",
-    className: "mb-4",
-    color: core["a" /* colors */].variants.Neutral.Black,
-    typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, "\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B"), Object(core_["jsx"])(Anchor, {
-    href: "/articles",
-    color: core["a" /* colors */].variants.Neutral.Black,
-    className: "mb-4",
-    typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, "\u041D\u043E\u0432\u043E\u0441\u0442\u0438")), Object(core_["jsx"])(Anchor, {
+  }, link === null || link === void 0 ? void 0 : link.title))), hasToken ? Object(core_["jsx"])(Anchor, {
     href: "/",
     color: core["a" /* colors */].variants.Neutral.Black,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, "\u0412\u044B\u0439\u0442\u0438"))), Object(core_["jsx"])("div", {
+  }, "\u0412\u044B\u0439\u0442\u0438") : (_props$headerButtons = props.headerButtons) === null || _props$headerButtons === void 0 ? void 0 : (_props$headerButtons$ = _props$headerButtons[0]) === null || _props$headerButtons$ === void 0 ? void 0 : (_props$headerButtons$2 = _props$headerButtons$.buttons) === null || _props$headerButtons$2 === void 0 ? void 0 : _props$headerButtons$2.map(button => Object(core_["jsx"])(Anchor, {
+    key: button === null || button === void 0 ? void 0 : button.title,
+    href: "/",
+    color: core["a" /* colors */].variants.Neutral.Black,
+    typography: core["e" /* typography */].variants.Heading.SemiBold17
+  }, button === null || button === void 0 ? void 0 : button.title)))), Object(core_["jsx"])("div", {
     className: "container-xl d-flex align-items-center justify-content-between py-3 mx-auto"
   }, isMobile && Object(core_["jsx"])(Button, {
     variant: Variants.Flat,
@@ -2857,21 +2873,17 @@ const Header = () => {
     icon: core["b" /* icons */].ui.menuHamburger,
     color: core["a" /* colors */].variants.Neutral.Black
   })), !isMobile && Object(core_["jsx"])("div", {
-    className: "d-flex align-items-center",
+    className: "d-flex align-items-center col-4",
     css: Header_component_ref3
-  }, Object(core_["jsx"])(Anchor, {
-    href: "/documents",
+  }, (_props$headerLinks2 = props.headerLinks) === null || _props$headerLinks2 === void 0 ? void 0 : (_props$headerLinks2$ = _props$headerLinks2[0]) === null || _props$headerLinks2$ === void 0 ? void 0 : (_props$headerLinks2$$ = _props$headerLinks2$.links) === null || _props$headerLinks2$$ === void 0 ? void 0 : _props$headerLinks2$$.map(link => Object(core_["jsx"])(Anchor, {
+    key: link === null || link === void 0 ? void 0 : link.title,
+    href: link === null || link === void 0 ? void 0 : link.link,
     className: "mr-lg-5 mr-md-3",
     color: core["a" /* colors */].variants.Text.Primary,
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
-  }, "\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B"), Object(core_["jsx"])(Anchor, {
-    href: "/articles",
-    className: "mr-lg-5 mr-md-3",
-    color: core["a" /* colors */].variants.Text.Primary,
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
-  }, "\u0421\u0442\u0430\u0442\u044C\u0438")), Object(core_["jsx"])(Anchor, {
+  }, link === null || link === void 0 ? void 0 : link.title))), Object(core_["jsx"])(Anchor, {
     href: "/",
-    className: "justify-content-center mx-5"
+    className: "justify-content-center mx-5 col-4"
   }, Object(core_["jsx"])("div", {
     className: "d-flex align-items-center"
   }, Object(core_["jsx"])("img", {
@@ -2903,25 +2915,26 @@ const Header = () => {
     onClick: onSetLanguage('ru-RU')
   }, Object(core_["jsx"])(P, {
     typography: core["e" /* typography */].variants.Content.Regular16
-  }, "RU"))), Object(core_["jsx"])(Divider, null), Object(core_["jsx"])(component_Item, {
+  }, "\u0420\u0443\u0441"))), Object(core_["jsx"])(Divider, null), Object(core_["jsx"])(component_Item, {
     interactive: true
   }, Object(core_["jsx"])(ItemButton, {
     onClick: onSetLanguage('kk-Cyrl-KZ')
   }, Object(core_["jsx"])(P, {
     typography: core["e" /* typography */].variants.Content.Regular16
-  }, "KZ"))))), hasToken ? Object(core_["jsx"])(Button, {
+  }, "\u049A\u0430\u0437"))))), hasToken ? Object(core_["jsx"])(Button, {
     size: Sizes.Small,
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
     onClick: onLogOut,
     color: core["a" /* colors */].variants.Brand.ExtraLightPurple,
     bordered: true
-  }, "\u0412\u044B\u0439\u0442\u0438") : Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(ButtonLink, {
-    href: "/login",
+  }, "\u0412\u044B\u0439\u0442\u0438") : Object(core_["jsx"])(external_react_default.a.Fragment, null, (_props$headerButtons2 = props.headerButtons) === null || _props$headerButtons2 === void 0 ? void 0 : (_props$headerButtons3 = _props$headerButtons2[0]) === null || _props$headerButtons3 === void 0 ? void 0 : (_props$headerButtons4 = _props$headerButtons3.buttons) === null || _props$headerButtons4 === void 0 ? void 0 : _props$headerButtons4.map(button => Object(core_["jsx"])(ButtonLink, {
+    key: button === null || button === void 0 ? void 0 : button.title,
+    href: button === null || button === void 0 ? void 0 : button.link,
     size: Sizes.Small,
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
     color: core["a" /* colors */].variants.Brand.ExtraLightPurple,
     bordered: true
-  }, "\u0412\u043E\u0439\u0442\u0438"))), isMobile && Object(core_["jsx"])("div", {
+  }, button === null || button === void 0 ? void 0 : button.title)))), isMobile && Object(core_["jsx"])("div", {
     className: "d-flex"
   }, Object(core_["jsx"])(Popover, {
     target: Object(core_["jsx"])(Button, {
@@ -2941,16 +2954,16 @@ const Header = () => {
   }, Object(core_["jsx"])(component_Item, {
     interactive: true
   }, Object(core_["jsx"])(ItemButton, {
-    onClick: onSetLanguage('ru')
+    onClick: onSetLanguage('ru-RU')
   }, Object(core_["jsx"])(P, {
     typography: core["e" /* typography */].variants.Content.Regular16
-  }, "RU"))), Object(core_["jsx"])(Divider, null), Object(core_["jsx"])(component_Item, {
+  }, "\u0420\u0443\u0441"))), Object(core_["jsx"])(Divider, null), Object(core_["jsx"])(component_Item, {
     interactive: true
   }, Object(core_["jsx"])(ItemButton, {
-    onClick: onSetLanguage('kz')
+    onClick: onSetLanguage('kk-Cyrl-KZ')
   }, Object(core_["jsx"])(P, {
     typography: core["e" /* typography */].variants.Content.Regular16
-  }, "KZ")))))))), !isMobile && Object(core_["jsx"])(Divider, null));
+  }, "\u049A\u0430\u0437")))))))), !isMobile && Object(core_["jsx"])(Divider, null));
 };
 // CONCATENATED MODULE: ./src/components/organisms/Header/index.ts
 
@@ -2982,7 +2995,12 @@ var Layout_component_ref = true ? {
 const Layout = props => Object(core_["jsx"])("div", {
   className: "d-flex flex-column",
   css: Layout_component_ref
-}, Object(core_["jsx"])(component_Header, null), props.children, Object(core_["jsx"])(Footer, null));
+}, Object(core_["jsx"])(component_Header, {
+  headerButtons: props.headerButtons,
+  headerLinks: props.headerLinks
+}), props.children, Object(core_["jsx"])(Footer, {
+  footerSections: props.footerSections
+}));
 // CONCATENATED MODULE: ./src/components/organisms/Layout/index.ts
 
 // CONCATENATED MODULE: ./src/components/organisms/List/libs/Item/component.tsx
@@ -3060,63 +3078,6 @@ OrderedList.defaultProps = {
 
 
 
-// CONCATENATED MODULE: ./src/components/organisms/Footer/mock.ts
-const sectionData = [{
-  title: 'О нас',
-  links: [{
-    name: 'О Medsupport'
-  }, {
-    name: 'Стать частью команды'
-  }, {
-    name: 'Стажировка'
-  }]
-}, {
-  title: 'Обратная связь',
-  links: [{
-    name: 'Написать нам'
-  }, {
-    name: 'Оставить заявку'
-  }]
-}, {
-  title: 'Реклама',
-  links: [{
-    name: 'Работай с нами'
-  }, {
-    name: 'Политика'
-  }]
-}, {
-  title: 'Пожертвования',
-  links: [{
-    name: 'Написать нам'
-  }, {
-    name: 'Оставить заявку'
-  }]
-}, {
-  title: 'Контакты',
-  links: [{
-    name: 'hello@medsupport.kz'
-  }, {
-    name: '+77087747886',
-    icons: [{
-      alt: 'phone',
-      url: '/static/images/phoneIcon.png'
-    }]
-  }, {
-    icons: [{
-      alt: 'instagram',
-      url: '/static/images/instagramIcon.png'
-    }, {
-      alt: 'dribble',
-      url: '/static/images/dribbbleIcon.png'
-    }, {
-      alt: 'twitter',
-      url: '/static/images/twitterIcon.png'
-    }, {
-      alt: 'youtube',
-      url: '/static/images/youtubeIcon.png'
-    }]
-  }]
-}];
 // CONCATENATED MODULE: ./src/components/organisms/Footer/component.tsx
 
 var Footer_component_jsx = external_react_default.a.createElement;
@@ -3136,7 +3097,6 @@ function Footer_component_objectWithoutPropertiesLoose(source, excluded) { if (s
 
 
 
-
 var Footer_component_ref2 = true ? {
   name: "542wex",
   styles: "word-break:break-word;"
@@ -3147,24 +3107,17 @@ var Footer_component_ref3 = true ? {
   styles: "max-width:300px;"
 } : undefined;
 
-var Footer_component_ref4 = true ? {
-  name: "1fkzs83",
-  styles: "max-width:250px;"
-} : undefined;
-
 const Footer = (_ref) => {
-  let {
-    className
-  } = _ref,
-      rest = Footer_component_objectWithoutProperties(_ref, ["className"]);
+  var _footerSections$, _footerSections$$sect;
 
-  const {
-    0: email,
-    1: setEmail
-  } = Object(external_react_["useState"])('');
-  const onChangeEmail = Object(external_react_["useCallback"])(event => setEmail(event.target.value), []);
-  const getSection = Object(external_react_["useCallback"])(data => {
-    var _data$links;
+  let {
+    className,
+    footerSections
+  } = _ref,
+      rest = Footer_component_objectWithoutProperties(_ref, ["className", "footerSections"]);
+
+  const getSection = Object(external_react_["useCallback"])(section => {
+    var _section$links;
 
     return Object(core_["jsx"])("div", {
       className: 'd-flex flex-column col-md-4 col-6 p-3',
@@ -3174,23 +3127,15 @@ const Footer = (_ref) => {
       className: "mb-lg-3 mb-2",
       css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementBold16, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementBold16, core["e" /* typography */].styles.elementBold16, core["e" /* typography */].styles.elementSemiBold20]), true ? "" : undefined),
       color: core["a" /* colors */].variants.Text.Secondary
-    }, data.title), (_data$links = data.links) === null || _data$links === void 0 ? void 0 : _data$links.map((link, i) => {
-      var _link$icons;
-
-      return Object(core_["jsx"])("div", {
-        key: i,
-        className: `d-flex align-items-center ${data.links && i !== data.links.length - 1 ? 'mb-lg-3 mb-2' : ''}`
-      }, (_link$icons = link.icons) === null || _link$icons === void 0 ? void 0 : _link$icons.map(icon => Object(core_["jsx"])("img", {
-        className: "mr-2",
-        key: icon.alt,
-        alt: icon.alt,
-        src: icon.url
-      })), link.name && Object(core_["jsx"])(Anchor, {
-        key: link.name + i,
-        color: core["a" /* colors */].variants.Text.Secondary,
-        css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined)
-      }, link.name));
-    }));
+    }, section === null || section === void 0 ? void 0 : section.title), section === null || section === void 0 ? void 0 : (_section$links = section.links) === null || _section$links === void 0 ? void 0 : _section$links.map((link, i) => Object(core_["jsx"])("div", {
+      key: i,
+      className: `d-flex align-items-center ${section !== null && section !== void 0 && section.links && i !== section.links.length - 1 ? 'mb-lg-3 mb-2' : ''}`
+    }, (link === null || link === void 0 ? void 0 : link.title) && (link === null || link === void 0 ? void 0 : link.link) && Object(core_["jsx"])(Anchor, {
+      key: link.title + i,
+      href: link.link,
+      color: core["a" /* colors */].variants.Text.Secondary,
+      css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined)
+    }, link.title))));
   }, []);
   return Object(core_["jsx"])("div", Footer_component_extends({
     className: external_classnames_default()(className, 'd-flex flex-column p-lg-3 p-2 mt-auto'),
@@ -3208,35 +3153,7 @@ const Footer = (_ref) => {
     className: "d-flex w-100 flex-lg-row flex-column-reverse "
   }, Object(core_["jsx"])("div", {
     className: "d-flex flex-wrap p-0"
-  }, sectionData.map(data => getSection(data))), Object(core_["jsx"])("div", {
-    className: "d-flex  p-3 justify-content-lg-start justify-content-center"
-  }, Object(core_["jsx"])("div", null, Object(core_["jsx"])(Typography, {
-    as: "p",
-    className: "mb-lg-3 mb-2",
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementBold16, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementBold16, core["e" /* typography */].styles.elementBold16, core["e" /* typography */].styles.elementSemiBold20]), true ? "" : undefined),
-    color: core["a" /* colors */].variants.Text.Secondary
-  }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u0432 \u043A\u0443\u0440\u0441\u0435"), Object(core_["jsx"])(InputGroup, {
-    css: Footer_component_ref4,
-    rightElement: Object(core_["jsx"])(Button, {
-      variant: Variants.Flat,
-      size: Sizes.Small
-    }, Object(core_["jsx"])(Icon, {
-      icon: core["b" /* icons */].actions.send,
-      color: core["a" /* colors */].variants.Neutral.White
-    }))
-  }, Object(core_["jsx"])(Input, {
-    value: email,
-    onChange: onChangeEmail,
-    css: /*#__PURE__*/Object(core_["css"])({
-      backgroundColor: core["a" /* colors */].variants.Neutral.WhiteWithOpacity20,
-      border: 0,
-      borderRadius: 8,
-      color: core["a" /* colors */].variants.Neutral.White
-    }, core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined),
-    type: "email",
-    placeholder: "\u0412\u0430\u0448 email",
-    placeholderColor: core["a" /* colors */].variants.Neutral.LightGrey
-  })))))), Object(core_["jsx"])(P, {
+  }, footerSections === null || footerSections === void 0 ? void 0 : (_footerSections$ = footerSections[0]) === null || _footerSections$ === void 0 ? void 0 : (_footerSections$$sect = _footerSections$.sections) === null || _footerSections$$sect === void 0 ? void 0 : _footerSections$$sect.map(data => getSection(data))))), Object(core_["jsx"])(P, {
     className: "align-self-lg-end align-self-center",
     color: core["a" /* colors */].variants.Text.Secondary,
     typography: core["e" /* typography */].variants.Element.SemiBold16
@@ -3362,7 +3279,7 @@ __webpack_require__.d(__webpack_exports__, "default", function() { return /* ree
 var external_axios_ = __webpack_require__("zr5I");
 var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
 
-// EXTERNAL MODULE: ./src/components/index.ts + 110 modules
+// EXTERNAL MODULE: ./src/components/index.ts + 109 modules
 var components = __webpack_require__("Nhdc");
 
 // EXTERNAL MODULE: ./src/core/index.ts + 6 modules

@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "artilces_page_back_buttons",
+  "info": {
+    "name": "ArtilcesPageBackButton"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "backButton": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "button.button"
+    }
+  }
+}
