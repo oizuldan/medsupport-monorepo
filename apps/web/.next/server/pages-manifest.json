@@ -1,6 +1,15 @@
 {
   "/_app": "pages/_app.js",
+  "/article": "pages/article.js",
+  "/articles": "pages/articles.js",
+  "/documentUpload": "pages/documentUpload.js",
+  "/documents": "pages/documents.js",
+  "/home": "pages/home.js",
+  "/liveStream": "pages/liveStream.js",
+  "/login": "pages/login.js",
+  "/restorePassword": "pages/restorePassword.js",
+  "/searchArticlesPage": "pages/searchArticlesPage.js",
+  "/signup": "pages/signup.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/documents": "pages/documents.js"
+  "/_document": "pages/_document.js"
 }

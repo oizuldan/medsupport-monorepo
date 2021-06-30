@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		9: 0
+/******/ 		10: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -49,7 +49,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"16":"22387a03934416cb6de0","17":"961fee5d3ffd6cb09a53","18":"516036cf5a62e98ef512"}[chunkId] + ".js");
+/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"15":"4b4b7a7ff6cc1dd1ea42","16":"22387a03934416cb6de0"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -121,7 +121,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -168,10 +168,10 @@ module.exports = require("@emotion/core");
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("D3Ze");
+module.exports = __webpack_require__("qPOQ");
 
 
 /***/ }),
@@ -207,199 +207,6 @@ module.exports = require("mobile-detect");
 /***/ "C3pY":
 /***/ (function(module, exports) {
 
-
-
-/***/ }),
-
-/***/ "D3Ze":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-// ESM COMPAT FLAG
-__webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "default", function() { return /* reexport */ HomePage; });
-
-// EXTERNAL MODULE: ./src/components/index.ts + 109 modules
-var components = __webpack_require__("Nhdc");
-
-// EXTERNAL MODULE: ./src/core/index.ts + 6 modules
-var core = __webpack_require__("UzkQ");
-
-// EXTERNAL MODULE: external "fp-ts/Array"
-var Array_ = __webpack_require__("ikZp");
-
-// EXTERNAL MODULE: external "fp-ts/Option"
-var Option_ = __webpack_require__("0U3A");
-
-// EXTERNAL MODULE: external "fp-ts/pipeable"
-var pipeable_ = __webpack_require__("iasY");
-
-// EXTERNAL MODULE: external "next/dynamic"
-var dynamic_ = __webpack_require__("/T1H");
-var dynamic_default = /*#__PURE__*/__webpack_require__.n(dynamic_);
-
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__("cDcd");
-var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
-
-// EXTERNAL MODULE: ./src/components/pages/ArticlesPage/index.ts + 4 modules
-var ArticlesPage = __webpack_require__("S82M");
-
-// EXTERNAL MODULE: external "@apollo/client"
-var client_ = __webpack_require__("z+8S");
-
-// CONCATENATED MODULE: ./src/components/pages/HomePage/graphql.ts
-
-const queryMainPage = client_["gql"]`
-  query MainPage($locale: String!, $limit: Int) {
-    headerBanners(locale: $locale) {
-      banners {
-        title
-        subtitle
-        image {
-          url
-          name
-        }
-        buttonLink
-        buttonTitle
-      }
-    }
-    articlesSection(locale: $locale) {
-      section {
-        title
-        link {
-          link
-          title
-        }
-      }
-    }
-    headerButtons(locale: $locale) {
-      buttons {
-        title
-        link
-      }
-    }
-    footerSections(locale: $locale) {
-      sections {
-        title
-        links {
-          link
-          title
-        }
-      }
-    }
-    headerLinks(locale: $locale) {
-      links {
-        title
-        link
-      }
-    }
-    articles(locale: $locale, limit: $limit) {
-      id
-      title
-      content
-      previewImage {
-        url
-        name
-      }
-    }
-  }
-`;
-// EXTERNAL MODULE: external "@emotion/core"
-var core_ = __webpack_require__("3vLF");
-
-// CONCATENATED MODULE: ./src/components/pages/HomePage/component.tsx
-var __jsx = external_react_default.a.createElement;
-
-
-
-
-
-
-
-
-
-
-const BannerCarouselMobile = dynamic_default()(() => __webpack_require__.e(/* import() */ 18).then(__webpack_require__.bind(null, "oxac")), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => Object(core_["jsx"])(components["d" /* BannerCarouselSkeleton */], null),
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("oxac")],
-    modules: ['./libs/BannerCarouselMobile']
-  }
-});
-const BannerCarousel = dynamic_default()(() => __webpack_require__.e(/* import() */ 17).then(__webpack_require__.bind(null, "eHd5")), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => Object(core_["jsx"])(components["d" /* BannerCarouselSkeleton */], null),
-  loadableGenerated: {
-    webpack: () => [/*require.resolve*/("eHd5")],
-    modules: ['./libs/BannerCarousel']
-  }
-});
-const HomePage = props => {
-  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data5, _props$data5$data, _props$data6, _props$data6$data, _props$data6$data$art, _props$data6$data$art2, _props$data7, _props$data7$data, _props$data7$data$art, _props$data7$data$art2, _props$data7$data$art3, _props$data8, _props$data8$data, _props$data8$data$art, _props$data8$data$art2, _props$data8$data$art3;
-
-  const {
-    data
-  } = props;
-  const isMobile = core["c" /* media */].useMobileDetector().phone();
-  const articles = Object(external_react_["useMemo"])(() => {
-    var _data$data;
-
-    return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.articles), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](arts => Object(Array_["sequence"])(Option_["option"])(arts.map(art => Object(pipeable_["pipe"])(Option_["fromNullable"](art))))), Option_["getOrElseW"](() => undefined));
-  }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]);
-  return Object(core_["jsx"])(components["A" /* Layout */], {
-    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
-    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
-    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
-  }, isMobile ? Object(core_["jsx"])(BannerCarouselMobile, {
-    banners: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : _props$data4$data.headerBanners
-  }) : Object(core_["jsx"])(BannerCarousel, {
-    banners: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : _props$data5$data.headerBanners
-  }), Object(core_["jsx"])("div", {
-    className: "my-5 container d-flex flex-column"
-  }, Object(core_["jsx"])("div", {
-    className: "d-flex justify-content-between"
-  }, Object(core_["jsx"])(components["q" /* H2 */], {
-    className: "mb-4"
-  }, (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : (_props$data6$data = _props$data6.data) === null || _props$data6$data === void 0 ? void 0 : (_props$data6$data$art = _props$data6$data.articlesSection) === null || _props$data6$data$art === void 0 ? void 0 : (_props$data6$data$art2 = _props$data6$data$art.section) === null || _props$data6$data$art2 === void 0 ? void 0 : _props$data6$data$art2.title), Object(core_["jsx"])(components["f" /* ButtonLink */], {
-    href: (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : (_props$data7$data = _props$data7.data) === null || _props$data7$data === void 0 ? void 0 : (_props$data7$data$art = _props$data7$data.articlesSection) === null || _props$data7$data$art === void 0 ? void 0 : (_props$data7$data$art2 = _props$data7$data$art.section) === null || _props$data7$data$art2 === void 0 ? void 0 : (_props$data7$data$art3 = _props$data7$data$art2.link) === null || _props$data7$data$art3 === void 0 ? void 0 : _props$data7$data$art3.link,
-    variant: components["h" /* ButtonVariants */].Flat,
-    size: components["g" /* ButtonSizes */].Small
-  }, Object(core_["jsx"])(components["H" /* P */], {
-    color: core["a" /* colors */].variants.Neutral.Grey,
-    typography: core["e" /* typography */].variants.Element.Regular12
-  }, (_props$data8 = props.data) === null || _props$data8 === void 0 ? void 0 : (_props$data8$data = _props$data8.data) === null || _props$data8$data === void 0 ? void 0 : (_props$data8$data$art = _props$data8$data.articlesSection) === null || _props$data8$data$art === void 0 ? void 0 : (_props$data8$data$art2 = _props$data8$data$art.section) === null || _props$data8$data$art2 === void 0 ? void 0 : (_props$data8$data$art3 = _props$data8$data$art2.link) === null || _props$data8$data$art3 === void 0 ? void 0 : _props$data8$data$art3.title), Object(core_["jsx"])(components["v" /* Icon */], {
-    icon: core["b" /* icons */].arrows.keyboardArrowRight,
-    color: core["a" /* colors */].variants.Neutral.Black,
-    className: "mr-1"
-  }))), Object(core_["jsx"])(ArticlesPage["a" /* ArticlesList */], {
-    articles: articles
-  })));
-};
-
-HomePage.getInitialProps = async ctx => {
-  var _ctx$req, _ctx$req$headers, _ctx$req$headers$cook, _ctx$req$headers$cook2;
-
-  const lang = ((_ctx$req = ctx.req) === null || _ctx$req === void 0 ? void 0 : (_ctx$req$headers = _ctx$req.headers) === null || _ctx$req$headers === void 0 ? void 0 : (_ctx$req$headers$cook = _ctx$req$headers.cookie) === null || _ctx$req$headers$cook === void 0 ? void 0 : (_ctx$req$headers$cook2 = _ctx$req$headers$cook.match(/(kk-Cyrl-KZ|ru-RU)/)) === null || _ctx$req$headers$cook2 === void 0 ? void 0 : _ctx$req$headers$cook2[0]) || 'ru-RU';
-  const data = await ctx.apolloClient.query({
-    query: queryMainPage,
-    variables: {
-      locale: lang,
-      limit: 6
-    }
-  });
-  return {
-    data
-  };
-};
-// CONCATENATED MODULE: ./src/components/pages/HomePage/index.ts
-
-// CONCATENATED MODULE: ./src/pages/home.ts
 
 
 /***/ }),
@@ -3451,172 +3258,6 @@ module.exports = require("rehype-raw");
 
 /***/ }),
 
-/***/ "S82M":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* reexport */ List; });
-__webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ ArticlesPage; });
-
-// EXTERNAL MODULE: external "@emotion/core"
-var core_ = __webpack_require__("3vLF");
-
-// EXTERNAL MODULE: ./src/components/index.ts + 109 modules
-var components = __webpack_require__("Nhdc");
-
-// EXTERNAL MODULE: ./src/core/index.ts + 6 modules
-var core = __webpack_require__("UzkQ");
-
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__("cDcd");
-var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
-
-// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/libs/List/component.tsx
-var __jsx = external_react_default.a.createElement;
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
-
-
-
-
-const List = (_ref) => {
-  let {
-    articles
-  } = _ref,
-      rest = _objectWithoutProperties(_ref, ["articles"]);
-
-  return Object(core_["jsx"])(components["B" /* List */], rest, articles === null || articles === void 0 ? void 0 : articles.map((article, i) => Object(core_["jsx"])(components["D" /* ListItemButton */], {
-    key: article.title + i,
-    link: true,
-    type: "a",
-    href: `article/${article.id}`,
-    className: "px-0"
-  }, Object(core_["jsx"])(components["H" /* P */], {
-    className: "mb-2",
-    typography: core["e" /* typography */].variants.Content.Regular16,
-    css: /*#__PURE__*/Object(core_["css"])("overflow:hidden;text-overflow:ellipsis;&:hover{color:", core["a" /* colors */].variants.Brand.Purple, ";}" + (true ? "" : undefined))
-  }, article.title))));
-};
-// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/libs/List/index.ts
-
-// EXTERNAL MODULE: external "fp-ts/Array"
-var Array_ = __webpack_require__("ikZp");
-
-// EXTERNAL MODULE: external "fp-ts/Option"
-var Option_ = __webpack_require__("0U3A");
-
-// EXTERNAL MODULE: external "fp-ts/pipeable"
-var pipeable_ = __webpack_require__("iasY");
-
-// EXTERNAL MODULE: external "@apollo/client"
-var client_ = __webpack_require__("z+8S");
-
-// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/graphql.ts
-
-const queryArticlesPage = client_["gql"]`
-  query ArticlesPage($locale: String!) {
-    articles(locale: $locale) {
-      id
-      title
-      content
-      previewImage {
-        url
-        name
-      }
-    }
-    articlesSection(locale: $locale) {
-      section {
-        title
-      }
-    }
-    headerButtons(locale: $locale) {
-      buttons {
-        title
-        link
-      }
-    }
-    footerSections(locale: $locale) {
-      sections {
-        title
-        links {
-          link
-          title
-        }
-      }
-    }
-    headerLinks(locale: $locale) {
-      links {
-        title
-        link
-      }
-    }
-  }
-`;
-// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/component.tsx
-var component_jsx = external_react_default.a.createElement;
-
-
-
-
-
-
-
-
-
-
-const ArticlesPage = props => {
-  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2;
-
-  const {
-    data
-  } = props;
-  const articles = Object(external_react_["useMemo"])(() => {
-    var _data$data;
-
-    return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.articles), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](arts => Object(Array_["sequence"])(Option_["option"])(arts.map(art => Object(pipeable_["pipe"])(Option_["fromNullable"](art))))), Option_["getOrElseW"](() => undefined));
-  }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]); // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
-
-  return Object(core_["jsx"])(components["A" /* Layout */], {
-    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
-    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
-    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
-  }, Object(core_["jsx"])("div", {
-    className: "container d-flex flex-column py-md-5 py-3"
-  }, Object(core_["jsx"])("div", {
-    className: "d-flex justify-content-between align-items-center mb-md-3 mb-2"
-  }, Object(core_["jsx"])(components["p" /* H1 */], {
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold22, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold34]), true ? "" : undefined)
-  }, (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$art = _props$data4$data.articlesSection) === null || _props$data4$data$art === void 0 ? void 0 : (_props$data4$data$art2 = _props$data4$data$art.section) === null || _props$data4$data$art2 === void 0 ? void 0 : _props$data4$data$art2.title)), Object(core_["jsx"])(List, {
-    articles: articles
-  })));
-};
-
-ArticlesPage.getInitialProps = async ctx => {
-  var _ctx$req, _ctx$req$headers, _ctx$req$headers$cook, _ctx$req$headers$cook2;
-
-  const lang = ((_ctx$req = ctx.req) === null || _ctx$req === void 0 ? void 0 : (_ctx$req$headers = _ctx$req.headers) === null || _ctx$req$headers === void 0 ? void 0 : (_ctx$req$headers$cook = _ctx$req$headers.cookie) === null || _ctx$req$headers$cook === void 0 ? void 0 : (_ctx$req$headers$cook2 = _ctx$req$headers$cook.match(/(kk-Cyrl-KZ|ru-RU)/)) === null || _ctx$req$headers$cook2 === void 0 ? void 0 : _ctx$req$headers$cook2[0]) || 'ru-RU';
-  const data = await ctx.apolloClient.query({
-    query: queryArticlesPage,
-    variables: {
-      locale: lang
-    }
-  });
-  return {
-    data
-  };
-};
-// CONCATENATED MODULE: ./src/components/pages/ArticlesPage/index.ts
-
-
-
-/***/ }),
-
 /***/ "TBz5":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4101,24 +3742,10 @@ module.exports = require("@emotion/styled-base");
 
 /***/ }),
 
-/***/ "iasY":
-/***/ (function(module, exports) {
-
-module.exports = require("fp-ts/pipeable");
-
-/***/ }),
-
 /***/ "id0+":
 /***/ (function(module, exports) {
 
 module.exports = require("react-markdown");
-
-/***/ }),
-
-/***/ "ikZp":
-/***/ (function(module, exports) {
-
-module.exports = require("fp-ts/Array");
 
 /***/ }),
 
@@ -4162,6 +3789,13 @@ module.exports = require("date-fns/locale/kk");
 
 /***/ }),
 
+/***/ "oLQh":
+/***/ (function(module, exports) {
+
+module.exports = require("react-youtube");
+
+/***/ }),
+
 /***/ "p5Ix":
 /***/ (function(module, exports) {
 
@@ -4169,10 +3803,101 @@ module.exports = require("emotion-rgba");
 
 /***/ }),
 
+/***/ "pI2v":
+/***/ (function(module, exports) {
+
+module.exports = require("socket.io-client");
+
+/***/ }),
+
 /***/ "pccx":
 /***/ (function(module, exports) {
 
 module.exports = require("@popperjs/core");
+
+/***/ }),
+
+/***/ "qPOQ":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* reexport */ LiveStreamPage; });
+
+// EXTERNAL MODULE: ./src/components/index.ts + 109 modules
+var components = __webpack_require__("Nhdc");
+
+// EXTERNAL MODULE: external "next/dynamic"
+var dynamic_ = __webpack_require__("/T1H");
+var dynamic_default = /*#__PURE__*/__webpack_require__.n(dynamic_);
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: external "react-youtube"
+var external_react_youtube_ = __webpack_require__("oLQh");
+var external_react_youtube_default = /*#__PURE__*/__webpack_require__.n(external_react_youtube_);
+
+// EXTERNAL MODULE: external "@emotion/core"
+var core_ = __webpack_require__("3vLF");
+
+// CONCATENATED MODULE: ./src/components/pages/LiveStreamPage/component.tsx
+var __jsx = external_react_default.a.createElement;
+
+
+
+
+
+const Chat = dynamic_default()(() => __webpack_require__.e(/* import() */ 15).then(__webpack_require__.bind(null, "M0hv")), {
+  ssr: false,
+  loadableGenerated: {
+    webpack: () => [/*require.resolve*/("M0hv")],
+    modules: ['../../organisms/Chat']
+  }
+});
+const LiveStreamPage = () => {
+  const {
+    0: playerWidth,
+    1: setPlayerWidth
+  } = Object(external_react_["useState"])('');
+  const {
+    0: playerHeight,
+    1: setPlayerHeight
+  } = Object(external_react_["useState"])('450');
+  Object(external_react_["useEffect"])(() => {
+    if (window.innerWidth < 480) {
+      setPlayerHeight('380');
+      setPlayerWidth(String(window.innerWidth * 0.5));
+    } else {
+      setPlayerHeight('600');
+      setPlayerWidth(String(window.innerWidth * 0.6));
+    }
+  }, []);
+  const opts = {
+    height: playerHeight,
+    width: playerWidth,
+    playerVars: {
+      autoplay: 1
+    }
+  };
+  return Object(core_["jsx"])(components["A" /* Layout */], null, Object(core_["jsx"])("div", {
+    style: {
+      margin: '7rem'
+    },
+    className: "my-4 d-flex justify-content-center"
+  }, Object(core_["jsx"])(external_react_youtube_default.a, {
+    videoId: "5qap5aO4i9A",
+    opts: opts
+  }), Object(core_["jsx"])(Chat, null)));
+};
+// CONCATENATED MODULE: ./src/components/pages/LiveStreamPage/index.ts
+
+// CONCATENATED MODULE: ./src/pages/liveStream.ts
+
 
 /***/ }),
 
@@ -4231,13 +3956,6 @@ module.exports = require("fp-ts/function");
 /***/ (function(module, exports) {
 
 module.exports = require("js-cookie");
-
-/***/ }),
-
-/***/ "z+8S":
-/***/ (function(module, exports) {
-
-module.exports = require("@apollo/client");
 
 /***/ })
 
