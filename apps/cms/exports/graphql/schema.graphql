@@ -169,6 +169,88 @@ type deleteArticlePayload {
   article: Article
 }
 
+type ArticlesSection {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  section: ComponentSectionSection
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ArticlesSection]
+}
+
+input ArticlesSectionInput {
+  section: ComponentSectionSectionInput!
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editArticlesSectionInput {
+  section: editComponentSectionSectionInput
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateArticlesSectionInput {
+  data: editArticlesSectionInput
+}
+
+type updateArticlesSectionPayload {
+  articlesSection: ArticlesSection
+}
+
+type deleteArticlesSectionPayload {
+  articlesSection: ArticlesSection
+}
+
+type ArtilcesPageBackButton {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  backButton: ComponentButtonButton
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ArtilcesPageBackButton]
+}
+
+input ArtilcesPageBackButtonInput {
+  backButton: ComponentButtonButtonInput
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editArtilcesPageBackButtonInput {
+  backButton: editComponentButtonButtonInput
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateArtilcesPageBackButtonInput {
+  data: editArtilcesPageBackButtonInput
+}
+
+type updateArtilcesPageBackButtonPayload {
+  artilcesPageBackButton: ArtilcesPageBackButton
+}
+
+type deleteArtilcesPageBackButtonPayload {
+  artilcesPageBackButton: ArtilcesPageBackButton
+}
+
 type Document {
   id: ID!
   _id: ID!
@@ -313,6 +395,422 @@ input deleteDocumentInput {
 
 type deleteDocumentPayload {
   document: Document
+}
+
+type FooterSections {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  sections: [ComponentFooterSectionFooterSection]
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [FooterSections]
+}
+
+type FooterSectionsConnection {
+  values: [FooterSections]
+  groupBy: FooterSectionsGroupBy
+  aggregate: FooterSectionsAggregator
+}
+
+type FooterSectionsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type FooterSectionsGroupBy {
+  id: [FooterSectionsConnectionId]
+  _id: [FooterSectionsConnection_id]
+  createdAt: [FooterSectionsConnectionCreatedAt]
+  updatedAt: [FooterSectionsConnectionUpdatedAt]
+  locale: [FooterSectionsConnectionLocale]
+  published_at: [FooterSectionsConnectionPublished_at]
+}
+
+type FooterSectionsConnectionId {
+  key: ID
+  connection: FooterSectionsConnection
+}
+
+type FooterSectionsConnection_id {
+  key: ID
+  connection: FooterSectionsConnection
+}
+
+type FooterSectionsConnectionCreatedAt {
+  key: DateTime
+  connection: FooterSectionsConnection
+}
+
+type FooterSectionsConnectionUpdatedAt {
+  key: DateTime
+  connection: FooterSectionsConnection
+}
+
+type FooterSectionsConnectionLocale {
+  key: String
+  connection: FooterSectionsConnection
+}
+
+type FooterSectionsConnectionPublished_at {
+  key: DateTime
+  connection: FooterSectionsConnection
+}
+
+input FooterSectionInput {
+  sections: [ComponentFooterSectionFooterSectionInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editFooterSectionInput {
+  sections: [editComponentFooterSectionFooterSectionInput]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createFooterSectionInput {
+  data: FooterSectionInput
+}
+
+type createFooterSectionPayload {
+  footerSection: FooterSections
+}
+
+input updateFooterSectionInput {
+  where: InputID
+  data: editFooterSectionInput
+}
+
+type updateFooterSectionPayload {
+  footerSection: FooterSections
+}
+
+input deleteFooterSectionInput {
+  where: InputID
+}
+
+type deleteFooterSectionPayload {
+  footerSection: FooterSections
+}
+
+type HeaderBanners {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  banners: [ComponentBannerBanner]
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [HeaderBanners]
+}
+
+type HeaderBannersConnection {
+  values: [HeaderBanners]
+  groupBy: HeaderBannersGroupBy
+  aggregate: HeaderBannersAggregator
+}
+
+type HeaderBannersAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type HeaderBannersGroupBy {
+  id: [HeaderBannersConnectionId]
+  _id: [HeaderBannersConnection_id]
+  createdAt: [HeaderBannersConnectionCreatedAt]
+  updatedAt: [HeaderBannersConnectionUpdatedAt]
+  locale: [HeaderBannersConnectionLocale]
+  published_at: [HeaderBannersConnectionPublished_at]
+}
+
+type HeaderBannersConnectionId {
+  key: ID
+  connection: HeaderBannersConnection
+}
+
+type HeaderBannersConnection_id {
+  key: ID
+  connection: HeaderBannersConnection
+}
+
+type HeaderBannersConnectionCreatedAt {
+  key: DateTime
+  connection: HeaderBannersConnection
+}
+
+type HeaderBannersConnectionUpdatedAt {
+  key: DateTime
+  connection: HeaderBannersConnection
+}
+
+type HeaderBannersConnectionLocale {
+  key: String
+  connection: HeaderBannersConnection
+}
+
+type HeaderBannersConnectionPublished_at {
+  key: DateTime
+  connection: HeaderBannersConnection
+}
+
+input HeaderBannerInput {
+  banners: [ComponentBannerBannerInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHeaderBannerInput {
+  banners: [editComponentBannerBannerInput]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createHeaderBannerInput {
+  data: HeaderBannerInput
+}
+
+type createHeaderBannerPayload {
+  headerBanner: HeaderBanners
+}
+
+input updateHeaderBannerInput {
+  where: InputID
+  data: editHeaderBannerInput
+}
+
+type updateHeaderBannerPayload {
+  headerBanner: HeaderBanners
+}
+
+input deleteHeaderBannerInput {
+  where: InputID
+}
+
+type deleteHeaderBannerPayload {
+  headerBanner: HeaderBanners
+}
+
+type HeaderButtons {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  buttons: [ComponentButtonButton]
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [HeaderButtons]
+}
+
+type HeaderButtonsConnection {
+  values: [HeaderButtons]
+  groupBy: HeaderButtonsGroupBy
+  aggregate: HeaderButtonsAggregator
+}
+
+type HeaderButtonsAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type HeaderButtonsGroupBy {
+  id: [HeaderButtonsConnectionId]
+  _id: [HeaderButtonsConnection_id]
+  createdAt: [HeaderButtonsConnectionCreatedAt]
+  updatedAt: [HeaderButtonsConnectionUpdatedAt]
+  locale: [HeaderButtonsConnectionLocale]
+  published_at: [HeaderButtonsConnectionPublished_at]
+}
+
+type HeaderButtonsConnectionId {
+  key: ID
+  connection: HeaderButtonsConnection
+}
+
+type HeaderButtonsConnection_id {
+  key: ID
+  connection: HeaderButtonsConnection
+}
+
+type HeaderButtonsConnectionCreatedAt {
+  key: DateTime
+  connection: HeaderButtonsConnection
+}
+
+type HeaderButtonsConnectionUpdatedAt {
+  key: DateTime
+  connection: HeaderButtonsConnection
+}
+
+type HeaderButtonsConnectionLocale {
+  key: String
+  connection: HeaderButtonsConnection
+}
+
+type HeaderButtonsConnectionPublished_at {
+  key: DateTime
+  connection: HeaderButtonsConnection
+}
+
+input HeaderButtonInput {
+  buttons: [ComponentButtonButtonInput!]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHeaderButtonInput {
+  buttons: [editComponentButtonButtonInput]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createHeaderButtonInput {
+  data: HeaderButtonInput
+}
+
+type createHeaderButtonPayload {
+  headerButton: HeaderButtons
+}
+
+input updateHeaderButtonInput {
+  where: InputID
+  data: editHeaderButtonInput
+}
+
+type updateHeaderButtonPayload {
+  headerButton: HeaderButtons
+}
+
+input deleteHeaderButtonInput {
+  where: InputID
+}
+
+type deleteHeaderButtonPayload {
+  headerButton: HeaderButtons
+}
+
+type HeaderLinks {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  links: [ComponentLinkLink]
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [HeaderLinks]
+}
+
+type HeaderLinksConnection {
+  values: [HeaderLinks]
+  groupBy: HeaderLinksGroupBy
+  aggregate: HeaderLinksAggregator
+}
+
+type HeaderLinksAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type HeaderLinksGroupBy {
+  id: [HeaderLinksConnectionId]
+  _id: [HeaderLinksConnection_id]
+  createdAt: [HeaderLinksConnectionCreatedAt]
+  updatedAt: [HeaderLinksConnectionUpdatedAt]
+  locale: [HeaderLinksConnectionLocale]
+  published_at: [HeaderLinksConnectionPublished_at]
+}
+
+type HeaderLinksConnectionId {
+  key: ID
+  connection: HeaderLinksConnection
+}
+
+type HeaderLinksConnection_id {
+  key: ID
+  connection: HeaderLinksConnection
+}
+
+type HeaderLinksConnectionCreatedAt {
+  key: DateTime
+  connection: HeaderLinksConnection
+}
+
+type HeaderLinksConnectionUpdatedAt {
+  key: DateTime
+  connection: HeaderLinksConnection
+}
+
+type HeaderLinksConnectionLocale {
+  key: String
+  connection: HeaderLinksConnection
+}
+
+type HeaderLinksConnectionPublished_at {
+  key: DateTime
+  connection: HeaderLinksConnection
+}
+
+input HeaderLinkInput {
+  links: [ComponentLinkLinkInput]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHeaderLinkInput {
+  links: [editComponentLinkLinkInput]
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createHeaderLinkInput {
+  data: HeaderLinkInput
+}
+
+type createHeaderLinkPayload {
+  headerLink: HeaderLinks
+}
+
+input updateHeaderLinkInput {
+  where: InputID
+  data: editHeaderLinkInput
+}
+
+type updateHeaderLinkPayload {
+  headerLink: HeaderLinks
+}
+
+input deleteHeaderLinkInput {
+  where: InputID
+}
+
+type deleteHeaderLinkPayload {
+  headerLink: HeaderLinks
 }
 
 type NewsItem {
@@ -936,7 +1434,106 @@ type deleteUserPayload {
   user: UsersPermissionsUser
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnection_id | ArticleConnectionCreatedAt | ArticleConnectionUpdatedAt | ArticleConnectionContent | ArticleConnectionTitle | ArticleConnectionPreviewImage | ArticleConnectionLocale | ArticleConnectionPublished_at | createArticlePayload | updateArticlePayload | deleteArticlePayload | Document | DocumentConnection | DocumentAggregator | DocumentGroupBy | DocumentConnectionId | DocumentConnection_id | DocumentConnectionCreatedAt | DocumentConnectionUpdatedAt | DocumentConnectionTitle | DocumentConnectionAuthor | DocumentConnectionDescription | DocumentConnectionDownloadLink | DocumentConnectionViewLink | DocumentConnectionLocale | DocumentConnectionPublished_at | createDocumentPayload | updateDocumentPayload | deleteDocumentPayload | NewsItem | NewsItemConnection | NewsItemAggregator | NewsItemGroupBy | NewsItemConnectionId | NewsItemConnection_id | NewsItemConnectionCreatedAt | NewsItemConnectionUpdatedAt | NewsItemConnectionContent | NewsItemConnectionTitle | NewsItemConnectionPreviewImage | NewsItemConnectionLocale | NewsItemConnectionPublished_at | createNewsItemPayload | updateNewsItemPayload | deleteNewsItemPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+type ComponentBannerBanner {
+  id: ID!
+  _id: ID!
+  title: String!
+  subtitle: String!
+  image: UploadFile
+  buttonTitle: String
+  buttonLink: String
+}
+
+input ComponentBannerBannerInput {
+  title: String!
+  subtitle: String!
+  image: ID
+  buttonTitle: String
+  buttonLink: String
+}
+
+input editComponentBannerBannerInput {
+  id: ID
+  title: String
+  subtitle: String
+  image: ID
+  buttonTitle: String
+  buttonLink: String
+}
+
+type ComponentButtonButton {
+  id: ID!
+  _id: ID!
+  title: String!
+  link: String!
+}
+
+input ComponentButtonButtonInput {
+  title: String!
+  link: String!
+}
+
+input editComponentButtonButtonInput {
+  id: ID
+  title: String
+  link: String
+}
+
+type ComponentFooterSectionFooterSection {
+  id: ID!
+  _id: ID!
+  title: String!
+  links: [ComponentLinkLink]
+}
+
+input ComponentFooterSectionFooterSectionInput {
+  title: String!
+  links: [ComponentLinkLinkInput!]
+}
+
+input editComponentFooterSectionFooterSectionInput {
+  id: ID
+  title: String
+  links: [editComponentLinkLinkInput]
+}
+
+type ComponentLinkLink {
+  id: ID!
+  _id: ID!
+  title: String!
+  link: String!
+}
+
+input ComponentLinkLinkInput {
+  title: String!
+  link: String!
+}
+
+input editComponentLinkLinkInput {
+  id: ID
+  title: String
+  link: String
+}
+
+type ComponentSectionSection {
+  id: ID!
+  _id: ID!
+  title: String!
+  link: ComponentLinkLink
+}
+
+input ComponentSectionSectionInput {
+  title: String!
+  link: ComponentLinkLinkInput!
+}
+
+input editComponentSectionSectionInput {
+  id: ID
+  title: String
+  link: editComponentLinkLinkInput
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnection_id | ArticleConnectionCreatedAt | ArticleConnectionUpdatedAt | ArticleConnectionContent | ArticleConnectionTitle | ArticleConnectionPreviewImage | ArticleConnectionLocale | ArticleConnectionPublished_at | createArticlePayload | updateArticlePayload | deleteArticlePayload | ArticlesSection | updateArticlesSectionPayload | deleteArticlesSectionPayload | ArtilcesPageBackButton | updateArtilcesPageBackButtonPayload | deleteArtilcesPageBackButtonPayload | Document | DocumentConnection | DocumentAggregator | DocumentGroupBy | DocumentConnectionId | DocumentConnection_id | DocumentConnectionCreatedAt | DocumentConnectionUpdatedAt | DocumentConnectionTitle | DocumentConnectionAuthor | DocumentConnectionDescription | DocumentConnectionDownloadLink | DocumentConnectionViewLink | DocumentConnectionLocale | DocumentConnectionPublished_at | createDocumentPayload | updateDocumentPayload | deleteDocumentPayload | FooterSections | FooterSectionsConnection | FooterSectionsAggregator | FooterSectionsGroupBy | FooterSectionsConnectionId | FooterSectionsConnection_id | FooterSectionsConnectionCreatedAt | FooterSectionsConnectionUpdatedAt | FooterSectionsConnectionLocale | FooterSectionsConnectionPublished_at | createFooterSectionPayload | updateFooterSectionPayload | deleteFooterSectionPayload | HeaderBanners | HeaderBannersConnection | HeaderBannersAggregator | HeaderBannersGroupBy | HeaderBannersConnectionId | HeaderBannersConnection_id | HeaderBannersConnectionCreatedAt | HeaderBannersConnectionUpdatedAt | HeaderBannersConnectionLocale | HeaderBannersConnectionPublished_at | createHeaderBannerPayload | updateHeaderBannerPayload | deleteHeaderBannerPayload | HeaderButtons | HeaderButtonsConnection | HeaderButtonsAggregator | HeaderButtonsGroupBy | HeaderButtonsConnectionId | HeaderButtonsConnection_id | HeaderButtonsConnectionCreatedAt | HeaderButtonsConnectionUpdatedAt | HeaderButtonsConnectionLocale | HeaderButtonsConnectionPublished_at | createHeaderButtonPayload | updateHeaderButtonPayload | deleteHeaderButtonPayload | HeaderLinks | HeaderLinksConnection | HeaderLinksAggregator | HeaderLinksGroupBy | HeaderLinksConnectionId | HeaderLinksConnection_id | HeaderLinksConnectionCreatedAt | HeaderLinksConnectionUpdatedAt | HeaderLinksConnectionLocale | HeaderLinksConnectionPublished_at | createHeaderLinkPayload | updateHeaderLinkPayload | deleteHeaderLinkPayload | NewsItem | NewsItemConnection | NewsItemAggregator | NewsItemGroupBy | NewsItemConnectionId | NewsItemConnection_id | NewsItemConnectionCreatedAt | NewsItemConnectionUpdatedAt | NewsItemConnectionContent | NewsItemConnectionTitle | NewsItemConnectionPreviewImage | NewsItemConnectionLocale | NewsItemConnectionPublished_at | createNewsItemPayload | updateNewsItemPayload | deleteNewsItemPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentBannerBanner | ComponentButtonButton | ComponentFooterSectionFooterSection | ComponentLinkLink | ComponentSectionSection
 
 input InputID {
   id: ID!
@@ -958,9 +1555,23 @@ type Query {
   article(id: ID!, publicationState: PublicationState): Article
   articles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [Article]
   articlesConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): ArticleConnection
+  articlesSection(publicationState: PublicationState, locale: String): ArticlesSection
+  artilcesPageBackButton(publicationState: PublicationState, locale: String): ArtilcesPageBackButton
   document(id: ID!, publicationState: PublicationState): Document
   documents(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [Document]
   documentsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): DocumentConnection
+  footerSection(id: ID!, publicationState: PublicationState): FooterSections
+  footerSections(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [FooterSections]
+  footerSectionsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): FooterSectionsConnection
+  headerBanner(id: ID!, publicationState: PublicationState): HeaderBanners
+  headerBanners(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [HeaderBanners]
+  headerBannersConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): HeaderBannersConnection
+  headerButton(id: ID!, publicationState: PublicationState): HeaderButtons
+  headerButtons(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [HeaderButtons]
+  headerButtonsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): HeaderButtonsConnection
+  headerLink(id: ID!, publicationState: PublicationState): HeaderLinks
+  headerLinks(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [HeaderLinks]
+  headerLinksConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): HeaderLinksConnection
   newsItem(id: ID!, publicationState: PublicationState): NewsItem
   newsItems(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [NewsItem]
   newsItemsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): NewsItemConnection
@@ -983,9 +1594,25 @@ type Mutation {
   createArticle(input: createArticleInput): createArticlePayload
   updateArticle(input: updateArticleInput): updateArticlePayload
   deleteArticle(input: deleteArticleInput): deleteArticlePayload
+  updateArticlesSection(input: updateArticlesSectionInput, locale: String): updateArticlesSectionPayload
+  deleteArticlesSection(locale: String): deleteArticlesSectionPayload
+  updateArtilcesPageBackButton(input: updateArtilcesPageBackButtonInput, locale: String): updateArtilcesPageBackButtonPayload
+  deleteArtilcesPageBackButton(locale: String): deleteArtilcesPageBackButtonPayload
   createDocument(input: createDocumentInput): createDocumentPayload
   updateDocument(input: updateDocumentInput): updateDocumentPayload
   deleteDocument(input: deleteDocumentInput): deleteDocumentPayload
+  createFooterSection(input: createFooterSectionInput): createFooterSectionPayload
+  updateFooterSection(input: updateFooterSectionInput): updateFooterSectionPayload
+  deleteFooterSection(input: deleteFooterSectionInput): deleteFooterSectionPayload
+  createHeaderBanner(input: createHeaderBannerInput): createHeaderBannerPayload
+  updateHeaderBanner(input: updateHeaderBannerInput): updateHeaderBannerPayload
+  deleteHeaderBanner(input: deleteHeaderBannerInput): deleteHeaderBannerPayload
+  createHeaderButton(input: createHeaderButtonInput): createHeaderButtonPayload
+  updateHeaderButton(input: updateHeaderButtonInput): updateHeaderButtonPayload
+  deleteHeaderButton(input: deleteHeaderButtonInput): deleteHeaderButtonPayload
+  createHeaderLink(input: createHeaderLinkInput): createHeaderLinkPayload
+  updateHeaderLink(input: updateHeaderLinkInput): updateHeaderLinkPayload
+  deleteHeaderLink(input: deleteHeaderLinkInput): deleteHeaderLinkPayload
   createNewsItem(input: createNewsItemInput): createNewsItemPayload
   updateNewsItem(input: updateNewsItemInput): updateNewsItemPayload
   deleteNewsItem(input: deleteNewsItemInput): deleteNewsItemPayload
@@ -1011,7 +1638,13 @@ type Mutation {
   """Delete an existing user"""
   deleteUser(input: deleteUserInput): deleteUserPayload
   createArticleLocalization(input: updateArticleInput!): Article!
+  createArticlesSectionLocalization(input: updateArticlesSectionInput!): ArticlesSection!
+  createArtilcesPageBackButtonLocalization(input: updateArtilcesPageBackButtonInput!): ArtilcesPageBackButton!
   createDocumentLocalization(input: updateDocumentInput!): Document!
+  createFooterSectionLocalization(input: updateFooterSectionInput!): FooterSections!
+  createHeaderBannerLocalization(input: updateHeaderBannerInput!): HeaderBanners!
+  createHeaderButtonLocalization(input: updateHeaderButtonInput!): HeaderButtons!
+  createHeaderLinkLocalization(input: updateHeaderLinkInput!): HeaderLinks!
   createNewsItemLocalization(input: updateNewsItemInput!): NewsItem!
   upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
   multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!

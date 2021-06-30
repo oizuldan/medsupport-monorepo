@@ -18,9 +18,8 @@ import dynamic from 'next/dynamic';
 import React, { useMemo } from 'react';
 
 import { ArticlesList } from '../ArticlesPage';
-import { Articles, ArticlesVariables } from '../ArticlesPage/__generated__/Articles';
-import { queryArticles } from '../ArticlesPage/graphql';
-import * as mock from './mock';
+import { MainPage, MainPageVariables } from './__generated__/MainPage';
+import { queryMainPage } from './graphql';
 import { InitProps, Props } from './props';
 
 const BannerCarouselMobile = dynamic(() => import('./libs/BannerCarouselMobile'), {
@@ -50,22 +49,30 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
   );
 
   return (
-    <Layout>
+    <Layout
+      headerButtons={props.data?.data?.headerButtons}
+      footerSections={props.data?.data?.footerSections}
+      headerLinks={props.data?.data?.headerLinks}
+    >
       {isMobile ? (
-        <BannerCarouselMobile data={mock.bannerCarouselData} />
+        <BannerCarouselMobile banners={props.data?.data?.headerBanners} />
       ) : (
-        <BannerCarousel data={mock.bannerCarouselData} />
+        <BannerCarousel banners={props.data?.data?.headerBanners} />
       )}
 
       <div className="my-5 container d-flex flex-column">
         <div className="d-flex justify-content-between">
-          <H2 className="mb-4">Статьи</H2>
-          <ButtonLink href="/articles" variant={ButtonVariants.Flat} size={ButtonSizes.Small}>
+          <H2 className="mb-4">{props.data?.data?.articlesSection?.section?.title}</H2>
+          <ButtonLink
+            href={props.data?.data?.articlesSection?.section?.link?.link}
+            variant={ButtonVariants.Flat}
+            size={ButtonSizes.Small}
+          >
             <P
               color={colors.variants.Neutral.Grey}
               typography={typography.variants.Element.Regular12}
             >
-              Посмотреть все статьи
+              {props.data?.data?.articlesSection?.section?.link?.title}
             </P>
             <Icon
               icon={icons.arrows.keyboardArrowRight}
@@ -83,8 +90,8 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
 HomePage.getInitialProps = async (ctx) => {
   const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
 
-  const data = await ctx.apolloClient.query<Articles, ArticlesVariables>({
-    query: queryArticles,
+  const data = await ctx.apolloClient.query<MainPage, MainPageVariables>({
+    query: queryMainPage,
     variables: { locale: lang, limit: 6 },
   });
 

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "main_page_banners",
+  "info": {
+    "name": "MainPageBanners",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "banners": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "required": true,
+      "component": "banner.banner"
+    }
+  }
+}

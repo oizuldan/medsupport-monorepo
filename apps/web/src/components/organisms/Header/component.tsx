@@ -20,14 +20,15 @@ import { colors, icons, media, typography } from 'core';
 import Cookies from 'js-cookie';
 import React, { FC, useCallback, useMemo, useState } from 'react';
 
+import { Props } from './props';
 import { popoverListContent } from './styles';
 
-export const Header: FC = () => {
+export const Header: FC<Props> = (props: Props) => {
   const isMobile = media.useMobileDetector().mobile();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<string>(
-    Cookies.get('lang') === 'kk-Cyrl-KZ' ? 'KZ' : 'RU',
+    Cookies.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус',
   );
 
   const hasToken = useMemo(() => Cookies.get('token'), []);
@@ -46,7 +47,7 @@ export const Header: FC = () => {
   const onSetLanguage = useCallback(
     (lang: string) => () => {
       Cookies.set('lang', lang);
-      setLanguage(lang === 'kk-Cyrl-KZ' ? 'KZ' : 'RU');
+      setLanguage(lang === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
       const checkInterval = setInterval(() => {
         if (Cookies.get('lang') === lang) {
           clearInterval(checkInterval);
@@ -80,38 +81,38 @@ export const Header: FC = () => {
             css={{ paddingTop: '6rem' }}
           >
             <div className="d-flex flex-column">
-              <Anchor
-                href="/login"
-                className="mb-4"
-                color={colors.variants.Neutral.Black}
-                typography={typography.variants.Heading.SemiBold17}
-              >
-                Логин
-              </Anchor>
-              <Anchor
-                href="/documents"
-                className="mb-4"
-                color={colors.variants.Neutral.Black}
-                typography={typography.variants.Heading.SemiBold17}
-              >
-                Документы
-              </Anchor>
-              <Anchor
-                href="/articles"
-                color={colors.variants.Neutral.Black}
-                className="mb-4"
-                typography={typography.variants.Heading.SemiBold17}
-              >
-                Новости
-              </Anchor>
+              {props.headerLinks?.[0]?.links?.map((link) => (
+                <Anchor
+                  key={link?.title}
+                  href={link?.link}
+                  className="mb-4"
+                  color={colors.variants.Neutral.Black}
+                  typography={typography.variants.Heading.SemiBold17}
+                >
+                  {link?.title}
+                </Anchor>
+              ))}
             </div>
-            <Anchor
-              href="/"
-              color={colors.variants.Neutral.Black}
-              typography={typography.variants.Heading.SemiBold17}
-            >
-              Выйти
-            </Anchor>
+            {hasToken ? (
+              <Anchor
+                href="/"
+                color={colors.variants.Neutral.Black}
+                typography={typography.variants.Heading.SemiBold17}
+              >
+                Выйти
+              </Anchor>
+            ) : (
+              props.headerButtons?.[0]?.buttons?.map((button) => (
+                <Anchor
+                  key={button?.title}
+                  href="/"
+                  color={colors.variants.Neutral.Black}
+                  typography={typography.variants.Heading.SemiBold17}
+                >
+                  {button?.title}
+                </Anchor>
+              ))
+            )}
           </div>
         </Drawer>
       )}
@@ -126,41 +127,29 @@ export const Header: FC = () => {
           </Button>
         )}
         {!isMobile && (
-          <div className="d-flex align-items-center" css={{ overflowX: 'auto' }}>
-            <Anchor
-              href="/documents"
-              className="mr-lg-5 mr-md-3"
-              color={colors.variants.Text.Primary}
-              css={css(
-                typography.styles.headingSemiBold17,
-                media.queryStyled([
+          <div className="d-flex align-items-center col-4" css={{ overflowX: 'auto' }}>
+            {props.headerLinks?.[0]?.links?.map((link) => (
+              <Anchor
+                key={link?.title}
+                href={link?.link}
+                className="mr-lg-5 mr-md-3"
+                color={colors.variants.Text.Primary}
+                css={css(
                   typography.styles.headingSemiBold17,
-                  typography.styles.headingSemiBold17,
-                  typography.styles.headingSemiBold22,
-                ]),
-              )}
-            >
-              Документы
-            </Anchor>
-            <Anchor
-              href="/articles"
-              className="mr-lg-5 mr-md-3"
-              color={colors.variants.Text.Primary}
-              css={css(
-                typography.styles.headingSemiBold17,
-                media.queryStyled([
-                  typography.styles.headingSemiBold17,
-                  typography.styles.headingSemiBold17,
-                  typography.styles.headingSemiBold22,
-                ]),
-              )}
-            >
-              Статьи
-            </Anchor>
+                  media.queryStyled([
+                    typography.styles.headingSemiBold17,
+                    typography.styles.headingSemiBold17,
+                    typography.styles.headingSemiBold22,
+                  ]),
+                )}
+              >
+                {link?.title}
+              </Anchor>
+            ))}
           </div>
         )}
 
-        <Anchor href="/" className="justify-content-center mx-5">
+        <Anchor href="/" className="justify-content-center mx-5 col-4">
           <div className="d-flex align-items-center">
             <img alt="logo" src="/static/images/logoSmall.svg" />
             <H2
@@ -213,13 +202,13 @@ export const Header: FC = () => {
                 <List css={popoverListContent}>
                   <ListItem interactive>
                     <ListItemButton onClick={onSetLanguage('ru-RU')}>
-                      <P typography={typography.variants.Content.Regular16}>RU</P>
+                      <P typography={typography.variants.Content.Regular16}>Рус</P>
                     </ListItemButton>
                   </ListItem>
                   <Divider />
                   <ListItem interactive>
                     <ListItemButton onClick={onSetLanguage('kk-Cyrl-KZ')}>
-                      <P typography={typography.variants.Content.Regular16}>KZ</P>
+                      <P typography={typography.variants.Content.Regular16}>Қаз</P>
                     </ListItemButton>
                   </ListItem>
                 </List>
@@ -244,22 +233,25 @@ export const Header: FC = () => {
                 </Button>
               ) : (
                 <>
-                  <ButtonLink
-                    href="/login"
-                    size={ButtonSizes.Small}
-                    css={css(
-                      typography.styles.elementSemiBold12,
-                      media.queryStyled([
+                  {props.headerButtons?.[0]?.buttons?.map((button) => (
+                    <ButtonLink
+                      key={button?.title}
+                      href={button?.link}
+                      size={ButtonSizes.Small}
+                      css={css(
                         typography.styles.elementSemiBold12,
-                        typography.styles.elementSemiBold12,
-                        typography.styles.headingSemiBold17,
-                      ]),
-                    )}
-                    color={colors.variants.Brand.ExtraLightPurple}
-                    bordered
-                  >
-                    Войти
-                  </ButtonLink>
+                        media.queryStyled([
+                          typography.styles.elementSemiBold12,
+                          typography.styles.elementSemiBold12,
+                          typography.styles.headingSemiBold17,
+                        ]),
+                      )}
+                      color={colors.variants.Brand.ExtraLightPurple}
+                      bordered
+                    >
+                      {button?.title}
+                    </ButtonLink>
+                  ))}
                   {/* <ButtonLink*/}
                   {/*  href="/signup"*/}
                   {/*  size={ButtonSizes.Small}*/}
@@ -311,14 +303,14 @@ export const Header: FC = () => {
               >
                 <List css={popoverListContent}>
                   <ListItem interactive>
-                    <ListItemButton onClick={onSetLanguage('ru')}>
-                      <P typography={typography.variants.Content.Regular16}>RU</P>
+                    <ListItemButton onClick={onSetLanguage('ru-RU')}>
+                      <P typography={typography.variants.Content.Regular16}>Рус</P>
                     </ListItemButton>
                   </ListItem>
                   <Divider />
                   <ListItem interactive>
-                    <ListItemButton onClick={onSetLanguage('kz')}>
-                      <P typography={typography.variants.Content.Regular16}>KZ</P>
+                    <ListItemButton onClick={onSetLanguage('kk-Cyrl-KZ')}>
+                      <P typography={typography.variants.Content.Regular16}>Қаз</P>
                     </ListItemButton>
                   </ListItem>
                 </List>

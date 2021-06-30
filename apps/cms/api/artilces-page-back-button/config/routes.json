@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/artilces-page-back-button",
+      "handler": "artilces-page-back-button.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/artilces-page-back-button",
+      "handler": "artilces-page-back-button.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/artilces-page-back-button",
+      "handler": "artilces-page-back-button.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

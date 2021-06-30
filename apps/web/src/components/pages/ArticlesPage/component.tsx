@@ -8,8 +8,11 @@ import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import React, { useMemo } from 'react';
 
-import { Articles, ArticlesVariables } from './__generated__/Articles';
-import { queryArticles } from './graphql';
+import {
+  ArticlesPage as ArticlesPageGQL,
+  ArticlesPageVariables,
+} from './__generated__/ArticlesPage';
+import { queryArticlesPage } from './graphql';
 import { List } from './libs/List';
 import { InitProps, Props } from './props';
 
@@ -32,7 +35,11 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
   // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
 
   return (
-    <Layout>
+    <Layout
+      headerButtons={props.data?.data?.headerButtons}
+      footerSections={props.data?.data?.footerSections}
+      headerLinks={props.data?.data?.headerLinks}
+    >
       <div className="container d-flex flex-column py-md-5 py-3">
         <div className="d-flex justify-content-between align-items-center mb-md-3 mb-2">
           <H1
@@ -45,7 +52,7 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
               ]),
             )}
           >
-            Статьи
+            {props.data?.data?.articlesSection?.section?.title}
           </H1>
           {/* <ButtonLink*/}
           {/*  type="a"*/}
@@ -70,8 +77,8 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
 ArticlesPage.getInitialProps = async (ctx) => {
   const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
 
-  const data = await ctx.apolloClient.query<Articles, ArticlesVariables>({
-    query: queryArticles,
+  const data = await ctx.apolloClient.query<ArticlesPageGQL, ArticlesPageVariables>({
+    query: queryArticlesPage,
     variables: { locale: lang },
   });
   return { data };

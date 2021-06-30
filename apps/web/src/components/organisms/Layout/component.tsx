@@ -9,8 +9,8 @@ const Header = dynamic(() => import('./libs/Header'));
 
 export const Layout: NextPage<Props> = (props: Props) => (
   <div className="d-flex flex-column" css={{ minHeight: '100vh' }}>
-    <Header />
+    <Header headerButtons={props.headerButtons} headerLinks={props.headerLinks} />
     {props.children}
-    <Footer />
+    <Footer footerSections={props.footerSections} />
   </div>
 );

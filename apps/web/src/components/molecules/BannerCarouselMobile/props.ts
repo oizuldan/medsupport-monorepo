@@ -1,9 +1,8 @@
 import { CarouselProps } from 'components';
+import { MainPage_headerBanners } from 'components/pages/HomePage/__generated__/MainPage';
 import { HTMLAttributes } from 'react';
-
-import { Data } from './types/Data';
 
 export type Props = HTMLAttributes<HTMLDivElement> &
   Partial<CarouselProps> & {
-    readonly data: ReadonlyArray<Data>;
+    readonly banners: ReadonlyArray<MainPage_headerBanners | null> | null;
   };

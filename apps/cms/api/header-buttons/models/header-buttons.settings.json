@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "header_buttons",
+  "info": {
+    "name": "HeaderButtons"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "button.button",
+      "required": true
+    }
+  }
+}
