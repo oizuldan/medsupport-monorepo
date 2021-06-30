@@ -14,10 +14,11 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
 ) => {
   const { data } = props;
   const router = useRouter();
+  console.log(data);
 
   useEffect(() => {
     if (!data.data?.article) router.push('/articles');
-  }, [data.data.article, router]);
+  }, [data.data?.article, router]);
 
   return (
     <Layout
@@ -44,7 +45,7 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
             {props.data?.data?.artilcesPageBackButton?.backButton?.title}
           </P>
         </ButtonLink>
-        {data.data.article && <Markdown>{data?.data?.article.content}</Markdown>}
+        {data?.data?.article && <Markdown>{data?.data?.article?.content}</Markdown>}
       </div>
     </Layout>
   );
@@ -52,9 +53,11 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
 
 ArticlePage.getInitialProps = async (ctx) => {
   const id = ctx.query?.id.toString();
-  const res = await ctx.apolloClient.query<Article, ArticleVariables>({
+  const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
+
+  const data = await ctx.apolloClient.query<Article, ArticleVariables>({
     query: queryArticle,
-    variables: { id },
+    variables: { id, locale: lang },
   });
-  return res;
+  return { data };
 };

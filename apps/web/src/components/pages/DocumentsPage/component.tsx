@@ -21,7 +21,7 @@ import { ApolloPageContext } from 'next-with-apollo';
 import { useRouter } from 'next/router';
 import React, { useCallback, useMemo } from 'react';
 
-import { Documents } from './__generated__/Documents';
+import { Documents, DocumentsVariables } from './__generated__/Documents';
 import { queryDocuments } from './graphql';
 import { InitProps, Props } from './props';
 
@@ -35,17 +35,21 @@ export const DocumentsPage: NextComponentType<ApolloPageContext, InitProps, Prop
   const documents = useMemo(
     () =>
       pipe(
-        O.fromNullable(data?.documents),
+        O.fromNullable(data.data?.documents),
         O.chain(O.fromPredicate((v) => Array.isArray(v))),
         O.chain((docs) => sequence(O.option)(docs.map((doc) => pipe(O.fromNullable(doc))))),
         O.getOrElseW(() => undefined),
       ),
-    [data?.documents],
+    [data.data?.documents],
   );
 
   const onGoToDocUpload = useCallback(() => router.push('/document-upload'), [router]);
   return (
-    <Layout>
+    <Layout
+      headerButtons={props.data?.data?.headerButtons}
+      footerSections={props.data?.data?.footerSections}
+      headerLinks={props.data?.data?.headerLinks}
+    >
       <div className="container my-lg-5 my-md-3 my-1">
         <div className="d-flex justify-content-between align-items-center mb-md-3 mb-2">
           <H1
@@ -178,5 +182,12 @@ export const DocumentsPage: NextComponentType<ApolloPageContext, InitProps, Prop
   );
 };
 
-DocumentsPage.getInitialProps = async (ctx) =>
-  await ctx.apolloClient.query<Documents>({ query: queryDocuments });
+DocumentsPage.getInitialProps = async (ctx) => {
+  const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
+
+  const data = await ctx.apolloClient.query<Documents, DocumentsVariables>({
+    query: queryDocuments,
+    variables: { locale: lang },
+  });
+  return { data };
+};

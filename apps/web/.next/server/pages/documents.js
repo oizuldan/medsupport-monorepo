@@ -3927,7 +3927,7 @@ var client_ = __webpack_require__("z+8S");
 // CONCATENATED MODULE: ./src/components/pages/DocumentsPage/graphql.ts
 
 const queryDocuments = client_["gql"]`
-  query Documents {
+  query Documents($locale: String) {
     documents {
       id
       title
@@ -3936,6 +3936,27 @@ const queryDocuments = client_["gql"]`
       downloadLink
       viewLink
       createdAt
+    }
+    headerButtons(locale: $locale) {
+      buttons {
+        title
+        link
+      }
+    }
+    footerSections(locale: $locale) {
+      sections {
+        title
+        links {
+          link
+          title
+        }
+      }
+    }
+    headerLinks(locale: $locale) {
+      links {
+        title
+        link
+      }
     }
   }
 `;
@@ -3962,14 +3983,24 @@ var _ref = true ? {
 } : undefined;
 
 const DocumentsPage = props => {
+  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data;
+
   const {
     data
   } = props;
   const router = Object(router_["useRouter"])();
   const hasToken = Object(external_react_["useMemo"])(() => external_js_cookie_default.a.get('token'), []);
-  const documents = Object(external_react_["useMemo"])(() => Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : data.documents), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](docs => Object(Array_["sequence"])(Option_["option"])(docs.map(doc => Object(pipeable_["pipe"])(Option_["fromNullable"](doc))))), Option_["getOrElseW"](() => undefined)), [data === null || data === void 0 ? void 0 : data.documents]);
+  const documents = Object(external_react_["useMemo"])(() => {
+    var _data$data;
+
+    return Object(pipeable_["pipe"])(Option_["fromNullable"]((_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.documents), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](docs => Object(Array_["sequence"])(Option_["option"])(docs.map(doc => Object(pipeable_["pipe"])(Option_["fromNullable"](doc))))), Option_["getOrElseW"](() => undefined));
+  }, [(_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.documents]);
   const onGoToDocUpload = Object(external_react_["useCallback"])(() => router.push('/document-upload'), [router]);
-  return Object(core_["jsx"])(components["A" /* Layout */], null, Object(core_["jsx"])("div", {
+  return Object(core_["jsx"])(components["A" /* Layout */], {
+    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
+    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
+    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
+  }, Object(core_["jsx"])("div", {
     className: "container my-lg-5 my-md-3 my-1"
   }, Object(core_["jsx"])("div", {
     className: "d-flex justify-content-between align-items-center mb-md-3 mb-2"
@@ -4036,9 +4067,20 @@ const DocumentsPage = props => {
   }), "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440")))))));
 };
 
-DocumentsPage.getInitialProps = async (ctx) => await ctx.apolloClient.query({
-  query: queryDocuments
-});
+DocumentsPage.getInitialProps = async ctx => {
+  var _ctx$req, _ctx$req$headers, _ctx$req$headers$cook, _ctx$req$headers$cook2;
+
+  const lang = ((_ctx$req = ctx.req) === null || _ctx$req === void 0 ? void 0 : (_ctx$req$headers = _ctx$req.headers) === null || _ctx$req$headers === void 0 ? void 0 : (_ctx$req$headers$cook = _ctx$req$headers.cookie) === null || _ctx$req$headers$cook === void 0 ? void 0 : (_ctx$req$headers$cook2 = _ctx$req$headers$cook.match(/(kk-Cyrl-KZ|ru-RU)/)) === null || _ctx$req$headers$cook2 === void 0 ? void 0 : _ctx$req$headers$cook2[0]) || 'ru-RU';
+  const data = await ctx.apolloClient.query({
+    query: queryDocuments,
+    variables: {
+      locale: lang
+    }
+  });
+  return {
+    data
+  };
+};
 // CONCATENATED MODULE: ./src/components/pages/DocumentsPage/index.ts
 
 // CONCATENATED MODULE: ./src/pages/documents.ts
