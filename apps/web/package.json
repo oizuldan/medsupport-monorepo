@@ -99,5 +99,5 @@
   },
   "proxy": "https://medsupport.dev/api",
   "proxy2": "https://drive.google.com/",
-  "proxy3": "http://localhost:1337"
+  "proxy3": "https://medsupport.dev/cms"
 }
