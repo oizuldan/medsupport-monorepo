@@ -11,5 +11,32 @@ export const queryArticle = gql`
         name
       }
     }
+    artilcesPageBackButton(locale: $locale) {
+      backButton {
+        link
+        title
+      }
+    }
+    headerButtons(locale: $locale) {
+      buttons {
+        title
+        link
+      }
+    }
+    footerSections(locale: $locale) {
+      sections {
+        title
+        links {
+          link
+          title
+        }
+      }
+    }
+    headerLinks(locale: $locale) {
+      links {
+        title
+        link
+      }
+    }
   }
 `;
