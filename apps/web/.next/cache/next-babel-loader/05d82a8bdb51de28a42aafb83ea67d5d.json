@@ -1,0 +1,1 @@
+{"ast":null,"code":"","map":{"version":3,"sources":[],"names":[],"mappings":"","sourcesContent":["export type LoadingProps = {\n  readonly loading: boolean;\n};\n"]},"metadata":{},"sourceType":"script"}
