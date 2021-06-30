@@ -1589,7 +1589,7 @@ const BannerCarousel = (_ref3) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'http://localhost:1337'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center "
@@ -1709,7 +1709,7 @@ const BannerCarouselMobile = (_ref) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'http://localhost:1337'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center"
@@ -3907,6 +3907,33 @@ const queryArticle = client_["gql"]`
         name
       }
     }
+    artilcesPageBackButton(locale: $locale) {
+      backButton {
+        link
+        title
+      }
+    }
+    headerButtons(locale: $locale) {
+      buttons {
+        title
+        link
+      }
+    }
+    footerSections(locale: $locale) {
+      sections {
+        title
+        links {
+          link
+          title
+        }
+      }
+    }
+    headerLinks(locale: $locale) {
+      links {
+        title
+        link
+      }
+    }
   }
 `;
 // EXTERNAL MODULE: external "@emotion/core"
@@ -3921,17 +3948,25 @@ var __jsx = external_react_default.a.createElement;
 
 
 const ArticlePage = props => {
+  var _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2, _props$data5, _props$data5$data, _props$data5$data$art, _props$data5$data$art2, _data$data2;
+
   const {
     data
   } = props;
   const router = Object(router_["useRouter"])();
   Object(external_react_["useEffect"])(() => {
-    if (!data.article) router.push('/articles');
-  }, [data.article, router]);
-  return Object(core_["jsx"])(components["A" /* Layout */], null, Object(core_["jsx"])("div", {
+    var _data$data;
+
+    if (!((_data$data = data.data) !== null && _data$data !== void 0 && _data$data.article)) router.push('/articles');
+  }, [data.data.article, router]);
+  return Object(core_["jsx"])(components["A" /* Layout */], {
+    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
+    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
+    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
+  }, Object(core_["jsx"])("div", {
     className: "container my-3"
   }, Object(core_["jsx"])(components["f" /* ButtonLink */], {
-    href: "/articles",
+    href: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$art = _props$data4$data.artilcesPageBackButton) === null || _props$data4$data$art === void 0 ? void 0 : (_props$data4$data$art2 = _props$data4$data$art.backButton) === null || _props$data4$data$art2 === void 0 ? void 0 : _props$data4$data$art2.link,
     variant: components["h" /* ButtonVariants */].Flat,
     size: components["g" /* ButtonSizes */].Small,
     className: "pl-0"
@@ -3942,7 +3977,7 @@ const ArticlePage = props => {
   }), Object(core_["jsx"])(components["H" /* P */], {
     color: core["a" /* colors */].variants.Neutral.Grey,
     typography: core["e" /* typography */].variants.Element.Regular12
-  }, "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A \u0441\u043F\u0438\u0441\u043A\u0443 \u0441\u0442\u0430\u0442\u0435\u0439")), data.article && Object(core_["jsx"])(components["E" /* Markdown */], null, data.article.content)));
+  }, (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$art = _props$data5$data.artilcesPageBackButton) === null || _props$data5$data$art === void 0 ? void 0 : (_props$data5$data$art2 = _props$data5$data$art.backButton) === null || _props$data5$data$art2 === void 0 ? void 0 : _props$data5$data$art2.title)), data.data.article && Object(core_["jsx"])(components["E" /* Markdown */], null, data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.article.content)));
 };
 
 ArticlePage.getInitialProps = async ctx => {

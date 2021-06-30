@@ -16,14 +16,18 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
   const router = useRouter();
 
   useEffect(() => {
-    if (!data.article) router.push('/articles');
-  }, [data.article, router]);
+    if (!data.data?.article) router.push('/articles');
+  }, [data.data.article, router]);
 
   return (
-    <Layout>
+    <Layout
+      headerButtons={props.data?.data?.headerButtons}
+      footerSections={props.data?.data?.footerSections}
+      headerLinks={props.data?.data?.headerLinks}
+    >
       <div className="container my-3">
         <ButtonLink
-          href="/articles"
+          href={props.data?.data?.artilcesPageBackButton?.backButton?.link}
           variant={ButtonVariants.Flat}
           size={ButtonSizes.Small}
           className="pl-0"
@@ -37,10 +41,10 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
             color={colors.variants.Neutral.Grey}
             typography={typography.variants.Element.Regular12}
           >
-            Вернуться к списку статей
+            {props.data?.data?.artilcesPageBackButton?.backButton?.title}
           </P>
         </ButtonLink>
-        {data.article && <Markdown>{data.article.content}</Markdown>}
+        {data.data.article && <Markdown>{data?.data?.article.content}</Markdown>}
       </div>
     </Layout>
   );
