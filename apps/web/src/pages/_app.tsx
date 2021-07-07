@@ -4,6 +4,7 @@ import 'normalize.css';
 import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import withApollo, { WithApolloProps } from 'next-with-apollo';
 import NextApp, { AppProps } from 'next/app';
+import Head from 'next/head';
 import React from 'react';
 
 // eslint-disable-next-line functional/no-class
@@ -13,6 +14,10 @@ class App extends NextApp<AppProps & WithApolloProps<NormalizedCacheObject>> {
     const { Component, pageProps, apollo } = this.props;
     return (
       <ApolloProvider client={apollo}>
+        <Head>
+          <title>Medsupportkz</title>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
         <Component {...pageProps} />
       </ApolloProvider>
     );
