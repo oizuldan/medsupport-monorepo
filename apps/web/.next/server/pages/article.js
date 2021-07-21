@@ -3965,7 +3965,6 @@ const ArticlePage = props => {
     data
   } = props;
   const router = Object(router_["useRouter"])();
-  console.log(data);
   Object(external_react_["useEffect"])(() => {
     var _data$data;
 
