@@ -14,7 +14,6 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
 ) => {
   const { data } = props;
   const router = useRouter();
-  console.log(data);
 
   useEffect(() => {
     if (!data.data?.article) router.push('/articles');
