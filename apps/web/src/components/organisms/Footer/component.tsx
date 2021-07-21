@@ -76,6 +76,9 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
         <div className="d-flex w-100 flex-lg-row flex-column-reverse ">
           <div className="d-flex flex-wrap p-0">
             {footerSections?.[0]?.sections?.map((data) => getSection(data))}
+            <div className={'d-flex flex-column col-md-4 col-6 pt-3'}>
+              <img alt="footer" src="/static/images/expertsHub.png" css={{ maxWidth: 300 }} />
+            </div>
           </div>
         </div>
       </div>

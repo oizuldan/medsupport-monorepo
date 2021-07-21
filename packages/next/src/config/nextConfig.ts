@@ -20,6 +20,7 @@ export const nextConfig = ({ redirects, ...rest }: NextConfig = {}): NextConfig 
     pwa: {
       dest: 'public',
       scope: publicURL,
+      disable: true,
     },
     redirects: async () => redirects || [],
   });
