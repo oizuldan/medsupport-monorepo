@@ -10,7 +10,8 @@ const registry = new Routes()
   .add('articles', '/articles', 'articles')
   .add('article', '/article/:id', 'article')
   // .add('searchArticlesPage', '/search-articles', 'searchArticlesPage')
-  .add('documentUpload', '/document-upload', 'documentUpload');
+  .add('documentUpload', '/document-upload', 'documentUpload')
+  .add('vaccine', '/vaccine', 'vaccine');
 
 const { Link, Router } = registry;
 export { registry, Link, Router };

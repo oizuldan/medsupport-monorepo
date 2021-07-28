@@ -9,3 +9,4 @@ export * from './Typography';
 export * from './Overflow';
 export * from './Dropzone';
 export * from './Skeleton';
+export * from './RelevantTopicCard';
