@@ -8,7 +8,7 @@ import { QuestionCard } from './lib/QuestionCard';
 export const QuestionBackgroundContainer = styled.div`
   background: ${colors.variants.Brand.Purple};
   padding: 2rem;
-  margin: 2rem 0rem;
+  margin-top: 2rem;
 `;
 
 export const Questions: NextPage = () => (
