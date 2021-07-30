@@ -1,11 +1,10 @@
 import { H1 } from 'components';
-import { NextPage } from 'next';
-import React from 'react';
+import React, { FC } from 'react';
 
 import { RelevantTopicCard } from './lib/RelevantTopicCard';
 
-export const RelevantTopics: NextPage = () => (
-  <div className="d-flex flex-column align-items-center">
+export const RelevantTopics: FC = () => (
+  <div className="d-flex flex-column align-items-center mt-4">
     <H1 className="pb-3 pt-3"> Актуальные темы </H1>
     <div className="container">
       <div className="row pb-3">

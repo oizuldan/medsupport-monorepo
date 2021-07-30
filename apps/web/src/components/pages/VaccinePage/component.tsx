@@ -1,4 +1,6 @@
+import { css } from '@emotion/core';
 import { Layout } from 'components';
+import { colors } from 'core';
 import { NextPage } from 'next';
 import React from 'react';
 
@@ -11,7 +13,16 @@ export const VaccinePage: NextPage = () => {
     <Layout>
       <VaccineBanner></VaccineBanner>
       <RelevantTopics></RelevantTopics>
-      <Questions></Questions>
+      <div
+        className="mt-4"
+        css={css`
+          background: ${colors.variants.Brand.Purple};
+        `}
+      >
+        <div className="container my-3 pt-4 pb-4">
+          <Questions></Questions>
+        </div>
+      </div>
     </Layout>
   );
 };

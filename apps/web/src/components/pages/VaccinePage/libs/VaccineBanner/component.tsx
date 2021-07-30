@@ -1,7 +1,6 @@
 import { css } from '@emotion/core';
 import { H2, H4Regular } from 'components';
 import { colors } from 'core';
-import { NextPage } from 'next';
 import React, { FC } from 'react';
 
 const LeftContent: FC = () => {
@@ -9,25 +8,13 @@ const LeftContent: FC = () => {
     <div
       css={css`
         background: ${colors.variants.Brand.Purple};
-        width: 100%;
-        height: 100%;
         padding: 8rem;
       `}
     >
-      <H2
-        css={css`
-          margin: 2rem 0rem;
-        `}
-        color={colors.variants.Neutral.White}
-      >
+      <H2 className="mt-2 mb-2" color={colors.variants.Neutral.White}>
         У Вас есть вопросы о вакцинах от COVID-19. И это хорошо!
       </H2>
-      <H4Regular
-        css={css`
-          margin: 2rem 0rem;
-        `}
-        color={colors.variants.Neutral.White}
-      >
+      <H4Regular className="mt-2 mb-2" color={colors.variants.Neutral.White}>
         Осторожность всегда к месту, когда появляется что-то новое. Осведомленность о вакцинах от
         COVID-19 — важный шаг, который поможет нам остановить эту пандемию.{' '}
       </H4Regular>
@@ -42,12 +29,7 @@ const LeftContent: FC = () => {
 
 const RightContent: FC = () => {
   return (
-    <div
-      css={css`
-        width: 100%;
-        min-height: 100%;
-      `}
-    >
+    <div>
       <img
         src="https://www.internationaldisabilityalliance.org/sites/default/files/custom/covid-19-vaccine.jpg"
         alt="Some"
@@ -62,11 +44,11 @@ const RightContent: FC = () => {
   );
 };
 
-export const VaccineBanner: NextPage = () => (
+export const VaccineBanner: FC = () => (
   <div
-    className="d-flex flex-row"
     css={css`
-      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     `}
   >
     <LeftContent></LeftContent>
