@@ -1,6 +1,6 @@
 import { css } from '@emotion/core';
-import { Layout } from 'components';
-import { colors } from 'core';
+import { ButtonLink, ButtonSizes, ButtonVariants, Icon, Layout, P } from 'components';
+import { colors, icons, typography } from 'core';
 import { NextPage } from 'next';
 import React from 'react';
 
@@ -21,6 +21,21 @@ export const VaccinePage: NextPage = () => {
       >
         <div className="container my-3 pt-4 pb-4">
           <Questions></Questions>
+          <div className="d-flex justify-content-center mt-4">
+            <ButtonLink variant={ButtonVariants.Raised} size={ButtonSizes.Large}>
+              <P
+                color={colors.variants.Neutral.White}
+                typography={typography.variants.Element.Bold16}
+              >
+                Посмотреть все вопросы
+              </P>
+              <Icon
+                icon={icons.arrows.keyboardArrowRight}
+                color={colors.variants.Neutral.White}
+                className="mr-1"
+              />
+            </ButtonLink>
+          </div>
         </div>
       </div>
     </Layout>
