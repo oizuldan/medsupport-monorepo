@@ -40,11 +40,11 @@ export const QuestionCard: FC<Props> = (props: Props) => {
         {title}
       </H2>
       <Button
-        css={css`в
-            margin-top: 8rem;
-            padding: 0rem 2rem;
-            border-radius: 8px;
-          `}
+        css={css`
+          border-radius: 8px;
+          margin-top: 8rem;
+        `}
+        className="pl-5 pr-5"
       >
         Узнать
       </Button>
