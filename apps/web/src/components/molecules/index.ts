@@ -9,3 +9,5 @@ export * from './Table';
 export * from './Markdown';
 export * from './Pagination';
 export * from './Popover';
+export * from './QuestionCard';
+export * from './RelevantTopicCard';

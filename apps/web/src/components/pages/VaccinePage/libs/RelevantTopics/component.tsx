@@ -1,7 +1,5 @@
-import { H1 } from 'components';
+import { H1, RelevantTopicCard } from 'components';
 import React, { FC } from 'react';
-
-import { RelevantTopicCard } from './lib/RelevantTopicCard';
 
 export const RelevantTopics: FC = () => (
   <div className="d-flex flex-column align-items-center mt-4">

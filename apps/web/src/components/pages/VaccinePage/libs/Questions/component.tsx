@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
+import { QuestionCard } from 'components';
 import React, { FC } from 'react';
-
-import { QuestionCard } from './lib/QuestionCard';
 
 const Grid = styled.div`
   display: grid;
