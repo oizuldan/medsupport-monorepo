@@ -2,22 +2,36 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Button, H1, H2 } from 'components';
 import { colors } from 'core';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
-import { Props } from './props';
+import { QuestionCardProps, QuestionContainerProps } from './props';
 
-const QuestionCardContainer = styled.div`
-  border-radius: 8px;
-  background-color: ${colors.variants.Neutral.White};
-  padding: 2rem 1rem;
-  cursor: pointer;
-  box-shadow: 1px 1px 8px rgba(201, 201, 201, 0.8), 0px 0.5px 0px rgba(172, 172, 172, 0.9);
+const QuestionCardContainer = styled.div<QuestionContainerProps>`
+  ${(props) =>
+    css`
+      border-radius: 8px;
+      background-color: ${colors.variants.Neutral.White};
+      padding: 2rem 1rem;
+      cursor: pointer;
+      box-shadow: 1px 1px 8px rgba(201, 201, 201, 0.8), 0px 0.5px 0px rgba(172, 172, 172, 0.9);
+      transition: transform 0.1s ease-out;
+      transform: ${props.onHover ? 'scale(1.04)' : 'none'};
+    `}
 `;
 
-export const QuestionCard: FC<Props> = (props: Props) => {
+export const QuestionCard: FC<QuestionCardProps> = (props: QuestionCardProps) => {
   const { title } = props;
+  const [onHover, setOnHover] = useState<boolean>(false);
+
   return (
-    <QuestionCardContainer className="col d-flex align-items-center justify-content-between flex-column">
+    <QuestionCardContainer
+      className="col d-flex align-items-center justify-content-between flex-column"
+      // eslint-disable-next-line react/jsx-no-bind
+      onMouseOver={() => setOnHover(true)}
+      // eslint-disable-next-line react/jsx-no-bind
+      onMouseOut={() => setOnHover(false)}
+      onHover={onHover}
+    >
       <H1
         className="d-flex align-items-center justify-content-center"
         css={css`
