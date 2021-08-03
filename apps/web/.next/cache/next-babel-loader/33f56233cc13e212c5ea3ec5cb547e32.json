@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './component';","map":{"version":3,"sources":["/Users/icett/Desktop/SP/medsupportkz/apps/web/src/components/molecules/Card/libs/Content/index.ts"],"names":[],"mappings":"AAEA,cAAc,aAAd","sourcesContent":["import { Props } from './props';\n\nexport * from './component';\nexport type ContentProps = Props;\n"]},"metadata":{},"sourceType":"module"}

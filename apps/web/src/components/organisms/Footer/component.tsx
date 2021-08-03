@@ -65,7 +65,7 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
       }}
       {...rest}
     >
-      <div className="container-xl d-flex flex-lg-row flex-column w-100 align-items-center">
+      <div className="container-xl mb-3 d-flex flex-lg-row flex-column w-100 align-items-center">
         <img
           alt="footer"
           src="/static/images/logoWhite.svg"
@@ -73,11 +73,21 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
           css={{ maxWidth: 300 }}
         />
 
-        <div className="d-flex w-100 flex-lg-row flex-column-reverse ">
+        <div className="d-flex  w-100 flex-lg-row flex-column-reverse ">
           <div className="d-flex flex-wrap p-0">
             {footerSections?.[0]?.sections?.map((data) => getSection(data))}
             <div className={'d-flex flex-column col-md-4 col-6 pt-3'}>
-              <img alt="footer" src="/static/images/expertsHub.png" css={{ maxWidth: 300 }} />
+              <img
+                alt="footer"
+                className="mb-3"
+                src="/static/images/expertsHub.png"
+                css={{ maxWidth: 300 }}
+              />
+              <img
+                alt="footer"
+                src="/static/images/imas.svg"
+                css={{ maxWidth: 300, filter: 'invert()' }}
+              />
             </div>
           </div>
         </div>

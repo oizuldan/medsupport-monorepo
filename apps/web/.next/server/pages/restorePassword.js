@@ -3299,6 +3299,11 @@ var Footer_component_ref4 = true ? {
   styles: "max-width:300px;"
 } : undefined;
 
+var Footer_component_ref5 = true ? {
+  name: "94i1yt",
+  styles: "max-width:300px;filter:invert();"
+} : undefined;
+
 const Footer = (_ref) => {
   var _footerSections$, _footerSections$$sect;
 
@@ -3335,22 +3340,27 @@ const Footer = (_ref) => {
       backgroundColor: core["a" /* colors */].variants.Brand.DarkPurple
     }, true ? "" : undefined)
   }, rest), Object(core_["jsx"])("div", {
-    className: "container-xl d-flex flex-lg-row flex-column w-100 align-items-center"
+    className: "container-xl mb-3 d-flex flex-lg-row flex-column w-100 align-items-center"
   }, Object(core_["jsx"])("img", {
     alt: "footer",
     src: "/static/images/logoWhite.svg",
     className: "mr-lg-4 mr-0",
     css: Footer_component_ref3
   }), Object(core_["jsx"])("div", {
-    className: "d-flex w-100 flex-lg-row flex-column-reverse "
+    className: "d-flex  w-100 flex-lg-row flex-column-reverse "
   }, Object(core_["jsx"])("div", {
     className: "d-flex flex-wrap p-0"
   }, footerSections === null || footerSections === void 0 ? void 0 : (_footerSections$ = footerSections[0]) === null || _footerSections$ === void 0 ? void 0 : (_footerSections$$sect = _footerSections$.sections) === null || _footerSections$$sect === void 0 ? void 0 : _footerSections$$sect.map(data => getSection(data)), Object(core_["jsx"])("div", {
     className: 'd-flex flex-column col-md-4 col-6 pt-3'
   }, Object(core_["jsx"])("img", {
     alt: "footer",
+    className: "mb-3",
     src: "/static/images/expertsHub.png",
     css: Footer_component_ref4
+  }), Object(core_["jsx"])("img", {
+    alt: "footer",
+    src: "/static/images/imas.svg",
+    css: Footer_component_ref5
   }))))), Object(core_["jsx"])(P, {
     className: "align-self-lg-end align-self-center",
     color: core["a" /* colors */].variants.Text.Secondary,
