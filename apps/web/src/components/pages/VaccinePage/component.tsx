@@ -19,7 +19,9 @@ import { RelevantTopics } from './libs/RelevantTopics';
 import { VaccineBanner } from './libs/VaccineBanner';
 import { InitProps, Props } from './props';
 
-export const FaqPage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
+export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props> = (
+  props: Props,
+) => {
   const { data } = props;
 
   const questions = useMemo(
@@ -88,7 +90,7 @@ export const FaqPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
   );
 };
 
-FaqPage.getInitialProps = async (ctx) => {
+VaccinePage.getInitialProps = async (ctx) => {
   const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
 
   const data = await ctx.apolloClient.query<FaqPageData, FaqPageDataVariables>({
