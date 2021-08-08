@@ -2815,7 +2815,7 @@ var RelevantTopicCard_component_jsx = external_react_default.a.createElement;
 
 
 const RelevantTopicCard = props => Object(core_["jsx"])(Anchor, {
-  href: `/questions/${props.categoryId}/${props.id}`,
+  href: `/question/${props.categoryId}/${props.id}`,
   className: "tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b",
   css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
 }, props.title);
@@ -3966,21 +3966,18 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 var _ref = true ? {
-  name: "rndi70",
-  styles: "width:100%;height:100%;object-fit:cover;max-height:400px;"
+  name: "10yqijg",
+  styles: "max-height:400px;object-fit:cover;"
 } : undefined;
 
 const VaccineBanner = props => Object(core_["jsx"])("div", {
-  css: core["c" /* media */].query({
-    display: ['flex', 'grid'],
-    gridTemplateColumns: ['1fr 1fr'],
-    flexDirection: ['column-reverse']
-  })
+  className: "tw-flex md:tw-flex-row tw-flex-col-reverse"
 }, Object(core_["jsx"])("div", {
   css: /*#__PURE__*/Object(core_["css"])({
-    backgroundColor: core["a" /* colors */].variants.Brand.Purple
+    backgroundColor: core["a" /* colors */].variants.Brand.Purple,
+    maxHeight: 400
   }, true ? "" : undefined),
-  className: "tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center"
+  className: "tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-purple-500 tw-w-full md:tw-w-6/12 tw-w-full"
 }, Object(core_["jsx"])(components["R" /* Typography */], {
   as: "h2",
   className: "mb-4",
@@ -3993,6 +3990,7 @@ const VaccineBanner = props => Object(core_["jsx"])("div", {
 }, props.subtitle)), Object(core_["jsx"])("img", {
   src: props.imageURL,
   alt: props.alt,
+  className: "md:tw-w-6/12 tw-w-full",
   css: _ref
 }));
 // CONCATENATED MODULE: ./src/components/pages/VaccinePage/libs/VaccineBanner/index.ts
