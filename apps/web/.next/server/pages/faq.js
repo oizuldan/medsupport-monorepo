@@ -3936,7 +3936,7 @@ const VaccineBanner = props => Object(core_["jsx"])("div", {
   css: /*#__PURE__*/Object(core_["css"])({
     backgroundColor: core["a" /* colors */].variants.Brand.Purple
   }, true ? "" : undefined),
-  className: "tw-p-10 xl:tw-p-14"
+  className: "tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center"
 }, Object(core_["jsx"])(components["R" /* Typography */], {
   as: "h2",
   className: "mb-4",

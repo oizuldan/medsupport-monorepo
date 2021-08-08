@@ -17,7 +17,7 @@ export const VaccineBanner: FC<Props> = (props: Props) => (
       css={{
         backgroundColor: colors.variants.Brand.Purple,
       }}
-      className="tw-p-10 xl:tw-p-14"
+      className="tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center"
     >
       <Typography
         as="h2"
