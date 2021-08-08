@@ -6,18 +6,13 @@ import React, { FC } from 'react';
 import { Props } from './props';
 
 export const VaccineBanner: FC<Props> = (props: Props) => (
-  <div
-    css={media.query({
-      display: ['flex', 'grid'],
-      gridTemplateColumns: ['1fr 1fr'],
-      flexDirection: ['column-reverse'],
-    })}
-  >
+  <div className="tw-flex md:tw-flex-row tw-flex-col-reverse">
     <div
       css={{
         backgroundColor: colors.variants.Brand.Purple,
+        maxHeight: 400,
       }}
-      className="tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center"
+      className="tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-purple-500 tw-w-full md:tw-w-6/12 tw-w-full"
     >
       <Typography
         as="h2"
@@ -52,11 +47,10 @@ export const VaccineBanner: FC<Props> = (props: Props) => (
     <img
       src={props.imageURL}
       alt={props.alt}
+      className="md:tw-w-6/12 tw-w-full"
       css={css`
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
         max-height: 400px;
+        object-fit: cover;
       `}
     />
   </div>

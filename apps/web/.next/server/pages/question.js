@@ -3009,7 +3009,7 @@ var RelevantTopicCard_component_jsx = external_react_default.a.createElement;
 
 
 const RelevantTopicCard = props => Object(core_["jsx"])(Anchor, {
-  href: `/questions/${props.categoryId}/${props.id}`,
+  href: `/question/${props.categoryId}/${props.id}`,
   className: "tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b",
   css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
 }, props.title);
