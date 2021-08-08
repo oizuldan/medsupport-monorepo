@@ -291,19 +291,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bootstrap_4_grid__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap_4_grid__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("16WD");
 /* harmony import */ var normalize_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(normalize_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _apollo_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("z+8S");
-/* harmony import */ var _apollo_client__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_apollo_client__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var next_with_apollo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ePNP");
-/* harmony import */ var next_with_apollo__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_with_apollo__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("Khd+");
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("3vLF");
-/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_emotion_core__WEBPACK_IMPORTED_MODULE_7__);
-var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
+/* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("hk0p");
+/* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _apollo_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("z+8S");
+/* harmony import */ var _apollo_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_apollo_client__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_with_apollo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("ePNP");
+/* harmony import */ var next_with_apollo__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_with_apollo__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("Khd+");
+/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("3vLF");
+/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_emotion_core__WEBPACK_IMPORTED_MODULE_8__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -317,11 +319,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
  // eslint-disable-next-line functional/no-class
 
 
 
-class App extends next_app__WEBPACK_IMPORTED_MODULE_4___default.a {
+class App extends next_app__WEBPACK_IMPORTED_MODULE_5___default.a {
   render() {
     // eslint-disable-next-line functional/no-this-expression
     const {
@@ -329,29 +332,36 @@ class App extends next_app__WEBPACK_IMPORTED_MODULE_4___default.a {
       pageProps,
       apollo
     } = this.props;
-    return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_7__["jsx"])(_apollo_client__WEBPACK_IMPORTED_MODULE_2__["ApolloProvider"], {
+    return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_8__["jsx"])(_apollo_client__WEBPACK_IMPORTED_MODULE_3__["ApolloProvider"], {
       client: apollo
-    }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_7__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_5___default.a, null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_7__["jsx"])("title", null, "Medsupportkz"), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_7__["jsx"])("meta", {
+    }, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_8__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_6___default.a, null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_8__["jsx"])("title", null, "Medsupportkz"), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_8__["jsx"])("meta", {
       name: "viewport",
       content: "initial-scale=1.0, width=device-width"
-    })), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_7__["jsx"])(Component, pageProps));
+    })), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_8__["jsx"])(Component, pageProps));
   }
 
 }
 
 App.getInitialProps = async appContext => {
-  const appProps = await next_app__WEBPACK_IMPORTED_MODULE_4___default.a.getInitialProps(appContext);
+  const appProps = await next_app__WEBPACK_IMPORTED_MODULE_5___default.a.getInitialProps(appContext);
   return _objectSpread({}, appProps);
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (next_with_apollo__WEBPACK_IMPORTED_MODULE_3___default()(({
+/* harmony default export */ __webpack_exports__["default"] = (next_with_apollo__WEBPACK_IMPORTED_MODULE_4___default()(({
   initialState
 }) => {
-  return new _apollo_client__WEBPACK_IMPORTED_MODULE_2__["ApolloClient"]({
+  return new _apollo_client__WEBPACK_IMPORTED_MODULE_3__["ApolloClient"]({
     uri: process.env.CMS_GRAPHQL_API_URL,
-    cache: new _apollo_client__WEBPACK_IMPORTED_MODULE_2__["InMemoryCache"]().restore(initialState || {})
+    cache: new _apollo_client__WEBPACK_IMPORTED_MODULE_3__["InMemoryCache"]().restore(initialState || {})
   });
 })(App));
+
+/***/ }),
+
+/***/ "hk0p":
+/***/ (function(module, exports) {
+
+
 
 /***/ }),
 

@@ -53,6 +53,13 @@ export const H4 = styled.h4<HeadingProps>(
   typography.styles.headingBold17,
   colors.styles.extendByVariant(colorSelectors),
 );
+
+export const H4Regular = styled.h4<HeadingProps>(
+  defaultStyles,
+  typography.styles.headingRegular17,
+  colors.styles.extendByVariant(colorSelectors),
+);
+
 export const H5 = styled.h6<HeadingProps>(
   defaultStyles,
   typography.styles.elementBold12,

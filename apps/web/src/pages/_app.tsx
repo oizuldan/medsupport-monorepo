@@ -1,5 +1,6 @@
 import 'bootstrap-4-grid';
 import 'normalize.css';
+import 'tailwindcss/tailwind.css';
 
 import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
 import withApollo, { WithApolloProps } from 'next-with-apollo';

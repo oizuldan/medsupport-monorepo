@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './component';","map":{"version":3,"sources":["/Users/eyes/Desktop/medsupport-monorepo/apps/web/src/components/molecules/Markdown/index.ts"],"names":[],"mappings":"AAGA,cAAc,aAAd","sourcesContent":["import { Props } from './props';\n\nexport type MarkdownProps = Props;\nexport * from './component';\n"]},"metadata":{},"sourceType":"module"}
