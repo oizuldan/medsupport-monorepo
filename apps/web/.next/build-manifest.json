@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/wAOjEU0XZtNz2RWXP_Sjp/_buildManifest.js",
-    "static/wAOjEU0XZtNz2RWXP_Sjp/_ssgManifest.js"
+    "static/vhfwkzMF4pLpZvb-AMl6m/_buildManifest.js",
+    "static/vhfwkzMF4pLpZvb-AMl6m/_ssgManifest.js"
   ],
   "pages": {
     "/_app": [
@@ -203,7 +203,7 @@
       "static/chunks/32b084f00171f9c09f273382446ea69f5f2c04f2_CSS.ff5578978733a40a67a3.js",
       "static/chunks/ddac053f97f9c22b85a8f8a1710006306a48d2f5.da37d18afdfa4ec21cac.js",
       "static/chunks/900283b8bba15560a0ef9a570b5e583a69302ec8.55562f1774c9b67e5c5e.js",
-      "static/chunks/pages/vaccine-63275ecb72d6b11b86f5.js"
+      "static/chunks/pages/vaccine-0191aa90ce53b3afb60a.js"
     ]
   },
   "ampFirstPages": []

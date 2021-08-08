@@ -11,7 +11,6 @@ export const VaccineBanner: FC<Props> = (props: Props) => (
       display: ['flex', 'grid'],
       gridTemplateColumns: ['1fr 1fr'],
       flexDirection: ['column-reverse'],
-      maxHeight: 400,
     })}
   >
     <div
@@ -53,11 +52,11 @@ export const VaccineBanner: FC<Props> = (props: Props) => (
     <img
       src={props.imageURL}
       alt={props.alt}
-      height="100%"
       css={css`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        max-height: 400px;
       `}
     />
   </div>

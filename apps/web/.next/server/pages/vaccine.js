@@ -3966,16 +3966,15 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 var _ref = true ? {
-  name: "6jrdpz",
-  styles: "width:100%;height:100%;object-fit:cover;"
+  name: "rndi70",
+  styles: "width:100%;height:100%;object-fit:cover;max-height:400px;"
 } : undefined;
 
 const VaccineBanner = props => Object(core_["jsx"])("div", {
   css: core["c" /* media */].query({
     display: ['flex', 'grid'],
     gridTemplateColumns: ['1fr 1fr'],
-    flexDirection: ['column-reverse'],
-    maxHeight: 400
+    flexDirection: ['column-reverse']
   })
 }, Object(core_["jsx"])("div", {
   css: /*#__PURE__*/Object(core_["css"])({
@@ -3994,7 +3993,6 @@ const VaccineBanner = props => Object(core_["jsx"])("div", {
 }, props.subtitle)), Object(core_["jsx"])("img", {
   src: props.imageURL,
   alt: props.alt,
-  height: "100%",
   css: _ref
 }));
 // CONCATENATED MODULE: ./src/components/pages/VaccinePage/libs/VaccineBanner/index.ts
