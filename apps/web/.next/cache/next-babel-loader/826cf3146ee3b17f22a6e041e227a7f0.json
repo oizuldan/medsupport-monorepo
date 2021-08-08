@@ -1,0 +1,1 @@
+{"ast":null,"code":"export * from './component';","map":{"version":3,"sources":["/Users/eyes/Desktop/medsupport-monorepo/apps/web/src/components/pages/VaccinePage/libs/Questions/index.ts"],"names":[],"mappings":"AAAA,cAAc,aAAd","sourcesContent":["export * from './component';\n"]},"metadata":{},"sourceType":"module"}

@@ -21,6 +21,7 @@ export enum Brand {
   DarkPurple = '#6019B7',
   LightPurple = '#D6B1FF',
   ExtraLightPurple = '#F1E4FF',
+  MoreExtraLightPurple = '#faf5ff',
 }
 
 export enum Warning {

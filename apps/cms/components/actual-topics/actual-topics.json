@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_actual_topics_actual_topics",
+  "info": {
+    "name": "ActualTopics",
+    "icon": "eye"
+  },
+  "options": {},
+  "attributes": {
+    "questions": {
+      "collection": "question"
+    }
+  }
+}

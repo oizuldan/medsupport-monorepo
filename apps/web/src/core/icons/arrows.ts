@@ -15,3 +15,15 @@ export const arrowBack = createIcon(
   24,
   'M20 11H7.83L13.42 5.41L12 4L4 12L12 20L13.41 18.59L7.83 13H20V11Z',
 );
+
+export const keyboardArrowDown = createIcon(
+  24,
+  24,
+  'M7.41 8.59009L12 13.1701L16.59 8.59009L18 10.0001L12 16.0001L6 10.0001L7.41 8.59009Z',
+);
+
+export const keyboardArrowUp = createIcon(
+  24,
+  24,
+  'M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z',
+);
