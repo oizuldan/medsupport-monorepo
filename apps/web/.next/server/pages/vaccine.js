@@ -3974,7 +3974,8 @@ const VaccineBanner = props => Object(core_["jsx"])("div", {
   css: core["c" /* media */].query({
     display: ['flex', 'grid'],
     gridTemplateColumns: ['1fr 1fr'],
-    flexDirection: ['column-reverse']
+    flexDirection: ['column-reverse'],
+    maxHeight: 400
   })
 }, Object(core_["jsx"])("div", {
   css: /*#__PURE__*/Object(core_["css"])({
