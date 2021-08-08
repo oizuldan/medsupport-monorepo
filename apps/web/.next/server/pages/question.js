@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		13: 0
+/******/ 		12: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -121,7 +121,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -262,7 +262,7 @@ const QuestionPage = props => {
   Object(external_react_["useEffect"])(() => {
     var _data$data3;
 
-    if (!((_data$data3 = data.data) !== null && _data$data3 !== void 0 && _data$data3.questionCategory)) router.push('/faq');
+    if (!((_data$data3 = data.data) !== null && _data$data3 !== void 0 && _data$data3.questionCategory)) router.push('/vxn');
   }, [(_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : _data$data4.questionCategory, router]);
   Object(external_react_["useEffect"])(() => {
     if (id) {
@@ -281,7 +281,7 @@ const QuestionPage = props => {
   }, Object(core_["jsx"])("div", {
     className: "container mt-3 tw-mb-8"
   }, Object(core_["jsx"])(components["f" /* ButtonLink */], {
-    href: "/faq",
+    href: "/vxn",
     variant: components["h" /* ButtonVariants */].Flat,
     size: components["g" /* ButtonSizes */].Small,
     className: "pl-0"
@@ -369,7 +369,7 @@ module.exports = require("facepaint");
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("3TxZ");

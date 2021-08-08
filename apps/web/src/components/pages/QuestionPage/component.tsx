@@ -46,7 +46,7 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
   );
 
   useEffect(() => {
-    if (!data.data?.questionCategory) router.push('/faq');
+    if (!data.data?.questionCategory) router.push('/vxn');
   }, [data.data?.questionCategory, router]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
     >
       <div className="container mt-3 tw-mb-8">
         <ButtonLink
-          href="/faq"
+          href="/vxn"
           variant={ButtonVariants.Flat}
           size={ButtonSizes.Small}
           className="pl-0"

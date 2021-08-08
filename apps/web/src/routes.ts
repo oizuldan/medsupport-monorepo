@@ -11,7 +11,7 @@ const registry = new Routes()
   .add('article', '/article/:id', 'article')
   // .add('searchArticlesPage', '/search-articles', 'searchArticlesPage')
   .add('documentUpload', '/document-upload', 'documentUpload')
-  .add('faq', '/faq', 'faq')
+  .add('vaccine', '/vxn', 'vaccine')
   .add('questions', '/questions', 'questions')
   .add('question', '/question/:categoryId/:id?', 'question');
 
