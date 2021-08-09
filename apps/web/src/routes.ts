@@ -13,7 +13,8 @@ const registry = new Routes()
   .add('documentUpload', '/document-upload', 'documentUpload')
   .add('vaccine', '/vxn', 'vaccine')
   .add('questions', '/questions', 'questions')
-  .add('question', '/question/:categoryId/:id?', 'question');
+  .add('question', '/question/:categoryId/:id?', 'question')
+  .add('aboutUs', '/about', 'aboutUs');
 
 const { Link, Router } = registry;
 export { registry, Link, Router };

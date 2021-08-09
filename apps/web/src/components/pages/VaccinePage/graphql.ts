@@ -21,6 +21,11 @@ export const queryFaqPage = gql`
         url
         name
       }
+      partner {
+        url
+        name
+      }
+      partnerText
     }
     questionCategories(locale: $locale) {
       title
@@ -38,6 +43,10 @@ export const queryFaqPage = gql`
         links {
           link
           title
+        }
+        images {
+          url
+          name
         }
       }
     }

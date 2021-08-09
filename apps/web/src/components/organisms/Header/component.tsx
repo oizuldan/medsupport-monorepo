@@ -116,32 +116,21 @@ export const Header: FC<Props> = (props: Props) => {
           </div>
         </Drawer>
       )}
-      <div className="container-xl d-flex align-items-center justify-content-between py-3 mx-auto">
+      <div className="container tw-grid tw-grid-cols-3 tw-justify-items-stretch py-3 tw-mx-auto">
         {isMobile && (
-          <Button
-            variant={ButtonVariants.Flat}
-            size={ButtonSizes.Small}
-            onClick={onToggleMobileMenu}
-          >
+          <button className="tw-border-0" onClick={onToggleMobileMenu}>
             <Icon icon={icons.ui.menuHamburger} color={colors.variants.Neutral.Black} />
-          </Button>
+          </button>
         )}
         {!isMobile && (
-          <div className="d-flex align-items-center col-4" css={{ overflowX: 'auto' }}>
+          <div className="d-flex align-items-center" css={{ overflowX: 'auto' }}>
             {props.headerLinks?.[0]?.links?.map((link) => (
               <Anchor
                 key={link?.title}
                 href={link?.link}
-                className="mr-lg-5 mr-md-3"
+                className="mr-3"
                 color={colors.variants.Text.Primary}
-                css={css(
-                  typography.styles.headingSemiBold17,
-                  media.queryStyled([
-                    typography.styles.headingSemiBold17,
-                    typography.styles.headingSemiBold17,
-                    typography.styles.headingSemiBold22,
-                  ]),
-                )}
+                typography={typography.variants.Heading.SemiBold17}
               >
                 {link?.title}
               </Anchor>
@@ -149,26 +138,24 @@ export const Header: FC<Props> = (props: Props) => {
           </div>
         )}
 
-        <Anchor href="/" className="justify-content-center mx-5 col-4">
-          <div className="d-flex align-items-center">
-            <img alt="logo" src="/static/images/logoSmall.svg" />
-            <H2
-              className="ml-2 "
-              css={css(
+        <Anchor href="/" className="mx-5 tw-justify-self-center d-flex align-items-center tw-w-max">
+          <img alt="logo" src="/static/images/logoSmall.svg" />
+          <H2
+            className="ml-2 "
+            css={css(
+              typography.styles.headingBold17,
+              media.queryStyled([
                 typography.styles.headingBold17,
-                media.queryStyled([
-                  typography.styles.headingBold17,
-                  typography.styles.headingBold17,
-                  typography.styles.headingBold28,
-                ]),
-              )}
-            >
-              MedSupport
-            </H2>
-          </div>
+                typography.styles.headingBold17,
+                typography.styles.headingBold28,
+              ]),
+            )}
+          >
+            MedSupport
+          </H2>
         </Anchor>
 
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center tw-justify-self-end">
           {!isMobile && (
             <>
               <Popover

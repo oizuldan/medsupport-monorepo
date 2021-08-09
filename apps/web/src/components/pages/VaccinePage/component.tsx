@@ -84,6 +84,21 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
             </P>
             <Icon icon={icons.arrows.keyboardArrowRight} color={colors.variants.Neutral.White} />
           </ButtonLink>
+          <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-mt-4 tw-text-white">
+            <P
+              color={colors.variants.Neutral.White}
+              typography={typography.variants.Element.SemiBold16}
+            >
+              {data.data?.faq?.partnerText}
+            </P>
+            {data.data?.faq?.partner && (
+              <img
+                className="tw-mt-2"
+                alt={data.data?.faq?.partner.name}
+                src={transformUri(data.data?.faq?.partner.url)}
+              />
+            )}
+          </div>
         </div>
       </div>
     </Layout>
