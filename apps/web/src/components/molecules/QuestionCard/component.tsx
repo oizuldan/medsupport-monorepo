@@ -17,6 +17,7 @@ const QuestionCardContainer = styled.a<QuestionContainerProps>`
       transition: transform 0.1s ease-out;
       transform: ${props.onHover ? 'scale(1.03)' : 'none'};
       width: 300px;
+      height: 100%;
       &:hover {
         background-color: ${colors.variants.Brand.MoreExtraLightPurple};
       }

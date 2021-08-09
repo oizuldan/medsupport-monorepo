@@ -8,6 +8,12 @@ import React, { FC, useCallback } from 'react';
 import { Props } from './props';
 
 export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props) => {
+  const transformUri = useCallback(
+    (uri: string | undefined) =>
+      uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : '',
+    [],
+  );
+
   const getSection = useCallback(
     (section: MainPage_footerSections_sections | null) => (
       <div className={'d-flex flex-column col-md-4 col-6 p-3'} css={{ wordBreak: 'break-word' }}>
@@ -52,9 +58,21 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
             )}
           </div>
         ))}
+        {section?.images?.map(
+          (image, i) =>
+            image?.url &&
+            image?.name && (
+              <img
+                alt={image.name}
+                className={i !== 0 ? 'tw-mt-4' : undefined}
+                src={transformUri(image.url)}
+                css={{ maxWidth: 150 }}
+              />
+            ),
+        )}
       </div>
     ),
-    [],
+    [transformUri],
   );
 
   return (
@@ -76,19 +94,6 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
         <div className="d-flex  w-100 flex-lg-row flex-column-reverse ">
           <div className="d-flex flex-wrap p-0">
             {footerSections?.[0]?.sections?.map((data) => getSection(data))}
-            <div className={'d-flex flex-column col-md-4 col-6 pt-3'}>
-              <img
-                alt="footer"
-                className="mb-3"
-                src="/static/images/expertsHub.png"
-                css={{ maxWidth: 300 }}
-              />
-              <img
-                alt="footer"
-                src="/static/images/imas.svg"
-                css={{ maxWidth: 300, filter: 'invert()' }}
-              />
-            </div>
           </div>
         </div>
       </div>

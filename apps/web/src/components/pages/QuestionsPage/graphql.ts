@@ -30,6 +30,10 @@ export const queryQuestionsPage = gql`
           link
           title
         }
+        images {
+          url
+          name
+        }
       }
     }
     headerLinks(locale: $locale) {

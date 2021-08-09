@@ -29,6 +29,10 @@ export const queryArticlesPage = gql`
           link
           title
         }
+        images {
+          url
+          name
+        }
       }
     }
     headerLinks(locale: $locale) {

@@ -6,3 +6,4 @@ export * from './match';
 export * from './transformMarkdownImages';
 export * from './toast';
 export * from './parseDate';
+export * from './gtag';

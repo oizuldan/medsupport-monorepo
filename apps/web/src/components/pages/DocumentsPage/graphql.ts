@@ -24,6 +24,10 @@ export const queryDocuments = gql`
           link
           title
         }
+        images {
+          url
+          name
+        }
       }
     }
     headerLinks(locale: $locale) {

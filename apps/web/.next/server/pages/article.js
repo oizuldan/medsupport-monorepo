@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		5: 0
+/******/ 		6: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -49,7 +49,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"19":"574976055eb3ca8267ac"}[chunkId] + ".js");
+/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"20":"e01781121298e89e6383"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -121,7 +121,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -154,7 +154,7 @@ module.exports = require("fp-ts/Option");
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("w0X2");
@@ -298,6 +298,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _parseDate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("hHRs");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "parseDate", function() { return _parseDate__WEBPACK_IMPORTED_MODULE_7__["a"]; });
+
+/* harmony import */ var _gtag__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("wKW+");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pageview", function() { return _gtag__WEBPACK_IMPORTED_MODULE_8__["b"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "event", function() { return _gtag__WEBPACK_IMPORTED_MODULE_8__["a"]; });
+
 
 
 
@@ -2775,7 +2781,7 @@ function QuestionCard_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You h
 
 const QuestionCardContainer = styled_base_default()("a", {
   target: "e1whyqxo0"
-})(props => /*#__PURE__*/Object(core_["css"])("border-radius:8px;background-color:", core["a" /* colors */].variants.Neutral.White, ";padding:2rem 1rem;cursor:pointer;box-shadow:1px 1px 8px rgba(201,201,201,0.8),0px 0.5px 0px rgba(172,172,172,0.9);transition:transform 0.1s ease-out;transform:", props.onHover ? 'scale(1.03)' : 'none', ";width:300px;&:hover{background-color:", core["a" /* colors */].variants.Brand.MoreExtraLightPurple, ";}" + (true ? "" : undefined)), true ? "" : undefined);
+})(props => /*#__PURE__*/Object(core_["css"])("border-radius:8px;background-color:", core["a" /* colors */].variants.Neutral.White, ";padding:2rem 1rem;cursor:pointer;box-shadow:1px 1px 8px rgba(201,201,201,0.8),0px 0.5px 0px rgba(172,172,172,0.9);transition:transform 0.1s ease-out;transform:", props.onHover ? 'scale(1.03)' : 'none', ";width:300px;height:100%;&:hover{background-color:", core["a" /* colors */].variants.Brand.MoreExtraLightPurple, ";}" + (true ? "" : undefined)), true ? "" : undefined);
 
 var QuestionCard_component_ref = true ? {
   name: "xi606m",
@@ -3055,36 +3061,33 @@ const Header = props => {
     color: core["a" /* colors */].variants.Neutral.Black,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
   }, button === null || button === void 0 ? void 0 : button.title)))), Object(core_["jsx"])("div", {
-    className: "container-xl d-flex align-items-center justify-content-between py-3 mx-auto"
-  }, isMobile && Object(core_["jsx"])(Button, {
-    variant: Variants.Flat,
-    size: Sizes.Small,
+    className: "container tw-grid tw-grid-cols-3 tw-justify-items-stretch py-3 tw-mx-auto"
+  }, isMobile && Object(core_["jsx"])("button", {
+    className: "tw-border-0",
     onClick: onToggleMobileMenu
   }, Object(core_["jsx"])(Icon, {
     icon: core["b" /* icons */].ui.menuHamburger,
     color: core["a" /* colors */].variants.Neutral.Black
   })), !isMobile && Object(core_["jsx"])("div", {
-    className: "d-flex align-items-center col-4",
+    className: "d-flex align-items-center",
     css: Header_component_ref3
   }, (_props$headerLinks2 = props.headerLinks) === null || _props$headerLinks2 === void 0 ? void 0 : (_props$headerLinks2$ = _props$headerLinks2[0]) === null || _props$headerLinks2$ === void 0 ? void 0 : (_props$headerLinks2$$ = _props$headerLinks2$.links) === null || _props$headerLinks2$$ === void 0 ? void 0 : _props$headerLinks2$$.map(link => Object(core_["jsx"])(Anchor, {
     key: link === null || link === void 0 ? void 0 : link.title,
     href: link === null || link === void 0 ? void 0 : link.link,
-    className: "mr-lg-5 mr-md-3",
+    className: "mr-3",
     color: core["a" /* colors */].variants.Text.Primary,
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
+    typography: core["e" /* typography */].variants.Heading.SemiBold17
   }, link === null || link === void 0 ? void 0 : link.title))), Object(core_["jsx"])(Anchor, {
     href: "/",
-    className: "justify-content-center mx-5 col-4"
-  }, Object(core_["jsx"])("div", {
-    className: "d-flex align-items-center"
+    className: "mx-5 tw-justify-self-center d-flex align-items-center tw-w-max"
   }, Object(core_["jsx"])("img", {
     alt: "logo",
     src: "/static/images/logoSmall.svg"
   }), Object(core_["jsx"])(H2, {
     className: "ml-2 ",
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold17, core["e" /* typography */].styles.headingBold17, core["e" /* typography */].styles.headingBold28]), true ? "" : undefined)
-  }, "MedSupport"))), Object(core_["jsx"])("div", {
-    className: "d-flex align-items-center"
+  }, "MedSupport")), Object(core_["jsx"])("div", {
+    className: "d-flex align-items-center tw-justify-self-end"
   }, !isMobile && Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(Popover, {
     target: Object(core_["jsx"])(Button, {
       className: "mr-3 px-1",
@@ -3171,7 +3174,7 @@ function Layout_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tr
 
 
 
-const component_Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 19).then(__webpack_require__.bind(null, "hJjj")), {
+const component_Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 20).then(__webpack_require__.bind(null, "hJjj")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("hJjj")],
     modules: ['./libs/Header']
@@ -3294,18 +3297,13 @@ var Footer_component_ref2 = true ? {
 } : undefined;
 
 var Footer_component_ref3 = true ? {
-  name: "1id8hns",
-  styles: "max-width:300px;"
+  name: "1sg7bn7",
+  styles: "max-width:150px;"
 } : undefined;
 
 var Footer_component_ref4 = true ? {
   name: "1id8hns",
   styles: "max-width:300px;"
-} : undefined;
-
-var Footer_component_ref5 = true ? {
-  name: "94i1yt",
-  styles: "max-width:300px;filter:invert();"
 } : undefined;
 
 const Footer = (_ref) => {
@@ -3317,8 +3315,9 @@ const Footer = (_ref) => {
   } = _ref,
       rest = Footer_component_objectWithoutProperties(_ref, ["className", "footerSections"]);
 
+  const transformUri = Object(external_react_["useCallback"])(uri => uri ? uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}` : '', []);
   const getSection = Object(external_react_["useCallback"])(section => {
-    var _section$links;
+    var _section$links, _section$images;
 
     return Object(core_["jsx"])("div", {
       className: 'd-flex flex-column col-md-4 col-6 p-3',
@@ -3336,8 +3335,13 @@ const Footer = (_ref) => {
       href: link.link,
       color: core["a" /* colors */].variants.Text.Secondary,
       css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined)
-    }, link.title))));
-  }, []);
+    }, link.title))), section === null || section === void 0 ? void 0 : (_section$images = section.images) === null || _section$images === void 0 ? void 0 : _section$images.map((image, i) => (image === null || image === void 0 ? void 0 : image.url) && (image === null || image === void 0 ? void 0 : image.name) && Object(core_["jsx"])("img", {
+      alt: image.name,
+      className: i !== 0 ? 'tw-mt-4' : undefined,
+      src: transformUri(image.url),
+      css: Footer_component_ref3
+    })));
+  }, [transformUri]);
   return Object(core_["jsx"])("div", Footer_component_extends({
     className: external_classnames_default()(className, 'd-flex flex-column p-lg-3 p-2 mt-auto'),
     css: /*#__PURE__*/Object(core_["css"])({
@@ -3349,23 +3353,12 @@ const Footer = (_ref) => {
     alt: "footer",
     src: "/static/images/logoWhite.svg",
     className: "mr-lg-4 mr-0",
-    css: Footer_component_ref3
+    css: Footer_component_ref4
   }), Object(core_["jsx"])("div", {
     className: "d-flex  w-100 flex-lg-row flex-column-reverse "
   }, Object(core_["jsx"])("div", {
     className: "d-flex flex-wrap p-0"
-  }, footerSections === null || footerSections === void 0 ? void 0 : (_footerSections$ = footerSections[0]) === null || _footerSections$ === void 0 ? void 0 : (_footerSections$$sect = _footerSections$.sections) === null || _footerSections$$sect === void 0 ? void 0 : _footerSections$$sect.map(data => getSection(data)), Object(core_["jsx"])("div", {
-    className: 'd-flex flex-column col-md-4 col-6 pt-3'
-  }, Object(core_["jsx"])("img", {
-    alt: "footer",
-    className: "mb-3",
-    src: "/static/images/expertsHub.png",
-    css: Footer_component_ref4
-  }), Object(core_["jsx"])("img", {
-    alt: "footer",
-    src: "/static/images/imas.svg",
-    css: Footer_component_ref5
-  }))))), Object(core_["jsx"])(P, {
+  }, footerSections === null || footerSections === void 0 ? void 0 : (_footerSections$ = footerSections[0]) === null || _footerSections$ === void 0 ? void 0 : (_footerSections$$sect = _footerSections$.sections) === null || _footerSections$$sect === void 0 ? void 0 : _footerSections$$sect.map(data => getSection(data))))), Object(core_["jsx"])(P, {
     className: "align-self-lg-end align-self-center",
     color: core["a" /* colors */].variants.Text.Secondary,
     typography: core["e" /* typography */].variants.Element.SemiBold16
@@ -4143,6 +4136,10 @@ const queryArticle = client_["gql"]`
           link
           title
         }
+        images {
+          url
+          name
+        }
       }
     }
     headerLinks(locale: $locale) {
@@ -4217,6 +4214,38 @@ ArticlePage.getInitialProps = async ctx => {
 
 // CONCATENATED MODULE: ./src/pages/article.ts
 
+
+/***/ }),
+
+/***/ "wKW+":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return pageview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return event; });
+// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+const pageview = url => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  window.gtag('config', process.env.GA_TRACKING_ID, {
+    page_path: url
+  });
+}; // https://developers.google.com/analytics/devguides/collection/gtagjs/events
+
+const event = ({
+  action,
+  category,
+  label,
+  value
+}) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  window.gtag('event', action, {
+    event_category: category,
+    event_label: label,
+    value: value
+  });
+};
 
 /***/ }),
 
