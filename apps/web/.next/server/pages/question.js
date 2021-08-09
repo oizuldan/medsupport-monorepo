@@ -121,7 +121,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -151,6 +151,14 @@ module.exports = require("next/dynamic");
 /***/ (function(module, exports) {
 
 module.exports = require("fp-ts/Option");
+
+/***/ }),
+
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("3TxZ");
+
 
 /***/ }),
 
@@ -370,14 +378,6 @@ module.exports = require("next/router");
 /***/ (function(module, exports) {
 
 module.exports = require("facepaint");
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("3TxZ");
-
 
 /***/ }),
 

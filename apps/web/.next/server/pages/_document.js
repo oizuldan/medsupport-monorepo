@@ -88,15 +88,15 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("4D8t");
+module.exports = __webpack_require__("mT+M");
 
 
 /***/ }),
@@ -105,6 +105,13 @@ module.exports = __webpack_require__("4D8t");
 /***/ (function(module, exports) {
 
 module.exports = require("styled-jsx/server");
+
+/***/ }),
+
+/***/ "3vLF":
+/***/ (function(module, exports) {
+
+module.exports = require("@emotion/core");
 
 /***/ }),
 
@@ -763,6 +770,71 @@ module.exports = require("next/dist/next-server/lib/utils.js");
 
 /***/ }),
 
+/***/ "mT+M":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MyDocument; });
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("sf+I");
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("3vLF");
+/* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_core__WEBPACK_IMPORTED_MODULE_2__);
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+ // eslint-disable-next-line functional/no-class
+
+
+class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_0___default.a {
+  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
+  render() {
+    return Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["Html"], null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["Head"], null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("script", {
+      async: true,
+      src: `https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_COUNTER_ID}`
+    }), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("script", {
+      dangerouslySetInnerHTML: {
+        __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GOOGLE_COUNTER_ID}', {
+              page_path: window.location.pathname,
+            });
+          `
+      }
+    }), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("script", {
+      dangerouslySetInnerHTML: {
+        __html: `
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(process.env.YM_COUNTER_ID, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+          });
+          <noscript>
+            <div>
+              <img
+                src="https://mc.yandex.ru/watch/83835505"
+                style="position:absolute; left:-9999px;"
+                alt=""
+              />
+            </div>
+          </noscript>
+            `
+      }
+    })), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("body", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["Main"], null), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["NextScript"], null)));
+  }
+
+}
+
+/***/ }),
+
 /***/ "nMq/":
 /***/ (function(module, exports) {
 
@@ -781,6 +853,14 @@ module.exports = require("prop-types");
 /***/ (function(module, exports) {
 
 module.exports = require("next/dist/next-server/server/utils.js");
+
+/***/ }),
+
+/***/ "sf+I":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("4D8t")
+
 
 /***/ }),
 

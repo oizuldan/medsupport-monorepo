@@ -1,5 +1,6 @@
 {
   "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
   "/aboutUs": "pages/aboutUs.js",
   "/article": "pages/article.js",
   "/articles": "pages/articles.js",
@@ -14,6 +15,5 @@
   "/searchArticlesPage": "pages/searchArticlesPage.js",
   "/signup": "pages/signup.js",
   "/vaccine": "pages/vaccine.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js"
+  "/_error": "pages/_error.js"
 }
