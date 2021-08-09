@@ -807,28 +807,26 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_0___default.a {
     }), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("script", {
       dangerouslySetInnerHTML: {
         __html: `
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+               (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+               m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+               (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-            ym(process.env.YM_COUNTER_ID, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
-          });
-          <noscript>
-            <div>
-              <img
-                src="https://mc.yandex.ru/watch/83835505"
-                style="position:absolute; left:-9999px;"
-                alt=""
-              />
-            </div>
-          </noscript>
+               ym(${process.env.YM_COUNTER_ID}, "init", {
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+               });
             `
       }
-    })), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("body", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["Main"], null), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["NextScript"], null)));
+    }), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("noscript", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("div", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("img", {
+      src: "https://mc.yandex.ru/watch/83835505",
+      style: {
+        position: 'absolute',
+        left: '-9999px'
+      },
+      alt: ""
+    })))), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])("body", null, Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["Main"], null), Object(_emotion_core__WEBPACK_IMPORTED_MODULE_2__["jsx"])(next_document__WEBPACK_IMPORTED_MODULE_0__["NextScript"], null)));
   }
 
 }

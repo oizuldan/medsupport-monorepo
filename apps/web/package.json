@@ -78,8 +78,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "postcss": "^7",
     "autoprefixer": "^9",
-    "@heroicons/react": "^1.0.3",
-    "react-yandex-metrika": "^2.6.0"
+    "@heroicons/react": "^1.0.3"
   },
   "devDependencies": {
     "@types/dotenv-load": "^2.0.0",
