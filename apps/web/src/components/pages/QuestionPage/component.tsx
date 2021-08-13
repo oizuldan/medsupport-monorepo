@@ -17,8 +17,7 @@ import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
-import { useRouter } from 'next/router';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import {
   QuestionPageData,
@@ -31,8 +30,7 @@ import { InitProps, Props } from './props';
 export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
   props: Props,
 ) => {
-  const { data, id } = props;
-  const router = useRouter();
+  const { data, id, lang } = props;
 
   const questions = useMemo(
     () =>
@@ -44,16 +42,6 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
       ),
     [data?.data?.questionCategory?.questions],
   );
-
-  const transformUri = useCallback(
-    (uri: string | undefined) =>
-      uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : '',
-    [],
-  );
-
-  useEffect(() => {
-    if (!data.data?.questionCategory) router.push('/vxn');
-  }, [data.data?.questionCategory, router]);
 
   useEffect(() => {
     if (id) {
@@ -88,10 +76,15 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
             {props.data?.data?.questionPage?.goToFaqButtonText}
           </P>
         </ButtonLink>
-        <H2 className="mb-2">{data?.data?.questionCategory?.title}</H2>
+        <H2 className="mb-2">
+          {data?.data?.questionCategory?.locale === lang
+            ? data?.data?.questionCategory?.title
+            : data?.data?.questionCategory?.localizations?.[0]?.title}
+        </H2>
         <LastUpdated
           lastUpdatedText={data?.data?.questionPage?.lastModifiesText || ''}
           date={data?.data?.questionCategory?.lastModifiedDate || new Date()}
+          lang={lang}
         />
 
         {questions.map((question, i) => (
@@ -100,6 +93,7 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
             key={question.id}
             question={question}
             isInitiallyOpen={id === question.id ? true : !id && i === 0 ? true : false}
+            useLocalization={data?.data?.questionCategory?.locale !== lang}
           />
         ))}
 
@@ -133,7 +127,7 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
               <img
                 className="tw-mt-2"
                 alt={data.data.questionPage.sponsor.image?.name}
-                src={transformUri(data.data.questionPage.sponsor.image?.url)}
+                src={`https://medsupport.dev/cms/${data.data.questionPage.sponsor.image?.url}`}
               />
             </Anchor>
           </div>
@@ -152,5 +146,5 @@ QuestionPage.getInitialProps = async (ctx) => {
     query: queryQuestionPage,
     variables: { id: categoryId, locale: lang },
   });
-  return { data, id };
+  return { data, id, lang };
 };

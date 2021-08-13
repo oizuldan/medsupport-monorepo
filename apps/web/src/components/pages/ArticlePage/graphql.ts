@@ -10,6 +10,10 @@ export const queryArticle = gql`
         url
         name
       }
+      locale
+      localizations {
+        content
+      }
     }
     artilcesPageBackButton(locale: $locale) {
       backButton {

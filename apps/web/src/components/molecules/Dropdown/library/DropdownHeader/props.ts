@@ -1,4 +1,5 @@
-export type Props = {
+import { HTMLAttributes } from 'react';
+
+export type Props = HTMLAttributes<HTMLButtonElement> & {
   readonly open: boolean;
-  readonly onHover: boolean;
 };
