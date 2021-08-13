@@ -22,7 +22,7 @@ export const RelevantTopics: FC<Props> = (props: Props) => (
       {props.title}
     </Typography>
     <div className="container">
-      <div className="tw-grid md:tw-grid-cols-2 tw-gap-4 tw-justify-items-center">
+      <div className="tw-grid md:tw-grid-cols-2 tw-gap-y-6 tw-gap-x-10 tw-justify-items-center">
         {props.questions.map((question) => (
           <RelevantTopicCard
             key={question.id}

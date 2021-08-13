@@ -2,7 +2,6 @@ import { css } from '@emotion/core';
 import {
   Anchor,
   Button,
-  ButtonLink,
   ButtonSizes,
   ButtonVariants,
   Divider,
@@ -18,7 +17,7 @@ import {
 } from 'components';
 import { colors, icons, media, typography } from 'core';
 import Cookies from 'js-cookie';
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 
 import { Props } from './props';
 import { popoverListContent } from './styles';
@@ -31,18 +30,18 @@ export const Header: FC<Props> = (props: Props) => {
     Cookies.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус',
   );
 
-  const hasToken = useMemo(() => Cookies.get('token'), []);
+  // const hasToken = useMemo(() => Cookies.get('token'), []);
 
   const onToggleMobileMenu = useCallback(() => setMobileMenuOpen((prev) => !prev), []);
-  const onLogOut = useCallback(() => {
-    Cookies.remove('token');
-    const checkInterval = setInterval(() => {
-      if (!Cookies.get('token')) {
-        clearInterval(checkInterval);
-        window.location.assign(window.location.href);
-      }
-    }, 10);
-  }, []);
+  // const onLogOut = useCallback(() => {
+  //   Cookies.remove('token');
+  //   const checkInterval = setInterval(() => {
+  //     if (!Cookies.get('token')) {
+  //       clearInterval(checkInterval);
+  //       window.location.assign(window.location.href);
+  //     }
+  //   }, 10);
+  // }, []);
 
   const onSetLanguage = useCallback(
     (lang: string) => () => {
@@ -93,26 +92,26 @@ export const Header: FC<Props> = (props: Props) => {
                 </Anchor>
               ))}
             </div>
-            {hasToken ? (
-              <Anchor
-                href="/"
-                color={colors.variants.Neutral.Black}
-                typography={typography.variants.Heading.SemiBold17}
-              >
-                Выйти
-              </Anchor>
-            ) : (
-              props.headerButtons?.[0]?.buttons?.map((button) => (
-                <Anchor
-                  key={button?.title}
-                  href="/"
-                  color={colors.variants.Neutral.Black}
-                  typography={typography.variants.Heading.SemiBold17}
-                >
-                  {button?.title}
-                </Anchor>
-              ))
-            )}
+            {/* {hasToken ? (*/}
+            {/*  <Anchor*/}
+            {/*    href="/"*/}
+            {/*    color={colors.variants.Neutral.Black}*/}
+            {/*    typography={typography.variants.Heading.SemiBold17}*/}
+            {/*  >*/}
+            {/*    Выйти*/}
+            {/*  </Anchor>*/}
+            {/* ) : (*/}
+            {/*  props.headerButtons?.[0]?.buttons?.map((button) => (*/}
+            {/*    <Anchor*/}
+            {/*      key={button?.title}*/}
+            {/*      href="/"*/}
+            {/*      color={colors.variants.Neutral.Black}*/}
+            {/*      typography={typography.variants.Heading.SemiBold17}*/}
+            {/*    >*/}
+            {/*      {button?.title}*/}
+            {/*    </Anchor>*/}
+            {/*  ))*/}
+            {/* )}*/}
           </div>
         </Drawer>
       )}
@@ -201,61 +200,61 @@ export const Header: FC<Props> = (props: Props) => {
                 </List>
               </Popover>
 
-              {hasToken ? (
-                <Button
-                  size={ButtonSizes.Small}
-                  css={css(
-                    typography.styles.elementSemiBold12,
-                    media.queryStyled([
-                      typography.styles.elementSemiBold12,
-                      typography.styles.elementSemiBold12,
-                      typography.styles.headingSemiBold17,
-                    ]),
-                  )}
-                  onClick={onLogOut}
-                  color={colors.variants.Brand.ExtraLightPurple}
-                  bordered
-                >
-                  Выйти
-                </Button>
-              ) : (
-                <>
-                  {props.headerButtons?.[0]?.buttons?.map((button) => (
-                    <ButtonLink
-                      key={button?.title}
-                      href={button?.link}
-                      size={ButtonSizes.Small}
-                      css={css(
-                        typography.styles.elementSemiBold12,
-                        media.queryStyled([
-                          typography.styles.elementSemiBold12,
-                          typography.styles.elementSemiBold12,
-                          typography.styles.headingSemiBold17,
-                        ]),
-                      )}
-                      color={colors.variants.Brand.ExtraLightPurple}
-                      bordered
-                    >
-                      {button?.title}
-                    </ButtonLink>
-                  ))}
-                  {/* <ButtonLink*/}
-                  {/*  href="/signup"*/}
-                  {/*  size={ButtonSizes.Small}*/}
-                  {/*  css={css(*/}
-                  {/*    typography.styles.elementSemiBold12,*/}
-                  {/*    media.queryStyled([*/}
-                  {/*      typography.styles.elementSemiBold12,*/}
-                  {/*      typography.styles.elementSemiBold12,*/}
-                  {/*      typography.styles.headingSemiBold17,*/}
-                  {/*    ]),*/}
-                  {/*  )}*/}
-                  {/*  bordered*/}
-                  {/* >*/}
-                  {/*  Регистрация*/}
-                  {/* </ButtonLink>*/}
-                </>
-              )}
+              {/* {hasToken ? (*/}
+              {/*  <Button*/}
+              {/*    size={ButtonSizes.Small}*/}
+              {/*    css={css(*/}
+              {/*      typography.styles.elementSemiBold12,*/}
+              {/*      media.queryStyled([*/}
+              {/*        typography.styles.elementSemiBold12,*/}
+              {/*        typography.styles.elementSemiBold12,*/}
+              {/*        typography.styles.headingSemiBold17,*/}
+              {/*      ]),*/}
+              {/*    )}*/}
+              {/*    onClick={onLogOut}*/}
+              {/*    color={colors.variants.Brand.ExtraLightPurple}*/}
+              {/*    bordered*/}
+              {/*  >*/}
+              {/*    Выйти*/}
+              {/*  </Button>*/}
+              {/* ) : (*/}
+              {/*  <>*/}
+              {/*    {props.headerButtons?.[0]?.buttons?.map((button) => (*/}
+              {/*      <ButtonLink*/}
+              {/*        key={button?.title}*/}
+              {/*        href={button?.link}*/}
+              {/*        size={ButtonSizes.Small}*/}
+              {/*        css={css(*/}
+              {/*          typography.styles.elementSemiBold12,*/}
+              {/*          media.queryStyled([*/}
+              {/*            typography.styles.elementSemiBold12,*/}
+              {/*            typography.styles.elementSemiBold12,*/}
+              {/*            typography.styles.headingSemiBold17,*/}
+              {/*          ]),*/}
+              {/*        )}*/}
+              {/*        color={colors.variants.Brand.ExtraLightPurple}*/}
+              {/*        bordered*/}
+              {/*      >*/}
+              {/*        {button?.title}*/}
+              {/*      </ButtonLink>*/}
+              {/*    ))}*/}
+              {/*    /!* <ButtonLink*!/*/}
+              {/*    /!*  href="/signup"*!/*/}
+              {/*    /!*  size={ButtonSizes.Small}*!/*/}
+              {/*    /!*  css={css(*!/*/}
+              {/*    /!*    typography.styles.elementSemiBold12,*!/*/}
+              {/*    /!*    media.queryStyled([*!/*/}
+              {/*    /!*      typography.styles.elementSemiBold12,*!/*/}
+              {/*    /!*      typography.styles.elementSemiBold12,*!/*/}
+              {/*    /!*      typography.styles.headingSemiBold17,*!/*/}
+              {/*    /!*    ]),*!/*/}
+              {/*    /!*  )}*!/*/}
+              {/*    /!*  bordered*!/*/}
+              {/*    /!* >*!/*/}
+              {/*    /!*  Регистрация*!/*/}
+              {/*    /!* </ButtonLink>*!/*/}
+              {/*  </>*/}
+              {/* )}*/}
             </>
           )}
           {isMobile && (

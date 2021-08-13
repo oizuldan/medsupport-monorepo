@@ -2822,7 +2822,7 @@ var RelevantTopicCard_component_jsx = external_react_default.a.createElement;
 
 const RelevantTopicCard = props => Object(core_["jsx"])(Anchor, {
   href: `/question/${props.categoryId}/${props.id}`,
-  className: "tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b",
+  className: "tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b tw-w-full text-center",
   css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
 }, props.title);
 // CONCATENATED MODULE: ./src/components/molecules/RelevantTopicCard/index.ts
@@ -2986,7 +2986,7 @@ var Header_component_ref3 = true ? {
 } : undefined;
 
 const Header = props => {
-  var _props$headerLinks, _props$headerLinks$, _props$headerLinks$$l, _props$headerButtons, _props$headerButtons$, _props$headerButtons$2, _props$headerLinks2, _props$headerLinks2$, _props$headerLinks2$$, _props$headerButtons2, _props$headerButtons3, _props$headerButtons4;
+  var _props$headerLinks, _props$headerLinks$, _props$headerLinks$$l, _props$headerLinks2, _props$headerLinks2$, _props$headerLinks2$$;
 
   const isMobile = core["c" /* media */].useMobileDetector().mobile();
   const {
@@ -2996,18 +2996,18 @@ const Header = props => {
   const {
     0: language,
     1: setLanguage
-  } = Object(external_react_["useState"])(external_js_cookie_default.a.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
-  const hasToken = Object(external_react_["useMemo"])(() => external_js_cookie_default.a.get('token'), []);
-  const onToggleMobileMenu = Object(external_react_["useCallback"])(() => setMobileMenuOpen(prev => !prev), []);
-  const onLogOut = Object(external_react_["useCallback"])(() => {
-    external_js_cookie_default.a.remove('token');
-    const checkInterval = setInterval(() => {
-      if (!external_js_cookie_default.a.get('token')) {
-        clearInterval(checkInterval);
-        window.location.assign(window.location.href);
-      }
-    }, 10);
-  }, []);
+  } = Object(external_react_["useState"])(external_js_cookie_default.a.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус'); // const hasToken = useMemo(() => Cookies.get('token'), []);
+
+  const onToggleMobileMenu = Object(external_react_["useCallback"])(() => setMobileMenuOpen(prev => !prev), []); // const onLogOut = useCallback(() => {
+  //   Cookies.remove('token');
+  //   const checkInterval = setInterval(() => {
+  //     if (!Cookies.get('token')) {
+  //       clearInterval(checkInterval);
+  //       window.location.assign(window.location.href);
+  //     }
+  //   }, 10);
+  // }, []);
+
   const onSetLanguage = Object(external_react_["useCallback"])(lang => () => {
     external_js_cookie_default.a.set('lang', lang);
     setLanguage(lang === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
@@ -3044,16 +3044,7 @@ const Header = props => {
     className: "mb-4",
     color: core["a" /* colors */].variants.Neutral.Black,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, link === null || link === void 0 ? void 0 : link.title))), hasToken ? Object(core_["jsx"])(Anchor, {
-    href: "/",
-    color: core["a" /* colors */].variants.Neutral.Black,
-    typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, "\u0412\u044B\u0439\u0442\u0438") : (_props$headerButtons = props.headerButtons) === null || _props$headerButtons === void 0 ? void 0 : (_props$headerButtons$ = _props$headerButtons[0]) === null || _props$headerButtons$ === void 0 ? void 0 : (_props$headerButtons$2 = _props$headerButtons$.buttons) === null || _props$headerButtons$2 === void 0 ? void 0 : _props$headerButtons$2.map(button => Object(core_["jsx"])(Anchor, {
-    key: button === null || button === void 0 ? void 0 : button.title,
-    href: "/",
-    color: core["a" /* colors */].variants.Neutral.Black,
-    typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, button === null || button === void 0 ? void 0 : button.title)))), Object(core_["jsx"])("div", {
+  }, link === null || link === void 0 ? void 0 : link.title))))), Object(core_["jsx"])("div", {
     className: "container tw-grid tw-grid-cols-3 tw-justify-items-stretch py-3 tw-mx-auto"
   }, isMobile && Object(core_["jsx"])("button", {
     className: "tw-border-0",
@@ -3108,20 +3099,7 @@ const Header = props => {
     onClick: onSetLanguage('kk-Cyrl-KZ')
   }, Object(core_["jsx"])(P, {
     typography: core["e" /* typography */].variants.Content.Regular16
-  }, "\u049A\u0430\u0437"))))), hasToken ? Object(core_["jsx"])(Button, {
-    size: Sizes.Small,
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
-    onClick: onLogOut,
-    color: core["a" /* colors */].variants.Brand.ExtraLightPurple,
-    bordered: true
-  }, "\u0412\u044B\u0439\u0442\u0438") : Object(core_["jsx"])(external_react_default.a.Fragment, null, (_props$headerButtons2 = props.headerButtons) === null || _props$headerButtons2 === void 0 ? void 0 : (_props$headerButtons3 = _props$headerButtons2[0]) === null || _props$headerButtons3 === void 0 ? void 0 : (_props$headerButtons4 = _props$headerButtons3.buttons) === null || _props$headerButtons4 === void 0 ? void 0 : _props$headerButtons4.map(button => Object(core_["jsx"])(ButtonLink, {
-    key: button === null || button === void 0 ? void 0 : button.title,
-    href: button === null || button === void 0 ? void 0 : button.link,
-    size: Sizes.Small,
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
-    color: core["a" /* colors */].variants.Brand.ExtraLightPurple,
-    bordered: true
-  }, button === null || button === void 0 ? void 0 : button.title)))), isMobile && Object(core_["jsx"])("div", {
+  }, "\u049A\u0430\u0437")))))), isMobile && Object(core_["jsx"])("div", {
     className: "d-flex"
   }, Object(core_["jsx"])(Popover, {
     target: Object(core_["jsx"])(Button, {
@@ -3871,11 +3849,14 @@ const queryFaqPage = client_["gql"]`
         url
         name
       }
-      partner {
-        url
-        name
+      sponsor {
+        title
+        link
+        image {
+          url
+          name
+        }
       }
-      partnerText
     }
     questionCategories(locale: $locale) {
       title
@@ -3942,7 +3923,7 @@ const RelevantTopics = props => Object(core_["jsx"])("div", {
 }, props.title), Object(core_["jsx"])("div", {
   className: "container"
 }, Object(core_["jsx"])("div", {
-  className: "tw-grid md:tw-grid-cols-2 tw-gap-4 tw-justify-items-center"
+  className: "tw-grid md:tw-grid-cols-2 tw-gap-y-6 tw-gap-x-10 tw-justify-items-center"
 }, props.questions.map(question => {
   var _question$question_ca;
 
@@ -3972,6 +3953,11 @@ var _ref = true ? {
   styles: "max-height:400px;object-fit:cover;"
 } : undefined;
 
+var _ref2 = true ? {
+  name: "yj0xn3",
+  styles: "max-width:770px;"
+} : undefined;
+
 const VaccineBanner = props => Object(core_["jsx"])("div", {
   className: "tw-flex md:tw-flex-row tw-flex-col-reverse"
 }, Object(core_["jsx"])("div", {
@@ -3980,6 +3966,8 @@ const VaccineBanner = props => Object(core_["jsx"])("div", {
     maxHeight: 400
   }, true ? "" : undefined),
   className: "tw-p-10 xl:tw-p-14 tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-purple-500 tw-w-full md:tw-w-6/12 tw-w-full"
+}, Object(core_["jsx"])("div", {
+  css: _ref2
 }, Object(core_["jsx"])(components["R" /* Typography */], {
   as: "h2",
   className: "mb-4",
@@ -3989,7 +3977,7 @@ const VaccineBanner = props => Object(core_["jsx"])("div", {
   as: "p",
   css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.contentRegular16, core["c" /* media */].queryStyled([core["e" /* typography */].styles.contentRegular16, core["e" /* typography */].styles.contentRegular16, core["e" /* typography */].styles.contentRegular20]), true ? "" : undefined),
   color: core["a" /* colors */].variants.Text.Secondary
-}, props.subtitle)), Object(core_["jsx"])("img", {
+}, props.subtitle))), Object(core_["jsx"])("img", {
   src: props.imageURL,
   alt: props.alt,
   className: "md:tw-w-6/12 tw-w-full",
@@ -4011,7 +3999,7 @@ var VaccinePage_component_jsx = external_react_default.a.createElement;
 
 
 const VaccinePage = props => {
-  var _data$data2, _data$data2$faq, _data$data2$faq$actua, _data$data4, _data$data5, _data$data6, _data$data7, _data$data8, _data$data8$faq, _data$data9, _data$data9$faq, _data$data10, _data$data10$faq, _data$data10$faq$bann, _data$data11, _data$data11$faq, _data$data11$faq$bann, _data$data12, _data$data12$faq, _data$data13, _data$data13$faq, _data$data14, _data$data14$faq, _data$data15, _data$data15$faq, _data$data16, _data$data16$faq, _data$data17, _data$data17$faq, _data$data18, _data$data18$faq;
+  var _data$data2, _data$data2$faq, _data$data2$faq$actua, _data$data4, _data$data5, _data$data6, _data$data7, _data$data8, _data$data8$faq, _data$data9, _data$data9$faq, _data$data10, _data$data10$faq, _data$data10$faq$bann, _data$data11, _data$data11$faq, _data$data11$faq$bann, _data$data12, _data$data12$faq, _data$data13, _data$data13$faq, _data$data14, _data$data14$faq, _data$data15, _data$data15$faq, _data$data$faq$sponso, _data$data$faq$sponso2;
 
   const {
     data
@@ -4057,16 +4045,18 @@ const VaccinePage = props => {
   }, (_data$data14 = data.data) === null || _data$data14 === void 0 ? void 0 : (_data$data14$faq = _data$data14.faq) === null || _data$data14$faq === void 0 ? void 0 : _data$data14$faq.showAllQuestions), Object(core_["jsx"])(components["w" /* Icon */], {
     icon: core["b" /* icons */].arrows.keyboardArrowRight,
     color: core["a" /* colors */].variants.Neutral.White
-  })), Object(core_["jsx"])("div", {
+  })), ((_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$faq = _data$data15.faq) === null || _data$data15$faq === void 0 ? void 0 : _data$data15$faq.sponsor) && Object(core_["jsx"])("div", {
     className: "tw-self-center tw-flex tw-flex-col tw-items-center tw-mt-4 tw-text-white"
   }, Object(core_["jsx"])(components["J" /* P */], {
     color: core["a" /* colors */].variants.Neutral.White,
     typography: core["e" /* typography */].variants.Element.SemiBold16
-  }, (_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$faq = _data$data15.faq) === null || _data$data15$faq === void 0 ? void 0 : _data$data15$faq.partnerText), ((_data$data16 = data.data) === null || _data$data16 === void 0 ? void 0 : (_data$data16$faq = _data$data16.faq) === null || _data$data16$faq === void 0 ? void 0 : _data$data16$faq.partner) && Object(core_["jsx"])("img", {
+  }, data.data.faq.sponsor.title), Object(core_["jsx"])(components["a" /* Anchor */], {
+    href: data.data.faq.sponsor.link
+  }, Object(core_["jsx"])("img", {
     className: "tw-mt-2",
-    alt: (_data$data17 = data.data) === null || _data$data17 === void 0 ? void 0 : (_data$data17$faq = _data$data17.faq) === null || _data$data17$faq === void 0 ? void 0 : _data$data17$faq.partner.name,
-    src: transformUri((_data$data18 = data.data) === null || _data$data18 === void 0 ? void 0 : (_data$data18$faq = _data$data18.faq) === null || _data$data18$faq === void 0 ? void 0 : _data$data18$faq.partner.url)
-  })))));
+    alt: (_data$data$faq$sponso = data.data.faq.sponsor.image) === null || _data$data$faq$sponso === void 0 ? void 0 : _data$data$faq$sponso.name,
+    src: transformUri((_data$data$faq$sponso2 = data.data.faq.sponsor.image) === null || _data$data$faq$sponso2 === void 0 ? void 0 : _data$data$faq$sponso2.url)
+  }))))));
 };
 
 VaccinePage.getInitialProps = async ctx => {

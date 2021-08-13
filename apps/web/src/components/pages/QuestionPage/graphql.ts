@@ -16,6 +16,14 @@ export const queryQuestionPage = gql`
       lastModifiesText
       goToFaqButtonText
       goToAllQuestionsText
+      sponsor {
+        title
+        link
+        image {
+          url
+          name
+        }
+      }
     }
     headerButtons(locale: $locale) {
       buttons {

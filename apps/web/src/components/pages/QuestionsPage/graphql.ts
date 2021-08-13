@@ -5,6 +5,14 @@ export const queryQuestionsPage = gql`
     allQuestionsPage(locale: $locale) {
       goBackButtonText
       allQuestionText
+      sponsor {
+        title
+        link
+        image {
+          url
+          name
+        }
+      }
     }
     questions(locale: $locale) {
       title

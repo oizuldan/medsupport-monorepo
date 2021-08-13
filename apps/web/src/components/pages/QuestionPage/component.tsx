@@ -18,7 +18,7 @@ import { pipe } from 'fp-ts/pipeable';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import { useRouter } from 'next/router';
-import React, { useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import {
   QuestionPageData,
@@ -43,6 +43,12 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
         O.getOrElse(() => [] as ReadonlyArray<QuestionPageData_questionCategory_questions>),
       ),
     [data?.data?.questionCategory?.questions],
+  );
+
+  const transformUri = useCallback(
+    (uri: string | undefined) =>
+      uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : '',
+    [],
   );
 
   useEffect(() => {
@@ -118,6 +124,20 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
           </Anchor>
           <Icon icon={icons.arrows.keyboardArrowRight} color={colors.variants.Neutral.Black} />
         </ButtonLink>
+        {data.data?.questionPage?.sponsor && (
+          <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white">
+            <P typography={typography.variants.Element.SemiBold16}>
+              {data.data.questionPage.sponsor.title}
+            </P>
+            <Anchor href={data.data.questionPage.sponsor.link}>
+              <img
+                className="tw-mt-2"
+                alt={data.data.questionPage.sponsor.image?.name}
+                src={transformUri(data.data.questionPage.sponsor.image?.url)}
+              />
+            </Anchor>
+          </div>
+        )}
       </div>
     </Layout>
   );
