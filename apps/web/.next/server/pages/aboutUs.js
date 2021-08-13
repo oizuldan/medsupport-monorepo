@@ -2822,7 +2822,7 @@ var RelevantTopicCard_component_jsx = external_react_default.a.createElement;
 
 const RelevantTopicCard = props => Object(core_["jsx"])(Anchor, {
   href: `/question/${props.categoryId}/${props.id}`,
-  className: "tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b",
+  className: "tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b tw-w-full text-center",
   css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold22]), true ? "" : undefined)
 }, props.title);
 // CONCATENATED MODULE: ./src/components/molecules/RelevantTopicCard/index.ts
@@ -2986,7 +2986,7 @@ var Header_component_ref3 = true ? {
 } : undefined;
 
 const Header = props => {
-  var _props$headerLinks, _props$headerLinks$, _props$headerLinks$$l, _props$headerButtons, _props$headerButtons$, _props$headerButtons$2, _props$headerLinks2, _props$headerLinks2$, _props$headerLinks2$$, _props$headerButtons2, _props$headerButtons3, _props$headerButtons4;
+  var _props$headerLinks, _props$headerLinks$, _props$headerLinks$$l, _props$headerLinks2, _props$headerLinks2$, _props$headerLinks2$$;
 
   const isMobile = core["c" /* media */].useMobileDetector().mobile();
   const {
@@ -2996,18 +2996,18 @@ const Header = props => {
   const {
     0: language,
     1: setLanguage
-  } = Object(external_react_["useState"])(external_js_cookie_default.a.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
-  const hasToken = Object(external_react_["useMemo"])(() => external_js_cookie_default.a.get('token'), []);
-  const onToggleMobileMenu = Object(external_react_["useCallback"])(() => setMobileMenuOpen(prev => !prev), []);
-  const onLogOut = Object(external_react_["useCallback"])(() => {
-    external_js_cookie_default.a.remove('token');
-    const checkInterval = setInterval(() => {
-      if (!external_js_cookie_default.a.get('token')) {
-        clearInterval(checkInterval);
-        window.location.assign(window.location.href);
-      }
-    }, 10);
-  }, []);
+  } = Object(external_react_["useState"])(external_js_cookie_default.a.get('lang') === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус'); // const hasToken = useMemo(() => Cookies.get('token'), []);
+
+  const onToggleMobileMenu = Object(external_react_["useCallback"])(() => setMobileMenuOpen(prev => !prev), []); // const onLogOut = useCallback(() => {
+  //   Cookies.remove('token');
+  //   const checkInterval = setInterval(() => {
+  //     if (!Cookies.get('token')) {
+  //       clearInterval(checkInterval);
+  //       window.location.assign(window.location.href);
+  //     }
+  //   }, 10);
+  // }, []);
+
   const onSetLanguage = Object(external_react_["useCallback"])(lang => () => {
     external_js_cookie_default.a.set('lang', lang);
     setLanguage(lang === 'kk-Cyrl-KZ' ? 'Қаз' : 'Рус');
@@ -3044,16 +3044,7 @@ const Header = props => {
     className: "mb-4",
     color: core["a" /* colors */].variants.Neutral.Black,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, link === null || link === void 0 ? void 0 : link.title))), hasToken ? Object(core_["jsx"])(Anchor, {
-    href: "/",
-    color: core["a" /* colors */].variants.Neutral.Black,
-    typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, "\u0412\u044B\u0439\u0442\u0438") : (_props$headerButtons = props.headerButtons) === null || _props$headerButtons === void 0 ? void 0 : (_props$headerButtons$ = _props$headerButtons[0]) === null || _props$headerButtons$ === void 0 ? void 0 : (_props$headerButtons$2 = _props$headerButtons$.buttons) === null || _props$headerButtons$2 === void 0 ? void 0 : _props$headerButtons$2.map(button => Object(core_["jsx"])(Anchor, {
-    key: button === null || button === void 0 ? void 0 : button.title,
-    href: "/",
-    color: core["a" /* colors */].variants.Neutral.Black,
-    typography: core["e" /* typography */].variants.Heading.SemiBold17
-  }, button === null || button === void 0 ? void 0 : button.title)))), Object(core_["jsx"])("div", {
+  }, link === null || link === void 0 ? void 0 : link.title))))), Object(core_["jsx"])("div", {
     className: "container tw-grid tw-grid-cols-3 tw-justify-items-stretch py-3 tw-mx-auto"
   }, isMobile && Object(core_["jsx"])("button", {
     className: "tw-border-0",
@@ -3108,20 +3099,7 @@ const Header = props => {
     onClick: onSetLanguage('kk-Cyrl-KZ')
   }, Object(core_["jsx"])(P, {
     typography: core["e" /* typography */].variants.Content.Regular16
-  }, "\u049A\u0430\u0437"))))), hasToken ? Object(core_["jsx"])(Button, {
-    size: Sizes.Small,
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
-    onClick: onLogOut,
-    color: core["a" /* colors */].variants.Brand.ExtraLightPurple,
-    bordered: true
-  }, "\u0412\u044B\u0439\u0442\u0438") : Object(core_["jsx"])(external_react_default.a.Fragment, null, (_props$headerButtons2 = props.headerButtons) === null || _props$headerButtons2 === void 0 ? void 0 : (_props$headerButtons3 = _props$headerButtons2[0]) === null || _props$headerButtons3 === void 0 ? void 0 : (_props$headerButtons4 = _props$headerButtons3.buttons) === null || _props$headerButtons4 === void 0 ? void 0 : _props$headerButtons4.map(button => Object(core_["jsx"])(ButtonLink, {
-    key: button === null || button === void 0 ? void 0 : button.title,
-    href: button === null || button === void 0 ? void 0 : button.link,
-    size: Sizes.Small,
-    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.elementSemiBold12, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
-    color: core["a" /* colors */].variants.Brand.ExtraLightPurple,
-    bordered: true
-  }, button === null || button === void 0 ? void 0 : button.title)))), isMobile && Object(core_["jsx"])("div", {
+  }, "\u049A\u0430\u0437")))))), isMobile && Object(core_["jsx"])("div", {
     className: "d-flex"
   }, Object(core_["jsx"])(Popover, {
     target: Object(core_["jsx"])(Button, {

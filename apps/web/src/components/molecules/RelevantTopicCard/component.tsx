@@ -8,7 +8,7 @@ import { CardProps } from './props';
 export const RelevantTopicCard: FC<CardProps> = (props: CardProps) => (
   <Anchor
     href={`/question/${props.categoryId}/${props.id}`}
-    className="tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b"
+    className="tw-col-6 hover:tw-bg-purple-500 hover:tw-text-white tw-px-8 tw-py-4 tw-border-b tw-w-full text-center"
     css={css(
       typography.styles.headingSemiBold17,
       media.queryStyled([

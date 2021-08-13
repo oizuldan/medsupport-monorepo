@@ -21,11 +21,14 @@ export const queryFaqPage = gql`
         url
         name
       }
-      partner {
-        url
-        name
+      sponsor {
+        title
+        link
+        image {
+          url
+          name
+        }
       }
-      partnerText
     }
     questionCategories(locale: $locale) {
       title

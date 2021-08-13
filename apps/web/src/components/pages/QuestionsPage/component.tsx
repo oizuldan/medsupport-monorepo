@@ -16,7 +16,7 @@ import * as O from 'fp-ts/Option';
 import { pipe } from 'fp-ts/pipeable';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import {
   QuestionsPageData,
@@ -58,6 +58,12 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
     questions: questionsData.filter((question) => question.question_category?.id === category.id),
   }));
 
+  const transformUri = useCallback(
+    (uri: string | undefined) =>
+      uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : '',
+    [],
+  );
+
   return (
     <Layout
       headerButtons={data.data?.headerButtons}
@@ -78,7 +84,7 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
             {data.data?.allQuestionsPage?.goBackButtonText}
           </P>
         </ButtonLink>
-        <div className="tw-flex tw-flex-col md:tw-flex-row tw-mb-8">
+        <div className="tw-flex tw-flex-col md:tw-flex-row tw-mb-4">
           <H2 className="tw-w-full mb-3"> {data.data?.allQuestionsPage?.allQuestionText}</H2>
           <div className="tw-flex-col tw-w-full">
             {categorisedQuestions.map(({ category, questions }) => (
@@ -106,6 +112,20 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
             ))}
           </div>
         </div>
+        {data.data?.allQuestionsPage?.sponsor && (
+          <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white">
+            <P typography={typography.variants.Element.SemiBold16}>
+              {data.data.allQuestionsPage.sponsor.title}
+            </P>
+            <Anchor href={data.data.allQuestionsPage.sponsor.link}>
+              <img
+                className="tw-mt-2"
+                alt={data.data.allQuestionsPage.sponsor.image?.name}
+                src={transformUri(data.data.allQuestionsPage.sponsor.image?.url)}
+              />
+            </Anchor>
+          </div>
+        )}
       </div>
     </Layout>
   );

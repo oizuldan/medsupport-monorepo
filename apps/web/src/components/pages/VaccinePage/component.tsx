@@ -1,4 +1,4 @@
-import { ButtonLink, ButtonSizes, ButtonVariants, Icon, Layout, P } from 'components';
+import { Anchor, ButtonLink, ButtonSizes, ButtonVariants, Icon, Layout, P } from 'components';
 import { colors, icons, typography } from 'core';
 import { sequence } from 'fp-ts/Array';
 import * as O from 'fp-ts/Option';
@@ -84,21 +84,23 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
             </P>
             <Icon icon={icons.arrows.keyboardArrowRight} color={colors.variants.Neutral.White} />
           </ButtonLink>
-          <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-mt-4 tw-text-white">
-            <P
-              color={colors.variants.Neutral.White}
-              typography={typography.variants.Element.SemiBold16}
-            >
-              {data.data?.faq?.partnerText}
-            </P>
-            {data.data?.faq?.partner && (
-              <img
-                className="tw-mt-2"
-                alt={data.data?.faq?.partner.name}
-                src={transformUri(data.data?.faq?.partner.url)}
-              />
-            )}
-          </div>
+          {data.data?.faq?.sponsor && (
+            <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-mt-4 tw-text-white">
+              <P
+                color={colors.variants.Neutral.White}
+                typography={typography.variants.Element.SemiBold16}
+              >
+                {data.data.faq.sponsor.title}
+              </P>
+              <Anchor href={data.data.faq.sponsor.link}>
+                <img
+                  className="tw-mt-2"
+                  alt={data.data.faq.sponsor.image?.name}
+                  src={transformUri(data.data.faq.sponsor.image?.url)}
+                />
+              </Anchor>
+            </div>
+          )}
         </div>
       </div>
     </Layout>
