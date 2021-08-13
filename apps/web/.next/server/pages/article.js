@@ -2838,9 +2838,9 @@ const RelevantTopicCard = props => Object(core_["jsx"])(Anchor, {
 
 
 
-const DropdownHeader = styled_base_default()("div", {
+const DropdownHeader = styled_base_default()("button", {
   target: "e1qyuhll0"
-})("&:first-child{border-top:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";}", props => /*#__PURE__*/Object(core_["css"])("background-color:", props.onHover || props.open ? core["a" /* colors */].variants.Brand.MoreExtraLightPurple : core["a" /* colors */].variants.Neutral.White, ";border-bottom:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";" + (true ? "" : undefined)), true ? "" : undefined);
+})("width:100%;text-align:left;&:first-child{border-top:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";}", props => /*#__PURE__*/Object(core_["css"])("background-color:", props.open ? core["a" /* colors */].variants.Brand.MoreExtraLightPurple : core["a" /* colors */].variants.Neutral.White, ";border-bottom:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";" + (true ? "" : undefined)), true ? "" : undefined);
 // CONCATENATED MODULE: ./src/components/molecules/Dropdown/library/DropdownHeader/index.ts
 
 // CONCATENATED MODULE: ./src/components/molecules/Dropdown/component.tsx
@@ -2867,33 +2867,25 @@ var Dropdown_component_ref = true ? {
 } : undefined;
 
 const Dropdown = (_ref2) => {
+  var _question$localizatio, _question$localizatio2, _question$localizatio3, _question$localizatio4;
+
   let {
     isInitiallyOpen,
+    useLocalization,
     question
   } = _ref2,
-      rest = Dropdown_component_objectWithoutProperties(_ref2, ["isInitiallyOpen", "question"]);
+      rest = Dropdown_component_objectWithoutProperties(_ref2, ["isInitiallyOpen", "useLocalization", "question"]);
 
   const {
     0: open,
     1: setOpen
   } = Object(external_react_["useState"])(isInitiallyOpen);
-  const {
-    0: onHover,
-    1: setOnHover
-  } = Object(external_react_["useState"])(false);
-
-  const onHoverIn = () => setOnHover(true);
-
-  const onHoverOut = () => setOnHover(false);
 
   const onOpenToggle = () => setOpen(prev => !prev);
 
   return Object(core_["jsx"])(DropdownHeader, Dropdown_component_extends({
     className: "d-flex flex-column justify-content-between align-items-center p-md-4 p-3",
-    onMouseOver: onHoverIn,
-    onMouseLeave: onHoverOut,
     open: open,
-    onHover: onHover,
     onClick: onOpenToggle,
     css: Dropdown_component_ref
   }, rest), Object(core_["jsx"])("div", {
@@ -2901,24 +2893,20 @@ const Dropdown = (_ref2) => {
   }, Object(core_["jsx"])(Typography, {
     as: "h2",
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingBold22]), true ? "" : undefined)
-  }, question.title), open ? Object(core_["jsx"])(Icon, {
+  }, useLocalization ? question === null || question === void 0 ? void 0 : (_question$localizatio = question.localizations) === null || _question$localizatio === void 0 ? void 0 : (_question$localizatio2 = _question$localizatio[0]) === null || _question$localizatio2 === void 0 ? void 0 : _question$localizatio2.title : question.title), Object(core_["jsx"])("div", null, open ? Object(core_["jsx"])(Icon, {
     icon: core["b" /* icons */].arrows.keyboardArrowUp,
     size: Sizes_Sizes.Medium
   }) : Object(core_["jsx"])(Icon, {
     icon: core["b" /* icons */].arrows.keyboardArrowDown,
     size: Sizes_Sizes.Medium
-  })), open && Object(core_["jsx"])(Markdown, {
+  }))), open && Object(core_["jsx"])(Markdown, {
     className: "pt-4"
-  }, question.content));
+  }, useLocalization ? question === null || question === void 0 ? void 0 : (_question$localizatio3 = question.localizations) === null || _question$localizatio3 === void 0 ? void 0 : (_question$localizatio4 = _question$localizatio3[0]) === null || _question$localizatio4 === void 0 ? void 0 : _question$localizatio4.content : question.content));
 };
 // CONCATENATED MODULE: ./src/components/molecules/Dropdown/index.ts
 
 // EXTERNAL MODULE: external "@heroicons/react/outline"
 var outline_ = __webpack_require__("M1sZ");
-
-// EXTERNAL MODULE: external "js-cookie"
-var external_js_cookie_ = __webpack_require__("vmXh");
-var external_js_cookie_default = /*#__PURE__*/__webpack_require__.n(external_js_cookie_);
 
 // CONCATENATED MODULE: ./src/components/molecules/LastUpdated/component.tsx
 var LastUpdated_component_jsx = external_react_default.a.createElement;
@@ -2927,21 +2915,17 @@ var LastUpdated_component_jsx = external_react_default.a.createElement;
 
 
 
-
-const LastUpdated = props => {
-  const lang = external_js_cookie_["get"]('lang');
-  return Object(core_["jsx"])("div", {
-    className: "d-flex justify-content-start align-items-center mb-3"
-  }, Object(core_["jsx"])(outline_["ClockIcon"], {
-    className: "tw-h-5 tw-w-5 tw-mr-2"
-  }), Object(core_["jsx"])(P, {
-    className: "pr-2",
-    typography: core["e" /* typography */].variants.Element.SemiBold12
-  }, props.lastUpdatedText), Object(core_["jsx"])(P, {
-    className: "pr-2",
-    typography: core["e" /* typography */].variants.Element.Regular12
-  }, core["d" /* services */].parseDate(props.date.toString(), lang === 'ru-RU' ? 'ru' : 'kk')));
-};
+const LastUpdated = props => Object(core_["jsx"])("div", {
+  className: "d-flex justify-content-start align-items-center mb-3"
+}, Object(core_["jsx"])(outline_["ClockIcon"], {
+  className: "tw-h-5 tw-w-5 tw-mr-2"
+}), Object(core_["jsx"])(P, {
+  className: "pr-2",
+  typography: core["e" /* typography */].variants.Element.SemiBold12
+}, props.lastUpdatedText), Object(core_["jsx"])(P, {
+  className: "pr-2",
+  typography: core["e" /* typography */].variants.Element.Regular12
+}, core["d" /* services */].parseDate(props.date.toString(), props.lang === 'ru-RU' ? 'ru' : 'kk')));
 // CONCATENATED MODULE: ./src/components/molecules/LastUpdated/index.ts
 
 // CONCATENATED MODULE: ./src/components/molecules/index.ts
@@ -2959,6 +2943,10 @@ const LastUpdated = props => {
 
 
 
+
+// EXTERNAL MODULE: external "js-cookie"
+var external_js_cookie_ = __webpack_require__("vmXh");
+var external_js_cookie_default = /*#__PURE__*/__webpack_require__.n(external_js_cookie_);
 
 // CONCATENATED MODULE: ./src/components/organisms/Header/styles.ts
 
@@ -4094,6 +4082,10 @@ const queryArticle = client_["gql"]`
         url
         name
       }
+      locale
+      localizations {
+        content
+      }
     }
     artilcesPageBackButton(locale: $locale) {
       backButton {
@@ -4140,17 +4132,20 @@ var __jsx = external_react_default.a.createElement;
 
 
 const ArticlePage = props => {
-  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2, _props$data5, _props$data5$data, _props$data5$data$art, _props$data5$data$art2, _data$data3, _data$data4, _data$data4$article;
+  var _data$data, _data$data$article, _data$data2, _data$data2$article, _data$data3, _data$data3$article, _data$data3$article$l, _data$data3$article$l2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2, _data$data4, _data$data4$artilcesP, _data$data4$artilcesP2;
 
   const {
-    data
+    data,
+    lang
   } = props;
   const router = Object(router_["useRouter"])();
+  const content = (data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : (_data$data$article = _data$data.article) === null || _data$data$article === void 0 ? void 0 : _data$data$article.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : (_data$data2$article = _data$data2.article) === null || _data$data2$article === void 0 ? void 0 : _data$data2$article.content : data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : (_data$data3$article = _data$data3.article) === null || _data$data3$article === void 0 ? void 0 : (_data$data3$article$l = _data$data3$article.localizations) === null || _data$data3$article$l === void 0 ? void 0 : (_data$data3$article$l2 = _data$data3$article$l[0]) === null || _data$data3$article$l2 === void 0 ? void 0 : _data$data3$article$l2.content;
   Object(external_react_["useEffect"])(() => {
-    var _data$data;
-
-    if (!((_data$data = data.data) !== null && _data$data !== void 0 && _data$data.article)) router.push('/articles');
-  }, [(_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.article, router]);
+    if ((!content || content.length === 0) && window) {
+      const newURL = window.location.href.replace(/article\/.+/, 'articles');
+      window.location.assign(newURL);
+    }
+  }, [content, lang, router]);
   return Object(core_["jsx"])(components["C" /* Layout */], {
     headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
     footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
@@ -4169,7 +4164,7 @@ const ArticlePage = props => {
   }), Object(core_["jsx"])(components["J" /* P */], {
     color: core["a" /* colors */].variants.Neutral.Grey,
     typography: core["e" /* typography */].variants.Element.Regular12
-  }, (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$art = _props$data5$data.artilcesPageBackButton) === null || _props$data5$data$art === void 0 ? void 0 : (_props$data5$data$art2 = _props$data5$data$art.backButton) === null || _props$data5$data$art2 === void 0 ? void 0 : _props$data5$data$art2.title)), (data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : _data$data3.article) && Object(core_["jsx"])(components["G" /* Markdown */], null, data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$article = _data$data4.article) === null || _data$data4$article === void 0 ? void 0 : _data$data4$article.content)));
+  }, data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$artilcesP = _data$data4.artilcesPageBackButton) === null || _data$data4$artilcesP === void 0 ? void 0 : (_data$data4$artilcesP2 = _data$data4$artilcesP.backButton) === null || _data$data4$artilcesP2 === void 0 ? void 0 : _data$data4$artilcesP2.title)), content && Object(core_["jsx"])(components["G" /* Markdown */], null, content)));
 };
 
 ArticlePage.getInitialProps = async ctx => {
@@ -4185,7 +4180,8 @@ ArticlePage.getInitialProps = async ctx => {
     }
   });
   return {
-    data
+    data,
+    lang
   };
 };
 // CONCATENATED MODULE: ./src/components/pages/ArticlePage/index.ts

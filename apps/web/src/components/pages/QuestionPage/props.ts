@@ -4,6 +4,7 @@ import { QuestionPageData } from './__generated__/QuestionPageData';
 
 export type InitProps = {
   readonly data: ApolloQueryResult<QuestionPageData>;
+  readonly lang: string;
   readonly id?: string;
 };
 export type Props = InitProps;

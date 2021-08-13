@@ -12,12 +12,19 @@ import { InitProps, Props } from './props';
 export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props> = (
   props: Props,
 ) => {
-  const { data } = props;
+  const { data, lang } = props;
   const router = useRouter();
+  const content =
+    data?.data?.article?.locale === lang
+      ? data?.data?.article?.content
+      : (data?.data?.article?.localizations?.[0]?.content as string);
 
   useEffect(() => {
-    if (!data.data?.article) router.push('/articles');
-  }, [data.data?.article, router]);
+    if ((!content || content.length === 0) && window) {
+      const newURL = window.location.href.replace(/article\/.+/, 'articles');
+      window.location.assign(newURL);
+    }
+  }, [content, lang, router]);
 
   return (
     <Layout
@@ -41,10 +48,10 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
             color={colors.variants.Neutral.Grey}
             typography={typography.variants.Element.Regular12}
           >
-            {props.data?.data?.artilcesPageBackButton?.backButton?.title}
+            {data?.data?.artilcesPageBackButton?.backButton?.title}
           </P>
         </ButtonLink>
-        {data?.data?.article && <Markdown>{data?.data?.article?.content}</Markdown>}
+        {content && <Markdown>{content}</Markdown>}
       </div>
     </Layout>
   );
@@ -58,5 +65,5 @@ ArticlePage.getInitialProps = async (ctx) => {
     query: queryArticle,
     variables: { id, locale: lang },
   });
-  return { data };
+  return { data, lang };
 };

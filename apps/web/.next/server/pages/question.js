@@ -190,9 +190,6 @@ var Option_ = __webpack_require__("0U3A");
 // EXTERNAL MODULE: external "fp-ts/pipeable"
 var pipeable_ = __webpack_require__("iasY");
 
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__("4Q3z");
-
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
@@ -208,11 +205,20 @@ const queryQuestionPage = client_["gql"]`
       title
       id
       lastModifiedDate
+      localizations {
+        title
+      }
       questions {
         id
         title
         content
+        localizations {
+          id
+          title
+          content
+        }
       }
+      locale
     }
     questionPage(locale: $locale) {
       lastModifiesText
@@ -265,26 +271,19 @@ var __jsx = external_react_default.a.createElement;
 
 
 
-
 const QuestionPage = props => {
-  var _data$data2, _data$data2$questionC, _data$data4, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$que, _data$data5, _data$data5$questionC, _data$data6, _data$data6$questionP, _data$data7, _data$data7$questionC, _data$data8, _data$data8$questionP, _data$data9, _data$data9$questionP, _data$data$questionPa, _data$data$questionPa2;
+  var _data$data2, _data$data2$questionC, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$que, _data$data3, _data$data3$questionC, _data$data4, _data$data4$questionC, _data$data5, _data$data5$questionC, _data$data5$questionC2, _data$data5$questionC3, _data$data6, _data$data6$questionP, _data$data7, _data$data7$questionC, _data$data9, _data$data9$questionP, _data$data10, _data$data10$question, _data$data$questionPa, _data$data$questionPa2;
 
   const {
     data,
-    id
+    id,
+    lang
   } = props;
-  const router = Object(router_["useRouter"])();
   const questions = Object(external_react_["useMemo"])(() => {
     var _data$data, _data$data$questionCa;
 
     return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : (_data$data$questionCa = _data$data.questionCategory) === null || _data$data$questionCa === void 0 ? void 0 : _data$data$questionCa.questions), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](qs => Object(Array_["sequence"])(Option_["option"])(qs.map(q => Object(pipeable_["pipe"])(Option_["fromNullable"](q))))), Option_["getOrElse"](() => []));
   }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : (_data$data2$questionC = _data$data2.questionCategory) === null || _data$data2$questionC === void 0 ? void 0 : _data$data2$questionC.questions]);
-  const transformUri = Object(external_react_["useCallback"])(uri => uri ? uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}` : '', []);
-  Object(external_react_["useEffect"])(() => {
-    var _data$data3;
-
-    if (!((_data$data3 = data.data) !== null && _data$data3 !== void 0 && _data$data3.questionCategory)) router.push('/vxn');
-  }, [(_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : _data$data4.questionCategory, router]);
   Object(external_react_["useEffect"])(() => {
     if (id) {
       const element = document.getElementById(id);
@@ -315,15 +314,21 @@ const QuestionPage = props => {
     typography: core["e" /* typography */].variants.Element.Regular12
   }, (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$que = _props$data4$data.questionPage) === null || _props$data4$data$que === void 0 ? void 0 : _props$data4$data$que.goToFaqButtonText)), Object(core_["jsx"])(components["r" /* H2 */], {
     className: "mb-2"
-  }, data === null || data === void 0 ? void 0 : (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$questionC = _data$data5.questionCategory) === null || _data$data5$questionC === void 0 ? void 0 : _data$data5$questionC.title), Object(core_["jsx"])(components["B" /* LastUpdated */], {
+  }, (data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : (_data$data3$questionC = _data$data3.questionCategory) === null || _data$data3$questionC === void 0 ? void 0 : _data$data3$questionC.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$questionC = _data$data4.questionCategory) === null || _data$data4$questionC === void 0 ? void 0 : _data$data4$questionC.title : data === null || data === void 0 ? void 0 : (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$questionC = _data$data5.questionCategory) === null || _data$data5$questionC === void 0 ? void 0 : (_data$data5$questionC2 = _data$data5$questionC.localizations) === null || _data$data5$questionC2 === void 0 ? void 0 : (_data$data5$questionC3 = _data$data5$questionC2[0]) === null || _data$data5$questionC3 === void 0 ? void 0 : _data$data5$questionC3.title), Object(core_["jsx"])(components["B" /* LastUpdated */], {
     lastUpdatedText: (data === null || data === void 0 ? void 0 : (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$questionP = _data$data6.questionPage) === null || _data$data6$questionP === void 0 ? void 0 : _data$data6$questionP.lastModifiesText) || '',
-    date: (data === null || data === void 0 ? void 0 : (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : (_data$data7$questionC = _data$data7.questionCategory) === null || _data$data7$questionC === void 0 ? void 0 : _data$data7$questionC.lastModifiedDate) || new Date()
-  }), questions.map((question, i) => Object(core_["jsx"])(components["n" /* Dropdown */], {
-    id: question.id,
-    key: question.id,
-    question: question,
-    isInitiallyOpen: id === question.id ? true : !id && i === 0 ? true : false
-  })), Object(core_["jsx"])(components["f" /* ButtonLink */], {
+    date: (data === null || data === void 0 ? void 0 : (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : (_data$data7$questionC = _data$data7.questionCategory) === null || _data$data7$questionC === void 0 ? void 0 : _data$data7$questionC.lastModifiedDate) || new Date(),
+    lang: lang
+  }), questions.map((question, i) => {
+    var _data$data8, _data$data8$questionC;
+
+    return Object(core_["jsx"])(components["n" /* Dropdown */], {
+      id: question.id,
+      key: question.id,
+      question: question,
+      isInitiallyOpen: id === question.id ? true : !id && i === 0 ? true : false,
+      useLocalization: (data === null || data === void 0 ? void 0 : (_data$data8 = data.data) === null || _data$data8 === void 0 ? void 0 : (_data$data8$questionC = _data$data8.questionCategory) === null || _data$data8$questionC === void 0 ? void 0 : _data$data8$questionC.locale) !== lang
+    });
+  }), Object(core_["jsx"])(components["f" /* ButtonLink */], {
     className: "tw-self-center tw-mt-8 tw-border",
     variant: components["h" /* ButtonVariants */].Flat,
     size: components["g" /* ButtonSizes */].Large
@@ -331,10 +336,10 @@ const QuestionPage = props => {
     href: "/questions",
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold16, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold16, core["e" /* typography */].styles.elementSemiBold16, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
     className: "tw-text-black"
-  }, data === null || data === void 0 ? void 0 : (_data$data8 = data.data) === null || _data$data8 === void 0 ? void 0 : (_data$data8$questionP = _data$data8.questionPage) === null || _data$data8$questionP === void 0 ? void 0 : _data$data8$questionP.goToAllQuestionsText), Object(core_["jsx"])(components["w" /* Icon */], {
+  }, data === null || data === void 0 ? void 0 : (_data$data9 = data.data) === null || _data$data9 === void 0 ? void 0 : (_data$data9$questionP = _data$data9.questionPage) === null || _data$data9$questionP === void 0 ? void 0 : _data$data9$questionP.goToAllQuestionsText), Object(core_["jsx"])(components["w" /* Icon */], {
     icon: core["b" /* icons */].arrows.keyboardArrowRight,
     color: core["a" /* colors */].variants.Neutral.Black
-  })), ((_data$data9 = data.data) === null || _data$data9 === void 0 ? void 0 : (_data$data9$questionP = _data$data9.questionPage) === null || _data$data9$questionP === void 0 ? void 0 : _data$data9$questionP.sponsor) && Object(core_["jsx"])("div", {
+  })), ((_data$data10 = data.data) === null || _data$data10 === void 0 ? void 0 : (_data$data10$question = _data$data10.questionPage) === null || _data$data10$question === void 0 ? void 0 : _data$data10$question.sponsor) && Object(core_["jsx"])("div", {
     className: "tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white"
   }, Object(core_["jsx"])(components["J" /* P */], {
     typography: core["e" /* typography */].variants.Element.SemiBold16
@@ -343,7 +348,7 @@ const QuestionPage = props => {
   }, Object(core_["jsx"])("img", {
     className: "tw-mt-2",
     alt: (_data$data$questionPa = data.data.questionPage.sponsor.image) === null || _data$data$questionPa === void 0 ? void 0 : _data$data$questionPa.name,
-    src: transformUri((_data$data$questionPa2 = data.data.questionPage.sponsor.image) === null || _data$data$questionPa2 === void 0 ? void 0 : _data$data$questionPa2.url)
+    src: `https://medsupport.dev/cms/${(_data$data$questionPa2 = data.data.questionPage.sponsor.image) === null || _data$data$questionPa2 === void 0 ? void 0 : _data$data$questionPa2.url}`
   })))));
 };
 
@@ -362,7 +367,8 @@ QuestionPage.getInitialProps = async ctx => {
   });
   return {
     data,
-    id
+    id,
+    lang
   };
 };
 // CONCATENATED MODULE: ./src/components/pages/QuestionPage/index.ts
@@ -383,13 +389,6 @@ module.exports = require("date-fns/locale/ru");
 /***/ (function(module, exports) {
 
 module.exports = require("@emotion/core");
-
-/***/ }),
-
-/***/ "4Q3z":
-/***/ (function(module, exports) {
-
-module.exports = require("next/router");
 
 /***/ }),
 
@@ -3048,9 +3047,9 @@ const RelevantTopicCard = props => Object(core_["jsx"])(Anchor, {
 
 
 
-const DropdownHeader = styled_base_default()("div", {
+const DropdownHeader = styled_base_default()("button", {
   target: "e1qyuhll0"
-})("&:first-child{border-top:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";}", props => /*#__PURE__*/Object(core_["css"])("background-color:", props.onHover || props.open ? core["a" /* colors */].variants.Brand.MoreExtraLightPurple : core["a" /* colors */].variants.Neutral.White, ";border-bottom:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";" + (true ? "" : undefined)), true ? "" : undefined);
+})("width:100%;text-align:left;&:first-child{border-top:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";}", props => /*#__PURE__*/Object(core_["css"])("background-color:", props.open ? core["a" /* colors */].variants.Brand.MoreExtraLightPurple : core["a" /* colors */].variants.Neutral.White, ";border-bottom:2px solid ", core["a" /* colors */].variants.Neutral.LightGrey, ";" + (true ? "" : undefined)), true ? "" : undefined);
 // CONCATENATED MODULE: ./src/components/molecules/Dropdown/library/DropdownHeader/index.ts
 
 // CONCATENATED MODULE: ./src/components/molecules/Dropdown/component.tsx
@@ -3077,33 +3076,25 @@ var Dropdown_component_ref = true ? {
 } : undefined;
 
 const Dropdown = (_ref2) => {
+  var _question$localizatio, _question$localizatio2, _question$localizatio3, _question$localizatio4;
+
   let {
     isInitiallyOpen,
+    useLocalization,
     question
   } = _ref2,
-      rest = Dropdown_component_objectWithoutProperties(_ref2, ["isInitiallyOpen", "question"]);
+      rest = Dropdown_component_objectWithoutProperties(_ref2, ["isInitiallyOpen", "useLocalization", "question"]);
 
   const {
     0: open,
     1: setOpen
   } = Object(external_react_["useState"])(isInitiallyOpen);
-  const {
-    0: onHover,
-    1: setOnHover
-  } = Object(external_react_["useState"])(false);
-
-  const onHoverIn = () => setOnHover(true);
-
-  const onHoverOut = () => setOnHover(false);
 
   const onOpenToggle = () => setOpen(prev => !prev);
 
   return Object(core_["jsx"])(DropdownHeader, Dropdown_component_extends({
     className: "d-flex flex-column justify-content-between align-items-center p-md-4 p-3",
-    onMouseOver: onHoverIn,
-    onMouseLeave: onHoverOut,
     open: open,
-    onHover: onHover,
     onClick: onOpenToggle,
     css: Dropdown_component_ref
   }, rest), Object(core_["jsx"])("div", {
@@ -3111,24 +3102,20 @@ const Dropdown = (_ref2) => {
   }, Object(core_["jsx"])(Typography, {
     as: "h2",
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingSemiBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingSemiBold17, core["e" /* typography */].styles.headingBold22]), true ? "" : undefined)
-  }, question.title), open ? Object(core_["jsx"])(Icon, {
+  }, useLocalization ? question === null || question === void 0 ? void 0 : (_question$localizatio = question.localizations) === null || _question$localizatio === void 0 ? void 0 : (_question$localizatio2 = _question$localizatio[0]) === null || _question$localizatio2 === void 0 ? void 0 : _question$localizatio2.title : question.title), Object(core_["jsx"])("div", null, open ? Object(core_["jsx"])(Icon, {
     icon: core["b" /* icons */].arrows.keyboardArrowUp,
     size: Sizes_Sizes.Medium
   }) : Object(core_["jsx"])(Icon, {
     icon: core["b" /* icons */].arrows.keyboardArrowDown,
     size: Sizes_Sizes.Medium
-  })), open && Object(core_["jsx"])(Markdown, {
+  }))), open && Object(core_["jsx"])(Markdown, {
     className: "pt-4"
-  }, question.content));
+  }, useLocalization ? question === null || question === void 0 ? void 0 : (_question$localizatio3 = question.localizations) === null || _question$localizatio3 === void 0 ? void 0 : (_question$localizatio4 = _question$localizatio3[0]) === null || _question$localizatio4 === void 0 ? void 0 : _question$localizatio4.content : question.content));
 };
 // CONCATENATED MODULE: ./src/components/molecules/Dropdown/index.ts
 
 // EXTERNAL MODULE: external "@heroicons/react/outline"
 var outline_ = __webpack_require__("M1sZ");
-
-// EXTERNAL MODULE: external "js-cookie"
-var external_js_cookie_ = __webpack_require__("vmXh");
-var external_js_cookie_default = /*#__PURE__*/__webpack_require__.n(external_js_cookie_);
 
 // CONCATENATED MODULE: ./src/components/molecules/LastUpdated/component.tsx
 var LastUpdated_component_jsx = external_react_default.a.createElement;
@@ -3137,21 +3124,17 @@ var LastUpdated_component_jsx = external_react_default.a.createElement;
 
 
 
-
-const LastUpdated = props => {
-  const lang = external_js_cookie_["get"]('lang');
-  return Object(core_["jsx"])("div", {
-    className: "d-flex justify-content-start align-items-center mb-3"
-  }, Object(core_["jsx"])(outline_["ClockIcon"], {
-    className: "tw-h-5 tw-w-5 tw-mr-2"
-  }), Object(core_["jsx"])(P, {
-    className: "pr-2",
-    typography: core["e" /* typography */].variants.Element.SemiBold12
-  }, props.lastUpdatedText), Object(core_["jsx"])(P, {
-    className: "pr-2",
-    typography: core["e" /* typography */].variants.Element.Regular12
-  }, core["d" /* services */].parseDate(props.date.toString(), lang === 'ru-RU' ? 'ru' : 'kk')));
-};
+const LastUpdated = props => Object(core_["jsx"])("div", {
+  className: "d-flex justify-content-start align-items-center mb-3"
+}, Object(core_["jsx"])(outline_["ClockIcon"], {
+  className: "tw-h-5 tw-w-5 tw-mr-2"
+}), Object(core_["jsx"])(P, {
+  className: "pr-2",
+  typography: core["e" /* typography */].variants.Element.SemiBold12
+}, props.lastUpdatedText), Object(core_["jsx"])(P, {
+  className: "pr-2",
+  typography: core["e" /* typography */].variants.Element.Regular12
+}, core["d" /* services */].parseDate(props.date.toString(), props.lang === 'ru-RU' ? 'ru' : 'kk')));
 // CONCATENATED MODULE: ./src/components/molecules/LastUpdated/index.ts
 
 // CONCATENATED MODULE: ./src/components/molecules/index.ts
@@ -3169,6 +3152,10 @@ const LastUpdated = props => {
 
 
 
+
+// EXTERNAL MODULE: external "js-cookie"
+var external_js_cookie_ = __webpack_require__("vmXh");
+var external_js_cookie_default = /*#__PURE__*/__webpack_require__.n(external_js_cookie_);
 
 // CONCATENATED MODULE: ./src/components/organisms/Header/styles.ts
 

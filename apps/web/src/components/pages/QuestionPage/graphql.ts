@@ -6,11 +6,20 @@ export const queryQuestionPage = gql`
       title
       id
       lastModifiedDate
+      localizations {
+        title
+      }
       questions {
         id
         title
         content
+        localizations {
+          id
+          title
+          content
+        }
       }
+      locale
     }
     questionPage(locale: $locale) {
       lastModifiesText
