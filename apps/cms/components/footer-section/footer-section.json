@@ -16,16 +16,6 @@
       "repeatable": true,
       "component": "link.link",
       "required": false
-    },
-    "images": {
-      "collection": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images"
-      ],
-      "plugin": "upload",
-      "required": false,
-      "pluginOptions": {}
     }
   }
 }

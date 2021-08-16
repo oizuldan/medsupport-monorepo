@@ -83,7 +83,7 @@ export const Header: FC<Props> = (props: Props) => {
               {props.headerLinks?.[0]?.links?.map((link) => (
                 <Anchor
                   key={link?.title}
-                  href={link?.link}
+                  href={link?.link || '/'}
                   className="mb-4"
                   color={colors.variants.Neutral.Black}
                   typography={typography.variants.Heading.SemiBold17}
@@ -126,7 +126,7 @@ export const Header: FC<Props> = (props: Props) => {
             {props.headerLinks?.[0]?.links?.map((link) => (
               <Anchor
                 key={link?.title}
-                href={link?.link}
+                href={link?.link || '/'}
                 className="mr-3"
                 color={colors.variants.Text.Primary}
                 typography={typography.variants.Heading.SemiBold17}

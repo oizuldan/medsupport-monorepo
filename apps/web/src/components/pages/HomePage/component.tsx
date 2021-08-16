@@ -64,7 +64,7 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
         <div className="d-flex justify-content-between">
           <H2 className="mb-4">{props.data?.data?.articlesSection?.section?.title}</H2>
           <ButtonLink
-            href={props.data?.data?.articlesSection?.section?.link?.link}
+            href={props.data?.data?.articlesSection?.section?.link?.link || '/'}
             variant={ButtonVariants.Flat}
             size={ButtonSizes.Small}
           >

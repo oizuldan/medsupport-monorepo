@@ -3158,7 +3158,7 @@ const Header = props => {
     className: "d-flex flex-column"
   }, (_props$headerLinks = props.headerLinks) === null || _props$headerLinks === void 0 ? void 0 : (_props$headerLinks$ = _props$headerLinks[0]) === null || _props$headerLinks$ === void 0 ? void 0 : (_props$headerLinks$$l = _props$headerLinks$.links) === null || _props$headerLinks$$l === void 0 ? void 0 : _props$headerLinks$$l.map(link => Object(core_["jsx"])(Anchor, {
     key: link === null || link === void 0 ? void 0 : link.title,
-    href: link === null || link === void 0 ? void 0 : link.link,
+    href: (link === null || link === void 0 ? void 0 : link.link) || '/',
     className: "mb-4",
     color: core["a" /* colors */].variants.Neutral.Black,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
@@ -3175,7 +3175,7 @@ const Header = props => {
     css: Header_component_ref3
   }, (_props$headerLinks2 = props.headerLinks) === null || _props$headerLinks2 === void 0 ? void 0 : (_props$headerLinks2$ = _props$headerLinks2[0]) === null || _props$headerLinks2$ === void 0 ? void 0 : (_props$headerLinks2$$ = _props$headerLinks2$.links) === null || _props$headerLinks2$$ === void 0 ? void 0 : _props$headerLinks2$$.map(link => Object(core_["jsx"])(Anchor, {
     key: link === null || link === void 0 ? void 0 : link.title,
-    href: link === null || link === void 0 ? void 0 : link.link,
+    href: (link === null || link === void 0 ? void 0 : link.link) || '/',
     className: "mr-3",
     color: core["a" /* colors */].variants.Text.Primary,
     typography: core["e" /* typography */].variants.Heading.SemiBold17
@@ -3391,6 +3391,11 @@ var Footer_component_ref3 = true ? {
 } : undefined;
 
 var Footer_component_ref4 = true ? {
+  name: "1sg7bn7",
+  styles: "max-width:150px;"
+} : undefined;
+
+var Footer_component_ref5 = true ? {
   name: "1id8hns",
   styles: "max-width:300px;"
 } : undefined;
@@ -3406,7 +3411,7 @@ const Footer = (_ref) => {
 
   const transformUri = Object(external_react_["useCallback"])(uri => uri ? uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}` : '', []);
   const getSection = Object(external_react_["useCallback"])(section => {
-    var _section$links, _section$images;
+    var _section$links;
 
     return Object(core_["jsx"])("div", {
       className: 'd-flex flex-column col-md-4 col-6 p-3',
@@ -3416,20 +3421,31 @@ const Footer = (_ref) => {
       className: "mb-lg-3 mb-2",
       css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementBold16, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementBold16, core["e" /* typography */].styles.elementBold16, core["e" /* typography */].styles.elementSemiBold20]), true ? "" : undefined),
       color: core["a" /* colors */].variants.Text.Secondary
-    }, section === null || section === void 0 ? void 0 : section.title), section === null || section === void 0 ? void 0 : (_section$links = section.links) === null || _section$links === void 0 ? void 0 : _section$links.map((link, i) => Object(core_["jsx"])("div", {
-      key: i,
-      className: `d-flex align-items-center ${section !== null && section !== void 0 && section.links && i !== section.links.length - 1 ? 'mb-lg-3 mb-2' : ''}`
-    }, (link === null || link === void 0 ? void 0 : link.title) && (link === null || link === void 0 ? void 0 : link.link) && Object(core_["jsx"])(Anchor, {
-      key: link.title + i,
-      href: link.link,
-      color: core["a" /* colors */].variants.Text.Secondary,
-      css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined)
-    }, link.title))), section === null || section === void 0 ? void 0 : (_section$images = section.images) === null || _section$images === void 0 ? void 0 : _section$images.map((image, i) => (image === null || image === void 0 ? void 0 : image.url) && (image === null || image === void 0 ? void 0 : image.name) && Object(core_["jsx"])("img", {
-      alt: image.name,
-      className: i !== 0 ? 'tw-mt-4' : undefined,
-      src: transformUri(image.url),
-      css: Footer_component_ref3
-    })));
+    }, section === null || section === void 0 ? void 0 : section.title), section === null || section === void 0 ? void 0 : (_section$links = section.links) === null || _section$links === void 0 ? void 0 : _section$links.map((link, i) => {
+      var _link$image, _link$image2, _link$image3, _link$image4, _link$image5;
+
+      return Object(core_["jsx"])("div", {
+        key: i,
+        className: `d-flex align-items-center ${section !== null && section !== void 0 && section.links && i !== section.links.length - 1 ? 'mb-lg-3 mb-2' : ''}`
+      }, (link === null || link === void 0 ? void 0 : link.title) && (link === null || link === void 0 ? void 0 : link.link) && !(link !== null && link !== void 0 && (_link$image = link.image) !== null && _link$image !== void 0 && _link$image.url) && Object(core_["jsx"])(Anchor, {
+        key: link.title + i,
+        href: link.link,
+        color: core["a" /* colors */].variants.Text.Secondary,
+        css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined)
+      }, link.title), (link === null || link === void 0 ? void 0 : (_link$image2 = link.image) === null || _link$image2 === void 0 ? void 0 : _link$image2.url) && (link === null || link === void 0 ? void 0 : (_link$image3 = link.image) === null || _link$image3 === void 0 ? void 0 : _link$image3.name) && !(link !== null && link !== void 0 && link.link) && Object(core_["jsx"])("img", {
+        alt: link === null || link === void 0 ? void 0 : link.image.name,
+        className: i !== 0 ? 'tw-mt-4' : undefined,
+        src: transformUri(link === null || link === void 0 ? void 0 : link.image.url),
+        css: Footer_component_ref3
+      }), (link === null || link === void 0 ? void 0 : (_link$image4 = link.image) === null || _link$image4 === void 0 ? void 0 : _link$image4.url) && (link === null || link === void 0 ? void 0 : (_link$image5 = link.image) === null || _link$image5 === void 0 ? void 0 : _link$image5.name) && (link === null || link === void 0 ? void 0 : link.link) && Object(core_["jsx"])(Anchor, {
+        href: link === null || link === void 0 ? void 0 : link.link
+      }, Object(core_["jsx"])("img", {
+        alt: link === null || link === void 0 ? void 0 : link.image.name,
+        className: i !== 0 ? 'tw-mt-4' : undefined,
+        src: transformUri(link === null || link === void 0 ? void 0 : link.image.url),
+        css: Footer_component_ref4
+      })));
+    }));
   }, [transformUri]);
   return Object(core_["jsx"])("div", Footer_component_extends({
     className: external_classnames_default()(className, 'd-flex flex-column p-lg-3 p-2 mt-auto'),
@@ -3442,7 +3458,7 @@ const Footer = (_ref) => {
     alt: "footer",
     src: "/static/images/logoWhite.svg",
     className: "mr-lg-4 mr-0",
-    css: Footer_component_ref4
+    css: Footer_component_ref5
   }), Object(core_["jsx"])("div", {
     className: "d-flex  w-100 flex-lg-row flex-column-reverse "
   }, Object(core_["jsx"])("div", {

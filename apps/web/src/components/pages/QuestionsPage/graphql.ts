@@ -35,12 +35,12 @@ export const queryQuestionsPage = gql`
       sections {
         title
         links {
-          link
           title
-        }
-        images {
-          url
-          name
+          link
+          image {
+            url
+            name
+          }
         }
       }
     }

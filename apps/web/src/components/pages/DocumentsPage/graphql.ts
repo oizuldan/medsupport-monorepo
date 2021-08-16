@@ -21,12 +21,12 @@ export const queryDocuments = gql`
       sections {
         title
         links {
-          link
           title
-        }
-        images {
-          url
-          name
+          link
+          image {
+            url
+            name
+          }
         }
       }
     }
