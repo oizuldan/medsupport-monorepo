@@ -1,3 +1,8 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow: /
+# Disallow: /documentUpload
+# Disallow: /login
+# Disallow: /documents
+
+# Sitemap: http://xn--80aswg.xn--p1ai/sitemap.xml
