@@ -39,7 +39,7 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
               section?.links && i !== section.links.length - 1 ? 'mb-lg-3 mb-2' : ''
             }`}
           >
-            {link?.title && link?.link && (
+            {link?.title && link?.link && !link?.image?.url && (
               <Anchor
                 key={link.title + i}
                 href={link.link}
@@ -56,20 +56,26 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
                 {link.title}
               </Anchor>
             )}
-          </div>
-        ))}
-        {section?.images?.map(
-          (image, i) =>
-            image?.url &&
-            image?.name && (
+            {link?.image?.url && link?.image?.name && !link?.link && (
               <img
-                alt={image.name}
+                alt={link?.image.name}
                 className={i !== 0 ? 'tw-mt-4' : undefined}
-                src={transformUri(image.url)}
+                src={transformUri(link?.image.url)}
                 css={{ maxWidth: 150 }}
               />
-            ),
-        )}
+            )}
+            {link?.image?.url && link?.image?.name && link?.link && (
+              <Anchor href={link?.link}>
+                <img
+                  alt={link?.image.name}
+                  className={i !== 0 ? 'tw-mt-4' : undefined}
+                  src={transformUri(link?.image.url)}
+                  css={{ maxWidth: 150 }}
+                />
+              </Anchor>
+            )}
+          </div>
+        ))}
       </div>
     ),
     [transformUri],

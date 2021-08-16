@@ -1949,38 +1949,38 @@ type ComponentFooterSectionFooterSection {
   _id: ID!
   title: String!
   links: [ComponentLinkLink]
-  images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
 }
 
 input ComponentFooterSectionFooterSectionInput {
   title: String!
   links: [ComponentLinkLinkInput]
-  images: [ID]
 }
 
 input editComponentFooterSectionFooterSectionInput {
   id: ID
   title: String
   links: [editComponentLinkLinkInput]
-  images: [ID]
 }
 
 type ComponentLinkLink {
   id: ID!
   _id: ID!
-  title: String!
-  link: String!
+  title: String
+  link: String
+  image: UploadFile
 }
 
 input ComponentLinkLinkInput {
-  title: String!
-  link: String!
+  title: String
+  link: String
+  image: ID
 }
 
 input editComponentLinkLinkInput {
   id: ID
   title: String
   link: String
+  image: ID
 }
 
 type ComponentPartnerPartner {
