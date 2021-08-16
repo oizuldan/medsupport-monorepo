@@ -92,7 +92,7 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
               >
                 {data.data.faq.sponsor.title}
               </P>
-              <Anchor href={data.data.faq.sponsor.link}>
+              <Anchor href={data.data.faq.sponsor.link} target="_blank">
                 <img
                   className="tw-mt-2"
                   alt={data.data.faq.sponsor.image?.name}

@@ -117,7 +117,7 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
             <P typography={typography.variants.Element.SemiBold16}>
               {data.data.allQuestionsPage.sponsor.title}
             </P>
-            <Anchor href={data.data.allQuestionsPage.sponsor.link}>
+            <Anchor href={data.data.allQuestionsPage.sponsor.link} target="_blank">
               <img
                 className="tw-mt-2"
                 alt={data.data.allQuestionsPage.sponsor.image?.name}

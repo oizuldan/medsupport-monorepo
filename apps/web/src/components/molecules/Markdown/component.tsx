@@ -139,6 +139,7 @@ export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: P
             css={css`
               word-break: break-all;
             `}
+            target="_blank"
           />
         ),
       }}

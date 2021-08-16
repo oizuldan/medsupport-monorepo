@@ -41,8 +41,8 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
           >
             {link?.title && link?.link && !link?.image?.url && (
               <Anchor
-                key={link.title + i}
                 href={link.link}
+                target="_blank"
                 color={colors.variants.Text.Secondary}
                 css={css(
                   typography.styles.elementRegular12,
@@ -65,7 +65,7 @@ export const Footer: FC<Props> = ({ className, footerSections, ...rest }: Props)
               />
             )}
             {link?.image?.url && link?.image?.name && link?.link && (
-              <Anchor href={link?.link}>
+              <Anchor href={link?.link} target="_blank">
                 <img
                   alt={link?.image.name}
                   className={i !== 0 ? 'tw-mt-4' : undefined}
