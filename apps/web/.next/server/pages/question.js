@@ -344,7 +344,8 @@ const QuestionPage = props => {
   }, Object(core_["jsx"])(components["J" /* P */], {
     typography: core["e" /* typography */].variants.Element.SemiBold16
   }, data.data.questionPage.sponsor.title), Object(core_["jsx"])(components["a" /* Anchor */], {
-    href: data.data.questionPage.sponsor.link
+    href: data.data.questionPage.sponsor.link,
+    target: "_blank"
   }, Object(core_["jsx"])("img", {
     className: "tw-mt-2",
     alt: (_data$data$questionPa = data.data.questionPage.sponsor.image) === null || _data$data$questionPa === void 0 ? void 0 : _data$data$questionPa.name,
@@ -2502,7 +2503,8 @@ const Markdown = (_ref4) => {
             props = Markdown_component_objectWithoutProperties(_ref15, ["node"]);
 
         return Object(core_["jsx"])(Anchor, Markdown_component_extends({}, props, {
-          css: Markdown_component_ref3
+          css: Markdown_component_ref3,
+          target: "_blank"
         }));
       }
     }
@@ -3514,8 +3516,8 @@ const Footer = (_ref) => {
         key: i,
         className: `d-flex align-items-center ${section !== null && section !== void 0 && section.links && i !== section.links.length - 1 ? 'mb-lg-3 mb-2' : ''}`
       }, (link === null || link === void 0 ? void 0 : link.title) && (link === null || link === void 0 ? void 0 : link.link) && !(link !== null && link !== void 0 && (_link$image = link.image) !== null && _link$image !== void 0 && _link$image.url) && Object(core_["jsx"])(Anchor, {
-        key: link.title + i,
         href: link.link,
+        target: "_blank",
         color: core["a" /* colors */].variants.Text.Secondary,
         css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementRegular12, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular12, core["e" /* typography */].styles.elementRegular16]), true ? "" : undefined)
       }, link.title), (link === null || link === void 0 ? void 0 : (_link$image2 = link.image) === null || _link$image2 === void 0 ? void 0 : _link$image2.url) && (link === null || link === void 0 ? void 0 : (_link$image3 = link.image) === null || _link$image3 === void 0 ? void 0 : _link$image3.name) && !(link !== null && link !== void 0 && link.link) && Object(core_["jsx"])("img", {
@@ -3524,7 +3526,8 @@ const Footer = (_ref) => {
         src: transformUri(link === null || link === void 0 ? void 0 : link.image.url),
         css: Footer_component_ref3
       }), (link === null || link === void 0 ? void 0 : (_link$image4 = link.image) === null || _link$image4 === void 0 ? void 0 : _link$image4.url) && (link === null || link === void 0 ? void 0 : (_link$image5 = link.image) === null || _link$image5 === void 0 ? void 0 : _link$image5.name) && (link === null || link === void 0 ? void 0 : link.link) && Object(core_["jsx"])(Anchor, {
-        href: link === null || link === void 0 ? void 0 : link.link
+        href: link === null || link === void 0 ? void 0 : link.link,
+        target: "_blank"
       }, Object(core_["jsx"])("img", {
         alt: link === null || link === void 0 ? void 0 : link.image.name,
         className: i !== 0 ? 'tw-mt-4' : undefined,

@@ -123,7 +123,7 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
             <P typography={typography.variants.Element.SemiBold16}>
               {data.data.questionPage.sponsor.title}
             </P>
-            <Anchor href={data.data.questionPage.sponsor.link}>
+            <Anchor href={data.data.questionPage.sponsor.link} target="_blank">
               <img
                 className="tw-mt-2"
                 alt={data.data.questionPage.sponsor.image?.name}
