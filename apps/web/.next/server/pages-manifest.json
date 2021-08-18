@@ -1,19 +1,5 @@
 {
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/aboutUs": "pages/aboutUs.js",
-  "/article": "pages/article.js",
-  "/articles": "pages/articles.js",
-  "/documentUpload": "pages/documentUpload.js",
-  "/documents": "pages/documents.js",
-  "/home": "pages/home.js",
-  "/liveStream": "pages/liveStream.js",
-  "/login": "pages/login.js",
-  "/question": "pages/question.js",
-  "/questions": "pages/questions.js",
-  "/restorePassword": "pages/restorePassword.js",
-  "/searchArticlesPage": "pages/searchArticlesPage.js",
-  "/signup": "pages/signup.js",
-  "/vaccine": "pages/vaccine.js",
   "/_error": "pages/_error.js"
 }

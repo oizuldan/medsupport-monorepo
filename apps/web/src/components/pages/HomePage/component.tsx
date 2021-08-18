@@ -53,10 +53,11 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
     <>
       <Head>
         <title>Medsupport главная</title>
-        <meta name="keywords">Medsupport</meta>
-        <meta name="description">
-          {props.data?.data?.headerBanners?.[0]?.banners?.[0]?.subtitle.substring(0, 200)}
-        </meta>
+        <meta name="keywords" content="Medsupport" />
+        <meta
+          name="description"
+          content={props.data?.data?.headerBanners?.[0]?.banners?.[0]?.subtitle.substring(0, 200)}
+        />
         <meta property="og:title" content="Medsupport главная" />
         <meta
           property="og:description"

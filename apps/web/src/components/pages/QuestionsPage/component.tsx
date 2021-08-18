@@ -69,10 +69,11 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
     <>
       <Head>
         <title>{data.data?.allQuestionsPage?.allQuestionText}</title>
-        <meta name="keywords">Вопросы про вакцинацию</meta>
-        <meta name="description">
-          здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19
-        </meta>
+        <meta name="keywords" content="Вопросы про вакцинацию" />
+        <meta
+          name="description"
+          content="здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19"
+        />
         <meta property="og:title" content={data.data?.allQuestionsPage?.allQuestionText} />
         <meta
           property="og:description"

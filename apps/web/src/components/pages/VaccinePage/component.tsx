@@ -56,8 +56,8 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
     <>
       <Head>
         <title>{data.data?.faq?.bannerTitle}</title>
-        <meta name="keywords">Covid-19 вакцинация вакцины</meta>
-        <meta name="description">{data.data?.faq?.bannerSubtitle.substring(0, 200)}</meta>
+        <meta name="keywords" content="Covid-19 вакцинация вакцины" />
+        <meta name="description" content={data.data?.faq?.bannerSubtitle.substring(0, 200)} />
         <meta property="og:title" content={data.data?.faq?.bannerTitle} />
         <meta
           property="og:description"

@@ -31,8 +31,11 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
     <>
       <Head>
         <title>{props.data?.data?.article?.title}</title>
-        <meta name="keywords">{props.data?.data?.article?.title}</meta>
-        <meta property="description"> {props.data?.data?.article?.content.substring(0, 200)} </meta>
+        <meta name="keywords" content={props.data?.data?.article?.title} />
+        <meta
+          property="description"
+          content={props.data?.data?.article?.content.substring(0, 200)}
+        />
         <meta property="og:title" content={props.data?.data?.article?.title} />
         <meta
           property="og:description"

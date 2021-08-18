@@ -39,11 +39,12 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
     <>
       <Head>
         <title>{props.data?.data?.articlesSection?.section?.title}</title>
-        <meta name="keywords">{props.data?.data?.articlesSection?.section?.title}</meta>
-        <meta name="description">
-          Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
-          Тут вы найдете инструкции по лечению и описанию болезней.
-        </meta>
+        <meta name="keywords" content={props.data?.data?.articlesSection?.section?.title} />
+        <meta
+          name="description"
+          content="Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
+          Тут вы найдете инструкции по лечению и описанию болезней."
+        />
         <meta property="og:title" content={props.data?.data?.articlesSection?.section?.title} />
         <meta
           property="og:description"

@@ -60,11 +60,14 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
             ? data?.data?.questionCategory?.title
             : data?.data?.questionCategory?.localizations?.[0]?.title}
         </title>
-        <meta name="keywords">
-          {data?.data?.questionCategory?.locale === lang
-            ? data?.data?.questionCategory?.title
-            : data?.data?.questionCategory?.localizations?.[0]?.title}
-        </meta>
+        <meta
+          name="keywords"
+          content={
+            data?.data?.questionCategory?.locale === lang
+              ? data?.data?.questionCategory?.title
+              : data?.data?.questionCategory?.localizations?.[0]?.title
+          }
+        />
         <meta
           property="og:title"
           content={
