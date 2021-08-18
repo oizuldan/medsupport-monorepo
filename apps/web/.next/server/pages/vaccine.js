@@ -4028,10 +4028,12 @@ const VaccinePage = props => {
   }, [data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : _data$data4.questionCategories]);
   const transformUri = Object(external_react_["useCallback"])(uri => uri ? uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}` : '', []);
   return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$faq = _data$data5.faq) === null || _data$data5$faq === void 0 ? void 0 : _data$data5$faq.bannerTitle), Object(core_["jsx"])("meta", {
-    name: "keywords"
-  }, "Covid-19 \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044F \u0432\u0430\u043A\u0446\u0438\u043D\u044B"), Object(core_["jsx"])("meta", {
-    name: "description"
-  }, (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$faq = _data$data6.faq) === null || _data$data6$faq === void 0 ? void 0 : _data$data6$faq.bannerSubtitle.substring(0, 200)), Object(core_["jsx"])("meta", {
+    name: "keywords",
+    content: "Covid-19 \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044F \u0432\u0430\u043A\u0446\u0438\u043D\u044B"
+  }), Object(core_["jsx"])("meta", {
+    name: "description",
+    content: (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$faq = _data$data6.faq) === null || _data$data6$faq === void 0 ? void 0 : _data$data6$faq.bannerSubtitle.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : (_data$data7$faq = _data$data7.faq) === null || _data$data7$faq === void 0 ? void 0 : _data$data7$faq.bannerTitle
   }), Object(core_["jsx"])("meta", {

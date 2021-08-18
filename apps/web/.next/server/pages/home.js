@@ -363,10 +363,12 @@ const HomePage = props => {
     return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.articles), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](arts => Object(Array_["sequence"])(Option_["option"])(arts.map(art => Object(pipeable_["pipe"])(Option_["fromNullable"](art))))), Option_["getOrElseW"](() => undefined));
   }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]);
   return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, "Medsupport \u0433\u043B\u0430\u0432\u043D\u0430\u044F"), Object(core_["jsx"])("meta", {
-    name: "keywords"
-  }, "Medsupport"), Object(core_["jsx"])("meta", {
-    name: "description"
-  }, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$head = _props$data$data.headerBanners) === null || _props$data$data$head === void 0 ? void 0 : (_props$data$data$head2 = _props$data$data$head[0]) === null || _props$data$data$head2 === void 0 ? void 0 : (_props$data$data$head3 = _props$data$data$head2.banners) === null || _props$data$data$head3 === void 0 ? void 0 : (_props$data$data$head4 = _props$data$data$head3[0]) === null || _props$data$data$head4 === void 0 ? void 0 : _props$data$data$head4.subtitle.substring(0, 200)), Object(core_["jsx"])("meta", {
+    name: "keywords",
+    content: "Medsupport"
+  }), Object(core_["jsx"])("meta", {
+    name: "description",
+    content: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$head = _props$data$data.headerBanners) === null || _props$data$data$head === void 0 ? void 0 : (_props$data$data$head2 = _props$data$data$head[0]) === null || _props$data$data$head2 === void 0 ? void 0 : (_props$data$data$head3 = _props$data$data$head2.banners) === null || _props$data$data$head3 === void 0 ? void 0 : (_props$data$data$head4 = _props$data$data$head3[0]) === null || _props$data$data$head4 === void 0 ? void 0 : _props$data$data$head4.subtitle.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: "Medsupport \u0433\u043B\u0430\u0432\u043D\u0430\u044F"
   }), Object(core_["jsx"])("meta", {
@@ -3821,10 +3823,12 @@ const ArticlesPage = props => {
   }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]); // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
 
   return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$arti = _props$data$data.articlesSection) === null || _props$data$data$arti === void 0 ? void 0 : (_props$data$data$arti2 = _props$data$data$arti.section) === null || _props$data$data$arti2 === void 0 ? void 0 : _props$data$data$arti2.title), Object(core_["jsx"])("meta", {
-    name: "keywords"
-  }, (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.articlesSection) === null || _props$data2$data$art === void 0 ? void 0 : (_props$data2$data$art2 = _props$data2$data$art.section) === null || _props$data2$data$art2 === void 0 ? void 0 : _props$data2$data$art2.title), Object(core_["jsx"])("meta", {
-    name: "description"
-  }, "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435. \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."), Object(core_["jsx"])("meta", {
+    name: "keywords",
+    content: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.articlesSection) === null || _props$data2$data$art === void 0 ? void 0 : (_props$data2$data$art2 = _props$data2$data$art.section) === null || _props$data2$data$art2 === void 0 ? void 0 : _props$data2$data$art2.title
+  }), Object(core_["jsx"])("meta", {
+    name: "description",
+    content: "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435. \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."
+  }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : (_props$data3$data$art = _props$data3$data.articlesSection) === null || _props$data3$data$art === void 0 ? void 0 : (_props$data3$data$art2 = _props$data3$data$art.section) === null || _props$data3$data$art2 === void 0 ? void 0 : _props$data3$data$art2.title
   }), Object(core_["jsx"])("meta", {

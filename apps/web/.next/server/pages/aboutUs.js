@@ -4159,10 +4159,12 @@ const AboutUsPage = props => {
   var _props$data, _props$data$data, _props$data$data$abou, _props$data2, _props$data2$data, _props$data2$data$abo, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data5, _props$data5$data, _props$data6, _props$data6$data, _props$data6$data$abo, _props$data7, _props$data7$data, _props$data7$data$abo;
 
   return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, "Medsupport \u043E \u043D\u0430\u0441"), Object(core_["jsx"])("meta", {
-    name: "keywords"
-  }, "\u041E Medsupport"), Object(core_["jsx"])("meta", {
-    name: "description"
-  }, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$abou = _props$data$data.aboutUsPage) === null || _props$data$data$abou === void 0 ? void 0 : _props$data$data$abou.content.substring(0, 200)), Object(core_["jsx"])("meta", {
+    name: "keywords",
+    content: "\u041E Medsupport"
+  }), Object(core_["jsx"])("meta", {
+    name: "description",
+    content: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$abou = _props$data$data.aboutUsPage) === null || _props$data$data$abou === void 0 ? void 0 : _props$data$data$abou.content.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: "Medsupport \u043E \u043D\u0430\u0441"
   }), Object(core_["jsx"])("meta", {

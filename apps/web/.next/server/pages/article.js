@@ -4170,10 +4170,12 @@ const ArticlePage = props => {
     }
   }, [content, lang, router]);
   return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$arti = _props$data$data.article) === null || _props$data$data$arti === void 0 ? void 0 : _props$data$data$arti.title), Object(core_["jsx"])("meta", {
-    name: "keywords"
-  }, (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.article) === null || _props$data2$data$art === void 0 ? void 0 : _props$data2$data$art.title), Object(core_["jsx"])("meta", {
-    property: "description"
-  }, " ", (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : (_props$data3$data$art = _props$data3$data.article) === null || _props$data3$data$art === void 0 ? void 0 : _props$data3$data$art.content.substring(0, 200), " "), Object(core_["jsx"])("meta", {
+    name: "keywords",
+    content: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.article) === null || _props$data2$data$art === void 0 ? void 0 : _props$data2$data$art.title
+  }), Object(core_["jsx"])("meta", {
+    property: "description",
+    content: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : (_props$data3$data$art = _props$data3$data.article) === null || _props$data3$data$art === void 0 ? void 0 : _props$data3$data$art.content.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$art = _props$data4$data.article) === null || _props$data4$data$art === void 0 ? void 0 : _props$data4$data$art.title
   }), Object(core_["jsx"])("meta", {

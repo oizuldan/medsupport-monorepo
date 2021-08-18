@@ -3494,10 +3494,12 @@ const QuestionsPage = props => {
   }));
   const transformUri = Object(external_react_["useCallback"])(uri => uri ? uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}` : '', []);
   return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$allQuesti = _data$data5.allQuestionsPage) === null || _data$data5$allQuesti === void 0 ? void 0 : _data$data5$allQuesti.allQuestionText), Object(core_["jsx"])("meta", {
-    name: "keywords"
-  }, "\u0412\u043E\u043F\u0440\u043E\u0441\u044B \u043F\u0440\u043E \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044E"), Object(core_["jsx"])("meta", {
-    name: "description"
-  }, "\u0437\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u0439\u0442\u0438 \u0432\u0441\u0435 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u0443\u044E\u0449\u0438\u0435 \u0432\u0430\u0441 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u043F\u0440\u043E \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044E Covid-19"), Object(core_["jsx"])("meta", {
+    name: "keywords",
+    content: "\u0412\u043E\u043F\u0440\u043E\u0441\u044B \u043F\u0440\u043E \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044E"
+  }), Object(core_["jsx"])("meta", {
+    name: "description",
+    content: "\u0437\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u0439\u0442\u0438 \u0432\u0441\u0435 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u0443\u044E\u0449\u0438\u0435 \u0432\u0430\u0441 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u043F\u0440\u043E \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044E Covid-19"
+  }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$allQuesti = _data$data6.allQuestionsPage) === null || _data$data6$allQuesti === void 0 ? void 0 : _data$data6$allQuesti.allQuestionText
   }), Object(core_["jsx"])("meta", {

@@ -14,8 +14,8 @@ export const AboutUsPage: NextComponentType<ApolloPageContext, InitProps, Props>
   <>
     <Head>
       <title>Medsupport о нас</title>
-      <meta name="keywords">О Medsupport</meta>
-      <meta name="description">{props.data?.data?.aboutUsPage?.content.substring(0, 200)}</meta>
+      <meta name="keywords" content="О Medsupport" />
+      <meta name="description" content={props.data?.data?.aboutUsPage?.content.substring(0, 200)} />
       <meta property="og:title" content="Medsupport о нас" />
       <meta
         property="og:description"
