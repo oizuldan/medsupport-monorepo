@@ -240,6 +240,10 @@ var pipeable_ = __webpack_require__("iasY");
 var dynamic_ = __webpack_require__("/T1H");
 var dynamic_default = /*#__PURE__*/__webpack_require__.n(dynamic_);
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
@@ -326,6 +330,7 @@ var __jsx = external_react_default.a.createElement;
 
 
 
+
 const BannerCarouselMobile = dynamic_default()(() => __webpack_require__.e(/* import() */ 22).then(__webpack_require__.bind(null, "oxac")), {
   ssr: false,
   // eslint-disable-next-line react/display-name
@@ -345,10 +350,11 @@ const BannerCarousel = dynamic_default()(() => __webpack_require__.e(/* import()
   }
 });
 const HomePage = props => {
-  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data5, _props$data5$data, _props$data6, _props$data6$data, _props$data6$data$art, _props$data6$data$art2, _props$data7, _props$data7$data, _props$data7$data$art, _props$data7$data$art2, _props$data7$data$art3, _props$data8, _props$data8$data, _props$data8$data$art, _props$data8$data$art2, _props$data8$data$art3;
+  var _data$data2, _props$data, _props$data$data, _props$data$data$head, _props$data$data$head2, _props$data$data$head3, _props$data$data$head4, _props$data2, _props$data2$data, _props$data2$data$hea, _props$data2$data$hea2, _props$data2$data$hea3, _props$data2$data$hea4, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data5, _props$data5$data, _props$data6, _props$data6$data, _props$data7, _props$data7$data, _props$data8, _props$data8$data, _props$data8$data$art, _props$data8$data$art2, _props$data9, _props$data9$data, _props$data9$data$art, _props$data9$data$art2, _props$data9$data$art3, _props$data10, _props$data10$data, _props$data10$data$ar, _props$data10$data$ar2, _props$data10$data$ar3;
 
   const {
-    data
+    data,
+    lang
   } = props;
   const isMobile = core["c" /* media */].useMobileDetector().phone();
   const articles = Object(external_react_["useMemo"])(() => {
@@ -356,34 +362,62 @@ const HomePage = props => {
 
     return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.articles), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](arts => Object(Array_["sequence"])(Option_["option"])(arts.map(art => Object(pipeable_["pipe"])(Option_["fromNullable"](art))))), Option_["getOrElseW"](() => undefined));
   }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]);
-  return Object(core_["jsx"])(components["C" /* Layout */], {
-    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
-    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
-    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
+  return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, "Medsupport \u0433\u043B\u0430\u0432\u043D\u0430\u044F"), Object(core_["jsx"])("meta", {
+    name: "keywords"
+  }, "Medsupport"), Object(core_["jsx"])("meta", {
+    name: "description"
+  }, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$head = _props$data$data.headerBanners) === null || _props$data$data$head === void 0 ? void 0 : (_props$data$data$head2 = _props$data$data$head[0]) === null || _props$data$data$head2 === void 0 ? void 0 : (_props$data$data$head3 = _props$data$data$head2.banners) === null || _props$data$data$head3 === void 0 ? void 0 : (_props$data$data$head4 = _props$data$data$head3[0]) === null || _props$data$data$head4 === void 0 ? void 0 : _props$data$data$head4.subtitle.substring(0, 200)), Object(core_["jsx"])("meta", {
+    property: "og:title",
+    content: "Medsupport \u0433\u043B\u0430\u0432\u043D\u0430\u044F"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:description",
+    content: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$hea = _props$data2$data.headerBanners) === null || _props$data2$data$hea === void 0 ? void 0 : (_props$data2$data$hea2 = _props$data2$data$hea[0]) === null || _props$data2$data$hea2 === void 0 ? void 0 : (_props$data2$data$hea3 = _props$data2$data$hea2.banners) === null || _props$data2$data$hea3 === void 0 ? void 0 : (_props$data2$data$hea4 = _props$data2$data$hea3[0]) === null || _props$data2$data$hea4 === void 0 ? void 0 : _props$data2$data$hea4.subtitle.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
+    property: "og:image",
+    content: "https://medsupport.dev/static/images/logoBig.png"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale",
+    content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale:alternate",
+    content: lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:type",
+    content: "article"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:section",
+    content: "medicine"
+  })), Object(core_["jsx"])(components["C" /* Layout */], {
+    headerButtons: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerButtons,
+    footerSections: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : _props$data4$data.footerSections,
+    headerLinks: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : _props$data5$data.headerLinks
   }, isMobile ? Object(core_["jsx"])(BannerCarouselMobile, {
-    banners: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : _props$data4$data.headerBanners
+    banners: (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : (_props$data6$data = _props$data6.data) === null || _props$data6$data === void 0 ? void 0 : _props$data6$data.headerBanners
   }) : Object(core_["jsx"])(BannerCarousel, {
-    banners: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : _props$data5$data.headerBanners
+    banners: (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : (_props$data7$data = _props$data7.data) === null || _props$data7$data === void 0 ? void 0 : _props$data7$data.headerBanners
   }), Object(core_["jsx"])("div", {
     className: "my-5 container d-flex flex-column"
   }, Object(core_["jsx"])("div", {
     className: "d-flex justify-content-between"
   }, Object(core_["jsx"])(components["r" /* H2 */], {
     className: "mb-4"
-  }, (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : (_props$data6$data = _props$data6.data) === null || _props$data6$data === void 0 ? void 0 : (_props$data6$data$art = _props$data6$data.articlesSection) === null || _props$data6$data$art === void 0 ? void 0 : (_props$data6$data$art2 = _props$data6$data$art.section) === null || _props$data6$data$art2 === void 0 ? void 0 : _props$data6$data$art2.title), Object(core_["jsx"])(components["f" /* ButtonLink */], {
-    href: ((_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : (_props$data7$data = _props$data7.data) === null || _props$data7$data === void 0 ? void 0 : (_props$data7$data$art = _props$data7$data.articlesSection) === null || _props$data7$data$art === void 0 ? void 0 : (_props$data7$data$art2 = _props$data7$data$art.section) === null || _props$data7$data$art2 === void 0 ? void 0 : (_props$data7$data$art3 = _props$data7$data$art2.link) === null || _props$data7$data$art3 === void 0 ? void 0 : _props$data7$data$art3.link) || '/',
+  }, (_props$data8 = props.data) === null || _props$data8 === void 0 ? void 0 : (_props$data8$data = _props$data8.data) === null || _props$data8$data === void 0 ? void 0 : (_props$data8$data$art = _props$data8$data.articlesSection) === null || _props$data8$data$art === void 0 ? void 0 : (_props$data8$data$art2 = _props$data8$data$art.section) === null || _props$data8$data$art2 === void 0 ? void 0 : _props$data8$data$art2.title), Object(core_["jsx"])(components["f" /* ButtonLink */], {
+    href: ((_props$data9 = props.data) === null || _props$data9 === void 0 ? void 0 : (_props$data9$data = _props$data9.data) === null || _props$data9$data === void 0 ? void 0 : (_props$data9$data$art = _props$data9$data.articlesSection) === null || _props$data9$data$art === void 0 ? void 0 : (_props$data9$data$art2 = _props$data9$data$art.section) === null || _props$data9$data$art2 === void 0 ? void 0 : (_props$data9$data$art3 = _props$data9$data$art2.link) === null || _props$data9$data$art3 === void 0 ? void 0 : _props$data9$data$art3.link) || '/',
     variant: components["h" /* ButtonVariants */].Flat,
     size: components["g" /* ButtonSizes */].Small
   }, Object(core_["jsx"])(components["J" /* P */], {
     color: core["a" /* colors */].variants.Neutral.Grey,
     typography: core["e" /* typography */].variants.Element.Regular12
-  }, (_props$data8 = props.data) === null || _props$data8 === void 0 ? void 0 : (_props$data8$data = _props$data8.data) === null || _props$data8$data === void 0 ? void 0 : (_props$data8$data$art = _props$data8$data.articlesSection) === null || _props$data8$data$art === void 0 ? void 0 : (_props$data8$data$art2 = _props$data8$data$art.section) === null || _props$data8$data$art2 === void 0 ? void 0 : (_props$data8$data$art3 = _props$data8$data$art2.link) === null || _props$data8$data$art3 === void 0 ? void 0 : _props$data8$data$art3.title), Object(core_["jsx"])(components["w" /* Icon */], {
+  }, (_props$data10 = props.data) === null || _props$data10 === void 0 ? void 0 : (_props$data10$data = _props$data10.data) === null || _props$data10$data === void 0 ? void 0 : (_props$data10$data$ar = _props$data10$data.articlesSection) === null || _props$data10$data$ar === void 0 ? void 0 : (_props$data10$data$ar2 = _props$data10$data$ar.section) === null || _props$data10$data$ar2 === void 0 ? void 0 : (_props$data10$data$ar3 = _props$data10$data$ar2.link) === null || _props$data10$data$ar3 === void 0 ? void 0 : _props$data10$data$ar3.title), Object(core_["jsx"])(components["w" /* Icon */], {
     icon: core["b" /* icons */].arrows.keyboardArrowRight,
     color: core["a" /* colors */].variants.Neutral.Black,
     className: "mr-1"
   }))), Object(core_["jsx"])(ArticlesPage["a" /* ArticlesList */], {
     articles: articles
-  })));
+  }))));
 };
 
 HomePage.getInitialProps = async ctx => {
@@ -398,7 +432,8 @@ HomePage.getInitialProps = async ctx => {
     }
   });
   return {
-    data
+    data,
+    lang
   };
 };
 // CONCATENATED MODULE: ./src/components/pages/HomePage/index.ts
@@ -3707,6 +3742,10 @@ var Option_ = __webpack_require__("0U3A");
 // EXTERNAL MODULE: external "fp-ts/pipeable"
 var pipeable_ = __webpack_require__("iasY");
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: external "@apollo/client"
 var client_ = __webpack_require__("z+8S");
 
@@ -3767,11 +3806,13 @@ var component_jsx = external_react_default.a.createElement;
 
 
 
+
 const ArticlesPage = props => {
-  var _data$data2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2;
+  var _data$data2, _props$data, _props$data$data, _props$data$data$arti, _props$data$data$arti2, _props$data2, _props$data2$data, _props$data2$data$art, _props$data2$data$art2, _props$data3, _props$data3$data, _props$data3$data$art, _props$data3$data$art2, _props$data4, _props$data4$data, _props$data5, _props$data5$data, _props$data6, _props$data6$data, _props$data7, _props$data7$data, _props$data7$data$art, _props$data7$data$art2;
 
   const {
-    data
+    data,
+    lang
   } = props;
   const articles = Object(external_react_["useMemo"])(() => {
     var _data$data;
@@ -3779,19 +3820,53 @@ const ArticlesPage = props => {
     return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data = data.data) === null || _data$data === void 0 ? void 0 : _data$data.articles), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](arts => Object(Array_["sequence"])(Option_["option"])(arts.map(art => Object(pipeable_["pipe"])(Option_["fromNullable"](art))))), Option_["getOrElseW"](() => undefined));
   }, [data === null || data === void 0 ? void 0 : (_data$data2 = data.data) === null || _data$data2 === void 0 ? void 0 : _data$data2.articles]); // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
 
-  return Object(core_["jsx"])(components["C" /* Layout */], {
-    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
-    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
-    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
+  return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$arti = _props$data$data.articlesSection) === null || _props$data$data$arti === void 0 ? void 0 : (_props$data$data$arti2 = _props$data$data$arti.section) === null || _props$data$data$arti2 === void 0 ? void 0 : _props$data$data$arti2.title), Object(core_["jsx"])("meta", {
+    name: "keywords"
+  }, (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.articlesSection) === null || _props$data2$data$art === void 0 ? void 0 : (_props$data2$data$art2 = _props$data2$data$art.section) === null || _props$data2$data$art2 === void 0 ? void 0 : _props$data2$data$art2.title), Object(core_["jsx"])("meta", {
+    name: "description"
+  }, "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435. \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."), Object(core_["jsx"])("meta", {
+    property: "og:title",
+    content: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : (_props$data3$data$art = _props$data3$data.articlesSection) === null || _props$data3$data$art === void 0 ? void 0 : (_props$data3$data$art2 = _props$data3$data$art.section) === null || _props$data3$data$art2 === void 0 ? void 0 : _props$data3$data$art2.title
+  }), Object(core_["jsx"])("meta", {
+    property: "og:description",
+    content: "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435. \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."
+  }), Object(core_["jsx"])("meta", {
+    property: "og:image",
+    content: "https://medsupport.dev/static/images/logoBig.png"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale",
+    content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale:alternate",
+    content: lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:type",
+    content: "article"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:section",
+    content: "medicine"
+  }), articles === null || articles === void 0 ? void 0 : articles.map(({
+    title
+  }) => Object(core_["jsx"])("meta", {
+    key: title,
+    property: "og:article:tag",
+    content: title
+  }))), Object(core_["jsx"])(components["C" /* Layout */], {
+    headerButtons: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : _props$data4$data.headerButtons,
+    footerSections: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : _props$data5$data.footerSections,
+    headerLinks: (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : (_props$data6$data = _props$data6.data) === null || _props$data6$data === void 0 ? void 0 : _props$data6$data.headerLinks
   }, Object(core_["jsx"])("div", {
     className: "container d-flex flex-column py-md-5 py-3"
   }, Object(core_["jsx"])("div", {
     className: "d-flex justify-content-between align-items-center mb-md-3 mb-2"
   }, Object(core_["jsx"])(components["q" /* H1 */], {
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold22, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold34]), true ? "" : undefined)
-  }, (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$art = _props$data4$data.articlesSection) === null || _props$data4$data$art === void 0 ? void 0 : (_props$data4$data$art2 = _props$data4$data$art.section) === null || _props$data4$data$art2 === void 0 ? void 0 : _props$data4$data$art2.title)), Object(core_["jsx"])(List, {
+  }, (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : (_props$data7$data = _props$data7.data) === null || _props$data7$data === void 0 ? void 0 : (_props$data7$data$art = _props$data7$data.articlesSection) === null || _props$data7$data$art === void 0 ? void 0 : (_props$data7$data$art2 = _props$data7$data$art.section) === null || _props$data7$data$art2 === void 0 ? void 0 : _props$data7$data$art2.title)), Object(core_["jsx"])(List, {
     articles: articles
-  })));
+  }))));
 };
 
 ArticlesPage.getInitialProps = async ctx => {
@@ -3805,7 +3880,8 @@ ArticlesPage.getInitialProps = async ctx => {
     }
   });
   return {
-    data
+    data,
+    lang
   };
 };
 // CONCATENATED MODULE: ./src/components/pages/ArticlesPage/index.ts
@@ -4465,6 +4541,13 @@ const event = ({
     value: value
   });
 };
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 

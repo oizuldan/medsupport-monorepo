@@ -3825,6 +3825,10 @@ var Option_ = __webpack_require__("0U3A");
 // EXTERNAL MODULE: external "fp-ts/pipeable"
 var pipeable_ = __webpack_require__("iasY");
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
@@ -4004,11 +4008,13 @@ var VaccinePage_component_jsx = external_react_default.a.createElement;
 
 
 
+
 const VaccinePage = props => {
-  var _data$data2, _data$data2$faq, _data$data2$faq$actua, _data$data4, _data$data5, _data$data6, _data$data7, _data$data8, _data$data8$faq, _data$data9, _data$data9$faq, _data$data10, _data$data10$faq, _data$data10$faq$bann, _data$data11, _data$data11$faq, _data$data11$faq$bann, _data$data12, _data$data12$faq, _data$data13, _data$data13$faq, _data$data14, _data$data14$faq, _data$data15, _data$data15$faq, _data$data$faq$sponso, _data$data$faq$sponso2;
+  var _data$data2, _data$data2$faq, _data$data2$faq$actua, _data$data4, _data$data5, _data$data5$faq, _data$data6, _data$data6$faq, _data$data7, _data$data7$faq, _data$data8, _data$data8$faq, _data$data9, _data$data10, _data$data11, _data$data12, _data$data12$faq, _data$data13, _data$data13$faq, _data$data14, _data$data14$faq, _data$data14$faq$bann, _data$data15, _data$data15$faq, _data$data15$faq$bann, _data$data16, _data$data16$faq, _data$data17, _data$data17$faq, _data$data18, _data$data18$faq, _data$data19, _data$data19$faq, _data$data$faq$sponso, _data$data$faq$sponso2;
 
   const {
-    data
+    data,
+    lang
   } = props;
   const questions = Object(external_react_["useMemo"])(() => {
     var _data$data, _data$data$faq, _data$data$faq$actual;
@@ -4021,25 +4027,68 @@ const VaccinePage = props => {
     return Object(pipeable_["pipe"])(Option_["fromNullable"](data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : _data$data3.questionCategories), Option_["chain"](Option_["fromPredicate"](v => Array.isArray(v))), Option_["chain"](qs => Object(Array_["sequence"])(Option_["option"])(qs.map(q => Object(pipeable_["pipe"])(Option_["fromNullable"](q))))), Option_["getOrElseW"](() => []));
   }, [data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : _data$data4.questionCategories]);
   const transformUri = Object(external_react_["useCallback"])(uri => uri ? uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}` : '', []);
-  return Object(core_["jsx"])(components["C" /* Layout */], {
-    headerButtons: (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : _data$data5.headerButtons,
-    footerSections: (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : _data$data6.footerSections,
-    headerLinks: (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : _data$data7.headerLinks
+  return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$faq = _data$data5.faq) === null || _data$data5$faq === void 0 ? void 0 : _data$data5$faq.bannerTitle), Object(core_["jsx"])("meta", {
+    name: "keywords"
+  }, "Covid-19 \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044F \u0432\u0430\u043A\u0446\u0438\u043D\u044B"), Object(core_["jsx"])("meta", {
+    name: "description"
+  }, (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$faq = _data$data6.faq) === null || _data$data6$faq === void 0 ? void 0 : _data$data6$faq.bannerSubtitle.substring(0, 200)), Object(core_["jsx"])("meta", {
+    property: "og:title",
+    content: (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : (_data$data7$faq = _data$data7.faq) === null || _data$data7$faq === void 0 ? void 0 : _data$data7$faq.bannerTitle
+  }), Object(core_["jsx"])("meta", {
+    property: "og:description",
+    content: (_data$data8 = data.data) === null || _data$data8 === void 0 ? void 0 : (_data$data8$faq = _data$data8.faq) === null || _data$data8$faq === void 0 ? void 0 : _data$data8$faq.bannerSubtitle.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
+    property: "og:image",
+    content: "https://medsupport.dev/static/images/logoBig.png"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale",
+    content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale:alternate",
+    content: lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:type",
+    content: "article"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:section",
+    content: "medicine"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "Covid-19"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "Covid"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "\u0432\u0430\u043A\u0446\u0438\u043D\u0430"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "\u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044F"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "\u043F\u0430\u043D\u0434\u0435\u043C\u0438\u044F"
+  })), Object(core_["jsx"])(components["C" /* Layout */], {
+    headerButtons: (_data$data9 = data.data) === null || _data$data9 === void 0 ? void 0 : _data$data9.headerButtons,
+    footerSections: (_data$data10 = data.data) === null || _data$data10 === void 0 ? void 0 : _data$data10.footerSections,
+    headerLinks: (_data$data11 = data.data) === null || _data$data11 === void 0 ? void 0 : _data$data11.headerLinks
   }, Object(core_["jsx"])(VaccineBanner, {
-    title: ((_data$data8 = data.data) === null || _data$data8 === void 0 ? void 0 : (_data$data8$faq = _data$data8.faq) === null || _data$data8$faq === void 0 ? void 0 : _data$data8$faq.bannerTitle) || '',
-    subtitle: ((_data$data9 = data.data) === null || _data$data9 === void 0 ? void 0 : (_data$data9$faq = _data$data9.faq) === null || _data$data9$faq === void 0 ? void 0 : _data$data9$faq.bannerSubtitle) || '',
-    imageURL: transformUri((_data$data10 = data.data) === null || _data$data10 === void 0 ? void 0 : (_data$data10$faq = _data$data10.faq) === null || _data$data10$faq === void 0 ? void 0 : (_data$data10$faq$bann = _data$data10$faq.bannerImage) === null || _data$data10$faq$bann === void 0 ? void 0 : _data$data10$faq$bann.url),
-    alt: ((_data$data11 = data.data) === null || _data$data11 === void 0 ? void 0 : (_data$data11$faq = _data$data11.faq) === null || _data$data11$faq === void 0 ? void 0 : (_data$data11$faq$bann = _data$data11$faq.bannerImage) === null || _data$data11$faq$bann === void 0 ? void 0 : _data$data11$faq$bann.name) || ''
+    title: ((_data$data12 = data.data) === null || _data$data12 === void 0 ? void 0 : (_data$data12$faq = _data$data12.faq) === null || _data$data12$faq === void 0 ? void 0 : _data$data12$faq.bannerTitle) || '',
+    subtitle: ((_data$data13 = data.data) === null || _data$data13 === void 0 ? void 0 : (_data$data13$faq = _data$data13.faq) === null || _data$data13$faq === void 0 ? void 0 : _data$data13$faq.bannerSubtitle) || '',
+    imageURL: transformUri((_data$data14 = data.data) === null || _data$data14 === void 0 ? void 0 : (_data$data14$faq = _data$data14.faq) === null || _data$data14$faq === void 0 ? void 0 : (_data$data14$faq$bann = _data$data14$faq.bannerImage) === null || _data$data14$faq$bann === void 0 ? void 0 : _data$data14$faq$bann.url),
+    alt: ((_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$faq = _data$data15.faq) === null || _data$data15$faq === void 0 ? void 0 : (_data$data15$faq$bann = _data$data15$faq.bannerImage) === null || _data$data15$faq$bann === void 0 ? void 0 : _data$data15$faq$bann.name) || ''
   }), Object(core_["jsx"])(RelevantTopics, {
     questions: questions,
-    title: (data === null || data === void 0 ? void 0 : (_data$data12 = data.data) === null || _data$data12 === void 0 ? void 0 : (_data$data12$faq = _data$data12.faq) === null || _data$data12$faq === void 0 ? void 0 : _data$data12$faq.relevantTopicsText) || ''
+    title: (data === null || data === void 0 ? void 0 : (_data$data16 = data.data) === null || _data$data16 === void 0 ? void 0 : (_data$data16$faq = _data$data16.faq) === null || _data$data16$faq === void 0 ? void 0 : _data$data16$faq.relevantTopicsText) || ''
   }), Object(core_["jsx"])("div", {
     className: "mt-4 tw-bg-purple-500"
   }, Object(core_["jsx"])("div", {
     className: "container tw-flex tw-flex-col my-3 pt-4 pb-4"
   }, Object(core_["jsx"])(Questions, {
     questionCategories: questionCategories,
-    readMoreText: ((_data$data13 = data.data) === null || _data$data13 === void 0 ? void 0 : (_data$data13$faq = _data$data13.faq) === null || _data$data13$faq === void 0 ? void 0 : _data$data13$faq.readMoreText) || ''
+    readMoreText: ((_data$data17 = data.data) === null || _data$data17 === void 0 ? void 0 : (_data$data17$faq = _data$data17.faq) === null || _data$data17$faq === void 0 ? void 0 : _data$data17$faq.readMoreText) || ''
   }), Object(core_["jsx"])(components["f" /* ButtonLink */], {
     href: "/questions",
     className: "tw-self-center tw-mt-8",
@@ -4048,10 +4097,10 @@ const VaccinePage = props => {
   }, Object(core_["jsx"])(components["J" /* P */], {
     color: core["a" /* colors */].variants.Neutral.White,
     typography: core["e" /* typography */].variants.Element.Bold20
-  }, (_data$data14 = data.data) === null || _data$data14 === void 0 ? void 0 : (_data$data14$faq = _data$data14.faq) === null || _data$data14$faq === void 0 ? void 0 : _data$data14$faq.showAllQuestions), Object(core_["jsx"])(components["w" /* Icon */], {
+  }, (_data$data18 = data.data) === null || _data$data18 === void 0 ? void 0 : (_data$data18$faq = _data$data18.faq) === null || _data$data18$faq === void 0 ? void 0 : _data$data18$faq.showAllQuestions), Object(core_["jsx"])(components["w" /* Icon */], {
     icon: core["b" /* icons */].arrows.keyboardArrowRight,
     color: core["a" /* colors */].variants.Neutral.White
-  })), ((_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$faq = _data$data15.faq) === null || _data$data15$faq === void 0 ? void 0 : _data$data15$faq.sponsor) && Object(core_["jsx"])("div", {
+  })), ((_data$data19 = data.data) === null || _data$data19 === void 0 ? void 0 : (_data$data19$faq = _data$data19.faq) === null || _data$data19$faq === void 0 ? void 0 : _data$data19$faq.sponsor) && Object(core_["jsx"])("div", {
     className: "tw-self-center tw-flex tw-flex-col tw-items-center tw-mt-4 tw-text-white"
   }, Object(core_["jsx"])(components["J" /* P */], {
     color: core["a" /* colors */].variants.Neutral.White,
@@ -4063,7 +4112,7 @@ const VaccinePage = props => {
     className: "tw-mt-2",
     alt: (_data$data$faq$sponso = data.data.faq.sponsor.image) === null || _data$data$faq$sponso === void 0 ? void 0 : _data$data$faq$sponso.name,
     src: transformUri((_data$data$faq$sponso2 = data.data.faq.sponsor.image) === null || _data$data$faq$sponso2 === void 0 ? void 0 : _data$data$faq$sponso2.url)
-  }))))));
+  })))))));
 };
 
 VaccinePage.getInitialProps = async ctx => {
@@ -4077,7 +4126,8 @@ VaccinePage.getInitialProps = async ctx => {
     }
   });
   return {
-    data
+    data,
+    lang
   };
 };
 // CONCATENATED MODULE: ./src/components/pages/VaccinePage/index.ts
@@ -4385,6 +4435,13 @@ const event = ({
     value: value
   });
 };
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 
