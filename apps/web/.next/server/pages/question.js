@@ -190,6 +190,10 @@ var Option_ = __webpack_require__("0U3A");
 // EXTERNAL MODULE: external "fp-ts/pipeable"
 var pipeable_ = __webpack_require__("iasY");
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
@@ -271,8 +275,9 @@ var __jsx = external_react_default.a.createElement;
 
 
 
+
 const QuestionPage = props => {
-  var _data$data2, _data$data2$questionC, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$que, _data$data3, _data$data3$questionC, _data$data4, _data$data4$questionC, _data$data5, _data$data5$questionC, _data$data5$questionC2, _data$data5$questionC3, _data$data6, _data$data6$questionP, _data$data7, _data$data7$questionC, _data$data9, _data$data9$questionP, _data$data10, _data$data10$question, _data$data$questionPa, _data$data$questionPa2;
+  var _data$data2, _data$data2$questionC, _data$data3, _data$data3$questionC, _data$data4, _data$data4$questionC, _data$data5, _data$data5$questionC, _data$data5$questionC2, _data$data5$questionC3, _data$data6, _data$data6$questionC, _data$data7, _data$data7$questionC, _data$data8, _data$data8$questionC, _data$data8$questionC2, _data$data8$questionC3, _data$data9, _data$data9$questionC, _data$data10, _data$data10$question, _data$data11, _data$data11$question, _data$data11$question2, _data$data11$question3, _data$data12, _data$data12$question, _data$data13, _data$data13$question, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$que, _data$data14, _data$data14$question, _data$data15, _data$data15$question, _data$data16, _data$data16$question, _data$data16$question2, _data$data16$question3, _data$data17, _data$data17$question, _data$data18, _data$data18$question, _data$data20, _data$data20$question, _data$data21, _data$data21$question, _data$data$questionPa, _data$data$questionPa2;
 
   const {
     data,
@@ -294,7 +299,57 @@ const QuestionPage = props => {
     } // eslint-disable-next-line react-hooks/exhaustive-deps
 
   }, []);
-  return Object(core_["jsx"])(components["C" /* Layout */], {
+  return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : (_data$data3$questionC = _data$data3.questionCategory) === null || _data$data3$questionC === void 0 ? void 0 : _data$data3$questionC.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$questionC = _data$data4.questionCategory) === null || _data$data4$questionC === void 0 ? void 0 : _data$data4$questionC.title : data === null || data === void 0 ? void 0 : (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$questionC = _data$data5.questionCategory) === null || _data$data5$questionC === void 0 ? void 0 : (_data$data5$questionC2 = _data$data5$questionC.localizations) === null || _data$data5$questionC2 === void 0 ? void 0 : (_data$data5$questionC3 = _data$data5$questionC2[0]) === null || _data$data5$questionC3 === void 0 ? void 0 : _data$data5$questionC3.title), Object(core_["jsx"])("meta", {
+    name: "keywords"
+  }, (data === null || data === void 0 ? void 0 : (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$questionC = _data$data6.questionCategory) === null || _data$data6$questionC === void 0 ? void 0 : _data$data6$questionC.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : (_data$data7$questionC = _data$data7.questionCategory) === null || _data$data7$questionC === void 0 ? void 0 : _data$data7$questionC.title : data === null || data === void 0 ? void 0 : (_data$data8 = data.data) === null || _data$data8 === void 0 ? void 0 : (_data$data8$questionC = _data$data8.questionCategory) === null || _data$data8$questionC === void 0 ? void 0 : (_data$data8$questionC2 = _data$data8$questionC.localizations) === null || _data$data8$questionC2 === void 0 ? void 0 : (_data$data8$questionC3 = _data$data8$questionC2[0]) === null || _data$data8$questionC3 === void 0 ? void 0 : _data$data8$questionC3.title), Object(core_["jsx"])("meta", {
+    property: "og:title",
+    content: (data === null || data === void 0 ? void 0 : (_data$data9 = data.data) === null || _data$data9 === void 0 ? void 0 : (_data$data9$questionC = _data$data9.questionCategory) === null || _data$data9$questionC === void 0 ? void 0 : _data$data9$questionC.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data10 = data.data) === null || _data$data10 === void 0 ? void 0 : (_data$data10$question = _data$data10.questionCategory) === null || _data$data10$question === void 0 ? void 0 : _data$data10$question.title : data === null || data === void 0 ? void 0 : (_data$data11 = data.data) === null || _data$data11 === void 0 ? void 0 : (_data$data11$question = _data$data11.questionCategory) === null || _data$data11$question === void 0 ? void 0 : (_data$data11$question2 = _data$data11$question.localizations) === null || _data$data11$question2 === void 0 ? void 0 : (_data$data11$question3 = _data$data11$question2[0]) === null || _data$data11$question3 === void 0 ? void 0 : _data$data11$question3.title
+  }), Object(core_["jsx"])("meta", {
+    property: "og:image",
+    content: "https://medsupport.dev/static/images/logoBig.png"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale",
+    content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale:alternate",
+    content: lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:type",
+    content: "article"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:section",
+    content: "medicine"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "Covid-19"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "Covid"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "\u0432\u0430\u043A\u0446\u0438\u043D\u0430"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "\u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044F"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:tag",
+    content: "\u043F\u0430\u043D\u0434\u0435\u043C\u0438\u044F"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:modified_time",
+    content: data === null || data === void 0 ? void 0 : (_data$data12 = data.data) === null || _data$data12 === void 0 ? void 0 : (_data$data12$question = _data$data12.questionCategory) === null || _data$data12$question === void 0 ? void 0 : _data$data12$question.lastModifiedDate.toString()
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:published_time",
+    content: data === null || data === void 0 ? void 0 : (_data$data13 = data.data) === null || _data$data13 === void 0 ? void 0 : (_data$data13$question = _data$data13.questionCategory) === null || _data$data13$question === void 0 ? void 0 : _data$data13$question.lastModifiedDate.toString()
+  }), questions.map(({
+    title
+  }) => Object(core_["jsx"])("meta", {
+    key: title,
+    property: "og:article:tag",
+    content: title
+  }))), Object(core_["jsx"])(components["C" /* Layout */], {
     headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
     footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
     headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
@@ -314,19 +369,19 @@ const QuestionPage = props => {
     typography: core["e" /* typography */].variants.Element.Regular12
   }, (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$que = _props$data4$data.questionPage) === null || _props$data4$data$que === void 0 ? void 0 : _props$data4$data$que.goToFaqButtonText)), Object(core_["jsx"])(components["r" /* H2 */], {
     className: "mb-2"
-  }, (data === null || data === void 0 ? void 0 : (_data$data3 = data.data) === null || _data$data3 === void 0 ? void 0 : (_data$data3$questionC = _data$data3.questionCategory) === null || _data$data3$questionC === void 0 ? void 0 : _data$data3$questionC.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$questionC = _data$data4.questionCategory) === null || _data$data4$questionC === void 0 ? void 0 : _data$data4$questionC.title : data === null || data === void 0 ? void 0 : (_data$data5 = data.data) === null || _data$data5 === void 0 ? void 0 : (_data$data5$questionC = _data$data5.questionCategory) === null || _data$data5$questionC === void 0 ? void 0 : (_data$data5$questionC2 = _data$data5$questionC.localizations) === null || _data$data5$questionC2 === void 0 ? void 0 : (_data$data5$questionC3 = _data$data5$questionC2[0]) === null || _data$data5$questionC3 === void 0 ? void 0 : _data$data5$questionC3.title), Object(core_["jsx"])(components["B" /* LastUpdated */], {
-    lastUpdatedText: (data === null || data === void 0 ? void 0 : (_data$data6 = data.data) === null || _data$data6 === void 0 ? void 0 : (_data$data6$questionP = _data$data6.questionPage) === null || _data$data6$questionP === void 0 ? void 0 : _data$data6$questionP.lastModifiesText) || '',
-    date: (data === null || data === void 0 ? void 0 : (_data$data7 = data.data) === null || _data$data7 === void 0 ? void 0 : (_data$data7$questionC = _data$data7.questionCategory) === null || _data$data7$questionC === void 0 ? void 0 : _data$data7$questionC.lastModifiedDate) || new Date(),
+  }, (data === null || data === void 0 ? void 0 : (_data$data14 = data.data) === null || _data$data14 === void 0 ? void 0 : (_data$data14$question = _data$data14.questionCategory) === null || _data$data14$question === void 0 ? void 0 : _data$data14$question.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$question = _data$data15.questionCategory) === null || _data$data15$question === void 0 ? void 0 : _data$data15$question.title : data === null || data === void 0 ? void 0 : (_data$data16 = data.data) === null || _data$data16 === void 0 ? void 0 : (_data$data16$question = _data$data16.questionCategory) === null || _data$data16$question === void 0 ? void 0 : (_data$data16$question2 = _data$data16$question.localizations) === null || _data$data16$question2 === void 0 ? void 0 : (_data$data16$question3 = _data$data16$question2[0]) === null || _data$data16$question3 === void 0 ? void 0 : _data$data16$question3.title), Object(core_["jsx"])(components["B" /* LastUpdated */], {
+    lastUpdatedText: (data === null || data === void 0 ? void 0 : (_data$data17 = data.data) === null || _data$data17 === void 0 ? void 0 : (_data$data17$question = _data$data17.questionPage) === null || _data$data17$question === void 0 ? void 0 : _data$data17$question.lastModifiesText) || '',
+    date: (data === null || data === void 0 ? void 0 : (_data$data18 = data.data) === null || _data$data18 === void 0 ? void 0 : (_data$data18$question = _data$data18.questionCategory) === null || _data$data18$question === void 0 ? void 0 : _data$data18$question.lastModifiedDate) || new Date(),
     lang: lang
   }), questions.map((question, i) => {
-    var _data$data8, _data$data8$questionC;
+    var _data$data19, _data$data19$question;
 
     return Object(core_["jsx"])(components["n" /* Dropdown */], {
       id: question.id,
       key: question.id,
       question: question,
       isInitiallyOpen: id === question.id ? true : !id && i === 0 ? true : false,
-      useLocalization: (data === null || data === void 0 ? void 0 : (_data$data8 = data.data) === null || _data$data8 === void 0 ? void 0 : (_data$data8$questionC = _data$data8.questionCategory) === null || _data$data8$questionC === void 0 ? void 0 : _data$data8$questionC.locale) !== lang
+      useLocalization: (data === null || data === void 0 ? void 0 : (_data$data19 = data.data) === null || _data$data19 === void 0 ? void 0 : (_data$data19$question = _data$data19.questionCategory) === null || _data$data19$question === void 0 ? void 0 : _data$data19$question.locale) !== lang
     });
   }), Object(core_["jsx"])(components["f" /* ButtonLink */], {
     className: "tw-self-center tw-mt-8 tw-border",
@@ -336,10 +391,10 @@ const QuestionPage = props => {
     href: "/questions",
     css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.elementSemiBold16, core["c" /* media */].queryStyled([core["e" /* typography */].styles.elementSemiBold16, core["e" /* typography */].styles.elementSemiBold16, core["e" /* typography */].styles.headingSemiBold17]), true ? "" : undefined),
     className: "tw-text-black"
-  }, data === null || data === void 0 ? void 0 : (_data$data9 = data.data) === null || _data$data9 === void 0 ? void 0 : (_data$data9$questionP = _data$data9.questionPage) === null || _data$data9$questionP === void 0 ? void 0 : _data$data9$questionP.goToAllQuestionsText), Object(core_["jsx"])(components["w" /* Icon */], {
+  }, data === null || data === void 0 ? void 0 : (_data$data20 = data.data) === null || _data$data20 === void 0 ? void 0 : (_data$data20$question = _data$data20.questionPage) === null || _data$data20$question === void 0 ? void 0 : _data$data20$question.goToAllQuestionsText), Object(core_["jsx"])(components["w" /* Icon */], {
     icon: core["b" /* icons */].arrows.keyboardArrowRight,
     color: core["a" /* colors */].variants.Neutral.Black
-  })), ((_data$data10 = data.data) === null || _data$data10 === void 0 ? void 0 : (_data$data10$question = _data$data10.questionPage) === null || _data$data10$question === void 0 ? void 0 : _data$data10$question.sponsor) && Object(core_["jsx"])("div", {
+  })), ((_data$data21 = data.data) === null || _data$data21 === void 0 ? void 0 : (_data$data21$question = _data$data21.questionPage) === null || _data$data21$question === void 0 ? void 0 : _data$data21$question.sponsor) && Object(core_["jsx"])("div", {
     className: "tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white"
   }, Object(core_["jsx"])(components["J" /* P */], {
     typography: core["e" /* typography */].variants.Element.SemiBold16
@@ -350,7 +405,7 @@ const QuestionPage = props => {
     className: "tw-mt-2",
     alt: (_data$data$questionPa = data.data.questionPage.sponsor.image) === null || _data$data$questionPa === void 0 ? void 0 : _data$data$questionPa.name,
     src: `https://medsupport.dev/cms/${(_data$data$questionPa2 = data.data.questionPage.sponsor.image) === null || _data$data$questionPa2 === void 0 ? void 0 : _data$data$questionPa2.url}`
-  })))));
+  }))))));
 };
 
 QuestionPage.getInitialProps = async ctx => {
@@ -4315,6 +4370,13 @@ const event = ({
     value: value
   });
 };
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 

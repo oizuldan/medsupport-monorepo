@@ -4100,6 +4100,10 @@ __webpack_require__.d(__webpack_exports__, "default", function() { return /* ree
 // EXTERNAL MODULE: ./src/components/index.ts + 119 modules
 var components = __webpack_require__("Nhdc");
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__("cDcd");
 var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
@@ -4150,16 +4154,39 @@ var __jsx = external_react_default.a.createElement;
 
 
 
-const AboutUsPage = props => {
-  var _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$abo, _props$data5, _props$data5$data, _props$data5$data$abo;
 
-  return Object(core_["jsx"])(components["C" /* Layout */], {
-    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
-    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
-    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
+const AboutUsPage = props => {
+  var _props$data, _props$data$data, _props$data$data$abou, _props$data2, _props$data2$data, _props$data2$data$abo, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data5, _props$data5$data, _props$data6, _props$data6$data, _props$data6$data$abo, _props$data7, _props$data7$data, _props$data7$data$abo;
+
+  return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, "Medsupport \u043E \u043D\u0430\u0441"), Object(core_["jsx"])("meta", {
+    name: "keywords"
+  }, "\u041E Medsupport"), Object(core_["jsx"])("meta", {
+    name: "description"
+  }, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$abou = _props$data$data.aboutUsPage) === null || _props$data$data$abou === void 0 ? void 0 : _props$data$data$abou.content.substring(0, 200)), Object(core_["jsx"])("meta", {
+    property: "og:title",
+    content: "Medsupport \u043E \u043D\u0430\u0441"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:description",
+    content: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$abo = _props$data2$data.aboutUsPage) === null || _props$data2$data$abo === void 0 ? void 0 : _props$data2$data$abo.content.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
+    property: "og:image",
+    content: "https://medsupport.dev/static/images/logoBig.png"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale",
+    content: props.lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale:alternate",
+    content: props.lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  })), Object(core_["jsx"])(components["C" /* Layout */], {
+    headerButtons: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerButtons,
+    footerSections: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : _props$data4$data.footerSections,
+    headerLinks: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : _props$data5$data.headerLinks
   }, Object(core_["jsx"])("div", {
     className: "container my-3"
-  }, ((_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$abo = _props$data4$data.aboutUsPage) === null || _props$data4$data$abo === void 0 ? void 0 : _props$data4$data$abo.content) && Object(core_["jsx"])(components["G" /* Markdown */], null, (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$abo = _props$data5$data.aboutUsPage) === null || _props$data5$data$abo === void 0 ? void 0 : _props$data5$data$abo.content)));
+  }, ((_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : (_props$data6$data = _props$data6.data) === null || _props$data6$data === void 0 ? void 0 : (_props$data6$data$abo = _props$data6$data.aboutUsPage) === null || _props$data6$data$abo === void 0 ? void 0 : _props$data6$data$abo.content) && Object(core_["jsx"])(components["G" /* Markdown */], null, (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : (_props$data7$data = _props$data7.data) === null || _props$data7$data === void 0 ? void 0 : (_props$data7$data$abo = _props$data7$data.aboutUsPage) === null || _props$data7$data$abo === void 0 ? void 0 : _props$data7$data$abo.content))));
 };
 
 AboutUsPage.getInitialProps = async ctx => {
@@ -4173,13 +4200,21 @@ AboutUsPage.getInitialProps = async ctx => {
     }
   });
   return {
-    data
+    data,
+    lang
   };
 };
 // CONCATENATED MODULE: ./src/components/pages/AboutUsPage/index.ts
 
 // CONCATENATED MODULE: ./src/pages/aboutUs.ts
 
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 

@@ -15,6 +15,7 @@ import { pipe } from 'fp-ts/pipeable';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import React, { useMemo } from 'react';
 
 import { ArticlesList } from '../ArticlesPage';
@@ -34,7 +35,7 @@ const BannerCarousel = dynamic(() => import('./libs/BannerCarousel'), {
 });
 
 export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
-  const { data } = props;
+  const { data, lang } = props;
   const isMobile = media.useMobileDetector().phone();
 
   const articles = useMemo(
@@ -49,41 +50,61 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
   );
 
   return (
-    <Layout
-      headerButtons={props.data?.data?.headerButtons}
-      footerSections={props.data?.data?.footerSections}
-      headerLinks={props.data?.data?.headerLinks}
-    >
-      {isMobile ? (
-        <BannerCarouselMobile banners={props.data?.data?.headerBanners} />
-      ) : (
-        <BannerCarousel banners={props.data?.data?.headerBanners} />
-      )}
+    <>
+      <Head>
+        <title>Medsupport главная</title>
+        <meta name="keywords">Medsupport</meta>
+        <meta name="description">
+          {props.data?.data?.headerBanners?.[0]?.banners?.[0]?.subtitle.substring(0, 200)}
+        </meta>
+        <meta property="og:title" content="Medsupport главная" />
+        <meta
+          property="og:description"
+          content={props.data?.data?.headerBanners?.[0]?.banners?.[0]?.subtitle.substring(0, 200)}
+        />
+        <meta property="og:image" content="https://medsupport.dev/static/images/logoBig.png" />
+        <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
+        <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:type" content="article" />
+        <meta property="og:article:section" content="medicine" />
+      </Head>
+      <Layout
+        headerButtons={props.data?.data?.headerButtons}
+        footerSections={props.data?.data?.footerSections}
+        headerLinks={props.data?.data?.headerLinks}
+      >
+        {isMobile ? (
+          <BannerCarouselMobile banners={props.data?.data?.headerBanners} />
+        ) : (
+          <BannerCarousel banners={props.data?.data?.headerBanners} />
+        )}
 
-      <div className="my-5 container d-flex flex-column">
-        <div className="d-flex justify-content-between">
-          <H2 className="mb-4">{props.data?.data?.articlesSection?.section?.title}</H2>
-          <ButtonLink
-            href={props.data?.data?.articlesSection?.section?.link?.link || '/'}
-            variant={ButtonVariants.Flat}
-            size={ButtonSizes.Small}
-          >
-            <P
-              color={colors.variants.Neutral.Grey}
-              typography={typography.variants.Element.Regular12}
+        <div className="my-5 container d-flex flex-column">
+          <div className="d-flex justify-content-between">
+            <H2 className="mb-4">{props.data?.data?.articlesSection?.section?.title}</H2>
+            <ButtonLink
+              href={props.data?.data?.articlesSection?.section?.link?.link || '/'}
+              variant={ButtonVariants.Flat}
+              size={ButtonSizes.Small}
             >
-              {props.data?.data?.articlesSection?.section?.link?.title}
-            </P>
-            <Icon
-              icon={icons.arrows.keyboardArrowRight}
-              color={colors.variants.Neutral.Black}
-              className="mr-1"
-            />
-          </ButtonLink>
+              <P
+                color={colors.variants.Neutral.Grey}
+                typography={typography.variants.Element.Regular12}
+              >
+                {props.data?.data?.articlesSection?.section?.link?.title}
+              </P>
+              <Icon
+                icon={icons.arrows.keyboardArrowRight}
+                color={colors.variants.Neutral.Black}
+                className="mr-1"
+              />
+            </ButtonLink>
+          </div>
+          <ArticlesList articles={articles} />
         </div>
-        <ArticlesList articles={articles} />
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
@@ -95,5 +116,5 @@ HomePage.getInitialProps = async (ctx) => {
     variables: { locale: lang, limit: 6 },
   });
 
-  return { data };
+  return { data, lang };
 };

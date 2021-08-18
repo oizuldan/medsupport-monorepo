@@ -4078,6 +4078,10 @@ var components = __webpack_require__("Nhdc");
 // EXTERNAL MODULE: ./src/core/index.ts + 6 modules
 var core = __webpack_require__("UzkQ");
 
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__("xnum");
+var head_default = /*#__PURE__*/__webpack_require__.n(head_);
+
 // EXTERNAL MODULE: external "next/router"
 var router_ = __webpack_require__("4Q3z");
 
@@ -4149,8 +4153,9 @@ var __jsx = external_react_default.a.createElement;
 
 
 
+
 const ArticlePage = props => {
-  var _data$data, _data$data$article, _data$data2, _data$data2$article, _data$data3, _data$data3$article, _data$data3$article$l, _data$data3$article$l2, _props$data, _props$data$data, _props$data2, _props$data2$data, _props$data3, _props$data3$data, _props$data4, _props$data4$data, _props$data4$data$art, _props$data4$data$art2, _data$data4, _data$data4$artilcesP, _data$data4$artilcesP2;
+  var _data$data, _data$data$article, _data$data2, _data$data2$article, _data$data3, _data$data3$article, _data$data3$article$l, _data$data3$article$l2, _props$data, _props$data$data, _props$data$data$arti, _props$data2, _props$data2$data, _props$data2$data$art, _props$data3, _props$data3$data, _props$data3$data$art, _props$data4, _props$data4$data, _props$data4$data$art, _props$data5, _props$data5$data, _props$data5$data$art, _props$data6, _props$data6$data, _props$data7, _props$data7$data, _props$data8, _props$data8$data, _props$data9, _props$data9$data, _props$data9$data$art, _props$data9$data$art2, _data$data4, _data$data4$artilcesP, _data$data4$artilcesP2;
 
   const {
     data,
@@ -4164,14 +4169,45 @@ const ArticlePage = props => {
       window.location.assign(newURL);
     }
   }, [content, lang, router]);
-  return Object(core_["jsx"])(components["C" /* Layout */], {
-    headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
-    footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
-    headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
+  return Object(core_["jsx"])(external_react_default.a.Fragment, null, Object(core_["jsx"])(head_default.a, null, Object(core_["jsx"])("title", null, (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : (_props$data$data$arti = _props$data$data.article) === null || _props$data$data$arti === void 0 ? void 0 : _props$data$data$arti.title), Object(core_["jsx"])("meta", {
+    name: "keywords"
+  }, (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.article) === null || _props$data2$data$art === void 0 ? void 0 : _props$data2$data$art.title), Object(core_["jsx"])("meta", {
+    property: "description"
+  }, " ", (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : (_props$data3$data$art = _props$data3$data.article) === null || _props$data3$data$art === void 0 ? void 0 : _props$data3$data$art.content.substring(0, 200), " "), Object(core_["jsx"])("meta", {
+    property: "og:title",
+    content: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$art = _props$data4$data.article) === null || _props$data4$data$art === void 0 ? void 0 : _props$data4$data$art.title
+  }), Object(core_["jsx"])("meta", {
+    property: "og:description",
+    content: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$art = _props$data5$data.article) === null || _props$data5$data$art === void 0 ? void 0 : _props$data5$data$art.content.substring(0, 200)
+  }), Object(core_["jsx"])("meta", {
+    property: "og:image",
+    content: "https://medsupport.dev/static/images/logoBig.png"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale",
+    content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:locale:alternate",
+    content: lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:site_name",
+    content: "medsupport"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:type",
+    content: "article"
+  }), Object(core_["jsx"])("meta", {
+    property: "og:article:section",
+    content: "medicine"
+  })), Object(core_["jsx"])(components["C" /* Layout */], {
+    headerButtons: (_props$data6 = props.data) === null || _props$data6 === void 0 ? void 0 : (_props$data6$data = _props$data6.data) === null || _props$data6$data === void 0 ? void 0 : _props$data6$data.headerButtons,
+    footerSections: (_props$data7 = props.data) === null || _props$data7 === void 0 ? void 0 : (_props$data7$data = _props$data7.data) === null || _props$data7$data === void 0 ? void 0 : _props$data7$data.footerSections,
+    headerLinks: (_props$data8 = props.data) === null || _props$data8 === void 0 ? void 0 : (_props$data8$data = _props$data8.data) === null || _props$data8$data === void 0 ? void 0 : _props$data8$data.headerLinks
   }, Object(core_["jsx"])("div", {
     className: "container my-3"
   }, Object(core_["jsx"])(components["f" /* ButtonLink */], {
-    href: (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$art = _props$data4$data.artilcesPageBackButton) === null || _props$data4$data$art === void 0 ? void 0 : (_props$data4$data$art2 = _props$data4$data$art.backButton) === null || _props$data4$data$art2 === void 0 ? void 0 : _props$data4$data$art2.link,
+    href: (_props$data9 = props.data) === null || _props$data9 === void 0 ? void 0 : (_props$data9$data = _props$data9.data) === null || _props$data9$data === void 0 ? void 0 : (_props$data9$data$art = _props$data9$data.artilcesPageBackButton) === null || _props$data9$data$art === void 0 ? void 0 : (_props$data9$data$art2 = _props$data9$data$art.backButton) === null || _props$data9$data$art2 === void 0 ? void 0 : _props$data9$data$art2.link,
     variant: components["h" /* ButtonVariants */].Flat,
     size: components["g" /* ButtonSizes */].Small,
     className: "pl-0"
@@ -4182,7 +4218,7 @@ const ArticlePage = props => {
   }), Object(core_["jsx"])(components["J" /* P */], {
     color: core["a" /* colors */].variants.Neutral.Grey,
     typography: core["e" /* typography */].variants.Element.Regular12
-  }, data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$artilcesP = _data$data4.artilcesPageBackButton) === null || _data$data4$artilcesP === void 0 ? void 0 : (_data$data4$artilcesP2 = _data$data4$artilcesP.backButton) === null || _data$data4$artilcesP2 === void 0 ? void 0 : _data$data4$artilcesP2.title)), content && Object(core_["jsx"])(components["G" /* Markdown */], null, content)));
+  }, data === null || data === void 0 ? void 0 : (_data$data4 = data.data) === null || _data$data4 === void 0 ? void 0 : (_data$data4$artilcesP = _data$data4.artilcesPageBackButton) === null || _data$data4$artilcesP === void 0 ? void 0 : (_data$data4$artilcesP2 = _data$data4$artilcesP.backButton) === null || _data$data4$artilcesP2 === void 0 ? void 0 : _data$data4$artilcesP2.title)), content && Object(core_["jsx"])(components["G" /* Markdown */], null, content))));
 };
 
 ArticlePage.getInitialProps = async ctx => {
@@ -4238,6 +4274,13 @@ const event = ({
     value: value
   });
 };
+
+/***/ }),
+
+/***/ "xnum":
+/***/ (function(module, exports) {
+
+module.exports = require("next/head");
 
 /***/ }),
 

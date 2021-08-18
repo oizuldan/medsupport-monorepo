@@ -1,8 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /
-# Disallow: /documentUpload
-# Disallow: /login
-# Disallow: /documents
+Disallow:
 
-# Sitemap: http://xn--80aswg.xn--p1ai/sitemap.xml
+Host: https://medsupport.dev/
+Sitemap: https://medsupport.dev/sitemap.xml
+
