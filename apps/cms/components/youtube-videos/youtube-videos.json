@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_youtube_videos_youtube_videos",
+  "info": {
+    "name": "YoutubeVideos",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "videoId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

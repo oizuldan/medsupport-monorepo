@@ -13,3 +13,4 @@ export * from './QuestionCard';
 export * from './RelevantTopicCard';
 export * from './Dropdown';
 export * from './LastUpdated';
+export * from './InteractiveCard';

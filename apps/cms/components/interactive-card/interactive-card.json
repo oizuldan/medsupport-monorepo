@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_interactive_card_interactive_cards",
+  "info": {
+    "name": "interactiveCard",
+    "icon": "apple-alt"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 300,
+      "required": true
+    },
+    "buttonText": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -137,6 +137,7 @@ type Article {
   content: String!
   title: String!
   previewImage: UploadFile
+  description: String
   locale: String
   published_at: DateTime
   localizations(sort: String, limit: Int, start: Int, where: JSON): [Article]
@@ -161,6 +162,7 @@ type ArticleGroupBy {
   content: [ArticleConnectionContent]
   title: [ArticleConnectionTitle]
   previewImage: [ArticleConnectionPreviewImage]
+  description: [ArticleConnectionDescription]
   locale: [ArticleConnectionLocale]
   published_at: [ArticleConnectionPublished_at]
 }
@@ -200,6 +202,11 @@ type ArticleConnectionPreviewImage {
   connection: ArticleConnection
 }
 
+type ArticleConnectionDescription {
+  key: String
+  connection: ArticleConnection
+}
+
 type ArticleConnectionLocale {
   key: String
   connection: ArticleConnection
@@ -214,6 +221,7 @@ input ArticleInput {
   content: String!
   title: String!
   previewImage: ID
+  description: String
   localizations: [ID]
   locale: String
   published_at: DateTime
@@ -225,6 +233,7 @@ input editArticleInput {
   content: String
   title: String
   previewImage: ID
+  description: String
   localizations: [ID]
   locale: String
   published_at: DateTime
@@ -963,6 +972,50 @@ type deleteHeaderLinkPayload {
   headerLink: HeaderLinks
 }
 
+type HomePageSpecialSections {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  interactiveCard: [ComponentInteractiveCardInteractiveCard]
+  title: String!
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [HomePageSpecialSections]
+}
+
+input HomePageSpecialSectionInput {
+  interactiveCard: [ComponentInteractiveCardInteractiveCardInput!]
+  title: String!
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editHomePageSpecialSectionInput {
+  interactiveCard: [editComponentInteractiveCardInteractiveCardInput]
+  title: String
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateHomePageSpecialSectionInput {
+  data: editHomePageSpecialSectionInput
+}
+
+type updateHomePageSpecialSectionPayload {
+  homePageSpecialSection: HomePageSpecialSections
+}
+
+type deleteHomePageSpecialSectionPayload {
+  homePageSpecialSection: HomePageSpecialSections
+}
+
 type NewsItem {
   id: ID!
   _id: ID!
@@ -1389,6 +1442,53 @@ input deleteQuestionInput {
 
 type deleteQuestionPayload {
   question: Question
+}
+
+type ResistancePage {
+  id: ID!
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  ResistanceArticles: ComponentResistanceArticlesResistanceArticles
+  Videos: ComponentVideosVideos
+  locale: String
+  published_at: DateTime
+  localizations(sort: String, limit: Int, start: Int, where: JSON): [ResistancePage]
+}
+
+input ResistancePageInput {
+  title: String!
+  ResistanceArticles: ComponentResistanceArticlesResistanceArticleInput!
+  Videos: ComponentVideosVideoInput!
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editResistancePageInput {
+  title: String
+  ResistanceArticles: editComponentResistanceArticlesResistanceArticleInput
+  Videos: editComponentVideosVideoInput
+  localizations: [ID]
+  locale: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input updateResistancePageInput {
+  data: editResistancePageInput
+}
+
+type updateResistancePagePayload {
+  resistancePage: ResistancePage
+}
+
+type deleteResistancePagePayload {
+  resistancePage: ResistancePage
 }
 
 type I18NLocale {
@@ -1962,6 +2062,30 @@ input editComponentFooterSectionFooterSectionInput {
   links: [editComponentLinkLinkInput]
 }
 
+type ComponentInteractiveCardInteractiveCard {
+  id: ID!
+  _id: ID!
+  title: String!
+  description: String!
+  buttonText: String!
+  link: String!
+}
+
+input ComponentInteractiveCardInteractiveCardInput {
+  title: String!
+  description: String!
+  buttonText: String!
+  link: String!
+}
+
+input editComponentInteractiveCardInteractiveCardInput {
+  id: ID
+  title: String
+  description: String
+  buttonText: String
+  link: String
+}
+
 type ComponentLinkLink {
   id: ID!
   _id: ID!
@@ -2004,6 +2128,27 @@ input editComponentPartnerPartnerInput {
   image: ID
 }
 
+type ComponentResistanceArticlesResistanceArticles {
+  id: ID!
+  _id: ID!
+  title: String!
+  buttonText: String
+  articles(sort: String, limit: Int, start: Int, where: JSON): [Article]
+}
+
+input ComponentResistanceArticlesResistanceArticleInput {
+  title: String!
+  articles: [ID]
+  buttonText: String
+}
+
+input editComponentResistanceArticlesResistanceArticleInput {
+  id: ID
+  title: String
+  articles: [ID]
+  buttonText: String
+}
+
 type ComponentSectionSection {
   id: ID!
   _id: ID!
@@ -2022,7 +2167,40 @@ input editComponentSectionSectionInput {
   link: editComponentLinkLinkInput
 }
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | AboutUsPage | updateAboutUsPagePayload | deleteAboutUsPagePayload | AllQuestionsPage | updateAllQuestionsPagePayload | deleteAllQuestionsPagePayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnection_id | ArticleConnectionCreatedAt | ArticleConnectionUpdatedAt | ArticleConnectionContent | ArticleConnectionTitle | ArticleConnectionPreviewImage | ArticleConnectionLocale | ArticleConnectionPublished_at | createArticlePayload | updateArticlePayload | deleteArticlePayload | ArticlesSection | updateArticlesSectionPayload | deleteArticlesSectionPayload | ArtilcesPageBackButton | updateArtilcesPageBackButtonPayload | deleteArtilcesPageBackButtonPayload | Document | DocumentConnection | DocumentAggregator | DocumentGroupBy | DocumentConnectionId | DocumentConnection_id | DocumentConnectionCreatedAt | DocumentConnectionUpdatedAt | DocumentConnectionTitle | DocumentConnectionAuthor | DocumentConnectionDescription | DocumentConnectionDownloadLink | DocumentConnectionViewLink | DocumentConnectionLocale | DocumentConnectionPublished_at | createDocumentPayload | updateDocumentPayload | deleteDocumentPayload | Faq | updateFaqPayload | deleteFaqPayload | FooterSections | FooterSectionsConnection | FooterSectionsAggregator | FooterSectionsGroupBy | FooterSectionsConnectionId | FooterSectionsConnection_id | FooterSectionsConnectionCreatedAt | FooterSectionsConnectionUpdatedAt | FooterSectionsConnectionLocale | FooterSectionsConnectionPublished_at | createFooterSectionPayload | updateFooterSectionPayload | deleteFooterSectionPayload | HeaderBanners | HeaderBannersConnection | HeaderBannersAggregator | HeaderBannersGroupBy | HeaderBannersConnectionId | HeaderBannersConnection_id | HeaderBannersConnectionCreatedAt | HeaderBannersConnectionUpdatedAt | HeaderBannersConnectionLocale | HeaderBannersConnectionPublished_at | createHeaderBannerPayload | updateHeaderBannerPayload | deleteHeaderBannerPayload | HeaderButtons | HeaderButtonsConnection | HeaderButtonsAggregator | HeaderButtonsGroupBy | HeaderButtonsConnectionId | HeaderButtonsConnection_id | HeaderButtonsConnectionCreatedAt | HeaderButtonsConnectionUpdatedAt | HeaderButtonsConnectionLocale | HeaderButtonsConnectionPublished_at | createHeaderButtonPayload | updateHeaderButtonPayload | deleteHeaderButtonPayload | HeaderLinks | HeaderLinksConnection | HeaderLinksAggregator | HeaderLinksGroupBy | HeaderLinksConnectionId | HeaderLinksConnection_id | HeaderLinksConnectionCreatedAt | HeaderLinksConnectionUpdatedAt | HeaderLinksConnectionLocale | HeaderLinksConnectionPublished_at | createHeaderLinkPayload | updateHeaderLinkPayload | deleteHeaderLinkPayload | NewsItem | NewsItemConnection | NewsItemAggregator | NewsItemGroupBy | NewsItemConnectionId | NewsItemConnection_id | NewsItemConnectionCreatedAt | NewsItemConnectionUpdatedAt | NewsItemConnectionContent | NewsItemConnectionTitle | NewsItemConnectionPreviewImage | NewsItemConnectionLocale | NewsItemConnectionPublished_at | createNewsItemPayload | updateNewsItemPayload | deleteNewsItemPayload | QuestionCategory | QuestionCategoryConnection | QuestionCategoryAggregator | QuestionCategoryGroupBy | QuestionCategoryConnectionId | QuestionCategoryConnection_id | QuestionCategoryConnectionCreatedAt | QuestionCategoryConnectionUpdatedAt | QuestionCategoryConnectionTitle | QuestionCategoryConnectionLastModifiedDate | QuestionCategoryConnectionLocale | QuestionCategoryConnectionPublished_at | createQuestionCategoryPayload | updateQuestionCategoryPayload | deleteQuestionCategoryPayload | QuestionPage | updateQuestionPagePayload | deleteQuestionPagePayload | Question | QuestionConnection | QuestionAggregator | QuestionGroupBy | QuestionConnectionId | QuestionConnection_id | QuestionConnectionCreatedAt | QuestionConnectionUpdatedAt | QuestionConnectionTitle | QuestionConnectionContent | QuestionConnectionQuestion_category | QuestionConnectionLocale | QuestionConnectionPublished_at | createQuestionPayload | updateQuestionPayload | deleteQuestionPayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentActualTopicsActualTopics | ComponentBannerBanner | ComponentButtonButton | ComponentFooterSectionFooterSection | ComponentLinkLink | ComponentPartnerPartner | ComponentSectionSection
+type ComponentVideosVideos {
+  id: ID!
+  _id: ID!
+  title: String!
+  YoutubeVideos: [ComponentYoutubeVideosYoutubeVideos]
+}
+
+input ComponentVideosVideoInput {
+  title: String!
+  YoutubeVideos: [ComponentYoutubeVideosYoutubeVideoInput!]
+}
+
+input editComponentVideosVideoInput {
+  id: ID
+  title: String
+  YoutubeVideos: [editComponentYoutubeVideosYoutubeVideoInput]
+}
+
+type ComponentYoutubeVideosYoutubeVideos {
+  id: ID!
+  _id: ID!
+  videoId: String!
+}
+
+input ComponentYoutubeVideosYoutubeVideoInput {
+  videoId: String!
+}
+
+input editComponentYoutubeVideosYoutubeVideoInput {
+  id: ID
+  videoId: String
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | AboutUsPage | updateAboutUsPagePayload | deleteAboutUsPagePayload | AllQuestionsPage | updateAllQuestionsPagePayload | deleteAllQuestionsPagePayload | Article | ArticleConnection | ArticleAggregator | ArticleGroupBy | ArticleConnectionId | ArticleConnection_id | ArticleConnectionCreatedAt | ArticleConnectionUpdatedAt | ArticleConnectionContent | ArticleConnectionTitle | ArticleConnectionPreviewImage | ArticleConnectionDescription | ArticleConnectionLocale | ArticleConnectionPublished_at | createArticlePayload | updateArticlePayload | deleteArticlePayload | ArticlesSection | updateArticlesSectionPayload | deleteArticlesSectionPayload | ArtilcesPageBackButton | updateArtilcesPageBackButtonPayload | deleteArtilcesPageBackButtonPayload | Document | DocumentConnection | DocumentAggregator | DocumentGroupBy | DocumentConnectionId | DocumentConnection_id | DocumentConnectionCreatedAt | DocumentConnectionUpdatedAt | DocumentConnectionTitle | DocumentConnectionAuthor | DocumentConnectionDescription | DocumentConnectionDownloadLink | DocumentConnectionViewLink | DocumentConnectionLocale | DocumentConnectionPublished_at | createDocumentPayload | updateDocumentPayload | deleteDocumentPayload | Faq | updateFaqPayload | deleteFaqPayload | FooterSections | FooterSectionsConnection | FooterSectionsAggregator | FooterSectionsGroupBy | FooterSectionsConnectionId | FooterSectionsConnection_id | FooterSectionsConnectionCreatedAt | FooterSectionsConnectionUpdatedAt | FooterSectionsConnectionLocale | FooterSectionsConnectionPublished_at | createFooterSectionPayload | updateFooterSectionPayload | deleteFooterSectionPayload | HeaderBanners | HeaderBannersConnection | HeaderBannersAggregator | HeaderBannersGroupBy | HeaderBannersConnectionId | HeaderBannersConnection_id | HeaderBannersConnectionCreatedAt | HeaderBannersConnectionUpdatedAt | HeaderBannersConnectionLocale | HeaderBannersConnectionPublished_at | createHeaderBannerPayload | updateHeaderBannerPayload | deleteHeaderBannerPayload | HeaderButtons | HeaderButtonsConnection | HeaderButtonsAggregator | HeaderButtonsGroupBy | HeaderButtonsConnectionId | HeaderButtonsConnection_id | HeaderButtonsConnectionCreatedAt | HeaderButtonsConnectionUpdatedAt | HeaderButtonsConnectionLocale | HeaderButtonsConnectionPublished_at | createHeaderButtonPayload | updateHeaderButtonPayload | deleteHeaderButtonPayload | HeaderLinks | HeaderLinksConnection | HeaderLinksAggregator | HeaderLinksGroupBy | HeaderLinksConnectionId | HeaderLinksConnection_id | HeaderLinksConnectionCreatedAt | HeaderLinksConnectionUpdatedAt | HeaderLinksConnectionLocale | HeaderLinksConnectionPublished_at | createHeaderLinkPayload | updateHeaderLinkPayload | deleteHeaderLinkPayload | HomePageSpecialSections | updateHomePageSpecialSectionPayload | deleteHomePageSpecialSectionPayload | NewsItem | NewsItemConnection | NewsItemAggregator | NewsItemGroupBy | NewsItemConnectionId | NewsItemConnection_id | NewsItemConnectionCreatedAt | NewsItemConnectionUpdatedAt | NewsItemConnectionContent | NewsItemConnectionTitle | NewsItemConnectionPreviewImage | NewsItemConnectionLocale | NewsItemConnectionPublished_at | createNewsItemPayload | updateNewsItemPayload | deleteNewsItemPayload | QuestionCategory | QuestionCategoryConnection | QuestionCategoryAggregator | QuestionCategoryGroupBy | QuestionCategoryConnectionId | QuestionCategoryConnection_id | QuestionCategoryConnectionCreatedAt | QuestionCategoryConnectionUpdatedAt | QuestionCategoryConnectionTitle | QuestionCategoryConnectionLastModifiedDate | QuestionCategoryConnectionLocale | QuestionCategoryConnectionPublished_at | createQuestionCategoryPayload | updateQuestionCategoryPayload | deleteQuestionCategoryPayload | QuestionPage | updateQuestionPagePayload | deleteQuestionPagePayload | Question | QuestionConnection | QuestionAggregator | QuestionGroupBy | QuestionConnectionId | QuestionConnection_id | QuestionConnectionCreatedAt | QuestionConnectionUpdatedAt | QuestionConnectionTitle | QuestionConnectionContent | QuestionConnectionQuestion_category | QuestionConnectionLocale | QuestionConnectionPublished_at | createQuestionPayload | updateQuestionPayload | deleteQuestionPayload | ResistancePage | updateResistancePagePayload | deleteResistancePagePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentActualTopicsActualTopics | ComponentBannerBanner | ComponentButtonButton | ComponentFooterSectionFooterSection | ComponentInteractiveCardInteractiveCard | ComponentLinkLink | ComponentPartnerPartner | ComponentResistanceArticlesResistanceArticles | ComponentSectionSection | ComponentVideosVideos | ComponentYoutubeVideosYoutubeVideos
 
 input InputID {
   id: ID!
@@ -2064,6 +2242,7 @@ type Query {
   headerLink(id: ID!, publicationState: PublicationState): HeaderLinks
   headerLinks(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [HeaderLinks]
   headerLinksConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): HeaderLinksConnection
+  homePageSpecialSection(publicationState: PublicationState, locale: String): HomePageSpecialSections
   newsItem(id: ID!, publicationState: PublicationState): NewsItem
   newsItems(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [NewsItem]
   newsItemsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): NewsItemConnection
@@ -2074,6 +2253,7 @@ type Query {
   question(id: ID!, publicationState: PublicationState): Question
   questions(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState, locale: String): [Question]
   questionsConnection(sort: String, limit: Int, start: Int, where: JSON, locale: String): QuestionConnection
+  resistancePage(publicationState: PublicationState, locale: String): ResistancePage
   files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
   filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
@@ -2118,6 +2298,8 @@ type Mutation {
   createHeaderLink(input: createHeaderLinkInput): createHeaderLinkPayload
   updateHeaderLink(input: updateHeaderLinkInput): updateHeaderLinkPayload
   deleteHeaderLink(input: deleteHeaderLinkInput): deleteHeaderLinkPayload
+  updateHomePageSpecialSection(input: updateHomePageSpecialSectionInput, locale: String): updateHomePageSpecialSectionPayload
+  deleteHomePageSpecialSection(locale: String): deleteHomePageSpecialSectionPayload
   createNewsItem(input: createNewsItemInput): createNewsItemPayload
   updateNewsItem(input: updateNewsItemInput): updateNewsItemPayload
   deleteNewsItem(input: deleteNewsItemInput): deleteNewsItemPayload
@@ -2129,6 +2311,8 @@ type Mutation {
   createQuestion(input: createQuestionInput): createQuestionPayload
   updateQuestion(input: updateQuestionInput): updateQuestionPayload
   deleteQuestion(input: deleteQuestionInput): deleteQuestionPayload
+  updateResistancePage(input: updateResistancePageInput, locale: String): updateResistancePagePayload
+  deleteResistancePage(locale: String): deleteResistancePagePayload
 
   """Delete one file"""
   deleteFile(input: deleteFileInput): deleteFilePayload
@@ -2161,10 +2345,12 @@ type Mutation {
   createHeaderBannerLocalization(input: updateHeaderBannerInput!): HeaderBanners!
   createHeaderButtonLocalization(input: updateHeaderButtonInput!): HeaderButtons!
   createHeaderLinkLocalization(input: updateHeaderLinkInput!): HeaderLinks!
+  createHomePageSpecialSectionLocalization(input: updateHomePageSpecialSectionInput!): HomePageSpecialSections!
   createNewsItemLocalization(input: updateNewsItemInput!): NewsItem!
   createQuestionCategoryLocalization(input: updateQuestionCategoryInput!): QuestionCategory!
   createQuestionPageLocalization(input: updateQuestionPageInput!): QuestionPage!
   createQuestionLocalization(input: updateQuestionInput!): Question!
+  createResistancePageLocalization(input: updateResistancePageInput!): ResistancePage!
   upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
   multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
   updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!

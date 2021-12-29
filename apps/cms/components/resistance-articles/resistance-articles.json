@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_resistance_articles_resistance_articles",
+  "info": {
+    "name": "ResistanceArticles",
+    "icon": "atom",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "articles": {
+      "collection": "article"
+    },
+    "buttonText": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

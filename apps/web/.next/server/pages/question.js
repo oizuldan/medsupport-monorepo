@@ -49,7 +49,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"20":"e01781121298e89e6383"}[chunkId] + ".js");
+/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"21":"5bc73061326d6b82ad4d"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -175,7 +175,7 @@ __webpack_require__.d(__webpack_exports__, "default", function() { return /* ree
 // EXTERNAL MODULE: external "@emotion/core"
 var core_ = __webpack_require__("3vLF");
 
-// EXTERNAL MODULE: ./src/components/index.ts + 119 modules
+// EXTERNAL MODULE: ./src/components/index.ts + 121 modules
 var components = __webpack_require__("Nhdc");
 
 // EXTERNAL MODULE: ./src/core/index.ts + 6 modules
@@ -350,7 +350,7 @@ const QuestionPage = props => {
     key: title,
     property: "og:article:tag",
     content: title
-  }))), Object(core_["jsx"])(components["C" /* Layout */], {
+  }))), Object(core_["jsx"])(components["D" /* Layout */], {
     headerButtons: (_props$data = props.data) === null || _props$data === void 0 ? void 0 : (_props$data$data = _props$data.data) === null || _props$data$data === void 0 ? void 0 : _props$data$data.headerButtons,
     footerSections: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : _props$data2$data.footerSections,
     headerLinks: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : _props$data3$data.headerLinks
@@ -365,12 +365,12 @@ const QuestionPage = props => {
     icon: core["b" /* icons */].arrows.keyboardArrowLeft,
     color: core["a" /* colors */].variants.Neutral.Black,
     className: "mr-1"
-  }), Object(core_["jsx"])(components["J" /* P */], {
+  }), Object(core_["jsx"])(components["K" /* P */], {
     color: core["a" /* colors */].variants.Neutral.Grey,
     typography: core["e" /* typography */].variants.Element.Regular12
   }, (_props$data4 = props.data) === null || _props$data4 === void 0 ? void 0 : (_props$data4$data = _props$data4.data) === null || _props$data4$data === void 0 ? void 0 : (_props$data4$data$que = _props$data4$data.questionPage) === null || _props$data4$data$que === void 0 ? void 0 : _props$data4$data$que.goToFaqButtonText)), Object(core_["jsx"])(components["r" /* H2 */], {
     className: "mb-2"
-  }, (data === null || data === void 0 ? void 0 : (_data$data14 = data.data) === null || _data$data14 === void 0 ? void 0 : (_data$data14$question = _data$data14.questionCategory) === null || _data$data14$question === void 0 ? void 0 : _data$data14$question.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$question = _data$data15.questionCategory) === null || _data$data15$question === void 0 ? void 0 : _data$data15$question.title : data === null || data === void 0 ? void 0 : (_data$data16 = data.data) === null || _data$data16 === void 0 ? void 0 : (_data$data16$question = _data$data16.questionCategory) === null || _data$data16$question === void 0 ? void 0 : (_data$data16$question2 = _data$data16$question.localizations) === null || _data$data16$question2 === void 0 ? void 0 : (_data$data16$question3 = _data$data16$question2[0]) === null || _data$data16$question3 === void 0 ? void 0 : _data$data16$question3.title), Object(core_["jsx"])(components["B" /* LastUpdated */], {
+  }, (data === null || data === void 0 ? void 0 : (_data$data14 = data.data) === null || _data$data14 === void 0 ? void 0 : (_data$data14$question = _data$data14.questionCategory) === null || _data$data14$question === void 0 ? void 0 : _data$data14$question.locale) === lang ? data === null || data === void 0 ? void 0 : (_data$data15 = data.data) === null || _data$data15 === void 0 ? void 0 : (_data$data15$question = _data$data15.questionCategory) === null || _data$data15$question === void 0 ? void 0 : _data$data15$question.title : data === null || data === void 0 ? void 0 : (_data$data16 = data.data) === null || _data$data16 === void 0 ? void 0 : (_data$data16$question = _data$data16.questionCategory) === null || _data$data16$question === void 0 ? void 0 : (_data$data16$question2 = _data$data16$question.localizations) === null || _data$data16$question2 === void 0 ? void 0 : (_data$data16$question3 = _data$data16$question2[0]) === null || _data$data16$question3 === void 0 ? void 0 : _data$data16$question3.title), Object(core_["jsx"])(components["C" /* LastUpdated */], {
     lastUpdatedText: (data === null || data === void 0 ? void 0 : (_data$data17 = data.data) === null || _data$data17 === void 0 ? void 0 : (_data$data17$question = _data$data17.questionPage) === null || _data$data17$question === void 0 ? void 0 : _data$data17$question.lastModifiesText) || '',
     date: (data === null || data === void 0 ? void 0 : (_data$data18 = data.data) === null || _data$data18 === void 0 ? void 0 : (_data$data18$question = _data$data18.questionCategory) === null || _data$data18$question === void 0 ? void 0 : _data$data18$question.lastModifiedDate) || new Date(),
     lang: lang
@@ -397,7 +397,7 @@ const QuestionPage = props => {
     color: core["a" /* colors */].variants.Neutral.Black
   })), ((_data$data21 = data.data) === null || _data$data21 === void 0 ? void 0 : (_data$data21$question = _data$data21.questionPage) === null || _data$data21$question === void 0 ? void 0 : _data$data21$question.sponsor) && Object(core_["jsx"])("div", {
     className: "tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white"
-  }, Object(core_["jsx"])(components["J" /* P */], {
+  }, Object(core_["jsx"])(components["K" /* P */], {
     typography: core["e" /* typography */].variants.Element.SemiBold16
   }, data.data.questionPage.sponsor.title), Object(core_["jsx"])(components["a" /* Anchor */], {
     href: data.data.questionPage.sponsor.link,
@@ -674,19 +674,19 @@ __webpack_require__.d(__webpack_exports__, "k", function() { return /* reexport 
 __webpack_require__.d(__webpack_exports__, "x", function() { return /* reexport */ Sizes_Sizes; });
 __webpack_require__.d(__webpack_exports__, "w", function() { return /* reexport */ Icon; });
 __webpack_require__.d(__webpack_exports__, "y", function() { return /* reexport */ Input; });
-__webpack_require__.d(__webpack_exports__, "P", function() { return /* reexport */ Spinner; });
-__webpack_require__.d(__webpack_exports__, "Q", function() { return /* reexport */ Toast; });
-__webpack_require__.d(__webpack_exports__, "R", function() { return /* reexport */ Typography; });
-__webpack_require__.d(__webpack_exports__, "J", function() { return /* reexport */ P; });
+__webpack_require__.d(__webpack_exports__, "Q", function() { return /* reexport */ Spinner; });
+__webpack_require__.d(__webpack_exports__, "R", function() { return /* reexport */ Toast; });
+__webpack_require__.d(__webpack_exports__, "S", function() { return /* reexport */ Typography; });
+__webpack_require__.d(__webpack_exports__, "K", function() { return /* reexport */ P; });
 __webpack_require__.d(__webpack_exports__, "q", function() { return /* reexport */ H1; });
 __webpack_require__.d(__webpack_exports__, "r", function() { return /* reexport */ H2; });
 __webpack_require__.d(__webpack_exports__, "s", function() { return /* reexport */ H3; });
 __webpack_require__.d(__webpack_exports__, "t", function() { return /* reexport */ H4; });
 __webpack_require__.d(__webpack_exports__, "u", function() { return /* reexport */ H5; });
-__webpack_require__.d(__webpack_exports__, "I", function() { return /* reexport */ Overflow; });
+__webpack_require__.d(__webpack_exports__, "J", function() { return /* reexport */ Overflow; });
 __webpack_require__.d(__webpack_exports__, "o", function() { return /* reexport */ Dropzone; });
-__webpack_require__.d(__webpack_exports__, "O", function() { return /* reexport */ Skeleton; });
-__webpack_require__.d(__webpack_exports__, "S", function() { return /* reexport */ Skeleton_styles_namespaceObject; });
+__webpack_require__.d(__webpack_exports__, "P", function() { return /* reexport */ Skeleton; });
+__webpack_require__.d(__webpack_exports__, "T", function() { return /* reexport */ Skeleton_styles_namespaceObject; });
 __webpack_require__.d(__webpack_exports__, "i", function() { return /* reexport */ Card; });
 __webpack_require__.d(__webpack_exports__, "j", function() { return /* reexport */ Carousel; });
 __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ BannerCarousel; });
@@ -695,20 +695,21 @@ __webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport 
 __webpack_require__.d(__webpack_exports__, "z", function() { return /* reexport */ InputGroup; });
 __webpack_require__.d(__webpack_exports__, "m", function() { return /* reexport */ Directions_Directions; });
 __webpack_require__.d(__webpack_exports__, "l", function() { return /* reexport */ Drawer; });
-__webpack_require__.d(__webpack_exports__, "A", function() { return /* reexport */ component_Label; });
-__webpack_require__.d(__webpack_exports__, "G", function() { return /* reexport */ Markdown; });
-__webpack_require__.d(__webpack_exports__, "K", function() { return /* reexport */ Pagination; });
-__webpack_require__.d(__webpack_exports__, "L", function() { return /* reexport */ Popover; });
-__webpack_require__.d(__webpack_exports__, "M", function() { return /* reexport */ QuestionCard; });
-__webpack_require__.d(__webpack_exports__, "N", function() { return /* reexport */ RelevantTopicCard; });
+__webpack_require__.d(__webpack_exports__, "B", function() { return /* reexport */ component_Label; });
+__webpack_require__.d(__webpack_exports__, "H", function() { return /* reexport */ Markdown; });
+__webpack_require__.d(__webpack_exports__, "L", function() { return /* reexport */ Pagination; });
+__webpack_require__.d(__webpack_exports__, "M", function() { return /* reexport */ Popover; });
+__webpack_require__.d(__webpack_exports__, "N", function() { return /* reexport */ QuestionCard; });
+__webpack_require__.d(__webpack_exports__, "O", function() { return /* reexport */ RelevantTopicCard; });
 __webpack_require__.d(__webpack_exports__, "n", function() { return /* reexport */ Dropdown; });
-__webpack_require__.d(__webpack_exports__, "B", function() { return /* reexport */ LastUpdated; });
+__webpack_require__.d(__webpack_exports__, "C", function() { return /* reexport */ LastUpdated; });
+__webpack_require__.d(__webpack_exports__, "A", function() { return /* reexport */ InteractiveCard; });
 __webpack_require__.d(__webpack_exports__, "v", function() { return /* reexport */ Header; });
-__webpack_require__.d(__webpack_exports__, "C", function() { return /* reexport */ Layout; });
-__webpack_require__.d(__webpack_exports__, "E", function() { return /* reexport */ component_Item; });
-__webpack_require__.d(__webpack_exports__, "F", function() { return /* reexport */ ItemButton; });
-__webpack_require__.d(__webpack_exports__, "D", function() { return /* reexport */ List; });
-__webpack_require__.d(__webpack_exports__, "H", function() { return /* reexport */ OrderedList; });
+__webpack_require__.d(__webpack_exports__, "D", function() { return /* reexport */ Layout; });
+__webpack_require__.d(__webpack_exports__, "F", function() { return /* reexport */ component_Item; });
+__webpack_require__.d(__webpack_exports__, "G", function() { return /* reexport */ ItemButton; });
+__webpack_require__.d(__webpack_exports__, "E", function() { return /* reexport */ List; });
+__webpack_require__.d(__webpack_exports__, "I", function() { return /* reexport */ OrderedList; });
 __webpack_require__.d(__webpack_exports__, "p", function() { return /* reexport */ Footer; });
 
 // UNUSED EXPORTS: DividerDirections, H1Regular, H4Regular, CardTitle, CardContent, CardInteractive, BasicCarousel, Table, PaginationItemTypes, popoverModifiers, PopoverTargetTypes, PopoverModifierNames, PopoverCoverStrategies
@@ -2291,7 +2292,7 @@ component_Label.defaultProps = {
 };
 // CONCATENATED MODULE: ./src/components/molecules/Label/index.ts
 
-// EXTERNAL MODULE: /Users/eyes/Desktop/medsupport-monorepo/node_modules/bootstrap-4-grid/css/grid.css
+// EXTERNAL MODULE: /Users/icett/Desktop/SP/medsupportkz/node_modules/bootstrap-4-grid/css/grid.css
 var grid = __webpack_require__("C3pY");
 
 // CONCATENATED MODULE: ./src/components/molecules/Table/component.tsx
@@ -3195,7 +3196,57 @@ const LastUpdated = props => Object(core_["jsx"])("div", {
 }, core["d" /* services */].parseDate(props.date.toString(), props.lang === 'ru-RU' ? 'ru' : 'kk')));
 // CONCATENATED MODULE: ./src/components/molecules/LastUpdated/index.ts
 
+// CONCATENATED MODULE: ./src/components/molecules/InteractiveCard/component.tsx
+
+var InteractiveCard_component_jsx = external_react_default.a.createElement;
+
+function InteractiveCard_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+
+
+const InteractiveCardContainer = styled_base_default()("a", {
+  target: "e1hu29hk0"
+})(props => /*#__PURE__*/Object(core_["css"])("border-radius:8px;background-color:", core["a" /* colors */].variants.Neutral.White, ";padding:2rem 1rem;cursor:pointer;box-shadow:1px 1px 8px rgba(201,201,201,0.8),0px 0.5px 0px rgba(172,172,172,0.9);transition:transform 0.1s ease-out;transform:", props.onHover ? 'scale(1.03)' : 'none', ";width:300px;height:100%;&:hover{background-color:", core["a" /* colors */].variants.Brand.MoreExtraLightPurple, ";}" + (true ? "" : undefined)), true ? "" : undefined);
+
+var InteractiveCard_component_ref = true ? {
+  name: "rl6otz",
+  styles: "border-radius:8px;"
+} : undefined;
+
+const InteractiveCard = props => {
+  const {
+    0: onHover,
+    1: setOnHover
+  } = Object(external_react_["useState"])(false);
+  return Object(core_["jsx"])("div", {
+    className: "p-3"
+  }, Object(core_["jsx"])(InteractiveCardContainer, {
+    href: props.href,
+    className: "tw-flex tw-items-center tw-justify-between tw-flex-col tw-text-center" // eslint-disable-next-line react/jsx-no-bind
+    ,
+    onMouseOver: () => setOnHover(true) // eslint-disable-next-line react/jsx-no-bind
+    ,
+    onMouseOut: () => setOnHover(false),
+    onHover: onHover
+  }, Object(core_["jsx"])(Typography, {
+    as: "h3",
+    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold28]), true ? "" : undefined),
+    className: "mb-3 tw-clip tw-w-full tw-overflow-hidden tw-break-words"
+  }, props.title), Object(core_["jsx"])(P, {
+    className: "mb-4"
+  }, props.description), Object(core_["jsx"])(Button, {
+    css: InteractiveCard_component_ref,
+    variant: Variants.Flat
+  }, props.buttonText)));
+};
+// CONCATENATED MODULE: ./src/components/molecules/InteractiveCard/index.ts
+
 // CONCATENATED MODULE: ./src/components/molecules/index.ts
+
 
 
 
@@ -3407,7 +3458,7 @@ function Layout_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tr
 
 
 
-const component_Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 20).then(__webpack_require__.bind(null, "hJjj")), {
+const component_Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 21).then(__webpack_require__.bind(null, "hJjj")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("hJjj")],
     modules: ['./libs/Header']

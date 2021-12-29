@@ -1,24 +1,11 @@
-import {
-  BannerCarouselSkeleton,
-  ButtonLink,
-  ButtonSizes,
-  ButtonVariants,
-  H2,
-  Icon,
-  Layout,
-  P,
-} from 'components';
-import { colors, icons, media, typography } from 'core';
-import { sequence } from 'fp-ts/Array';
-import * as O from 'fp-ts/Option';
-import { pipe } from 'fp-ts/pipeable';
+import { BannerCarouselSkeleton, H2, InteractiveCard, Layout } from 'components';
+import { media } from 'core';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { ArticlesList } from '../ArticlesPage';
 import { MainPage, MainPageVariables } from './__generated__/MainPage';
 import { queryMainPage } from './graphql';
 import { InitProps, Props } from './props';
@@ -35,19 +22,8 @@ const BannerCarousel = dynamic(() => import('./libs/BannerCarousel'), {
 });
 
 export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
-  const { data, lang } = props;
+  const { lang } = props;
   const isMobile = media.useMobileDetector().phone();
-
-  const articles = useMemo(
-    () =>
-      pipe(
-        O.fromNullable(data?.data?.articles),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((arts) => sequence(O.option)(arts.map((art) => pipe(O.fromNullable(art))))),
-        O.getOrElseW(() => undefined),
-      ),
-    [data?.data?.articles],
-  );
 
   return (
     <>
@@ -81,28 +57,22 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
           <BannerCarousel banners={props.data?.data?.headerBanners} />
         )}
 
-        <div className="my-5 container d-flex flex-column">
-          <div className="d-flex justify-content-between">
-            <H2 className="mb-4">{props.data?.data?.articlesSection?.section?.title}</H2>
-            <ButtonLink
-              href={props.data?.data?.articlesSection?.section?.link?.link || '/'}
-              variant={ButtonVariants.Flat}
-              size={ButtonSizes.Small}
-            >
-              <P
-                color={colors.variants.Neutral.Grey}
-                typography={typography.variants.Element.Regular12}
-              >
-                {props.data?.data?.articlesSection?.section?.link?.title}
-              </P>
-              <Icon
-                icon={icons.arrows.keyboardArrowRight}
-                color={colors.variants.Neutral.Black}
-                className="mr-1"
-              />
-            </ButtonLink>
+        <div className="mt-5 mb-3 container d-flex flex-column">
+          <H2>{props.data?.data?.homePageSpecialSection?.title}</H2>
+          <div className="tw-flex tw-flex-wrap tw-justify-center tw-mb-10 tw-mt-5">
+            {props.data?.data?.homePageSpecialSection?.interactiveCard?.map(
+              (section) =>
+                section && (
+                  <InteractiveCard
+                    key={section.id}
+                    description={section.description}
+                    title={section.title}
+                    buttonText={section.buttonText}
+                    href={section.link}
+                  />
+                ),
+            )}
           </div>
-          <ArticlesList articles={articles} />
         </div>
       </Layout>
     </>
@@ -114,7 +84,7 @@ HomePage.getInitialProps = async (ctx) => {
 
   const data = await ctx.apolloClient.query<MainPage, MainPageVariables>({
     query: queryMainPage,
-    variables: { locale: lang, limit: 6 },
+    variables: { locale: lang },
   });
 
   return { data, lang };

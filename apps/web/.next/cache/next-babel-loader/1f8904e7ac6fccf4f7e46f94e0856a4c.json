@@ -1,0 +1,1 @@
+{"ast":null,"code":"","map":{"version":3,"sources":[],"names":[],"mappings":"","sourcesContent":["import { PropsBase } from './types/PropsBase';\nimport { AnyTypography } from './variants';\n\nexport type Props<V extends AnyTypography = AnyTypography> = PropsBase<V>;\n"]},"metadata":{},"sourceType":"module"}

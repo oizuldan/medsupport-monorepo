@@ -1,0 +1,51 @@
+{
+  "kind": "singleType",
+  "collectionName": "resistance_pages",
+  "info": {
+    "name": "ResistancePage",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "ResistanceArticles": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "resistance-articles.resistance-articles",
+      "required": true
+    },
+    "Videos": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "videos.videos",
+      "required": true
+    }
+  }
+}

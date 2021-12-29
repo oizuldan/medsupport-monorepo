@@ -6,7 +6,7 @@ module.exports =
 /******/ 	// object to store loaded chunks
 /******/ 	// "0" means "already loaded"
 /******/ 	var installedChunks = {
-/******/ 		17: 0
+/******/ 		18: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -49,7 +49,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"20":"e01781121298e89e6383","25":"d2e46c8706fe226fed34"}[chunkId] + ".js");
+/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"21":"5bc73061326d6b82ad4d","26":"da3ef2e75754fe5a95aa"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -121,7 +121,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -154,7 +154,7 @@ module.exports = require("fp-ts/Option");
 
 /***/ }),
 
-/***/ 14:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("m5q3");
@@ -408,19 +408,19 @@ __webpack_require__.d(__webpack_exports__, "k", function() { return /* reexport 
 __webpack_require__.d(__webpack_exports__, "x", function() { return /* reexport */ Sizes_Sizes; });
 __webpack_require__.d(__webpack_exports__, "w", function() { return /* reexport */ Icon; });
 __webpack_require__.d(__webpack_exports__, "y", function() { return /* reexport */ Input; });
-__webpack_require__.d(__webpack_exports__, "P", function() { return /* reexport */ Spinner; });
-__webpack_require__.d(__webpack_exports__, "Q", function() { return /* reexport */ Toast; });
-__webpack_require__.d(__webpack_exports__, "R", function() { return /* reexport */ Typography; });
-__webpack_require__.d(__webpack_exports__, "J", function() { return /* reexport */ P; });
+__webpack_require__.d(__webpack_exports__, "Q", function() { return /* reexport */ Spinner; });
+__webpack_require__.d(__webpack_exports__, "R", function() { return /* reexport */ Toast; });
+__webpack_require__.d(__webpack_exports__, "S", function() { return /* reexport */ Typography; });
+__webpack_require__.d(__webpack_exports__, "K", function() { return /* reexport */ P; });
 __webpack_require__.d(__webpack_exports__, "q", function() { return /* reexport */ H1; });
 __webpack_require__.d(__webpack_exports__, "r", function() { return /* reexport */ H2; });
 __webpack_require__.d(__webpack_exports__, "s", function() { return /* reexport */ H3; });
 __webpack_require__.d(__webpack_exports__, "t", function() { return /* reexport */ H4; });
 __webpack_require__.d(__webpack_exports__, "u", function() { return /* reexport */ H5; });
-__webpack_require__.d(__webpack_exports__, "I", function() { return /* reexport */ Overflow; });
+__webpack_require__.d(__webpack_exports__, "J", function() { return /* reexport */ Overflow; });
 __webpack_require__.d(__webpack_exports__, "o", function() { return /* reexport */ Dropzone; });
-__webpack_require__.d(__webpack_exports__, "O", function() { return /* reexport */ Skeleton; });
-__webpack_require__.d(__webpack_exports__, "S", function() { return /* reexport */ Skeleton_styles_namespaceObject; });
+__webpack_require__.d(__webpack_exports__, "P", function() { return /* reexport */ Skeleton; });
+__webpack_require__.d(__webpack_exports__, "T", function() { return /* reexport */ Skeleton_styles_namespaceObject; });
 __webpack_require__.d(__webpack_exports__, "i", function() { return /* reexport */ Card; });
 __webpack_require__.d(__webpack_exports__, "j", function() { return /* reexport */ Carousel; });
 __webpack_require__.d(__webpack_exports__, "b", function() { return /* reexport */ BannerCarousel; });
@@ -429,20 +429,21 @@ __webpack_require__.d(__webpack_exports__, "c", function() { return /* reexport 
 __webpack_require__.d(__webpack_exports__, "z", function() { return /* reexport */ InputGroup; });
 __webpack_require__.d(__webpack_exports__, "m", function() { return /* reexport */ Directions_Directions; });
 __webpack_require__.d(__webpack_exports__, "l", function() { return /* reexport */ Drawer; });
-__webpack_require__.d(__webpack_exports__, "A", function() { return /* reexport */ component_Label; });
-__webpack_require__.d(__webpack_exports__, "G", function() { return /* reexport */ Markdown; });
-__webpack_require__.d(__webpack_exports__, "K", function() { return /* reexport */ Pagination; });
-__webpack_require__.d(__webpack_exports__, "L", function() { return /* reexport */ Popover; });
-__webpack_require__.d(__webpack_exports__, "M", function() { return /* reexport */ QuestionCard; });
-__webpack_require__.d(__webpack_exports__, "N", function() { return /* reexport */ RelevantTopicCard; });
+__webpack_require__.d(__webpack_exports__, "B", function() { return /* reexport */ component_Label; });
+__webpack_require__.d(__webpack_exports__, "H", function() { return /* reexport */ Markdown; });
+__webpack_require__.d(__webpack_exports__, "L", function() { return /* reexport */ Pagination; });
+__webpack_require__.d(__webpack_exports__, "M", function() { return /* reexport */ Popover; });
+__webpack_require__.d(__webpack_exports__, "N", function() { return /* reexport */ QuestionCard; });
+__webpack_require__.d(__webpack_exports__, "O", function() { return /* reexport */ RelevantTopicCard; });
 __webpack_require__.d(__webpack_exports__, "n", function() { return /* reexport */ Dropdown; });
-__webpack_require__.d(__webpack_exports__, "B", function() { return /* reexport */ LastUpdated; });
+__webpack_require__.d(__webpack_exports__, "C", function() { return /* reexport */ LastUpdated; });
+__webpack_require__.d(__webpack_exports__, "A", function() { return /* reexport */ InteractiveCard; });
 __webpack_require__.d(__webpack_exports__, "v", function() { return /* reexport */ Header; });
-__webpack_require__.d(__webpack_exports__, "C", function() { return /* reexport */ Layout; });
-__webpack_require__.d(__webpack_exports__, "E", function() { return /* reexport */ component_Item; });
-__webpack_require__.d(__webpack_exports__, "F", function() { return /* reexport */ ItemButton; });
-__webpack_require__.d(__webpack_exports__, "D", function() { return /* reexport */ List; });
-__webpack_require__.d(__webpack_exports__, "H", function() { return /* reexport */ OrderedList; });
+__webpack_require__.d(__webpack_exports__, "D", function() { return /* reexport */ Layout; });
+__webpack_require__.d(__webpack_exports__, "F", function() { return /* reexport */ component_Item; });
+__webpack_require__.d(__webpack_exports__, "G", function() { return /* reexport */ ItemButton; });
+__webpack_require__.d(__webpack_exports__, "E", function() { return /* reexport */ List; });
+__webpack_require__.d(__webpack_exports__, "I", function() { return /* reexport */ OrderedList; });
 __webpack_require__.d(__webpack_exports__, "p", function() { return /* reexport */ Footer; });
 
 // UNUSED EXPORTS: DividerDirections, H1Regular, H4Regular, CardTitle, CardContent, CardInteractive, BasicCarousel, Table, PaginationItemTypes, popoverModifiers, PopoverTargetTypes, PopoverModifierNames, PopoverCoverStrategies
@@ -2025,7 +2026,7 @@ component_Label.defaultProps = {
 };
 // CONCATENATED MODULE: ./src/components/molecules/Label/index.ts
 
-// EXTERNAL MODULE: /Users/eyes/Desktop/medsupport-monorepo/node_modules/bootstrap-4-grid/css/grid.css
+// EXTERNAL MODULE: /Users/icett/Desktop/SP/medsupportkz/node_modules/bootstrap-4-grid/css/grid.css
 var grid = __webpack_require__("C3pY");
 
 // CONCATENATED MODULE: ./src/components/molecules/Table/component.tsx
@@ -2929,7 +2930,57 @@ const LastUpdated = props => Object(core_["jsx"])("div", {
 }, core["d" /* services */].parseDate(props.date.toString(), props.lang === 'ru-RU' ? 'ru' : 'kk')));
 // CONCATENATED MODULE: ./src/components/molecules/LastUpdated/index.ts
 
+// CONCATENATED MODULE: ./src/components/molecules/InteractiveCard/component.tsx
+
+var InteractiveCard_component_jsx = external_react_default.a.createElement;
+
+function InteractiveCard_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop)."; }
+
+
+
+
+
+
+
+const InteractiveCardContainer = styled_base_default()("a", {
+  target: "e1hu29hk0"
+})(props => /*#__PURE__*/Object(core_["css"])("border-radius:8px;background-color:", core["a" /* colors */].variants.Neutral.White, ";padding:2rem 1rem;cursor:pointer;box-shadow:1px 1px 8px rgba(201,201,201,0.8),0px 0.5px 0px rgba(172,172,172,0.9);transition:transform 0.1s ease-out;transform:", props.onHover ? 'scale(1.03)' : 'none', ";width:300px;height:100%;&:hover{background-color:", core["a" /* colors */].variants.Brand.MoreExtraLightPurple, ";}" + (true ? "" : undefined)), true ? "" : undefined);
+
+var InteractiveCard_component_ref = true ? {
+  name: "rl6otz",
+  styles: "border-radius:8px;"
+} : undefined;
+
+const InteractiveCard = props => {
+  const {
+    0: onHover,
+    1: setOnHover
+  } = Object(external_react_["useState"])(false);
+  return Object(core_["jsx"])("div", {
+    className: "p-3"
+  }, Object(core_["jsx"])(InteractiveCardContainer, {
+    href: props.href,
+    className: "tw-flex tw-items-center tw-justify-between tw-flex-col tw-text-center" // eslint-disable-next-line react/jsx-no-bind
+    ,
+    onMouseOver: () => setOnHover(true) // eslint-disable-next-line react/jsx-no-bind
+    ,
+    onMouseOut: () => setOnHover(false),
+    onHover: onHover
+  }, Object(core_["jsx"])(Typography, {
+    as: "h3",
+    css: /*#__PURE__*/Object(core_["css"])(core["e" /* typography */].styles.headingBold17, core["c" /* media */].queryStyled([core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold22, core["e" /* typography */].styles.headingBold28]), true ? "" : undefined),
+    className: "mb-3 tw-clip tw-w-full tw-overflow-hidden tw-break-words"
+  }, props.title), Object(core_["jsx"])(P, {
+    className: "mb-4"
+  }, props.description), Object(core_["jsx"])(Button, {
+    css: InteractiveCard_component_ref,
+    variant: Variants.Flat
+  }, props.buttonText)));
+};
+// CONCATENATED MODULE: ./src/components/molecules/InteractiveCard/index.ts
+
 // CONCATENATED MODULE: ./src/components/molecules/index.ts
+
 
 
 
@@ -3141,7 +3192,7 @@ function Layout_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have tr
 
 
 
-const component_Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 20).then(__webpack_require__.bind(null, "hJjj")), {
+const component_Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 21).then(__webpack_require__.bind(null, "hJjj")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("hJjj")],
     modules: ['./libs/Header']
@@ -3971,7 +4022,7 @@ __webpack_require__.d(__webpack_exports__, "default", function() { return /* ree
 var external_axios_ = __webpack_require__("zr5I");
 var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_);
 
-// EXTERNAL MODULE: ./src/components/index.ts + 119 modules
+// EXTERNAL MODULE: ./src/components/index.ts + 121 modules
 var components = __webpack_require__("Nhdc");
 
 // EXTERNAL MODULE: ./src/core/index.ts + 6 modules
@@ -4008,7 +4059,7 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-const Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 25).then(__webpack_require__.bind(null, "CniG")), {
+const Header = dynamic_default()(() => __webpack_require__.e(/* import() */ 26).then(__webpack_require__.bind(null, "CniG")), {
   loadableGenerated: {
     webpack: () => [/*require.resolve*/("CniG")],
     modules: ['./libs/Header']
@@ -4090,7 +4141,7 @@ const SignUpPage = () => {
   const toggleShowRepeatPassword = Object(external_react_["useCallback"])(() => setShowRepeatPassword(prev => !prev), []);
   const callToastAndRefresh = Object(external_react_["useCallback"])((success, message) => {
     const type = success ? core["d" /* services */].ToastTypes.Success : core["d" /* services */].ToastTypes.Error;
-    core["d" /* services */].toast(components["Q" /* Toast */], type, Object(core_["jsx"])(components["J" /* P */], {
+    core["d" /* services */].toast(components["R" /* Toast */], type, Object(core_["jsx"])(components["K" /* P */], {
       color: core["a" /* colors */].variants.Neutral.White,
       typography: core["e" /* typography */].variants.Heading.Regular22
     }, message));
@@ -4164,7 +4215,7 @@ const SignUpPage = () => {
   }))), Object(core_["jsx"])("div", {
     className: "d-flex flex-column container my-lg-auto my-5 align-items-md-start align-items-center",
     css: _ref2
-  }, Object(core_["jsx"])(components["J" /* P */], {
+  }, Object(core_["jsx"])(components["K" /* P */], {
     className: "mb-4",
     typography: core["e" /* typography */].variants.Heading.SemiBold28
   }, "\u041F\u0440\u0438\u0441\u043E\u0435\u0434\u0438\u043D\u044F\u0439\u0442\u0435\u0441\u044C \u043A \u043D\u0430\u043C!"), Object(core_["jsx"])("div", {
@@ -4183,7 +4234,7 @@ const SignUpPage = () => {
     onChange: onChangeLastName,
     type: "text",
     placeholder: "\u0424\u0430\u043C\u0438\u043B\u0438\u044F"
-  })), Object(core_["jsx"])(components["A" /* Label */], {
+  })), Object(core_["jsx"])(components["B" /* Label */], {
     className: "mb-4 w-100",
     htmlFor: "email",
     color: emailError ? core["a" /* colors */].variants.Error.Red1 : undefined,
@@ -4202,7 +4253,7 @@ const SignUpPage = () => {
     onChange: onChangeUsername,
     type: "text",
     placeholder: "Username"
-  })), Object(core_["jsx"])(components["A" /* Label */], {
+  })), Object(core_["jsx"])(components["B" /* Label */], {
     className: "mb-4 w-100",
     htmlFor: "repeatPassword",
     color: passwordsError ? core["a" /* colors */].variants.Error.Red1 : undefined,
@@ -4220,7 +4271,7 @@ const SignUpPage = () => {
     onChange: onChangePassword,
     type: showPassword ? 'text' : 'password',
     placeholder: "\u041F\u0430\u0440\u043E\u043B\u044C"
-  }))), Object(core_["jsx"])(components["A" /* Label */], {
+  }))), Object(core_["jsx"])(components["B" /* Label */], {
     className: "w-100",
     htmlFor: "repeatPassword",
     color: passwordsError ? core["a" /* colors */].variants.Error.Red1 : undefined,
@@ -4249,7 +4300,7 @@ const SignUpPage = () => {
       width: [160, '100%']
     }),
     onClick: onSignUp
-  }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"), Object(core_["jsx"])(components["J" /* P */], {
+  }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"), Object(core_["jsx"])(components["K" /* P */], {
     className: " mb-md-0 mb-3",
     typography: core["e" /* typography */].variants.Element.Regular16
   }, "\u0423\u0436\u0435 \u0435\u0441\u0442\u044C \u0430\u043A\u043A\u0430\u0443\u043D\u0442?", ' ', Object(core_["jsx"])(components["a" /* Anchor */], {
