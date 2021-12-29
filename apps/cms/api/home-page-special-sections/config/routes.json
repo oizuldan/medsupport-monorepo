@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/home-page-special-sections",
+      "handler": "home-page-special-sections.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/home-page-special-sections",
+      "handler": "home-page-special-sections.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/home-page-special-sections",
+      "handler": "home-page-special-sections.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

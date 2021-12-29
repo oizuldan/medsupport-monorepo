@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const queryMainPage = gql`
-  query MainPage($locale: String!, $limit: Int) {
+  query MainPage($locale: String!) {
     headerBanners(locale: $locale) {
       banners {
         title
@@ -12,15 +12,6 @@ export const queryMainPage = gql`
         }
         buttonLink
         buttonTitle
-      }
-    }
-    articlesSection(locale: $locale) {
-      section {
-        title
-        link {
-          link
-          title
-        }
       }
     }
     headerButtons(locale: $locale) {
@@ -48,13 +39,14 @@ export const queryMainPage = gql`
         link
       }
     }
-    articles(locale: $locale, limit: $limit) {
-      id
+    homePageSpecialSection(locale: $locale) {
       title
-      content
-      previewImage {
-        url
-        name
+      interactiveCard {
+        id
+        title
+        description
+        link
+        buttonText
       }
     }
   }

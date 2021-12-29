@@ -11,6 +11,7 @@
   "/login": "pages/login.js",
   "/question": "pages/question.js",
   "/questions": "pages/questions.js",
+  "/resistance": "pages/resistance.js",
   "/restorePassword": "pages/restorePassword.js",
   "/searchArticlesPage": "pages/searchArticlesPage.js",
   "/signup": "pages/signup.js",

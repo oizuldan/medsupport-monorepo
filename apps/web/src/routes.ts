@@ -14,6 +14,7 @@ const registry = new Routes()
   .add('vaccine', '/vxn', 'vaccine')
   .add('questions', '/questions', 'questions')
   .add('question', '/question/:categoryId/:id?', 'question')
+  .add('resistance', '/resistance', 'resistance')
   .add('aboutUs', '/about', 'aboutUs');
 
 const { Link, Router } = registry;

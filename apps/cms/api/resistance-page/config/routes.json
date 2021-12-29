@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/resistance-page",
+      "handler": "resistance-page.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/resistance-page",
+      "handler": "resistance-page.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/resistance-page",
+      "handler": "resistance-page.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
