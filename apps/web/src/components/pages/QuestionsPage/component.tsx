@@ -79,7 +79,7 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
           property="og:description"
           content="здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19"
         />
-        <meta property="og:image" content="https://medsupport.dev/static/images/logoBig.png" />
+        <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:site_name" content="medsupport" />

@@ -54,7 +54,7 @@ export const LoginPage: NextPage = () => {
   const onLogIn = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.post(`https://medsupport.dev/api/auth/login`, {
+      const res = await axios.post(`https://medsupport.kz/api/auth/login`, {
         username,
         password,
       });

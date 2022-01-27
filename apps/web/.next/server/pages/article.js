@@ -1610,7 +1610,7 @@ const BannerCarousel = (_ref3) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center "
@@ -1730,7 +1730,7 @@ const BannerCarouselMobile = (_ref) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center"
@@ -4234,7 +4234,7 @@ const ArticlePage = props => {
     content: (_props$data5 = props.data) === null || _props$data5 === void 0 ? void 0 : (_props$data5$data = _props$data5.data) === null || _props$data5$data === void 0 ? void 0 : (_props$data5$data$art = _props$data5$data.article) === null || _props$data5$data$art === void 0 ? void 0 : _props$data5$data$art.content.substring(0, 200)
   }), Object(core_["jsx"])("meta", {
     property: "og:image",
-    content: "https://medsupport.dev/static/images/logoBig.png"
+    content: "https://medsupport.kz/static/images/logoBig.png"
   }), Object(core_["jsx"])("meta", {
     property: "og:locale",
     content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'

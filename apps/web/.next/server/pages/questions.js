@@ -1603,7 +1603,7 @@ const BannerCarousel = (_ref3) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center "
@@ -1723,7 +1723,7 @@ const BannerCarouselMobile = (_ref) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center"
@@ -3558,7 +3558,7 @@ const QuestionsPage = props => {
     content: "\u0437\u0434\u0435\u0441\u044C \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0430\u0439\u0442\u0438 \u0432\u0441\u0435 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u0443\u044E\u0449\u0438\u0435 \u0432\u0430\u0441 \u0432\u043E\u043F\u0440\u043E\u0441\u044B \u043F\u0440\u043E \u0432\u0430\u043A\u0446\u0438\u043D\u0430\u0446\u0438\u044E Covid-19"
   }), Object(core_["jsx"])("meta", {
     property: "og:image",
-    content: "https://medsupport.dev/static/images/logoBig.png"
+    content: "https://medsupport.kz/static/images/logoBig.png"
   }), Object(core_["jsx"])("meta", {
     property: "og:locale",
     content: lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'

@@ -2,6 +2,6 @@
 User-agent: *
 Disallow:
 
-Host: https://medsupport.dev/
-Sitemap: https://medsupport.dev/sitemap.xml
+Host: https://medsupport.kz/
+Sitemap: https://medsupport.kz/sitemap.xml
 

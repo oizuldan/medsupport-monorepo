@@ -6,5 +6,5 @@ module.exports = ({ env }) => ({
       secret: env('ADMIN_JWT_SECRET', '8c06ca0fe00cd4f637f70324bce7dcb1'),
     },
   },
-  url: 'https://medsupport.dev/cms'
+  url: 'https://medsupport.kz/cms'
 });
