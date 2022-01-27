@@ -51,7 +51,7 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
           content="Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
           Тут вы найдете инструкции по лечению и описанию болезней."
         />
-        <meta property="og:image" content="https://medsupport.dev/static/images/logoBig.png" />
+        <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:site_name" content="medsupport" />

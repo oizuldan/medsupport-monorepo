@@ -101,7 +101,7 @@
     "publicURL": "/",
     "preset": "next"
   },
-  "proxy": "https://medsupport.dev/api",
+  "proxy": "https://medsupport.kz/api",
   "proxy2": "https://drive.google.com/",
-  "proxy3": "https://medsupport.dev/cms"
+  "proxy3": "https://medsupport.kz/cms"
 }

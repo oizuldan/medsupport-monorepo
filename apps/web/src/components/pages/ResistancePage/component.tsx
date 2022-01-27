@@ -25,7 +25,7 @@ export const ResistancePage: NextComponentType<ApolloPageContext, InitProps, Pro
         <meta name="description" content={props.data?.data?.resistancePage?.title} />
         <meta property="og:title" content={props.data?.data?.resistancePage?.title} />
         <meta property="og:description" content={props.data?.data?.resistancePage?.title} />
-        <meta property="og:image" content="https://medsupport.dev/static/images/logoBig.png" />
+        <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={props.lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:locale:alternate" content={props.lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:site_name" content="medsupport" />

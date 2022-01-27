@@ -10,7 +10,7 @@ export const BannerCarouselMobile: FC<Props> = ({ banners, ...rest }: Props) =>
     <Carousel draggable css={{ height: 500 }} {...rest}>
       {banners[0].banners.map((banner, i) => {
         const link = `${
-          process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'
+          process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'
         }${banner?.image?.url ? banner.image.url : ''}`;
         return (
           <div key={i} className="d-flex justify-content-center">

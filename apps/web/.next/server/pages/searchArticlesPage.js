@@ -1733,7 +1733,7 @@ const BannerCarousel = (_ref3) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center "
@@ -1853,7 +1853,7 @@ const BannerCarouselMobile = (_ref) => {
   }, rest), banners[0].banners.map((banner, i) => {
     var _banner$image;
 
-    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.dev/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
+    const link = `${process.env.BASE_URL !== undefined ? process.env.BASE_URL : 'https://medsupport.kz/cms'}${banner !== null && banner !== void 0 && (_banner$image = banner.image) !== null && _banner$image !== void 0 && _banner$image.url ? banner.image.url : ''}`;
     return Object(core_["jsx"])("div", {
       key: i,
       className: "d-flex justify-content-center"
