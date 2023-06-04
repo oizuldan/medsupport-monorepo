@@ -56,6 +56,10 @@
       },
       "type": "text",
       "maxLength": 300
+    },
+    "acticle_section": {
+      "via": "articles",
+      "model": "article-sections"
     }
   }
 }

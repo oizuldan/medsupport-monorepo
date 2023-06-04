@@ -1,10 +1,11 @@
 module.exports = ({ env }) => ({
-  host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', 1337),
+  host: env("HOST", "0.0.0.0"),
+  port: env.int("PORT", 1337),
   admin: {
     auth: {
-      secret: env('ADMIN_JWT_SECRET', '8c06ca0fe00cd4f637f70324bce7dcb1'),
+      secret: env("ADMIN_JWT_SECRET", "8c06ca0fe00cd4f637f70324bce7dcb1"),
     },
   },
-  url: 'https://medsupport.kz/cms'
+  url: "https://medsupport.kz/cms",
 });
+

@@ -2,13 +2,12 @@ import { gql } from '@apollo/client';
 
 export const queryArticlesPage = gql`
   query ArticlesPage($locale: String!) {
-    articles(locale: $locale) {
+    articleSections(locale: $locale) {
       id
       title
-      content
-      previewImage {
-        url
-        name
+      articles {
+        id
+        title
       }
     }
     articlesSection(locale: $locale) {

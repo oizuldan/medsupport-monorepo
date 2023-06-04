@@ -14,7 +14,7 @@ import {
   ArticlesPageVariables,
 } from './__generated__/ArticlesPage';
 import { queryArticlesPage } from './graphql';
-import { List } from './libs/List';
+import { ExpandableList } from './libs/ExpandableList';
 import { InitProps, Props } from './props';
 
 export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
@@ -25,15 +25,13 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
   const articles = useMemo(
     () =>
       pipe(
-        O.fromNullable(data?.data?.articles),
+        O.fromNullable(data?.data?.articleSections),
         O.chain(O.fromPredicate((v) => Array.isArray(v))),
         O.chain((arts) => sequence(O.option)(arts.map((art) => pipe(O.fromNullable(art))))),
         O.getOrElseW(() => undefined),
       ),
-    [data?.data?.articles],
+    [data?.data?.articleSections],
   );
-
-  // const onGoToSearchArticles = useCallback(() => router.push('/search-articles'), [router]);
 
   return (
     <>
@@ -57,9 +55,6 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
         <meta property="og:site_name" content="medsupport" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
-        {articles?.map(({ title }) => (
-          <meta key={title} property="og:article:tag" content={title} />
-        ))}
       </Head>
       <Layout
         headerButtons={props.data?.data?.headerButtons}
@@ -80,21 +75,16 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
             >
               {props.data?.data?.articlesSection?.section?.title}
             </H1>
-            {/* <ButtonLink*/}
-            {/*  type="a"*/}
-            {/*  onClick={onGoToSearchArticles}*/}
-            {/*  variant={ButtonVariants.Flat}*/}
-            {/*  size={ButtonSizes.Small}*/}
-            {/*  color={colors.variants.Text.Primary}*/}
-            {/*  css={css(*/}
-            {/*    typography.styles.elementBold12,*/}
-            {/*    media.queryStyled([typography.styles.headingBold17]),*/}
-            {/*  )}*/}
-            {/* >*/}
-            {/*  Искать новости*/}
-            {/* </ButtonLink>*/}
           </div>
-          <List articles={articles} />
+          {articles !== undefined &&
+            articles.map(({ title, articles, id }, i) => (
+              <ExpandableList
+                key={id}
+                title={title as string}
+                articles={articles}
+                isInitiallyOpen={i === 0}
+              />
+            ))}
         </div>
       </Layout>
     </>

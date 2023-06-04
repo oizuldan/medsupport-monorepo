@@ -13,7 +13,14 @@ export const List: React.FC<Props> = ({ articles, ...rest }: Props) => (
         link
         type="a"
         href={`article/${article.id}`}
-        className="px-0"
+        className="tw-px-2 tw-my-1"
+        css={css`
+          border-radius: 0.5rem;
+          background-color: ${colors.variants.Brand.MoreExtraLightPurple};
+          &:hover {
+            background-color: ${colors.variants.Brand.ExtraLightPurple};
+          }
+        `}
       >
         <P
           className="mb-2"
@@ -21,12 +28,16 @@ export const List: React.FC<Props> = ({ articles, ...rest }: Props) => (
           css={css`
             overflow: hidden;
             text-overflow: ellipsis;
+            width: 100%;
+            text-align: left;
             &:hover {
               color: ${colors.variants.Brand.Purple};
+              text-decoration: underline ${colors.variants.Brand.Purple};
             }
+            cursor: pointer;
           `}
         >
-          {article.title}
+          {i + 1}. {article.title}
         </P>
       </ListItemButton>
     ))}
