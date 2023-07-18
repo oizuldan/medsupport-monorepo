@@ -627,11 +627,11 @@ const ArticlesPage = props => {
     title,
     articles,
     id
-  }, i) => Object(core_["jsx"])(ExpandableList, {
+  }) => Object(core_["jsx"])(ExpandableList, {
     key: id,
     title: title,
     articles: articles,
-    isInitiallyOpen: i === 0
+    isInitiallyOpen: false
   })))));
 };
 

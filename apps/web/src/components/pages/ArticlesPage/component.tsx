@@ -77,12 +77,12 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
             </H1>
           </div>
           {articles !== undefined &&
-            articles.map(({ title, articles, id }, i) => (
+            articles.map(({ title, articles, id }) => (
               <ExpandableList
                 key={id}
                 title={title as string}
                 articles={articles}
-                isInitiallyOpen={i === 0}
+                isInitiallyOpen={false}
               />
             ))}
         </div>

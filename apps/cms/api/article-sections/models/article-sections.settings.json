@@ -18,7 +18,8 @@
   "attributes": {
     "articles": {
       "collection": "article",
-      "via": "acticle_section"
+      "via": "acticle_sections",
+      "dominant": true
     },
     "title": {
       "pluginOptions": {

@@ -57,9 +57,9 @@
       "type": "text",
       "maxLength": 300
     },
-    "acticle_section": {
+    "acticle_sections": {
       "via": "articles",
-      "model": "article-sections"
+      "collection": "article-sections"
     }
   }
 }
