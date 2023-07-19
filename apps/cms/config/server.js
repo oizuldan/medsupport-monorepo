@@ -8,4 +8,3 @@ module.exports = ({ env }) => ({
   },
   url: "https://medsupport.kz/cms",
 });
-
