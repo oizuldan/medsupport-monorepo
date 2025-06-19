@@ -104,7 +104,6 @@ export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: P
             css={css({
               marginLeft: 'auto',
               marginRight: 'auto',
-              maxWidth: 350,
               height: 'auto',
             })}
             {...props}
@@ -138,6 +137,8 @@ export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: P
             {...props}
             css={css`
               word-break: break-all;
+              text-decoration: underline;
+              color: blue;
             `}
             target="_blank"
           />

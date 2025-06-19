@@ -2026,7 +2026,7 @@ component_Label.defaultProps = {
 };
 // CONCATENATED MODULE: ./src/components/molecules/Label/index.ts
 
-// EXTERNAL MODULE: /Users/icett/Desktop/SP/medsupportkz/node_modules/bootstrap-4-grid/css/grid.css
+// EXTERNAL MODULE: C:/Users/eyes/Documents/GitHub/medsupport-monorepo/node_modules/bootstrap-4-grid/css/grid.css
 var grid = __webpack_require__("C3pY");
 
 // CONCATENATED MODULE: ./src/components/molecules/Table/component.tsx
@@ -2145,8 +2145,8 @@ function Markdown_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have 
 
 
 var Markdown_component_ref = true ? {
-  name: "h7701x",
-  styles: "margin-left:auto;margin-right:auto;max-width:350px;height:auto;"
+  name: "1gbr53",
+  styles: "margin-left:auto;margin-right:auto;height:auto;"
 } : undefined;
 
 var Markdown_component_ref2 = true ? {
@@ -2155,8 +2155,8 @@ var Markdown_component_ref2 = true ? {
 } : undefined;
 
 var Markdown_component_ref3 = true ? {
-  name: "1hg9omi",
-  styles: "word-break:break-all;"
+  name: "188grpe",
+  styles: "word-break:break-all;text-decoration:underline;color:blue;"
 } : undefined;
 
 const Markdown = (_ref4) => {

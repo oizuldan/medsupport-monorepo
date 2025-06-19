@@ -588,13 +588,13 @@ const ArticlesPage = props => {
     content: (_props$data2 = props.data) === null || _props$data2 === void 0 ? void 0 : (_props$data2$data = _props$data2.data) === null || _props$data2$data === void 0 ? void 0 : (_props$data2$data$art = _props$data2$data.articlesSection) === null || _props$data2$data$art === void 0 ? void 0 : (_props$data2$data$art2 = _props$data2$data$art.section) === null || _props$data2$data$art2 === void 0 ? void 0 : _props$data2$data$art2.title
   }), Object(core_["jsx"])("meta", {
     name: "description",
-    content: "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435. \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."
+    content: "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435.\r \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."
   }), Object(core_["jsx"])("meta", {
     property: "og:title",
     content: (_props$data3 = props.data) === null || _props$data3 === void 0 ? void 0 : (_props$data3$data = _props$data3.data) === null || _props$data3$data === void 0 ? void 0 : (_props$data3$data$art = _props$data3$data.articlesSection) === null || _props$data3$data$art === void 0 ? void 0 : (_props$data3$data$art2 = _props$data3$data$art.section) === null || _props$data3$data$art2 === void 0 ? void 0 : _props$data3$data$art2.title
   }), Object(core_["jsx"])("meta", {
     property: "og:description",
-    content: "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435. \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."
+    content: "\u041C\u0435\u0434\u0438\u0446\u0438\u043D\u0441\u043A\u0438\u0439 \u0441\u0442\u0430\u0442\u044C\u0438 \u043D\u0430 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0442\u0435\u043C\u044B: \u0430\u043F\u043F\u043D\u0435\u0434\u0438\u0446\u0438\u0442, \u0431\u0440\u043E\u043D\u0445\u0438\u0442, \u0430\u043D\u0435\u043C\u0438\u044F, \u0430\u0441\u0442\u043C\u0430 \u0438 \u043C\u043D\u043E\u0433\u0438\u0435 \u0434\u0440\u0443\u0433\u0438\u0435.\r \u0422\u0443\u0442 \u0432\u044B \u043D\u0430\u0439\u0434\u0435\u0442\u0435 \u0438\u043D\u0441\u0442\u0440\u0443\u043A\u0446\u0438\u0438 \u043F\u043E \u043B\u0435\u0447\u0435\u043D\u0438\u044E \u0438 \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u044E \u0431\u043E\u043B\u0435\u0437\u043D\u0435\u0439."
   }), Object(core_["jsx"])("meta", {
     property: "og:image",
     content: "https://medsupport.kz/static/images/logoBig.png"
@@ -2318,7 +2318,7 @@ component_Label.defaultProps = {
 };
 // CONCATENATED MODULE: ./src/components/molecules/Label/index.ts
 
-// EXTERNAL MODULE: /Users/icett/Desktop/SP/medsupportkz/node_modules/bootstrap-4-grid/css/grid.css
+// EXTERNAL MODULE: C:/Users/eyes/Documents/GitHub/medsupport-monorepo/node_modules/bootstrap-4-grid/css/grid.css
 var grid = __webpack_require__("C3pY");
 
 // CONCATENATED MODULE: ./src/components/molecules/Table/component.tsx
@@ -2437,8 +2437,8 @@ function Markdown_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have 
 
 
 var Markdown_component_ref = true ? {
-  name: "h7701x",
-  styles: "margin-left:auto;margin-right:auto;max-width:350px;height:auto;"
+  name: "1gbr53",
+  styles: "margin-left:auto;margin-right:auto;height:auto;"
 } : undefined;
 
 var Markdown_component_ref2 = true ? {
@@ -2447,8 +2447,8 @@ var Markdown_component_ref2 = true ? {
 } : undefined;
 
 var Markdown_component_ref3 = true ? {
-  name: "1hg9omi",
-  styles: "word-break:break-all;"
+  name: "188grpe",
+  styles: "word-break:break-all;text-decoration:underline;color:blue;"
 } : undefined;
 
 const Markdown = (_ref4) => {

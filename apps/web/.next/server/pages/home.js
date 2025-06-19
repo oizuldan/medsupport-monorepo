@@ -49,7 +49,7 @@ module.exports =
 /******/
 /******/ 		// "0" is the signal for "already loaded"
 /******/ 		if(installedChunks[chunkId] !== 0) {
-/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"21":"5bc73061326d6b82ad4d","22":"b56658fd132bf27ac52b","23":"c65bdb47d13608652002"}[chunkId] + ".js");
+/******/ 			var chunk = require("../" + ({}[chunkId]||chunkId) + "." + {"21":"5bc73061326d6b82ad4d","22":"6a8e7cfd9fd2cd926171","23":"9e31ae000a6627ca5b55"}[chunkId] + ".js");
 /******/ 			var moreModules = chunk.modules, chunkIds = chunk.ids;
 /******/ 			for(var moduleId in moreModules) {
 /******/ 				modules[moduleId] = moreModules[moduleId];
@@ -307,7 +307,7 @@ var __jsx = external_react_default.a.createElement;
 
 
 
-const BannerCarouselMobile = dynamic_default()(() => __webpack_require__.e(/* import() */ 23).then(__webpack_require__.bind(null, "oxac")), {
+const BannerCarouselMobile = dynamic_default()(() => __webpack_require__.e(/* import() */ 22).then(__webpack_require__.bind(null, "oxac")), {
   ssr: false,
   // eslint-disable-next-line react/display-name
   loading: () => Object(core_["jsx"])(components["d" /* BannerCarouselSkeleton */], null),
@@ -316,7 +316,7 @@ const BannerCarouselMobile = dynamic_default()(() => __webpack_require__.e(/* im
     modules: ['./libs/BannerCarouselMobile']
   }
 });
-const BannerCarousel = dynamic_default()(() => __webpack_require__.e(/* import() */ 22).then(__webpack_require__.bind(null, "eHd5")), {
+const BannerCarousel = dynamic_default()(() => __webpack_require__.e(/* import() */ 23).then(__webpack_require__.bind(null, "eHd5")), {
   ssr: false,
   // eslint-disable-next-line react/display-name
   loading: () => Object(core_["jsx"])(components["d" /* BannerCarouselSkeleton */], null),
@@ -2213,7 +2213,7 @@ component_Label.defaultProps = {
 };
 // CONCATENATED MODULE: ./src/components/molecules/Label/index.ts
 
-// EXTERNAL MODULE: /Users/icett/Desktop/SP/medsupportkz/node_modules/bootstrap-4-grid/css/grid.css
+// EXTERNAL MODULE: C:/Users/eyes/Documents/GitHub/medsupport-monorepo/node_modules/bootstrap-4-grid/css/grid.css
 var grid = __webpack_require__("C3pY");
 
 // CONCATENATED MODULE: ./src/components/molecules/Table/component.tsx
@@ -2332,8 +2332,8 @@ function Markdown_component_EMOTION_STRINGIFIED_CSS_ERROR_() { return "You have 
 
 
 var Markdown_component_ref = true ? {
-  name: "h7701x",
-  styles: "margin-left:auto;margin-right:auto;max-width:350px;height:auto;"
+  name: "1gbr53",
+  styles: "margin-left:auto;margin-right:auto;height:auto;"
 } : undefined;
 
 var Markdown_component_ref2 = true ? {
@@ -2342,8 +2342,8 @@ var Markdown_component_ref2 = true ? {
 } : undefined;
 
 var Markdown_component_ref3 = true ? {
-  name: "1hg9omi",
-  styles: "word-break:break-all;"
+  name: "188grpe",
+  styles: "word-break:break-all;text-decoration:underline;color:blue;"
 } : undefined;
 
 const Markdown = (_ref4) => {

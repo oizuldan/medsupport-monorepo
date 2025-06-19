@@ -1,0 +1,1 @@
+{"ast":null,"code":"export let Directions;\n\n(function (Directions) {\n  Directions[\"FromBottom\"] = \"formBottom\";\n  Directions[\"FromRight\"] = \"formRight\";\n  Directions[\"FromLeft\"] = \"formLeft\";\n})(Directions || (Directions = {}));","map":null,"metadata":{},"sourceType":"module"}

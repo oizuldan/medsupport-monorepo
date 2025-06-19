@@ -1,0 +1,1 @@
+{"ast":null,"code":"export let Variants;\n\n(function (Variants) {\n  Variants[Variants[\"Raised\"] = 0] = \"Raised\";\n  Variants[Variants[\"Outlined\"] = 1] = \"Outlined\";\n  Variants[Variants[\"Flat\"] = 2] = \"Flat\";\n})(Variants || (Variants = {}));","map":null,"metadata":{},"sourceType":"module"}
