@@ -33,10 +33,71 @@ yarn install
 
 ---
 
-## Step 2 – Verify your local env file
+## Step 2 – Make sure Strapi (CMS) is reachable
+
+> ⚠️  **If your VPS is currently down, read this section carefully.**
+>
+> The local web app fetches ALL its content from Strapi via GraphQL
+> (`CMS_GRAPHQL_API_URL` in `.env.development`).  If Strapi is unreachable,
+> every page will be empty or show an error — even though the web app itself
+> starts fine.  You do **not** need to restart nginx or the Next.js web process
+> on the VPS; you only need the CMS (Strapi) running.
+
+### 2a – Check whether Strapi is already up
+
+Open this URL in your browser:
+
+```
+https://medsupport.kz/cms/graphql
+```
+
+- If you see a GraphQL Playground / JSON response → Strapi is up, skip to Step 2c.
+- If you get a connection error or timeout → the VPS needs to be started (Step 2b).
+
+### 2b – Start the VPS and bring up only the CMS process
+
+1. **Log into your VPS provider dashboard** (Hetzner / DigitalOcean / etc.)
+   and start / power-on the server if it is stopped.
+2. Wait ~1 minute for the OS to boot, then SSH in:
+
+```bash
+ssh your-username@medsupport.kz
+```
+
+3. Start **only the CMS** (skip `web` and do NOT start `server`):
+
+```bash
+# If PM2 already has a saved process list (most likely):
+pm2 resurrect               # restores whatever was saved last time
+
+# OR start fresh with the updated ecosystem config:
+pm2 start ecosystem.config.js --only cms --env production
+pm2 save
+```
+
+4. Verify it started:
+
+```bash
+pm2 list
+# You should see 'cms' with status 'online' on port 1337
+```
+
+5. Tail the CMS log to confirm it is ready before moving on:
+
+```bash
+pm2 logs cms --lines 20
+# Wait until you see "Your application is ready at http://0.0.0.0:1337"
+```
+
+> **Why not start `web` on the VPS too?**  We deliberately leave it off so
+> that the VPS web process does not compete for RAM.  Your local Next.js is
+> the one we are testing.  You can bring the VPS `web` process back up later
+> in Phase 3 (Step 8).
+
+### 2c – Verify your local env file
 
 The file `apps/web/.env.development` already exists and points at the
-**production Strapi** so your local web app fetches real content:
+production Strapi:
 
 ```
 CMS_GRAPHQL_API_URL="https://medsupport.kz/cms/graphql"
@@ -223,13 +284,15 @@ The code is safely backed up in git history.
 | Step | Phase | Priority | Action |
 |------|-------|----------|--------|
 | 1 | Local | 🔴 First | `git pull` + `yarn install` |
-| 2 | Local | 🔴 First | Confirm `.env.development` |
-| 3 | Local | 🔴 First | `yarn workspace @medsupportkz/web web:start` |
-| 4 | Local | 🔴 First | Verify 7 pages at localhost:3000 |
+| 2a | Local | 🔴 First | Check `https://medsupport.kz/cms/graphql` is reachable |
+| 2b | Local | 🔴 First (if VPS is down) | Start VPS → SSH in → `pm2 start ecosystem.config.js --only cms --env production` |
+| 2c | Local | 🔴 First | Confirm `apps/web/.env.development` exists |
+| 3 | Local | 🔴 First | `yarn workspace @medsupportkz/web web:start` (local PC only) |
+| 4 | Local | 🔴 First | Verify 7 pages at localhost:3000 with real content |
 | 5 | Security | 🔴 NOW | Rotate Strapi admin password (any time) |
 | 6 | VPS | 🟡 After Step 4 | Stop Express server on VPS |
 | 7 | VPS | 🟡 After Step 4 | Deploy updated nginx.conf |
-| 8 | VPS | 🟡 After Step 4 | `git pull` + `pm2 reload` on VPS |
+| 8 | VPS | 🟡 After Step 4 | `git pull` + `pm2 reload ecosystem.config.js` on VPS |
 | 9 | VPS | 🟢 After Step 8 | Verify live URLs |
 | 10 | VPS | 🟢 After Step 8 | Confirm memory usage dropped |
 | 11 | Cleanup | 🔵 Later | Delete `apps/server` source code |
