@@ -1,6 +1,14 @@
 /**
  * PM2 ecosystem config for medsupport-monorepo.
  *
+ * Only two processes are needed in production:
+ *   - web  (Next.js, port 3000)
+ *   - cms  (Strapi,  port 1337)
+ *
+ * apps/server (Express, port 8000) is NOT started because all its routes are
+ * disabled in apps/web/src/routes.ts and no live page calls it.
+ * See docs/server-analysis.md for the full analysis.
+ *
  * Usage:
  *   npm install -g pm2
  *   pm2 start ecosystem.config.js --env production
@@ -22,31 +30,14 @@ module.exports = {
       env_production: {
         NODE_ENV: 'production',
         PORT: 3000,
-        // Limit heap to leave room for CMS and server on a 2 GB VPS.
-        NODE_OPTIONS: '--max-old-space-size=512',
+        // More heap now that the server process is not competing for memory
+        // (was --max-old-space-size=512 when three processes shared 2 GB).
+        NODE_OPTIONS: '--max-old-space-size=600',
       },
-      max_memory_restart: '600M',
+      max_memory_restart: '700M',
       restart_delay: 3000,
       error_file: './logs/web-error.log',
       out_file: './logs/web-out.log',
-      log_date_format: 'YYYY-MM-DD HH:mm:ss',
-    },
-    {
-      name: 'server',
-      cwd: '.',
-      script: 'yarn',
-      args: 'workspace @medsupportkz/server server:start:prod',
-      instances: 1,
-      exec_mode: 'fork',
-      env_production: {
-        NODE_ENV: 'production',
-        PORT: 8000,
-        NODE_OPTIONS: '--max-old-space-size=256',
-      },
-      max_memory_restart: '300M',
-      restart_delay: 3000,
-      error_file: './logs/server-error.log',
-      out_file: './logs/server-out.log',
       log_date_format: 'YYYY-MM-DD HH:mm:ss',
     },
     {
@@ -62,9 +53,9 @@ module.exports = {
       env_production: {
         NODE_ENV: 'production',
         PORT: 1337,
-        NODE_OPTIONS: '--max-old-space-size=512',
+        NODE_OPTIONS: '--max-old-space-size=600',
       },
-      max_memory_restart: '600M',
+      max_memory_restart: '700M',
       restart_delay: 5000,
       error_file: './logs/cms-error.log',
       out_file: './logs/cms-out.log',

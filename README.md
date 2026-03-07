@@ -2,48 +2,45 @@
 
 ## Production Deployment Guide (VPS – Ubuntu 20.04 LTS, 2 CPU / 2 GB RAM)
 
-### Why the server keeps failing (Problem 1)
+### Does the web app work without the Express server?
 
-Three Node.js processes (web on :3000, server on :8000, CMS on :1337) compete for
-memory on a 2 GB machine.  `forever` does not enforce memory limits, so any one
-process can consume all available RAM, causing the OS to OOM-kill it and leaving
-nginx with a dead upstream → **502 Bad Gateway**.
+**Yes, completely.**
 
-The fix involves three steps:
+All eight live routes (home, articles, vaccine, questions, resistance, about us,
+article detail, question detail) read data from Strapi CMS via GraphQL.
+None of them make any call to `apps/server`.
 
-1. Replace `forever` with **PM2** (includes memory-limit restarts and automatic
-   log rotation).
-2. Place **Nginx** in front of all three processes as a reverse proxy (see
-   `nginx/nginx.conf`) – this keeps client connections alive during a restart and
-   adds gzip compression at the edge.
-3. Pre-build the CMS *outside* the VPS (see Problem 2 below).
+The six pages that *did* use the server (login, sign-up, password reset,
+document upload, article search, live stream) have all been commented out of
+`apps/web/src/routes.ts` and are not accessible from the website navigation.
 
-### Is the custom Express server needed? (Problem 3)
+**`ecosystem.config.js` now starts only `web` and `cms`.**  The `server` entry
+has been removed.  The nginx config has been updated to remove the `/api/`,
+`/auth/`, and `/socket.io/` proxy blocks so that those paths return a clean
+Next.js 404 instead of a 502 Bad Gateway.
 
-**No – not in the current production deployment.**
+👉 **See [`docs/TODO.md`](docs/TODO.md) for the step-by-step checklist** of
+actions you need to take on the VPS to apply these changes.
 
-A detailed analysis is in [`docs/server-analysis.md`](docs/server-analysis.md).
-The short version:
+👉 **See [`docs/server-analysis.md`](docs/server-analysis.md) for the full
+technical analysis** of what every server endpoint does and your options for the
+long term (leave dormant / migrate auth to Strapi / delete).
 
-- `apps/server` exposes 5 REST endpoints and 1 Socket.IO namespace (auth,
-  document upload to Google Drive, Google Custom Search proxy, real-time chat).
-- **All seven routes** in `apps/web/src/routes.ts` that would reach the server
-  are **commented out**.  No live page calls the server.
-- The server is consuming ≈ 300 MB of RAM for zero benefit.
+### Why the server was causing failures
 
-**Immediate recommendation:** stop the server process on the VPS by commenting
-out the `server` entry in `ecosystem.config.js`.  This directly reduces the
-memory pressure that causes 502 errors.
+Three Node.js processes (web on :3000, server on :8000, CMS on :1337) were
+competing for memory on a 2 GB machine.  `forever` did not enforce memory
+limits, so any one process could consume all available RAM, causing the OS to
+OOM-kill it and leaving nginx with a dead upstream → **502 Bad Gateway**.
 
-See `docs/server-analysis.md` for a full breakdown of each endpoint, what it
-does, whether Strapi could replace it, and three longer-term options (stop /
-migrate to Strapi auth / delete).
+Removing the server process frees ≈ 300 MB of RAM that web and CMS can now use
+for their own in-memory caches, eliminating the main cause of 502 errors.
 
-> ⚠️ The Strapi admin password that was hardcoded in
-> `apps/server/src/services/DocumentService.ts` has been removed and replaced
-> with environment variables (`CMS_IDENTIFIER` / `CMS_PASSWORD`).  **Rotate the
-> Strapi admin password immediately** – it was committed in plain text and is now
-> part of the git history.
+> ⚠️ **Security:** A Strapi admin password was hardcoded in
+> `apps/server/src/services/DocumentService.ts`.  It has been replaced with
+> environment variables in this PR, but **the password must be rotated in the
+> Strapi admin panel** — the old value is in git history.
+> See `docs/TODO.md` step 1.
 
 ### Quick-start with PM2
 
@@ -51,17 +48,14 @@ migrate to Strapi auth / delete).
 # 1. Install PM2 globally (one-time)
 npm install -g pm2
 
-# 2. Build shared packages (must run before starting web or server)
+# 2. Build shared packages (must run before starting web)
 yarn compile
 
 # 3. Build the Next.js frontend
 cd apps/web && yarn build && cd ../..
 
-# 4. Start web and CMS only (server is currently not needed — see docs/server-analysis.md)
-pm2 start ecosystem.config.js --only web,cms --env production
-
-# To also start the server (e.g. if you re-enable its routes):
-# pm2 start ecosystem.config.js --only server --env production
+# 4. Start web and CMS (server is no longer needed)
+pm2 start ecosystem.config.js --env production
 
 # 5. Persist PM2 across reboots
 pm2 save
@@ -105,7 +99,6 @@ sudo certbot --nginx -d medsupport.kz -d www.medsupport.kz
 
 | App | File | Required vars |
 |-----|------|---------------|
-| server | `apps/server/src/config/.env` | `PORT`, `MNG_USR`, `MNG_PSWD`, `MNG_DB`, `SECRET`, `GMAIL_USER`, `GMAIL_PASSWORD`, `GOOGLE_APPLICATION_CREDENTIALS`, `GOOGLE_DRIVE_DEV_KEY`, `GOOGLE_DISK_FOLDER_ID`, `GOOGLE_SEARCH_API_KEY`, `GOOGLE_SEARCH_ENGINE_ID` |
 | cms | `apps/cms/.env` | `PORT`, `MNG_USR`, `MNG_PSWD`, `MNG_DB`, **`ADMIN_JWT_SECRET`** |
 | web | `apps/web/.env.production` | `PORT`, `API_BASE_URL`, `BASE_URL`, `CMS_GRAPHQL_API_URL` |
 
@@ -114,6 +107,10 @@ sudo certbot --nginx -d medsupport.kz -d www.medsupport.kz
 > ```bash
 > node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 > ```
+
+The server environment variables (`MNG_USR`, `GMAIL_PASSWORD`, etc.) are no
+longer needed in production since the server is not running.  See
+`apps/server/src/config/.env.example` if you need them in the future.
 
 ### Outdated dependencies (Problem 4)
 
@@ -126,5 +123,4 @@ The repository targets Node ≥ 14.  Key upgrades needed in a future iteration:
 | TypeScript | 3.8 | 5+ |
 | Strapi | 3.6.3 | 4+ |
 | Node.js runtime | 12-14 | 18 LTS |
-
 
