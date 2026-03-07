@@ -20,9 +20,13 @@ Phase 4 – Cleanup          →   (optional) delete dead code
 
 ## Step 1 – Pull the latest code onto your PC
 
+> **You do NOT need to merge the PR before running the local test.**
+> Phase 1 runs on whatever branch is currently checked out.
+> The merge into `main` is only required before the VPS deployment (Phase 3 / Step 8).
+
 ```bash
-# In your local clone of the repo:
-git pull origin main        # use the branch name this PR merged into
+# In your local clone — pull whichever branch contains these changes:
+git pull origin copilot/analyze-performance-issues   # or: git pull origin main after merge
 
 # Install / refresh dependencies (only needed if you haven't done it recently)
 yarn install
@@ -169,6 +173,18 @@ the repository history has those credentials.
 
 > Only proceed here after Phase 1 (local test) passes.
 
+> ⚠️  **Merge the PR before touching the VPS.**
+>
+> The VPS pulls from `main` (or your default branch).  If the PR is still open,
+> `git pull origin main` on the VPS will **not** include these changes.
+>
+> **Correct order:**
+> 1. GitHub: open the PR and click **Merge pull request** → confirm merge into `main`
+> 2. VPS: `git pull origin main` (Step 8 below)
+> 3. VPS: `pm2 reload ecosystem.config.js --env production` (Step 8 below)
+>
+> You do NOT need to push the branch manually — the merge takes care of that.
+
 ## Step 6 – Stop the Express server on the VPS
 
 SSH into the VPS and run:
@@ -219,8 +235,8 @@ The `server` entry has been removed from `ecosystem.config.js`.
 restart threshold of 700 MB.
 
 ```bash
-# On the VPS: pull the latest code
-git pull origin main        # use the same branch as in Step 1
+# On the VPS: pull the latest code (PR must already be merged into main)
+git pull origin main
 
 # Reload PM2 with the new config (zero-downtime reload)
 pm2 reload ecosystem.config.js --env production
@@ -283,16 +299,17 @@ The code is safely backed up in git history.
 
 | Step | Phase | Priority | Action |
 |------|-------|----------|--------|
-| 1 | Local | 🔴 First | `git pull` + `yarn install` |
+| 1 | Local | 🔴 First | `git pull origin <branch>` (no merge needed yet) + `yarn install` |
 | 2a | Local | 🔴 First | Check `https://medsupport.kz/cms/graphql` is reachable |
 | 2b | Local | 🔴 First (if VPS is down) | Start VPS → SSH in → `pm2 start ecosystem.config.js --only cms --env production` |
 | 2c | Local | 🔴 First | Confirm `apps/web/.env.development` exists |
 | 3 | Local | 🔴 First | `yarn workspace @medsupportkz/web web:start` (local PC only) |
 | 4 | Local | 🔴 First | Verify 7 pages at localhost:3000 with real content |
 | 5 | Security | 🔴 NOW | Rotate Strapi admin password (any time) |
-| 6 | VPS | 🟡 After Step 4 | Stop Express server on VPS |
-| 7 | VPS | 🟡 After Step 4 | Deploy updated nginx.conf |
-| 8 | VPS | 🟡 After Step 4 | `git pull` + `pm2 reload ecosystem.config.js` on VPS |
+| — | VPS pre-req | 🟡 Before Step 6 | **Merge PR into `main`** on GitHub |
+| 6 | VPS | 🟡 After merge | Stop Express server on VPS |
+| 7 | VPS | 🟡 After merge | Deploy updated nginx.conf |
+| 8 | VPS | 🟡 After merge | `git pull origin main` + `pm2 reload ecosystem.config.js` on VPS |
 | 9 | VPS | 🟢 After Step 8 | Verify live URLs |
 | 10 | VPS | 🟢 After Step 8 | Confirm memory usage dropped |
 | 11 | Cleanup | 🔵 Later | Delete `apps/server` source code |
