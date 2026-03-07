@@ -26,15 +26,27 @@ export default {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(buffer);
     try {
+      const cmsUrl = process.env.CMS_URL || 'http://localhost:1337';
+      const cmsIdentifier = process.env.CMS_IDENTIFIER;
+      const cmsPassword = process.env.CMS_PASSWORD;
+      const driveFolderId = process.env.GOOGLE_DISK_FOLDER_ID;
+
+      if (!cmsIdentifier || !cmsPassword) {
+        return { error: 'CMS credentials are not configured', code: 500 };
+      }
+      if (!driveFolderId) {
+        return { error: 'Google Drive folder ID is not configured', code: 500 };
+      }
+
       const {
         data: { jwt },
-      } = await axios.post('http://localhost:1337/auth/local', {
-        identifier: 'oizuldan',
-        password: 'Aisultan1098820',
+      } = await axios.post(`${cmsUrl}/auth/local`, {
+        identifier: cmsIdentifier,
+        password: cmsPassword,
       });
       const createdFile = await drive.files.create({
         requestBody: {
-          parents: ['1yC9aE5xGBLScv4f7oAC57KZKycLuCGxk'],
+          parents: [driveFolderId],
           name,
           mimeType: 'application/vnd.google-apps.document',
         },
@@ -45,7 +57,7 @@ export default {
       });
 
       const response = await axios.post(
-        'http://localhost:1337/documents',
+        `${cmsUrl}/documents`,
         {
           title: title,
           author: author,

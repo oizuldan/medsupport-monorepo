@@ -20,15 +20,30 @@ The fix involves three steps:
 
 ### Is the custom Express server needed? (Problem 3)
 
-**Yes.** `apps/server` provides features that Strapi does not:
+**No – not in the current production deployment.**
 
-| Feature | Provided by |
-|---------|-------------|
-| User authentication (JWT/bcrypt) | `apps/server` |
-| File upload to Google Drive | `apps/server` |
-| Google Custom Search | `apps/server` |
-| Real-time chat (Socket.IO) | `apps/server` |
-| Content API / GraphQL | `apps/cms` (Strapi) |
+A detailed analysis is in [`docs/server-analysis.md`](docs/server-analysis.md).
+The short version:
+
+- `apps/server` exposes 5 REST endpoints and 1 Socket.IO namespace (auth,
+  document upload to Google Drive, Google Custom Search proxy, real-time chat).
+- **All seven routes** in `apps/web/src/routes.ts` that would reach the server
+  are **commented out**.  No live page calls the server.
+- The server is consuming ≈ 300 MB of RAM for zero benefit.
+
+**Immediate recommendation:** stop the server process on the VPS by commenting
+out the `server` entry in `ecosystem.config.js`.  This directly reduces the
+memory pressure that causes 502 errors.
+
+See `docs/server-analysis.md` for a full breakdown of each endpoint, what it
+does, whether Strapi could replace it, and three longer-term options (stop /
+migrate to Strapi auth / delete).
+
+> ⚠️ The Strapi admin password that was hardcoded in
+> `apps/server/src/services/DocumentService.ts` has been removed and replaced
+> with environment variables (`CMS_IDENTIFIER` / `CMS_PASSWORD`).  **Rotate the
+> Strapi admin password immediately** – it was committed in plain text and is now
+> part of the git history.
 
 ### Quick-start with PM2
 
@@ -42,8 +57,11 @@ yarn compile
 # 3. Build the Next.js frontend
 cd apps/web && yarn build && cd ../..
 
-# 4. Start all three processes under PM2
-pm2 start ecosystem.config.js --env production
+# 4. Start web and CMS only (server is currently not needed — see docs/server-analysis.md)
+pm2 start ecosystem.config.js --only web,cms --env production
+
+# To also start the server (e.g. if you re-enable its routes):
+# pm2 start ecosystem.config.js --only server --env production
 
 # 5. Persist PM2 across reboots
 pm2 save
