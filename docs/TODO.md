@@ -1,33 +1,119 @@
 # TODO: Decommission the Express server
 
-This is a prioritised, copy-pasteable checklist.  Work through it top-to-bottom.
+Work through this checklist **in order**.
+**Phase 1** (local PC) must pass before you touch the VPS.
 
 ---
 
-## 🔴 1 – Rotate the leaked Strapi admin password (do this NOW)
+## Overview
+
+```
+Phase 1 – Local PC test    →   confirm the web app works without the server
+Phase 2 – Security         →   rotate the leaked Strapi password
+Phase 3 – VPS deployment   →   apply the changes to production
+Phase 4 – Cleanup          →   (optional) delete dead code
+```
+
+---
+
+# ─── PHASE 1 · LOCAL PC TEST ────────────────────────────────────────────────
+
+## Step 1 – Pull the latest code onto your PC
+
+```bash
+# In your local clone of the repo:
+git pull origin main        # use the branch name this PR merged into
+
+# Install / refresh dependencies (only needed if you haven't done it recently)
+yarn install
+```
+
+> **Prerequisite:** Node.js ≥ 14 and Yarn must be installed on your PC.
+> Check with: `node --version` and `yarn --version`
+
+---
+
+## Step 2 – Verify your local env file
+
+The file `apps/web/.env.development` already exists and points at the
+**production Strapi** so your local web app fetches real content:
+
+```
+CMS_GRAPHQL_API_URL="https://medsupport.kz/cms/graphql"
+BASE_URL="https://medsupport.kz/cms"
+```
+
+No changes needed.  If the file is missing, create it with those two lines.
+
+---
+
+## Step 3 – Start ONLY the web app (do NOT start apps/server)
+
+Open **one** terminal and run:
+
+```bash
+yarn workspace @medsupportkz/web web:start
+```
+
+Wait until you see:
+
+```
+> Ready on http://localhost:3000
+```
+
+> **Important:** do NOT run `yarn workspace @medsupportkz/server server:start`
+> or any equivalent.  The whole point of this test is to confirm the web app
+> works **without** the Express server.
+
+---
+
+## Step 4 – Verify all live pages in your browser
+
+Open each URL and confirm the page loads with real content:
+
+| URL | What you should see |
+|-----|---------------------|
+| `http://localhost:3000` | Home page with banner and content ✅ |
+| `http://localhost:3000/articles` | List of articles ✅ |
+| `http://localhost:3000/article/1` | A single article (use any id from the /articles list) ✅ |
+| `http://localhost:3000/vxn` | Vaccine page ✅ |
+| `http://localhost:3000/questions` | Questions list ✅ |
+| `http://localhost:3000/resistance` | Resistance page ✅ |
+| `http://localhost:3000/about` | About Us page ✅ |
+
+If all 7 pages load correctly → **Phase 1 complete. Proceed to Phase 2.**
+
+If any page shows an error, check the terminal output and open a new issue.
+
+---
+
+# ─── PHASE 2 · SECURITY ─────────────────────────────────────────────────────
+
+## Step 5 – Rotate the leaked Strapi admin password 🔴
 
 A Strapi admin username and plaintext password were committed in the git
 history of `apps/server/src/services/DocumentService.ts`.  Anyone who can read
 the repository history has those credentials.
 
-**Steps:**
+**Do this NOW — it is independent of all other steps.**
+
 1. Log in to the Strapi admin panel at `https://medsupport.kz/cms/admin`
 2. Go to **Settings → Administration Panel → Users**
 3. Click on the admin account and change the password to something strong
 4. (Optional) Go to **Settings → API Tokens** and rotate any tokens you see
 
-The source-code credential has already been replaced with environment variables
-(`CMS_IDENTIFIER` / `CMS_PASSWORD`) in this PR, but the password change in
-the Strapi UI must still be done manually.
-
 ---
 
-## 🔴 2 – Stop the Express server on the VPS
+# ─── PHASE 3 · VPS DEPLOYMENT ───────────────────────────────────────────────
+
+> Only proceed here after Phase 1 (local test) passes.
+
+## Step 6 – Stop the Express server on the VPS
 
 SSH into the VPS and run:
 
 ```bash
-# If you are using PM2
+# If you are using PM2:
 pm2 delete server          # remove from PM2 process list
 pm2 save                   # persist the change across reboots
 
@@ -47,48 +133,44 @@ ss -tlnp | grep 8000       # should return nothing
 
 ---
 
-## 🟡 3 – Deploy the updated nginx config to the VPS
+## Step 7 – Deploy the updated nginx config
 
-The nginx configuration has been updated in this PR:
-- Removed the `/api/`, `/auth/`, and `/socket.io/` proxy blocks that pointed
-  to the Express server.  Without these, any request to those paths is served
-  by Next.js which returns a clean 404 — no more 502 Bad Gateway.
+The `/api/`, `/auth/`, and `/socket.io/` proxy blocks have been removed from
+`nginx/nginx.conf`.  Without them, requests to those paths return a clean
+Next.js 404 instead of a 502 Bad Gateway.
 
-**Steps:**
 ```bash
-# Copy the updated file to the VPS (run from your local machine)
-# Replace 'your-username' with your actual SSH user (e.g. ubuntu, root, deploy)
+# From your local machine — replace 'your-username' with your SSH user
+# (e.g. ubuntu, root, deploy)
 scp nginx/nginx.conf your-username@medsupport.kz:/etc/nginx/sites-available/medsupport
 
-# On the VPS: test and reload nginx
+# On the VPS: test and reload
 sudo nginx -t                          # must print "syntax is ok"
 sudo systemctl reload nginx
 ```
 
 ---
 
-## 🟡 4 – Deploy the updated ecosystem.config.js to the VPS
+## Step 8 – Deploy the updated ecosystem.config.js
 
-The `ecosystem.config.js` has been updated in this PR:
-- The `server` entry has been removed.
-- The `web` and `cms` processes now get more memory (700 MB each) since they
-  no longer compete with the server for the 2 GB RAM budget.
+The `server` entry has been removed from `ecosystem.config.js`.
+`web` and `cms` now each get a 600 MB Node.js heap (was 512 MB) with a PM2
+restart threshold of 700 MB.
 
-**Steps:**
 ```bash
 # On the VPS: pull the latest code
-git pull origin main        # or whichever branch this PR merges to
+git pull origin main        # use the same branch as in Step 1
 
-# Reload PM2 with the new config
+# Reload PM2 with the new config (zero-downtime reload)
 pm2 reload ecosystem.config.js --env production
 pm2 save
 ```
 
 ---
 
-## 🟢 5 – Verify the live website works
+## Step 9 – Verify the live website
 
-After completing steps 2–4, check these URLs in your browser:
+Check these URLs in your browser after the deploy:
 
 | URL | Expected result |
 |-----|-----------------|
@@ -103,46 +185,51 @@ After completing steps 2–4, check these URLs in your browser:
 
 ---
 
-## 🟢 6 – Confirm reduced memory usage
+## Step 10 – Confirm reduced memory usage
 
 ```bash
 # On the VPS
-pm2 monit        # watch live memory; web and cms should each be < 300 MB at idle
-
-# Or a one-liner
 pm2 list
 ```
 
-Expected: total memory used by web + cms ≈ 400–600 MB, leaving > 1 GB free for
-the OS and any spikes.
+Expected: `web` + `cms` together use ≈ 400–600 MB at idle, leaving > 1 GB free.
+
+```bash
+# For live monitoring:
+pm2 monit
+```
 
 ---
 
-## 🔵 7 – (Optional) Decide the long-term fate of apps/server
+# ─── PHASE 4 · CLEANUP (OPTIONAL) ──────────────────────────────────────────
+
+## Step 11 – Decide the long-term fate of apps/server
 
 See [`docs/server-analysis.md`](server-analysis.md) for the full breakdown.
-The three options are:
 
 | Option | What to do |
 |--------|-----------|
-| **A – Leave it dormant** | Code stays in the repo, server never starts. Zero cost. |
-| **B – Migrate auth to Strapi** | Use Strapi's built-in `users-permissions` plugin (register, login, forgot-password). Delete `apps/server`. |
-| **C – Delete it** | Run `git rm -r apps/server` and remove its entry from `lerna.json`. |
+| **A – Leave it dormant** | Code stays in the repo, server never starts. Zero effort. |
+| **B – Migrate auth to Strapi** | Use Strapi's built-in `users-permissions` plugin. Delete `apps/server`. |
+| **C – Delete it now** | `git rm -r apps/server` and remove its entry from `lerna.json`. |
 
-**Recommendation:** Do **Option C** once you have confirmed the website works
-without the server (step 5 above).  The code is backed up in git history if you
-ever need to refer to it.
+**Recommendation:** Do **Option C** once Step 9 passes.
+The code is safely backed up in git history.
 
 ---
 
-## Summary
+## Summary table
 
-| # | Priority | Action | Who |
-|---|----------|--------|-----|
-| 1 | 🔴 NOW | Rotate Strapi admin password | You (UI) |
-| 2 | 🔴 NOW | Stop Express server on VPS | You (SSH) |
-| 3 | 🟡 Soon | Deploy updated nginx.conf | You (SSH) |
-| 4 | 🟡 Soon | Deploy updated ecosystem.config.js | You (SSH + git pull) |
-| 5 | 🟢 After | Verify live site | You (browser) |
-| 6 | 🟢 After | Confirm memory usage dropped | You (SSH) |
-| 7 | 🔵 Later | Decide fate of apps/server source code | You |
+| Step | Phase | Priority | Action |
+|------|-------|----------|--------|
+| 1 | Local | 🔴 First | `git pull` + `yarn install` |
+| 2 | Local | 🔴 First | Confirm `.env.development` |
+| 3 | Local | 🔴 First | `yarn workspace @medsupportkz/web web:start` |
+| 4 | Local | 🔴 First | Verify 7 pages at localhost:3000 |
+| 5 | Security | 🔴 NOW | Rotate Strapi admin password (any time) |
+| 6 | VPS | 🟡 After Step 4 | Stop Express server on VPS |
+| 7 | VPS | 🟡 After Step 4 | Deploy updated nginx.conf |
+| 8 | VPS | 🟡 After Step 4 | `git pull` + `pm2 reload` on VPS |
+| 9 | VPS | 🟢 After Step 8 | Verify live URLs |
+| 10 | VPS | 🟢 After Step 8 | Confirm memory usage dropped |
+| 11 | Cleanup | 🔵 Later | Delete `apps/server` source code |
