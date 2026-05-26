@@ -31,6 +31,10 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY packages/ packages/
 COPY apps/web/ apps/web/
 
+# run-p spawns child processes that don't inherit yarn's workspace bin resolution.
+# Explicitly adding the hoisted bin dir ensures babel, tsc, etc. are found.
+ENV PATH="/app/node_modules/.bin:$PATH"
+
 # 1. Compile the shared @medsupportkz/next package (produces packages/next/lib)
 RUN yarn workspace @medsupportkz/next compile
 
