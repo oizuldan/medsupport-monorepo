@@ -5,7 +5,7 @@ FROM node:14-alpine AS deps
 WORKDIR /app
 
 COPY apps/cms/package.json ./
-RUN yarn install
+RUN yarn install --ignore-engines
 
 # ---- Stage 2: Build admin panel ----
 FROM node:14-alpine AS builder

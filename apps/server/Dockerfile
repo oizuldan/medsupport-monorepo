@@ -15,7 +15,7 @@ COPY apps/cms/package.json                 apps/cms/
 COPY apps/server/package.json              apps/server/
 COPY apps/web/package.json                 apps/web/
 
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --ignore-engines
 
 # ---- Stage 2: Production runner ----
 # The compiled grpc .node binary lives inside node_modules and is copied as-is.
