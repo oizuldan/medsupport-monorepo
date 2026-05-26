@@ -31,9 +31,10 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY packages/ packages/
 COPY apps/web/ apps/web/
 
-# run-p spawns child processes that don't inherit yarn's workspace bin resolution.
-# Explicitly adding the hoisted bin dir ensures babel, tsc, etc. are found.
-ENV PATH="/app/node_modules/.bin:$PATH"
+# npm's lifecycle scripts only prepend the LOCAL node_modules/.bin to PATH.
+# In a hoisted yarn workspace that directory doesn't exist under packages/next.
+# A symlink makes every hoisted binary visible at the path npm actually checks.
+RUN ln -s /app/node_modules /app/packages/next/node_modules
 
 # 1. Compile the shared @medsupportkz/next package (produces packages/next/lib)
 RUN yarn workspace @medsupportkz/next compile
