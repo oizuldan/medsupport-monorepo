@@ -31,18 +31,17 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY packages/ packages/
 COPY apps/web/ apps/web/
 
-# npm's lifecycle scripts only prepend the LOCAL node_modules/.bin to PATH.
-# In a hoisted yarn workspace that directory doesn't exist under packages/next.
-# A symlink makes every hoisted binary visible at the path npm actually checks.
-RUN ln -s /app/node_modules /app/packages/next/node_modules
-
-# 1. Compile @medsupportkz/next with absolute binary paths, bypassing npm's
-#    lifecycle PATH resolution entirely. This is the only reliable approach
-#    in a hoisted yarn workspace inside Docker.
+# 1. Compile @medsupportkz/next.
+#    On Alpine/busybox, executing a .bin symlink fails when the shebang
+#    interpreter cannot be resolved (error looks identical to "file not found").
+#    Invoking `node` directly on the real JS files bypasses both symlink
+#    resolution and shebang/binfmt handling entirely.
 RUN cd /app/packages/next && rm -rf lib && \
-    NODE_ENV=test       /app/node_modules/.bin/babel --out-dir lib/cjs --extensions '.ts,.tsx' src && \
-    NODE_ENV=production /app/node_modules/.bin/babel --out-dir lib/esm --extensions '.ts,.tsx' src && \
-    /app/node_modules/.bin/tsc --outDir lib/ts -p src
+    NODE_ENV=test       node /app/node_modules/@babel/cli/bin/babel.js \
+        --out-dir lib/cjs --extensions '.ts,.tsx' src && \
+    NODE_ENV=production node /app/node_modules/@babel/cli/bin/babel.js \
+        --out-dir lib/esm --extensions '.ts,.tsx' src && \
+    node /app/node_modules/typescript/bin/tsc --outDir lib/ts -p src
 
 # 2. Build the Next.js application
 RUN yarn workspace @medsupportkz/web build
