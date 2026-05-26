@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 # ---- Stage 1: Install dependencies ----
 # All workspace package.json files are copied first to maximise layer cache hits.
 FROM node:14-alpine AS deps
@@ -11,7 +13,10 @@ COPY apps/cms/package.json                 apps/cms/
 COPY apps/server/package.json              apps/server/
 COPY apps/web/package.json                 apps/web/
 
-RUN yarn install --frozen-lockfile --ignore-engines
+# Cache mount keeps the yarn download cache between builds.
+RUN --mount=type=cache,target=/usr/local/share/.cache/yarn,sharing=locked \
+    YARN_CACHE_FOLDER=/usr/local/share/.cache/yarn \
+    yarn install --frozen-lockfile --ignore-engines
 
 # ---- Stage 2: Build ----
 FROM node:14-alpine AS builder

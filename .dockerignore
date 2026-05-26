@@ -4,7 +4,6 @@
 **/.next
 packages/next/lib
 packages/babel-preset/lib
-apps/cms/build
 *.log
 .DS_Store
 npm-debug.log*
