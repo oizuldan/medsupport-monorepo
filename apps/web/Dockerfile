@@ -14,9 +14,11 @@ COPY apps/server/package.json              apps/server/
 COPY apps/web/package.json                 apps/web/
 
 # Cache mount keeps the yarn download cache between builds.
+# --frozen-lockfile is intentionally omitted: @babel/cli and other build-time
+# devDeps are in package.json but missing from yarn.lock (lockfile is stale).
 RUN --mount=type=cache,target=/usr/local/share/.cache/yarn,sharing=locked \
     YARN_CACHE_FOLDER=/usr/local/share/.cache/yarn \
-    yarn install --frozen-lockfile --ignore-engines
+    yarn install --ignore-engines
 
 # ---- Stage 2: Build ----
 FROM node:14-alpine AS builder
