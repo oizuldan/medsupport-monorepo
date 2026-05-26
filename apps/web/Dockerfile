@@ -36,8 +36,13 @@ COPY apps/web/ apps/web/
 # A symlink makes every hoisted binary visible at the path npm actually checks.
 RUN ln -s /app/node_modules /app/packages/next/node_modules
 
-# 1. Compile the shared @medsupportkz/next package (produces packages/next/lib)
-RUN yarn workspace @medsupportkz/next compile
+# 1. Compile @medsupportkz/next with absolute binary paths, bypassing npm's
+#    lifecycle PATH resolution entirely. This is the only reliable approach
+#    in a hoisted yarn workspace inside Docker.
+RUN cd /app/packages/next && rm -rf lib && \
+    NODE_ENV=test       /app/node_modules/.bin/babel --out-dir lib/cjs --extensions '.ts,.tsx' src && \
+    NODE_ENV=production /app/node_modules/.bin/babel --out-dir lib/esm --extensions '.ts,.tsx' src && \
+    /app/node_modules/.bin/tsc --outDir lib/ts -p src
 
 # 2. Build the Next.js application
 RUN yarn workspace @medsupportkz/web build
