@@ -46,6 +46,8 @@
   ],
   "devDependencies": {
     "@azimutlabs/eslint-config": "^0.2.2",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@commitlint/config-lerna-scopes": "^9.0.1",
