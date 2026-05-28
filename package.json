@@ -45,6 +45,7 @@
     "**/apps/cms"
   ],
   "devDependencies": {
+    "@apollo/client": "^3.3.19",
     "@azimutlabs/eslint-config": "^0.2.2",
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
