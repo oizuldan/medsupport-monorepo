@@ -46,6 +46,7 @@ dist
 # CMS
 **/.cache
 **/.strapi-updater.json
+apps/cms/public/uploads/
 
 # IDE and Code editors
 .idea
