@@ -27,7 +27,11 @@ WORKDIR /app
 # Root manifest is required so yarn can resolve workspaces
 COPY package.json yarn.lock ./
 
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/node_modules          ./node_modules
+# yarn 1 does not hoist all packages to root when version conflicts exist
+# (e.g. react-dom@17 in apps/web vs @16 in root).  The non-hoisted modules
+# land in apps/web/node_modules inside the deps stage — copy them explicitly.
+COPY --from=deps /app/apps/web/node_modules ./apps/web/node_modules
 
 # Copy source code for packages and web app only
 COPY packages/ packages/
