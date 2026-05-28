@@ -18,7 +18,7 @@ COPY apps/web/package.json                 apps/web/
 # devDeps are in package.json but missing from yarn.lock (lockfile is stale).
 RUN --mount=type=cache,target=/usr/local/share/.cache/yarn,sharing=locked \
     YARN_CACHE_FOLDER=/usr/local/share/.cache/yarn \
-    yarn install --ignore-engines
+    yarn install --ignore-engines --ignore-scripts
 
 # ---- Stage 2: Build ----
 FROM node:14-alpine AS builder
@@ -42,8 +42,7 @@ RUN cd /app/packages/next && rm -rf lib && \
     NODE_ENV=test       node /app/node_modules/@babel/cli/bin/babel.js \
         --out-dir lib/cjs --extensions '.ts,.tsx' src && \
     NODE_ENV=production node /app/node_modules/@babel/cli/bin/babel.js \
-        --out-dir lib/esm --extensions '.ts,.tsx' src && \
-    node /app/node_modules/typescript/bin/tsc --outDir lib/ts -p src
+        --out-dir lib/esm --extensions '.ts,.tsx' src
 
 # 2. Build the Next.js application
 RUN yarn workspace @medsupportkz/web build
