@@ -85,6 +85,6 @@
     "undici-types": "5.26.5"
   },
   "engines": {
-    "node": ">=10 <=14.x.x"
+    "node": ">=14"
   }
 }
