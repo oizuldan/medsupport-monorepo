@@ -22,7 +22,7 @@ services:
     env_file:
       - apps/cms/.env
     volumes:
-      - /opt/docker-volumes/cms_uploads/:/app/public/uploads
+      - ./apps/cms/public/uploads:/app/public/uploads
     restart: unless-stopped
     deploy:
       resources:
