@@ -61,6 +61,9 @@ ENV NODE_ENV=production
 ENV PORT=3000
 
 COPY --from=builder /app/node_modules ./node_modules
+# node_modules/@medsupportkz/config is a yarn workspace symlink → ../../packages/config.
+# ts-node resolves tsconfig extends at runtime, so packages/ must exist in the runner.
+COPY --from=builder /app/packages     ./packages
 COPY --from=builder /app/apps/web     ./apps/web
 
 WORKDIR /app/apps/web
@@ -69,4 +72,4 @@ EXPOSE 3000
 
 # Uses ts-node to run the custom Express+Next.js server in production mode.
 # Requires TypeScript source because this project has no separate compile step.
-CMD ["/app/node_modules/.bin/ts-node", "-P", "tsconfig.json", "src/server.ts"]
+CMD ["/app/node_modules/.bin/ts-node", "--transpile-only", "-P", "tsconfig.json", "src/server.ts"]
