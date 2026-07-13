@@ -1,3 +1,3 @@
-import ReactMarkdown from 'react-markdown';
+import { Options } from 'react-markdown';
 
-export type Props = ReactMarkdown.ReactMarkdownOptions;
+export type Props = Options;

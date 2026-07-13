@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { SerializedStyles } from '@emotion/core';
+import { SerializedStyles } from '@emotion/react';
 
 import { FI } from './types/FI';
 import { MatchVariantValue } from './types/MatchVariantValue';

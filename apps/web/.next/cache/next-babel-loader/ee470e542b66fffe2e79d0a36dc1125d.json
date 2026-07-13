@@ -1,1 +1,0 @@
-{"ast":null,"code":"export { PaginationItemTypes } from './types/PaginationItemTypes';\nexport * from './component';","map":null,"metadata":{},"sourceType":"module"}

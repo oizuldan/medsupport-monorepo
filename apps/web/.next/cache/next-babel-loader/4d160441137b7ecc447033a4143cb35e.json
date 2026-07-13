@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const toMedia = (pixels, point = 'min-width') => `@media(${point}: ${Number(pixels)}px)`;","map":null,"metadata":{},"sourceType":"module"}

@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Icon, IconSizes, Typography } from 'components';
 import { colors, icons, media, typography } from 'core';
 import { sequence } from 'fp-ts/Array';

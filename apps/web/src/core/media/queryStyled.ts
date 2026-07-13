@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from '@emotion/core';
+import { css, SerializedStyles } from '@emotion/react';
 
 import { toMedia } from './services/toMedia';
 import { Breakpoints } from './types/Breakpoints';

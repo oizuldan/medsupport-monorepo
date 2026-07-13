@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Carousel, Skeleton } from 'components';
 import React, { FC } from 'react';
 

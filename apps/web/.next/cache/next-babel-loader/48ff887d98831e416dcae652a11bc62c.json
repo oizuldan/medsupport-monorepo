@@ -1,1 +1,0 @@
-{"ast":null,"code":"const regexp = /!\\[([\\w\\s\\d.]+)\\]\\(((?:\\/|https?:\\/\\/)[\\w\\d./?=#]+)\\)/g;\nexport const transformMarkdownImages = c => c.replace(regexp, (_, g1, g2) => `<img src=\"${g2}\" alt=\"${g1}\" />`);","map":null,"metadata":{},"sourceType":"module"}

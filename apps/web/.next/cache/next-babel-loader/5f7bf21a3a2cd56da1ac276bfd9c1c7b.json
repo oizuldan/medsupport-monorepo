@@ -1,1 +1,0 @@
-{"ast":null,"code":"","map":{"version":3,"sources":[],"names":[],"mappings":"","sourcesContent":["import { AnyColor } from './AnyColor';\n\nexport type PropsBase<C extends AnyColor = AnyColor> = { readonly color: C };\n"]},"metadata":{},"sourceType":"module"}

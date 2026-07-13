@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var DefaultRootIds;\n\n(function (DefaultRootIds) {\n  DefaultRootIds[\"Root\"] = \"root\";\n  DefaultRootIds[\"Next\"] = \"__next\";\n})(DefaultRootIds || (DefaultRootIds = {}));","map":null,"metadata":{},"sourceType":"module"}

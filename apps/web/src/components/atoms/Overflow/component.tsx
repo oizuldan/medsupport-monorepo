@@ -1,4 +1,4 @@
-import { css, Global } from '@emotion/core';
+import { css, Global } from '@emotion/react';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { Background } from './libs/Background';

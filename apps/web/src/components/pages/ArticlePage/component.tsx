@@ -81,7 +81,7 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
 };
 
 ArticlePage.getInitialProps = async (ctx) => {
-  const id = ctx.query?.id.toString();
+  const id = ctx.query?.id?.toString();
   const lang = ctx.req?.headers?.cookie?.match(/(kk-Cyrl-KZ|ru-RU)/)?.[0] || 'ru-RU';
 
   const data = await ctx.apolloClient.query<Article, ArticleVariables>({

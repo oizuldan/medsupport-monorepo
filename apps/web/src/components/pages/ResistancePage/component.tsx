@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { InteractiveCard, Layout, Typography } from 'components';
 import { media, typography } from 'core';
 import { NextComponentType } from 'next';

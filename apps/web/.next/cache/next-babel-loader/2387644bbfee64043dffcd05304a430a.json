@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var ModifierNames;\n\n(function (ModifierNames) {\n  ModifierNames[\"SameWidth\"] = \"sameWidth\";\n  ModifierNames[\"Offset\"] = \"offset\";\n})(ModifierNames || (ModifierNames = {}));","map":null,"metadata":{},"sourceType":"module"}

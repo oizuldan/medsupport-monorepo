@@ -1,1 +1,0 @@
-{"ast":null,"code":"","map":{"version":3,"sources":[],"names":[],"mappings":"","sourcesContent":["import { HTMLAttributes, ReactNode } from 'react';\n\nimport { ToastTypes } from './ToastTypes';\n\nexport type ToastProps = Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {\n  readonly text: ReactNode;\n  readonly type: ToastTypes;\n};\n"]},"metadata":{},"sourceType":"module"}

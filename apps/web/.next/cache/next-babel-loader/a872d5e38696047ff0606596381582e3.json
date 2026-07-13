@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var Directions;\n\n(function (Directions) {\n  Directions[\"Horizontal\"] = \"horizontal\";\n  Directions[\"Vertical\"] = \"vertical\";\n})(Directions || (Directions = {}));","map":null,"metadata":{},"sourceType":"module"}

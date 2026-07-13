@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { RelevantTopicCard, Typography } from 'components';
 import { media, typography } from 'core';
 import React, { FC } from 'react';

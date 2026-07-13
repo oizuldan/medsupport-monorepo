@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Icon, IconSizes, Markdown, Typography } from 'components';
 import { icons, media, typography } from 'core';
 import React, { FC, useState } from 'react';

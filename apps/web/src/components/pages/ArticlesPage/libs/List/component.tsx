@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { List as ListFromComponents, ListItemButton, P } from 'components';
 import { colors, typography } from 'core';
 import React from 'react';
