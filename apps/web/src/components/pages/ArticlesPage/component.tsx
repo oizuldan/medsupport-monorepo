@@ -1,5 +1,5 @@
 import { Btn, CtaBand, Eyebrow, MskLayout } from 'components';
-import { useLang } from 'core/i18n';
+import { langFromCookie, useLang } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
@@ -33,7 +33,10 @@ const isNotNull = <T,>(value: T | null): value is T => value !== null;
 /** Ported from reference/medsupportkz/public/site/knowledge-base.html:1041-1191. */
 export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
   const cms = props.data?.data;
-  const { t, lang } = useLang();
+  const { t } = useLang();
+  // SSR-safe locale derived from the cookie-based prop from getInitialProps — must not
+  // depend on useLang().lang, which is deliberately 'ru' on first paint (see useLang.ts).
+  const pageLang = langFromCookie(props.lang);
   const router = useRouter();
 
   const [track, setTrack] = useState<Track>(router.query.track === 'doctor' ? 'doctor' : 'patient');
@@ -124,8 +127,8 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
           Тут вы найдете инструкции по лечению и описанию болезней."
         />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={lang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
-        <meta property="og:locale:alternate" content={lang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
+        <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:site_name" content="medsupport" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
@@ -254,7 +257,7 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
                     </div>
                     <h3>{card.title}</h3>
                     <div className="acard__langs">
-                      <span>{lang === 'kz' ? 'ҚАЗ' : 'РУС'}</span>
+                      <span>{pageLang === 'kz' ? 'ҚАЗ' : 'РУС'}</span>
                     </div>
                   </a>
                 ),
