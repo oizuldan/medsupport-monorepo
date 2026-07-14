@@ -7,11 +7,11 @@ import React, { FC } from 'react';
 import { Props } from './props';
 
 const staticNav = [
-  { href: '#mission', key: 'nav.about' },
-  { href: '#portfolio', key: 'nav.portfolio' },
+  { href: '/#mission', key: 'nav.about' },
+  { href: '/#portfolio', key: 'nav.portfolio' },
   { href: '/knowledge-base', key: 'nav.kb' },
   { href: '/partner', key: 'nav.partner' },
-  { href: '#contact', key: 'nav.contact' },
+  { href: '/#contact', key: 'nav.contact' },
 ];
 
 const setLang = (lang: 'ru-RU' | 'kk-Cyrl-KZ') => () => {

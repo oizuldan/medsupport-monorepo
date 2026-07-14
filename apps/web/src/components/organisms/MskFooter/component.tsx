@@ -58,10 +58,10 @@ export const MskFooter: FC<Props> = ({ sections }) => {
             <>
               <div className="footer__col">
                 <h4>{t('ft.nav')}</h4>
-                <a href="#mission">{t('nav.about')}</a>
-                <a href="#portfolio">{t('nav.portfolio')}</a>
+                <a href="/#mission">{t('nav.about')}</a>
+                <a href="/#portfolio">{t('nav.portfolio')}</a>
                 <a href="/partner">{t('nav.partner')}</a>
-                <a href="#contact">{t('nav.contact')}</a>
+                <a href="/#contact">{t('nav.contact')}</a>
               </div>
               <div className="footer__col">
                 <h4>{t('ft.kb')}</h4>
