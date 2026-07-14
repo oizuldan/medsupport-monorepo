@@ -1,6 +1,7 @@
 import 'bootstrap-4-grid';
 import 'normalize.css';
 import '../styles/globals.css';
+import '../styles/design-system.css';
 
 import {
   ApolloClient,
