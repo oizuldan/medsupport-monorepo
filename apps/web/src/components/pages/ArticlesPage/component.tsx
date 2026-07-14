@@ -1,92 +1,293 @@
-import { css } from '@emotion/react';
-import { H1, Layout } from 'components';
-import { media, typography } from 'core';
-import { sequence } from 'fp-ts/Array';
-import * as O from 'fp-ts/Option';
-import { pipe } from 'fp-ts/pipeable';
+import { Btn, CtaBand, Eyebrow, MskLayout } from 'components';
+import { useLang } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
-import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
+import React, { useMemo, useState } from 'react';
 
-import {
-  ArticlesPage as ArticlesPageGQL,
-  ArticlesPageVariables,
-} from './__generated__/ArticlesPage';
+import { ArticlesPage as ArticlesPageGQL, ArticlesPageVariables } from './__generated__/ArticlesPage';
 import { queryArticlesPage } from './graphql';
-import { ExpandableList } from './libs/ExpandableList';
+import { distinctCategories, mapArticles } from './libs/mapArticles';
+import {
+  DOCTOR_PLACEHOLDER_CARDS,
+  PATIENT_PLACEHOLDER_CARDS,
+  PLACEHOLDER_SUMMARY,
+} from './libs/placeholderCards';
 import { InitProps, Props } from './props';
 
-export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
-  props: Props,
-) => {
-  const { data, lang } = props;
+type Track = 'patient' | 'doctor';
 
-  const articles = useMemo(
+type DisplayCard = {
+  readonly id: string;
+  readonly title: string;
+  readonly category: string;
+  readonly href?: string;
+  readonly minutes?: number;
+  readonly langs?: ReadonlyArray<string>;
+  readonly placeholder?: boolean;
+};
+
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
+
+/** Ported from reference/medsupportkz/public/site/knowledge-base.html:1041-1191. */
+export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
+  const cms = props.data?.data;
+  const { t, lang } = useLang();
+  const router = useRouter();
+
+  const [track, setTrack] = useState<Track>(router.query.track === 'doctor' ? 'doctor' : 'patient');
+  const [filter, setFilter] = useState('all');
+  const [query, setQuery] = useState('');
+
+  const switchTrack = (next: Track) => {
+    setTrack(next);
+    setFilter('all');
+    setQuery('');
+  };
+
+  const headerLinks = cms?.headerLinks?.[0]?.links?.filter(isNotNull).map((link) => ({
+    title: link.title ?? undefined,
+    link: link.link ?? undefined,
+  }));
+  const footerSections = cms?.footerSections?.[0]?.sections?.filter(isNotNull).map((section) => ({
+    title: section.title,
+    links: section.links?.filter(isNotNull).map((link) => ({
+      title: link.title ?? undefined,
+      link: link.link ?? undefined,
+    })),
+  }));
+
+  // Real CMS data: queryArticlesPage only returns
+  // articleSections: [{ id, title, articles: [{ id, title }] }] — no track/category slug/
+  // summary/read-time/languages field. See libs/mapArticles.ts.
+  const realCards = useMemo(() => mapArticles(cms?.articleSections), [cms?.articleSections]);
+
+  const patientCards: DisplayCard[] = useMemo(() => {
+    if (realCards.length > 0) {
+      return realCards.map((card) => ({
+        id: card.id,
+        title: card.title,
+        category: card.category,
+        href: card.href,
+      }));
+    }
+    // Fallback so the page is never empty: static patient cards ported from
+    // knowledge-base.html:1092-1127.
+    return PATIENT_PLACEHOLDER_CARDS.map((card) => ({
+      id: card.id,
+      title: t(card.titleKey),
+      category: t(card.catKey),
+      minutes: card.minutes,
+      langs: card.langs,
+      placeholder: true,
+    }));
+  }, [realCards, t]);
+
+  // The CMS has no doctor/track data at all — this tab is an explicit design placeholder
+  // ported from knowledge-base.html:1130-1165 until a CMS schema change (Phase 2) adds real
+  // per-track article content.
+  const doctorCards: DisplayCard[] = useMemo(
     () =>
-      pipe(
-        O.fromNullable(data?.data?.articleSections),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((arts) => sequence(O.option)(arts.map((art) => pipe(O.fromNullable(art))))),
-        O.getOrElseW(() => undefined),
-      ),
-    [data?.data?.articleSections],
+      DOCTOR_PLACEHOLDER_CARDS.map((card) => ({
+        id: card.id,
+        title: t(card.titleKey),
+        category: t(card.catKey),
+        minutes: card.minutes,
+        langs: card.langs,
+        placeholder: true,
+      })),
+    [t],
+  );
+
+  const activeCards = track === 'doctor' ? doctorCards : patientCards;
+  const categories = distinctCategories(activeCards);
+  const q = query.trim().toLowerCase();
+  const visibleCards = activeCards.filter(
+    (card) => (filter === 'all' || card.category === filter) && (!q || card.title.toLowerCase().includes(q)),
   );
 
   return (
     <>
       <Head>
-        <title>{props.data?.data?.articlesSection?.section?.title}</title>
-        <meta name="keywords" content={props.data?.data?.articlesSection?.section?.title} />
+        <title>{cms?.articlesSection?.section?.title}</title>
+        <meta name="keywords" content={cms?.articlesSection?.section?.title} />
         <meta
           name="description"
           content="Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
           Тут вы найдете инструкции по лечению и описанию болезней."
         />
-        <meta property="og:title" content={props.data?.data?.articlesSection?.section?.title} />
+        <meta property="og:title" content={cms?.articlesSection?.section?.title} />
         <meta
           property="og:description"
           content="Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
           Тут вы найдете инструкции по лечению и описанию болезней."
         />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale" content={lang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale:alternate" content={lang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:site_name" content="medsupport" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
       </Head>
-      <Layout
-        headerButtons={props.data?.data?.headerButtons}
-        footerSections={props.data?.data?.footerSections}
-        headerLinks={props.data?.data?.headerLinks}
-      >
-        <div className="container d-flex flex-column py-md-5 py-3">
-          <div className="d-flex justify-content-between align-items-center mb-md-3 mb-2">
-            <H1
-              css={css(
-                typography.styles.headingBold22,
-                media.queryStyled([
-                  typography.styles.headingBold22,
-                  typography.styles.headingBold22,
-                  typography.styles.headingBold34,
-                ]),
-              )}
-            >
-              {props.data?.data?.articlesSection?.section?.title}
-            </H1>
-          </div>
-          {articles !== undefined &&
-            articles.map(({ title, articles, id }) => (
-              <ExpandableList
-                key={id}
-                title={title as string}
-                articles={articles}
-                isInitiallyOpen={false}
-              />
-            ))}
+      <MskLayout links={headerLinks} footerSections={footerSections}>
+        <div className="container">
+          <nav className="crumb" aria-label="Хлебные крошки">
+            <a href="/">{t('kbp.crumb.home')}</a>
+            <span className="sep">/</span>
+            <span>{t('kbp.crumb.this')}</span>
+          </nav>
         </div>
-      </Layout>
+
+        <section className="page-hero" data-screen-label="KB hero">
+          <div className="container">
+            <Eyebrow variant="rose" className="rise">
+              {t('kbp.eyebrow')}
+            </Eyebrow>
+            <h1 className="h-xl rise" data-delay="1">
+              {t('kbp.h1')}
+            </h1>
+            <p className="lead rise" data-delay="2">
+              {t('kbp.lead')}
+            </p>
+          </div>
+        </section>
+
+        <section className="section--tight" style={{ paddingTop: 8 }}>
+          <div className="container">
+            <div className="tabs" role="tablist" aria-label="Трек">
+              <button
+                type="button"
+                data-track="patient"
+                className={track === 'patient' ? 'is-active' : ''}
+                role="tab"
+                aria-selected={track === 'patient'}
+                onClick={() => switchTrack('patient')}
+              >
+                {t('kbp.tab.patient')}
+              </button>
+              <button
+                type="button"
+                data-track="doctor"
+                className={track === 'doctor' ? 'is-active' : ''}
+                role="tab"
+                aria-selected={track === 'doctor'}
+                onClick={() => switchTrack('doctor')}
+              >
+                {t('kbp.tab.doctor')}
+              </button>
+            </div>
+
+            <div className="searchbar">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+              <input
+                type="search"
+                aria-label="Поиск"
+                placeholder={track === 'doctor' ? t('kbp.search.doctor') : t('kbp.search.patient')}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </div>
+
+            {/* Filter chips are derived dynamically from the distinct categories present in the
+                active track's cards — the real CMS has no fixed vax/aid/myth taxonomy. */}
+            <div className="filters" role="group" aria-label="Фильтр тем">
+              <button
+                type="button"
+                className={`chip${filter === 'all' ? ' is-active' : ''}`}
+                onClick={() => setFilter('all')}
+              >
+                {t('kbp.f.all')}
+              </button>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  className={`chip${filter === category ? ' is-active' : ''}`}
+                  onClick={() => setFilter(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            <div className="articles" style={{ marginTop: 32 }}>
+              {visibleCards.map((card) =>
+                card.placeholder ? (
+                  <article
+                    key={card.id}
+                    className={`acard${track === 'doctor' ? ' acard--doctor' : ''}`}
+                    data-track={track}
+                    data-cat={card.category}
+                  >
+                    <div className="acard__top">
+                      <span className="acard__cat">{card.category}</span>
+                      {card.minutes !== undefined && (
+                        <span className="acard__time">
+                          {card.minutes} {t('kbp.time')}
+                        </span>
+                      )}
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{PLACEHOLDER_SUMMARY}</p>
+                    <div className="acard__langs">
+                      {(card.langs ?? []).map((l) => (
+                        <span key={l}>{l}</span>
+                      ))}
+                    </div>
+                  </article>
+                ) : (
+                  <a key={card.id} className="acard" href={card.href} data-track={track} data-cat={card.category}>
+                    <div className="acard__top">
+                      <span className="acard__cat">{card.category}</span>
+                    </div>
+                    <h3>{card.title}</h3>
+                    <div className="acard__langs">
+                      <span>{lang === 'kz' ? 'ҚАЗ' : 'РУС'}</span>
+                    </div>
+                  </a>
+                ),
+              )}
+            </div>
+
+            <p className={`no-results${visibleCards.length === 0 ? ' is-show' : ''}`}>{t('kbp.none')}</p>
+          </div>
+        </section>
+
+        {/* TRACK CTA BANDS */}
+        <section className="section section--tight">
+          <div className="container">
+            <CtaBand
+              className={track === 'patient' ? '' : 'is-hidden'}
+              title={t('kbp.patient.cta.h')}
+              text={t('kbp.patient.cta.p')}
+              button={<Btn lg>{t('kbp.patient.cta.b')}</Btn>}
+            />
+            <CtaBand
+              variant="teal"
+              className={track === 'doctor' ? '' : 'is-hidden'}
+              title={t('kbp.doctor.cta.h')}
+              text={t('kbp.doctor.cta.p')}
+              button={
+                <Btn variant="teal" lg href="/partner#specialists">
+                  {t('kbp.doctor.cta.b')}
+                </Btn>
+              }
+            />
+          </div>
+        </section>
+      </MskLayout>
     </>
   );
 };

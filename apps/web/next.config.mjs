@@ -44,6 +44,7 @@ const nextConfig = {
       { source: '/proxy2/:path*', destination: 'https://drive.google.com/:path*' },
       { source: '/proxy3/:path*', destination: 'https://medsupport.kz/cms/:path*' },
       { source: '/docs/:path*', destination: 'https://drive.google.com/:path*' },
+      { source: '/knowledge-base', destination: '/articles' },
     ];
   },
 };
