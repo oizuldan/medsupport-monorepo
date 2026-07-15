@@ -1,17 +1,11 @@
-import { Logo } from 'components/molecules/msk';
+import { LangSwitch, Logo } from 'components/molecules/msk';
 import { useLang } from 'core/i18n';
-import Cookies from 'js-cookie';
 import React, { FC } from 'react';
 
 import { Props } from './props';
 
-const setLang = (lang: 'ru-RU' | 'kk-Cyrl-KZ') => () => {
-  Cookies.set('lang', lang);
-  window.location.assign(window.location.href);
-};
-
 export const MskFooter: FC<Props> = ({ sections }) => {
-  const { t, lang: activeLang } = useLang();
+  const { t } = useLang();
 
   return (
     <footer className="footer">
@@ -20,27 +14,7 @@ export const MskFooter: FC<Props> = ({ sections }) => {
           <div>
             <Logo />
             <p className="footer__tag">{t('ft.tag')}</p>
-            <div
-              className="lang"
-              role="group"
-              aria-label="Язык"
-              style={{ marginTop: 24, background: 'rgba(255,255,255,.12)' }}
-            >
-              <button
-                type="button"
-                className={activeLang === 'ru' ? 'is-active' : ''}
-                onClick={setLang('ru-RU')}
-              >
-                РУС
-              </button>
-              <button
-                type="button"
-                className={activeLang === 'kz' ? 'is-active' : ''}
-                onClick={setLang('kk-Cyrl-KZ')}
-              >
-                ҚАЗ
-              </button>
-            </div>
+            <LangSwitch style={{ marginTop: 24, background: 'rgba(255,255,255,.12)' }} />
           </div>
 
           {sections && sections.length ? (

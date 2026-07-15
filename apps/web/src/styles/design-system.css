@@ -950,12 +950,72 @@
 .msk .no-results { text-align: center; padding: 60px 20px; color: var(--ink-60); display: none; }
 .msk .no-results.is-show { display: block; }
 
+/* ---------- FAQ accordion (question detail) ---------- */
+.msk .faq-item { transition: border-color .25s var(--ease), box-shadow .25s var(--ease); }
+.msk .faq-item.is-open { border-color: var(--teal-deep) !important; box-shadow: var(--shadow-md); }
+.msk .faq-item__head:hover h3 { color: var(--teal-deep); }
+.msk .faq-item__body { animation: faqIn .25s var(--ease); }
+@keyframes faqIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .msk .faq-item__body { animation: none; } }
+
 /* CTA band */
 .msk .cta-band { background: var(--pink-wash); border-radius: var(--radius-lg); padding: clamp(36px,5vw,72px); text-align: center; }
 .msk .cta-band--teal { background: var(--teal-wash); }
 .msk .cta-band h2 { max-width: 20ch; margin: 0 auto 18px; }
 .msk .cta-band .lead { max-width: 52ch; margin: 0 auto 30px; }
 .msk .cta-band__btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- Prose (rendered markdown) ---------- */
+.msk .prose { max-width: 72ch; }
+.msk .prose > *:first-child { margin-top: 0; }
+
+.msk .prose h1, .msk .prose h2, .msk .prose h3, .msk .prose h4 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.msk .prose h1 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin: 1.2em 0 0.5em; }
+.msk .prose h2 { font-size: 1.6rem; margin: 1.4em 0 0.55em; }
+.msk .prose h3 { font-size: 1.3rem; margin: 1.3em 0 0.5em; }
+.msk .prose h4 { font-size: 1.1rem; margin: 1.2em 0 0.5em; }
+
+.msk .prose p { font-size: 1.06rem; line-height: 1.7; color: var(--ink); margin: 0 0 1.1em; }
+
+.msk .prose a { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
+.msk .prose a:hover { color: #0f6a7f; }
+
+.msk .prose ul, .msk .prose ol { padding-left: 1.4em; margin: 0 0 1.1em; }
+.msk .prose li { margin: 0 0 0.5em; line-height: 1.7; font-size: 1.06rem; color: var(--ink); }
+.msk .prose li::marker { color: var(--ink-30); }
+
+.msk .prose img { max-width: 100%; border-radius: var(--radius); margin: 1.4em 0; }
+
+.msk .prose blockquote {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-left: 3px solid var(--rose-deep);
+  padding-left: 20px;
+  margin: 1.4em 0;
+  color: var(--ink-60);
+  font-style: italic;
+}
+
+.msk .prose strong { font-weight: 600; }
+.msk .prose code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: var(--offwhite);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0.15em 0.4em;
+}
+.msk .prose pre { background: var(--offwhite); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px; overflow-x: auto; margin: 0 0 1.1em; }
+.msk .prose pre code { border: 0; background: none; padding: 0; }
+.msk .prose hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {

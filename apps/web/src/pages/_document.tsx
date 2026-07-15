@@ -50,6 +50,13 @@ export default class MyDocument extends Document {
               />
             </div>
           </noscript>
+          <noscript>
+            <style
+              dangerouslySetInnerHTML={{
+                __html: '.msk .reveal{opacity:1 !important;transform:none !important}',
+              }}
+            />
+          </noscript>
         </Head>
         <body>
           <Main />

@@ -1,7 +1,6 @@
-import { Logo } from 'components/molecules/msk';
+import { LangSwitch, Logo } from 'components/molecules/msk';
 import { useHeaderScrolled, useMobileMenu, useScrollProgress } from 'core/hooks';
 import { useLang } from 'core/i18n';
-import Cookies from 'js-cookie';
 import React, { FC } from 'react';
 
 import { Props } from './props';
@@ -14,16 +13,11 @@ const staticNav = [
   { href: '/#contact', key: 'nav.contact' },
 ];
 
-const setLang = (lang: 'ru-RU' | 'kk-Cyrl-KZ') => () => {
-  Cookies.set('lang', lang);
-  window.location.assign(window.location.href);
-};
-
 export const MskHeader: FC<Props> = ({ dark, links }) => {
   const progress = useScrollProgress();
   const scrolled = useHeaderScrolled();
   const { open, toggle, close } = useMobileMenu();
-  const { t, lang: activeLang } = useLang();
+  const { t } = useLang();
 
   const navItems =
     links && links.length
@@ -35,17 +29,6 @@ export const MskHeader: FC<Props> = ({ dark, links }) => {
       : staticNav.map((item) => ({ key: item.href, href: item.href, label: t(item.key) }));
 
   const headerClass = `header${dark ? ' header--dark' : ''}${scrolled ? ' is-scrolled' : ''}`;
-
-  const renderLangSwitch = () => (
-    <div className="lang" role="group" aria-label="Язык">
-      <button type="button" className={activeLang === 'ru' ? 'is-active' : ''} onClick={setLang('ru-RU')}>
-        РУС
-      </button>
-      <button type="button" className={activeLang === 'kz' ? 'is-active' : ''} onClick={setLang('kk-Cyrl-KZ')}>
-        ҚАЗ
-      </button>
-    </div>
-  );
 
   return (
     <>
@@ -63,7 +46,7 @@ export const MskHeader: FC<Props> = ({ dark, links }) => {
           </nav>
 
           <div className="header__right">
-            {renderLangSwitch()}
+            <LangSwitch />
             <a className="btn btn--rose" href="/partner">
               {t('cta.partner')}
             </a>
@@ -89,7 +72,7 @@ export const MskHeader: FC<Props> = ({ dark, links }) => {
           </a>
         ))}
         <div className="m-foot">
-          {renderLangSwitch()}
+          <LangSwitch />
           <a className="btn btn--rose btn--lg btn--block" href="/partner">
             {t('cta.partner')}
           </a>
