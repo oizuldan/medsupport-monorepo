@@ -1,4 +1,5 @@
 import { Btn, CtaBand, Eyebrow, MskLayout } from 'components';
+import { services } from 'core';
 import { langFromCookie, useLang } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
@@ -49,11 +50,12 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
     setQuery('');
   };
 
-  const headerLinks = cms?.headerLinks?.[0]?.links?.filter(isNotNull).map((link) => ({
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links?.filter(isNotNull).map((link) => ({
     title: link.title ?? undefined,
     link: link.link ?? undefined,
   }));
-  const footerSections = cms?.footerSections?.[0]?.sections?.filter(isNotNull).map((section) => ({
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
     title: section.title,
     links: section.links?.filter(isNotNull).map((link) => ({
       title: link.title ?? undefined,
@@ -104,7 +106,7 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
   );
 
   const activeCards = track === 'doctor' ? doctorCards : patientCards;
-  const categories = distinctCategories(activeCards);
+  const categories = useMemo(() => distinctCategories(activeCards), [activeCards]);
   const q = query.trim().toLowerCase();
   const visibleCards = activeCards.filter(
     (card) => (filter === 'all' || card.category === filter) && (!q || card.title.toLowerCase().includes(q)),

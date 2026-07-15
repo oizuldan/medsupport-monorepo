@@ -1,4 +1,5 @@
 import { Eyebrow, MskLayout } from 'components';
+import { services } from 'core';
 import { useLang } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
@@ -17,11 +18,12 @@ export const PartnerPage: NextComponentType<ApolloPageContext, InitProps, Props>
   const cms = props.data?.data;
   const { t } = useLang();
 
-  const headerLinks = cms?.headerLinks?.[0]?.links?.filter(isNotNull).map((link) => ({
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links?.filter(isNotNull).map((link) => ({
     title: link.title ?? undefined,
     link: link.link ?? undefined,
   }));
-  const footerSections = cms?.footerSections?.[0]?.sections?.filter(isNotNull).map((section) => ({
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
     title: section.title,
     links: section.links?.filter(isNotNull).map((link) => ({
       title: link.title ?? undefined,

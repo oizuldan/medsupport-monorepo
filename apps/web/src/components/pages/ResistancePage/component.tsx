@@ -1,11 +1,10 @@
-import { css } from '@emotion/react';
-import { InteractiveCard, Layout, Typography } from 'components';
-import { media, typography } from 'core';
+import { Btn, MskLayout, PageHero, SectionHead } from 'components';
+import { services } from 'core';
+import { langFromCookie } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
 import React from 'react';
-import YouTube from 'react-youtube';
 
 import {
   ResistancePageData,
@@ -14,98 +13,127 @@ import {
 import { queryResistancePageData } from './graphql';
 import { InitProps, Props } from './props';
 
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
+
 export const ResistancePage: NextComponentType<ApolloPageContext, InitProps, Props> = (
   props: Props,
 ) => {
+  const cms = props.data?.data;
+  // SSR-safe locale derived from the cookie-based prop from getInitialProps — see
+  // ArticlesPage/component.tsx for why this must not depend on useLang().lang.
+  const pageLang = langFromCookie(props.lang);
+
+  const resistancePage = cms?.resistancePage;
+  const articlesGroup = resistancePage?.ResistanceArticles;
+  const videosGroup = resistancePage?.Videos;
+
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links
+    ?.filter(isNotNull)
+    .map((link) => ({ title: link.title ?? undefined, link: link.link ?? undefined }));
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
+    title: section.title,
+    links: section.links?.filter(isNotNull).map((link) => ({
+      title: link.title ?? undefined,
+      link: link.link ?? undefined,
+    })),
+  }));
+
   return (
     <>
       <Head>
-        <title>Антибиотикорезистентность</title>
-        <meta name="keywords" content={props.data?.data?.resistancePage?.title} />
-        <meta name="description" content={props.data?.data?.resistancePage?.title} />
-        <meta property="og:title" content={props.data?.data?.resistancePage?.title} />
-        <meta property="og:description" content={props.data?.data?.resistancePage?.title} />
+        <title>{resistancePage?.title || 'Устойчивость к антибиотикам'}</title>
+        <meta name="keywords" content={resistancePage?.title} />
+        <meta name="description" content={resistancePage?.title} />
+        <meta property="og:title" content={resistancePage?.title} />
+        <meta property="og:description" content={resistancePage?.title} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={props.lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:locale:alternate" content={props.lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:site_name" content="medsupport" />
       </Head>
-      <Layout
-        headerButtons={props.data?.data?.headerButtons}
-        footerSections={props.data?.data?.footerSections}
-        headerLinks={props.data?.data?.headerLinks}
-      >
-        <div className="container my-3">
-          <Typography
-            as="h1"
-            className="mb-4"
-            css={css(
-              typography.styles.headingBold22,
-              media.queryStyled([
-                typography.styles.headingBold22,
-                typography.styles.headingBold28,
-                typography.styles.headingBold34,
-              ]),
-            )}
-          >
-            {props.data?.data?.resistancePage?.title}
-          </Typography>
+      <MskLayout links={headerLinks} footerSections={footerSections}>
+        <PageHero
+          eyebrow="Устойчивость к антибиотикам"
+          eyebrowVariant="teal"
+          title={resistancePage?.title || 'Устойчивость к антибиотикам'}
+          crumbs={[{ label: 'Главная', href: '/' }, { label: 'Антибиотикорезистентность' }]}
+        />
 
-          <Typography
-            as="h2"
-            className="mb-3"
-            css={css(
-              typography.styles.headingBold22,
-              media.queryStyled([
-                typography.styles.headingBold22,
-                typography.styles.headingBold22,
-                typography.styles.headingBold28,
-              ]),
-            )}
-          >
-            {props.data?.data?.resistancePage?.ResistanceArticles?.title}
-          </Typography>
+        {articlesGroup && (articlesGroup.articles?.length ?? 0) > 0 && (
+          <section className="section--tight">
+            <div className="container">
+              <SectionHead eyebrow="Материалы" title={articlesGroup.title} />
 
-          <div className="tw-flex tw-flex-wrap tw-justify-center">
-            {props.data?.data?.resistancePage?.ResistanceArticles?.articles?.map(
-              (article) =>
-                article && (
-                  <InteractiveCard
-                    key={article.id}
-                    description={article.description}
-                    title={article.title}
-                    buttonText={props.data.data?.resistancePage?.ResistanceArticles?.buttonText}
-                    href={`/article/${article.id}`}
-                  />
-                ),
-            )}
-          </div>
+              <div className="articles">
+                {articlesGroup.articles?.map(
+                  (article) =>
+                    article && (
+                      <a key={article.id} className="acard" href={`/article/${article.id}`}>
+                        <div className="acard__top">
+                          <span className="acard__cat">Материал</span>
+                        </div>
+                        <h3>{article.title}</h3>
+                        {article.description && <p>{article.description}</p>}
+                      </a>
+                    ),
+                )}
+              </div>
 
-          <Typography
-            as="h2"
-            className="mb-3"
-            css={css(
-              typography.styles.headingBold22,
-              media.queryStyled([
-                typography.styles.headingBold22,
-                typography.styles.headingBold22,
-                typography.styles.headingBold28,
-              ]),
-            )}
-          >
-            {props.data?.data?.resistancePage?.Videos?.title}
-          </Typography>
+              {articlesGroup.buttonText && (
+                <div style={{ marginTop: 32, textAlign: 'center' }}>
+                  <Btn href="/articles" variant="ghost-teal">
+                    {articlesGroup.buttonText}
+                  </Btn>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
-          <div className="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4 tw-mb-10">
-            {props.data?.data?.resistancePage?.Videos?.YoutubeVideos?.map(
-              (videoId) =>
-                videoId && (
-                  <YouTube key={videoId.videoId} videoId={videoId.videoId} className="tw-w-full" />
-                ),
-            )}
-          </div>
-        </div>
-      </Layout>
+        {videosGroup && (videosGroup.YoutubeVideos?.length ?? 0) > 0 && (
+          <section className="section--tight">
+            <div className="container">
+              <h2 className="h-lg" style={{ marginBottom: 32 }}>
+                {videosGroup.title}
+              </h2>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: 'clamp(16px, 2vw, 24px)',
+                }}
+              >
+                {videosGroup.YoutubeVideos?.map(
+                  (video) =>
+                    video?.videoId && (
+                      <div
+                        key={video.videoId}
+                        style={{
+                          position: 'relative',
+                          aspectRatio: '16/9',
+                          borderRadius: 'var(--radius)',
+                          overflow: 'hidden',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <iframe
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+                          src={`https://www.youtube.com/embed/${video.videoId}`}
+                          title="YouTube video"
+                          loading="lazy"
+                          allow="accelerated-download; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+                    ),
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+      </MskLayout>
     </>
   );
 };

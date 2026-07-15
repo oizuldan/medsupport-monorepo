@@ -1,132 +1,172 @@
-import { Anchor, ButtonLink, ButtonSizes, ButtonVariants, Icon, Layout, P } from 'components';
-import { colors, icons, typography } from 'core';
-import { sequence } from 'fp-ts/Array';
-import * as O from 'fp-ts/Option';
-import { pipe } from 'fp-ts/pipeable';
+import { Btn, MskLayout, PageHero, SectionHead } from 'components';
+import { services } from 'core';
+import { langFromCookie } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
 import React, { useCallback, useMemo } from 'react';
 
-import {
-  FaqPageData,
-  FaqPageData_faq_actualTopics_questions,
-  FaqPageData_questionCategories,
-  FaqPageDataVariables,
-} from './__generated__/FaqPageData';
+import { FaqPageData, FaqPageDataVariables } from './__generated__/FaqPageData';
 import { queryFaqPage } from './graphql';
-import { Questions } from './libs/Questions';
-import { RelevantTopics } from './libs/RelevantTopics';
-import { VaccineBanner } from './libs/VaccineBanner';
 import { InitProps, Props } from './props';
 
-export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props> = (
-  props: Props,
-) => {
-  const { data, lang } = props;
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
+
+export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
+  const cms = props.data?.data;
+  // SSR-safe locale derived from the cookie-based prop from getInitialProps — must not
+  // depend on useLang().lang, which is deliberately 'ru' on first paint (see useLang.ts).
+  const pageLang = langFromCookie(props.lang);
+
+  const faq = cms?.faq;
+
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links?.filter(isNotNull).map((link) => ({
+    title: link.title ?? undefined,
+    link: link.link ?? undefined,
+  }));
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
+    title: section.title,
+    links: section.links?.filter(isNotNull).map((link) => ({
+      title: link.title ?? undefined,
+      link: link.link ?? undefined,
+    })),
+  }));
 
   const questions = useMemo(
-    () =>
-      pipe(
-        O.fromNullable(data?.data?.faq?.actualTopics?.questions),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((qs) => sequence(O.option)(qs.map((q) => pipe(O.fromNullable(q))))),
-        O.getOrElseW(() => [] as ReadonlyArray<FaqPageData_faq_actualTopics_questions>),
-      ),
-    [data?.data?.faq?.actualTopics?.questions],
+    () => faq?.actualTopics?.questions?.filter(isNotNull) ?? [],
+    [faq?.actualTopics?.questions],
   );
   const questionCategories = useMemo(
-    () =>
-      pipe(
-        O.fromNullable(data?.data?.questionCategories),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((qs) => sequence(O.option)(qs.map((q) => pipe(O.fromNullable(q))))),
-        O.getOrElseW(() => [] as ReadonlyArray<FaqPageData_questionCategories>),
-      ),
-    [data?.data?.questionCategories],
+    () => cms?.questionCategories?.filter(isNotNull) ?? [],
+    [cms?.questionCategories],
   );
+  const categoryTitleById = useMemo(() => {
+    const map = new Map<string, string>();
+    questionCategories.forEach((category) => map.set(category.id, category.title));
+    return map;
+  }, [questionCategories]);
 
   const transformUri = useCallback(
-    (uri: string | undefined) =>
-      uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : '',
+    (uri?: string | null) => (uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : ''),
     [],
   );
+
+  const pageTitle = faq?.bannerTitle || 'Вакцинация';
 
   return (
     <>
       <Head>
-        <title>{data.data?.faq?.bannerTitle}</title>
+        <title>{pageTitle}</title>
         <meta name="keywords" content="Covid-19 вакцинация вакцины" />
-        <meta name="description" content={data.data?.faq?.bannerSubtitle.substring(0, 200)} />
-        <meta property="og:title" content={data.data?.faq?.bannerTitle} />
-        <meta
-          property="og:description"
-          content={data.data?.faq?.bannerSubtitle.substring(0, 200)}
-        />
+        <meta name="description" content={(faq?.bannerSubtitle || '').substring(0, 200)} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={(faq?.bannerSubtitle || '').substring(0, 200)} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
         <meta property="og:site_name" content="medsupport" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
         <meta property="og:article:tag" content="Covid-19" />
-        <meta property="og:article:tag" content="Covid" />
         <meta property="og:article:tag" content="вакцина" />
         <meta property="og:article:tag" content="вакцинация" />
-        <meta property="og:article:tag" content="пандемия" />
       </Head>
-      <Layout
-        headerButtons={data.data?.headerButtons}
-        footerSections={data.data?.footerSections}
-        headerLinks={data.data?.headerLinks}
-      >
-        <VaccineBanner
-          title={data.data?.faq?.bannerTitle || ''}
-          subtitle={data.data?.faq?.bannerSubtitle || ''}
-          imageURL={transformUri(data.data?.faq?.bannerImage?.url)}
-          alt={data.data?.faq?.bannerImage?.name || ''}
+      <MskLayout links={headerLinks} footerSections={footerSections}>
+        <PageHero
+          eyebrow="Вакцинация"
+          eyebrowVariant="teal"
+          title={pageTitle}
+          lead={faq?.bannerSubtitle || undefined}
+          crumbs={[{ label: 'Главная', href: '/' }, { label: 'Вакцинация' }]}
         />
-        <RelevantTopics questions={questions} title={data?.data?.faq?.relevantTopicsText || ''} />
-        <div className="mt-4 tw-bg-purple-500">
-          <div className="container tw-flex tw-flex-col my-3 pt-4 pb-4">
-            <Questions
-              questionCategories={questionCategories}
-              readMoreText={data.data?.faq?.readMoreText || ''}
-            />
-            <ButtonLink
-              href="/questions"
-              className="tw-self-center tw-mt-8"
-              variant={ButtonVariants.Outlined}
-              size={ButtonSizes.Large}
-            >
-              <P
-                color={colors.variants.Neutral.White}
-                typography={typography.variants.Element.Bold20}
-              >
-                {data.data?.faq?.showAllQuestions}
-              </P>
-              <Icon icon={icons.arrows.keyboardArrowRight} color={colors.variants.Neutral.White} />
-            </ButtonLink>
-            {data.data?.faq?.sponsor && (
-              <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-mt-4 tw-text-white">
-                <P
-                  color={colors.variants.Neutral.White}
-                  typography={typography.variants.Element.SemiBold16}
-                >
-                  {data.data.faq.sponsor.title}
-                </P>
-                <Anchor href={data.data.faq.sponsor.link} target="_blank">
-                  <img
-                    className="tw-mt-2"
-                    alt={data.data.faq.sponsor.image?.name}
-                    src={transformUri(data.data.faq.sponsor.image?.url)}
-                  />
-                </Anchor>
-              </div>
-            )}
+
+        {faq?.bannerImage?.url && (
+          <section className="section--tight" style={{ paddingTop: 0 }}>
+            <div className="container">
+              <figure style={{ margin: 0, borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={transformUri(faq.bannerImage.url)}
+                  alt={faq.bannerTitle || ''}
+                  style={{ width: '100%', display: 'block' }}
+                />
+              </figure>
+            </div>
+          </section>
+        )}
+
+        <section className="section">
+          <div className="container">
+            <SectionHead eyebrow="Актуальное" title={faq?.relevantTopicsText || 'Актуальные темы'} />
+
+            <div className="articles">
+              {questions.map((question) => {
+                const categoryId = question.question_category?.id;
+                return (
+                  <a
+                    key={question.id}
+                    className="acard"
+                    href={`/question/${categoryId}/${question.id}`}
+                    data-cat={categoryId}
+                  >
+                    <div className="acard__top">
+                      <span className="acard__cat">
+                        {(categoryId && categoryTitleById.get(categoryId)) || ''}
+                      </span>
+                    </div>
+                    <h3>{question.title}</h3>
+                    <span
+                      style={{
+                        marginTop: 'auto',
+                        fontWeight: 600,
+                        fontSize: '.9rem',
+                        color: 'var(--teal-deep)',
+                      }}
+                    >
+                      {faq?.readMoreText || 'Читать'} →
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: 40 }}>
+              <Btn href="/questions" variant="ghost-teal">
+                {faq?.showAllQuestions || 'Все вопросы'}
+              </Btn>
+            </div>
           </div>
-        </div>
-      </Layout>
+        </section>
+
+        {faq?.sponsor && (
+          <section className="section--tight" style={{ paddingTop: 0 }}>
+            <div className="container">
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 12,
+                  textAlign: 'center',
+                }}
+              >
+                <p style={{ fontWeight: 600 }}>{faq.sponsor.title}</p>
+                <a href={faq.sponsor.link} target="_blank" rel="noreferrer">
+                  {faq.sponsor.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      alt={faq.sponsor.image.name}
+                      src={transformUri(faq.sponsor.image.url)}
+                      style={{ maxHeight: 48, display: 'block' }}
+                    />
+                  )}
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+      </MskLayout>
     </>
   );
 };
