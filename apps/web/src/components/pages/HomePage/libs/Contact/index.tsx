@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Btn } from 'components/molecules/msk';
 import { useLang } from 'core/i18n';
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
@@ -26,13 +27,16 @@ export const Contact: FC = () => {
   const [values, setValues] = useState<Values>(initialValues);
   const [errors, setErrors] = useState<Errors>(noErrors);
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle');
+  const [statusMsg, setStatusMsg] = useState('');
 
   const onChange = (field: keyof Values) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues((v) => ({ ...v, [field]: e.target.value }));
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (status === 'sending') return;
     // Honeypot filled — likely a bot, silently no-op.
     if (values.company) return;
 
@@ -42,9 +46,22 @@ export const Contact: FC = () => {
       message: !values.message.trim(),
     };
     setErrors(nextErrors);
-    if (nextErrors.name || nextErrors.email || nextErrors.message) return;
+    if (nextErrors.name || nextErrors.email || nextErrors.message) {
+      setStatus('error');
+      setStatusMsg(t('form.error'));
+      return;
+    }
 
-    setSubmitted(true);
+    setStatus('sending');
+    setStatusMsg('');
+    try {
+      await axios.post('/proxy/contact/message', values);
+      setSubmitted(true);
+      setStatus('idle');
+    } catch (err) {
+      setStatus('error');
+      setStatusMsg(axios.isAxiosError(err) && err.response ? t('form.error') : t('form.network'));
+    }
   };
 
   return (
@@ -146,8 +163,13 @@ export const Contact: FC = () => {
                     />
                   </label>
                 </div>
-                <Btn type="submit" variant="teal" lg block>
-                  {t('ct.send')}
+                {status === 'error' && statusMsg && (
+                  <p className="err" role="alert" style={{ display: 'block', margin: '0 0 16px' }}>
+                    {statusMsg}
+                  </p>
+                )}
+                <Btn type="submit" variant="teal" lg block disabled={status === 'sending'}>
+                  {status === 'sending' ? t('form.sending') : t('ct.send')}
                 </Btn>
               </form>
             )}

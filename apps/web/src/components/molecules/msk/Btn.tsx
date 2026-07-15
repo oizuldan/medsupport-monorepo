@@ -10,6 +10,7 @@ interface Props {
   withArrow?: boolean;
   onClick?: () => void;
   type?: 'button' | 'submit';
+  disabled?: boolean;
   className?: string;
   children: ReactNode;
 }
@@ -22,6 +23,7 @@ export const Btn: FC<Props> = ({
   withArrow,
   onClick,
   type,
+  disabled,
   className = '',
   children,
 }) => {
@@ -41,7 +43,7 @@ export const Btn: FC<Props> = ({
       {inner}
     </a>
   ) : (
-    <button className={cls} type={type ?? 'button'} onClick={onClick}>
+    <button className={cls} type={type ?? 'button'} onClick={onClick} disabled={disabled}>
       {inner}
     </button>
   );
