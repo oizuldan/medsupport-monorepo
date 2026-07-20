@@ -33,6 +33,15 @@ services:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
+      # next.config.mjs inlines these at build time, so they must be passed as
+      # build args too — env_file below only covers runtime.
+      args:
+        BASE_URL: ${BASE_URL}
+        API_BASE_URL: ${API_BASE_URL}
+        CMS_GRAPHQL_API_URL: ${CMS_GRAPHQL_API_URL}
+        GA_TRACKING_ID: ${GA_TRACKING_ID}
+        GOOGLE_COUNTER_ID: ${GOOGLE_COUNTER_ID}
+        YM_COUNTER_ID: ${YM_COUNTER_ID}
     ports:
       - '3000:3000'
     env_file:
