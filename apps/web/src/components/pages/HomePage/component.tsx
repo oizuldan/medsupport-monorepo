@@ -8,6 +8,7 @@ import React from 'react';
 import { MainPage, MainPageVariables } from './__generated__/MainPage';
 import { queryMainPage } from './graphql';
 import { Contact } from './libs/Contact';
+import { DataStories } from './libs/DataStories';
 import { Hero } from './libs/Hero';
 import { Impact } from './libs/Impact';
 import { KbSplit } from './libs/KbSplit';
@@ -43,8 +44,9 @@ export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = 
         <Hero />
         <Mission />
         <Impact />
-        <Portfolio cards={cms?.homePageSpecialSection?.interactiveCard ?? []} />
+        <Portfolio />
         <KbSplit />
+        <DataStories cards={cms?.homePageSpecialSection?.interactiveCard ?? []} />
         <PartnerTeaser />
         <PartnerWall />
         <Contact />

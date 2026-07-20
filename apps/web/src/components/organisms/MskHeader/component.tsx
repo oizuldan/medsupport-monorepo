@@ -1,5 +1,5 @@
 import { LangSwitch, Logo } from 'components/molecules/msk';
-import { useHeaderScrolled, useMobileMenu, useScrollProgress } from 'core/hooks';
+import { useHeaderScrolled, useHeaderSolid, useMobileMenu, useScrollProgress } from 'core/hooks';
 import { useLang } from 'core/i18n';
 import React, { FC } from 'react';
 
@@ -16,6 +16,7 @@ const staticNav = [
 export const MskHeader: FC<Props> = ({ dark, links }) => {
   const progress = useScrollProgress();
   const scrolled = useHeaderScrolled();
+  const solid = useHeaderSolid(Boolean(dark));
   const { open, toggle, close } = useMobileMenu();
   const { t } = useLang();
 
@@ -28,7 +29,9 @@ export const MskHeader: FC<Props> = ({ dark, links }) => {
         }))
       : staticNav.map((item) => ({ key: item.href, href: item.href, label: t(item.key) }));
 
-  const headerClass = `header${dark ? ' header--dark' : ''}${scrolled ? ' is-scrolled' : ''}`;
+  // Once past the hero the page is white, so the dark treatment is dropped and the
+  // header falls back to its light blurred style rather than turning invisible.
+  const headerClass = `header${dark && !solid ? ' header--dark' : ''}${scrolled ? ' is-scrolled' : ''}`;
 
   return (
     <>

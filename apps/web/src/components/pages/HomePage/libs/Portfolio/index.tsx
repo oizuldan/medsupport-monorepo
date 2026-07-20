@@ -2,18 +2,6 @@ import { Btn, SectionHead } from 'components/molecules/msk';
 import { useLang } from 'core/i18n';
 import React, { FC, useState } from 'react';
 
-export interface PortfolioCmsCard {
-  readonly id: string;
-  readonly title: string;
-  readonly description: string;
-  readonly link: string;
-  readonly buttonText: string;
-}
-
-interface Props {
-  readonly cards?: ReadonlyArray<PortfolioCmsCard | null> | null;
-}
-
 const FILTERS = [
   { key: 'all', labelKey: 'pf.f.all' },
   { key: 'vax', labelKey: 'pf.f.vax' },
@@ -24,7 +12,7 @@ const FILTERS = [
 ];
 
 /** Ported from reference/medsupportkz/public/site/index.html:1174-1259. */
-export const Portfolio: FC<Props> = ({ cards }) => {
+export const Portfolio: FC = () => {
   const { t } = useLang();
   const [active, setActive] = useState('all');
 
@@ -130,22 +118,6 @@ export const Portfolio: FC<Props> = ({ cards }) => {
               <span className="tag">2023</span>
             </div>
           </article>
-
-          {(cards ?? []).map(
-            (card) =>
-              card && (
-                <a
-                  key={card.id}
-                  href={card.link}
-                  className={`pcard reveal${hiddenCls('')}`}
-                  data-pf-cat=""
-                >
-                  <h3>{card.title}</h3>
-                  <p>{card.description}</p>
-                  <div className="pcard__metric">{card.buttonText}</div>
-                </a>
-              ),
-          )}
         </div>
 
         <div className="reveal" style={{ marginTop: 40 }}>

@@ -559,6 +559,7 @@
 .msk .container { width: 100%; max-width: var(--container); margin: 0 auto; padding-inline: var(--gutter); }
 .msk .section { padding-block: var(--section-y); }
 .msk .section--tight { padding-block: clamp(48px, 6vw, 96px); }
+.msk .section--wash { background: var(--offwhite); }
 
 /* ---------- Type scale ---------- */
 .msk .eyebrow {
@@ -706,7 +707,11 @@
 .msk .hero {
   position: relative; background: var(--teal-deep); color: #fff; overflow: hidden;
   margin-top: -72px;
-  padding-top: clamp(104px, 11vw, 156px);
+  padding-top: 72px;
+  /* Fits one viewport: copy centres in the free space, trust row pins to the bottom. */
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
 .msk .hero__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .msk .hero__blob {
@@ -720,11 +725,19 @@
   background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
   background-size: 64px 64px; mask-image: radial-gradient(ellipse at 70% 20%, #000, transparent 75%); }
 
-.msk .hero__inner { position: relative; z-index: 2; padding-block: clamp(56px, 8vw, 110px) clamp(40px, 5vw, 64px); }
-.msk .hero h1 { color: #fff; max-width: 16ch; }
+.msk .hero__inner {
+  position: relative; z-index: 2;
+  padding-block: clamp(32px, 4vw, 56px) clamp(32px, 4vw, 48px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* The h1 breaks its own lines with <br>; a tight max-width forced extra wraps on top. */
+.msk .hero h1 { color: #fff; max-width: 24ch; font-size: clamp(2.3rem, 5vw, 4.2rem); }
 .msk .hero h1 .accent { color: var(--rose); }
-.msk .hero__sub { color: rgba(255,255,255,.86); max-width: 52ch; margin-top: 28px; }
-.msk .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+.msk .hero__sub { color: rgba(255,255,255,.86); max-width: 52ch; margin-top: clamp(16px, 2vw, 24px); }
+.msk .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: clamp(22px, 2.6vw, 32px); }
 
 .msk .hero__trust { position: relative; z-index: 2; border-top: 1px solid var(--line-dark); padding-block: clamp(28px,3vw,40px); }
 .msk .trust-row { display: flex; align-items: center; flex-wrap: wrap; gap: 28px 48px; }
@@ -1016,6 +1029,66 @@
 .msk .prose pre { background: var(--offwhite); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 18px; overflow-x: auto; margin: 0 0 1.1em; }
 .msk .prose pre code { border: 0; background: none; padding: 0; }
 .msk .prose hr { border: 0; border-top: 1px solid var(--line); margin: 2em 0; }
+
+/* ---------- About page ---------- */
+.msk .about-lede { max-width: 44ch; }
+.msk .about-lede p, .msk .about-lede h3 { font-size: clamp(1.35rem, 2.2vw, 1.85rem); line-height: 1.28; letter-spacing: -0.025em; font-weight: 600; color: var(--ink); margin: 0; }
+.msk .about-lede strong { color: var(--teal-deep); }
+
+.msk .about-split { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+
+/* Mission pull-quote */
+.msk .about-mission {
+  background: var(--teal-deep); color: #fff; border-radius: var(--radius);
+  padding: clamp(28px, 4vw, 46px);
+}
+.msk .about-mission p { font-size: clamp(1.12rem, 1.7vw, 1.36rem); line-height: 1.45; color: rgba(255,255,255,.92); margin: 0; }
+.msk .about-mission .eyebrow { color: var(--rose); margin-bottom: 16px; }
+
+/* Narrative column with an accent rail */
+.msk .about-story { border-left: 2px solid var(--line); padding-left: clamp(20px, 3vw, 36px); }
+
+/* Results */
+.msk .sgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.8vw, 24px); }
+.msk .sgrid__i { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 2.4vw, 30px); display: flex; flex-direction: column; }
+.msk .sgrid__n { font-size: clamp(1.9rem, 3.1vw, 2.8rem); font-weight: 600; letter-spacing: -0.03em; line-height: 1; color: var(--teal-deep); }
+.msk .sgrid__l { font-size: .95rem; color: var(--ink-60); margin-top: 12px; }
+.msk .sgrid__i--plain .sgrid__l { font-size: 1.05rem; color: var(--ink); font-weight: 500; margin-top: 0; }
+
+/* Project timeline */
+.msk .tl { display: flex; flex-direction: column; }
+.msk .tl__i { display: grid; grid-template-columns: 128px 1fr; gap: clamp(16px, 3vw, 40px); padding: clamp(22px, 2.6vw, 32px) 0; border-top: 1px solid var(--line); }
+.msk .tl__i:last-child { border-bottom: 1px solid var(--line); }
+.msk .tl__y { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--rose-deep); padding-top: 6px; }
+.msk .tl__h { font-size: clamp(1.15rem, 1.8vw, 1.45rem); margin: 0 0 10px; }
+.msk .tl__p { color: var(--ink-60); margin: 0; max-width: 62ch; }
+
+/* Info cards (reporting / contact / team) */
+.msk .icards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.8vw, 24px); }
+.msk .icard { background: var(--offwhite); border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(20px, 2.4vw, 28px); }
+.msk .icard h3 { font-size: 1.06rem; margin: 0 0 10px; }
+.msk .icard p { color: var(--ink-60); font-size: .95rem; margin: 0; }
+.msk .icard a { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Volunteer roll */
+.msk .names { display: flex; flex-wrap: wrap; gap: 8px; }
+.msk .names span { font-size: .9rem; color: var(--ink-60); background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 6px 13px; }
+.msk .names-wrap { position: relative; }
+.msk .names-wrap.is-clipped { max-height: 268px; overflow: hidden; }
+.msk .names-wrap.is-clipped::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 120px;
+  background: linear-gradient(transparent, var(--offwhite));
+}
+
+@media (max-width: 900px) {
+  .msk .about-split { grid-template-columns: 1fr; }
+  .msk .sgrid, .msk .icards { grid-template-columns: repeat(2, 1fr); }
+  .msk .tl__i { grid-template-columns: 1fr; gap: 8px; }
+  .msk .about-story { border-left: 0; padding-left: 0; }
+}
+@media (max-width: 560px) {
+  .msk .sgrid, .msk .icards { grid-template-columns: 1fr; }
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
