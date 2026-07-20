@@ -55,7 +55,7 @@ export const Contact: FC = () => {
     setStatus('sending');
     setStatusMsg('');
     try {
-      await axios.post('/proxy/contact/message', values);
+      await axios.post('/api/contact/message', values);
       setSubmitted(true);
       setStatus('idle');
     } catch (err) {
