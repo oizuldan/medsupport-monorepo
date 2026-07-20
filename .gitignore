@@ -2,7 +2,7 @@
 **/.DS_Store
 
 # GraphQL generated files
-__generated__
+# __generated__ is committed so tsc/CI work without live-CMS access (run `yarn codegen` to refresh)
 schema*.graphql
 
 # Node.js
@@ -54,5 +54,5 @@ apps/cms/public/uploads/
 .sublime_project
 
 ## Next.js build output
-#.next
-#**/.next
+.next
+**/.next

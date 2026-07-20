@@ -1,162 +1,198 @@
-import { css } from '@emotion/core';
-import {
-  Anchor,
-  ButtonLink,
-  ButtonSizes,
-  ButtonVariants,
-  H2,
-  H3,
-  Icon,
-  Layout,
-  P,
-} from 'components';
-import { colors, icons, media, typography } from 'core';
-import { sequence } from 'fp-ts/Array';
-import * as O from 'fp-ts/Option';
-import { pipe } from 'fp-ts/pipeable';
+import { MskLayout, PageHero } from 'components';
+import { services } from 'core';
+import { langFromCookie, useLang } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
-import {
-  QuestionsPageData,
-  QuestionsPageData_questionCategories,
-  QuestionsPageData_questions,
-  QuestionsPageDataVariables,
-} from './__generated__/QuestionsPageData';
+import { QuestionsPageData, QuestionsPageDataVariables } from './__generated__/QuestionsPageData';
 import { queryQuestionsPage } from './graphql';
 import { InitProps, Props } from './props';
 
-export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
-  props: Props,
-) => {
-  const { data, lang } = props;
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
 
-  const questionCategoriesData = useMemo(
-    () =>
-      pipe(
-        O.fromNullable(data?.data?.questionCategories),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((qs) => sequence(O.option)(qs.map((q) => pipe(O.fromNullable(q))))),
-        O.getOrElse(() => [] as ReadonlyArray<QuestionsPageData_questionCategories>),
-      ),
-    [data?.data?.questionCategories],
-  );
-  const questionsData = useMemo(
-    () =>
-      pipe(
-        O.fromNullable(data?.data?.questions),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((qs) => sequence(O.option)(qs.map((q) => pipe(O.fromNullable(q))))),
-        O.getOrElse(() => [] as ReadonlyArray<QuestionsPageData_questions>),
-      ),
-    [data?.data?.questions],
-  );
+export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
+  const cms = props.data?.data;
+  const { t } = useLang();
+  // SSR-safe locale derived from the cookie-based prop from getInitialProps — must not
+  // depend on useLang().lang, which is deliberately 'ru' on first paint (see useLang.ts).
+  const pageLang = langFromCookie(props.lang);
 
-  const categorisedQuestions = questionCategoriesData.map((category) => ({
-    category,
-    questions: questionsData.filter((question) => question.question_category?.id === category.id),
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [query, setQuery] = useState('');
+
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links?.filter(isNotNull).map((link) => ({
+    title: link.title ?? undefined,
+    link: link.link ?? undefined,
+  }));
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
+    title: section.title,
+    links: section.links?.filter(isNotNull).map((link) => ({
+      title: link.title ?? undefined,
+      link: link.link ?? undefined,
+    })),
   }));
 
+  const questionCategories = useMemo(
+    () => cms?.questionCategories?.filter(isNotNull) ?? [],
+    [cms?.questionCategories],
+  );
+  const questions = useMemo(() => cms?.questions?.filter(isNotNull) ?? [], [cms?.questions]);
+
+  const categoryTitleById = useMemo(() => {
+    const map = new Map<string, string>();
+    questionCategories.forEach((category) => map.set(category.id, category.title));
+    return map;
+  }, [questionCategories]);
+
+  const q = query.trim().toLowerCase();
+  const matchesFilters = useCallback(
+    (title: string, categoryId?: string) =>
+      (activeCategory === 'all' || categoryId === activeCategory) &&
+      (!q || title.toLowerCase().includes(q)),
+    [activeCategory, q],
+  );
+  const hasVisibleQuestions = questions.some((question) =>
+    matchesFilters(question.title, question.question_category?.id),
+  );
+
   const transformUri = useCallback(
-    (uri: string | undefined) =>
-      uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : '',
+    (uri?: string | null) => (uri ? (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`) : ''),
     [],
   );
+
+  const allQuestionsPage = cms?.allQuestionsPage;
+  const pageTitle = allQuestionsPage?.allQuestionText || 'Вопросы и ответы';
+  const qMetaDescription =
+    'Ответы на частые вопросы о здоровье: вакцинация, первая помощь и разбор медицинских мифов — ' +
+    'понятно и на основе доказательной медицины.';
 
   return (
     <>
       <Head>
-        <title>{data.data?.allQuestionsPage?.allQuestionText}</title>
-        <meta name="keywords" content="Вопросы про вакцинацию" />
+        <title>Medsupportkz — Вопросы и ответы</title>
         <meta
-          name="description"
-          content="здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19"
+          name="keywords"
+          content="вопросы о здоровье, вакцинация, первая помощь, медицинские мифы, доказательная медицина"
         />
-        <meta property="og:title" content={data.data?.allQuestionsPage?.allQuestionText} />
-        <meta
-          property="og:description"
-          content="здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19"
-        />
+        <meta name="description" content={qMetaDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={qMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
-        <meta property="og:article:tag" content="Covid-19" />
-        <meta property="og:article:tag" content="Covid" />
-        <meta property="og:article:tag" content="вакцина" />
-        <meta property="og:article:tag" content="вакцинация" />
-        <meta property="og:article:tag" content="пандемия" />
-        {categorisedQuestions.map(({ category }) => (
-          <meta property="og:article:tag" key={category.title} content={category.title} />
-        ))}
       </Head>
-      <Layout
-        headerButtons={data.data?.headerButtons}
-        footerSections={data.data?.footerSections}
-        headerLinks={data.data?.headerLinks}
-      >
-        <div className="container my-3">
-          <ButtonLink variant={ButtonVariants.Flat} size={ButtonSizes.Small} className="pl-0">
-            <Icon
-              icon={icons.arrows.arrowBack}
-              color={colors.variants.Neutral.Black}
-              className="mr-1"
-            />
-            <P
-              color={colors.variants.Neutral.Grey}
-              typography={typography.variants.Element.Regular12}
-            >
-              {data.data?.allQuestionsPage?.goBackButtonText}
-            </P>
-          </ButtonLink>
-          <div className="tw-flex tw-flex-col md:tw-flex-row tw-mb-4">
-            <H2 className="tw-w-full mb-3">{data.data?.allQuestionsPage?.allQuestionText}</H2>
-            <div className="tw-flex-col tw-w-full">
-              {categorisedQuestions.map(({ category, questions }) => (
-                <div key={category.id} className="tw-mb-8">
-                  <H3 className="mb-2">{category.title}</H3>
-                  {questions.map((question) => (
-                    <Anchor
-                      key={question.id}
-                      href={`/question/${category.id}/${question.id}`}
-                      className="tw-flex tw-px-2 tw-py-4 tw-justify-between tw-border-b tw-border-solid hover:tw-bg-purple-100 tw-border-gray-300 tw-text-left tw-w-full"
-                      css={css(
-                        typography.styles.contentRegular16,
-                        media.queryStyled([
-                          typography.styles.contentRegular16,
-                          typography.styles.contentRegular16,
-                          typography.styles.headingSemiBold17,
-                        ]),
-                      )}
-                    >
-                      {question.title}
-                      <Icon icon={icons.arrows.keyboardArrowRight} />
-                    </Anchor>
-                  ))}
-                </div>
+      <MskLayout links={headerLinks} footerSections={footerSections}>
+        <PageHero
+          eyebrow="Вопросы"
+          eyebrowVariant="rose"
+          title={pageTitle}
+          crumbs={[{ label: 'Главная', href: '/' }, { label: 'Вопросы' }]}
+        />
+
+        <section className="section--tight" style={{ paddingTop: 8 }}>
+          <div className="container">
+            <div className="searchbar">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+              <input
+                type="search"
+                aria-label="Поиск"
+                placeholder="Поиск по вопросам…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </div>
+
+            <div className="filters" role="group" aria-label="Фильтр категорий">
+              <button
+                type="button"
+                className={`chip${activeCategory === 'all' ? ' is-active' : ''}`}
+                onClick={() => setActiveCategory('all')}
+              >
+                Все
+              </button>
+              {questionCategories.map((category) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  className={`chip${activeCategory === category.id ? ' is-active' : ''}`}
+                  onClick={() => setActiveCategory(category.id)}
+                >
+                  {category.title}
+                </button>
               ))}
             </div>
-          </div>
-          {data.data?.allQuestionsPage?.sponsor && (
-            <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white">
-              <P typography={typography.variants.Element.SemiBold16}>
-                {data.data.allQuestionsPage.sponsor.title}
-              </P>
-              <Anchor href={data.data.allQuestionsPage.sponsor.link} target="_blank">
-                <img
-                  className="tw-mt-2"
-                  alt={data.data.allQuestionsPage.sponsor.image?.name}
-                  src={transformUri(data.data.allQuestionsPage.sponsor.image?.url)}
-                />
-              </Anchor>
+
+            <div className="articles" style={{ marginTop: 32 }}>
+              {questions.map((question) => {
+                const categoryId = question.question_category?.id;
+                const visible = matchesFilters(question.title, categoryId);
+                return (
+                  <a
+                    key={question.id}
+                    className={`acard${visible ? '' : ' is-hidden'}`}
+                    href={`/question/${categoryId}/${question.id}`}
+                    data-cat={categoryId}
+                  >
+                    <div className="acard__top">
+                      <span className="acard__cat">
+                        {(categoryId && categoryTitleById.get(categoryId)) || ''}
+                      </span>
+                    </div>
+                    <h3>{question.title}</h3>
+                  </a>
+                );
+              })}
             </div>
-          )}
-        </div>
-      </Layout>
+
+            <p className={`no-results${hasVisibleQuestions ? '' : ' is-show'}`}>{t('kbp.none')}</p>
+          </div>
+        </section>
+
+        {allQuestionsPage?.sponsor && (
+          <section className="section--tight" style={{ paddingTop: 0 }}>
+            <div className="container">
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 12,
+                  textAlign: 'center',
+                }}
+              >
+                <p style={{ fontWeight: 600 }}>{allQuestionsPage.sponsor.title}</p>
+                <a href={allQuestionsPage.sponsor.link} target="_blank" rel="noreferrer">
+                  {allQuestionsPage.sponsor.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      alt={allQuestionsPage.sponsor.image.name}
+                      src={transformUri(allQuestionsPage.sponsor.image.url)}
+                      style={{ maxHeight: 48, display: 'block' }}
+                    />
+                  )}
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+      </MskLayout>
     </>
   );
 };

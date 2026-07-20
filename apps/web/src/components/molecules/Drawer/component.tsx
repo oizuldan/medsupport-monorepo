@@ -1,8 +1,8 @@
 import { Overflow } from 'components';
 import { colors } from 'core';
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { interpolate, useSpring } from 'react-spring';
-import { useGesture } from 'react-use-gesture';
+import { to, useSpring } from 'react-spring';
+import { useGesture } from '@use-gesture/react';
 
 import { Background } from './libs/Background';
 import { Props } from './props';
@@ -56,7 +56,7 @@ export const Drawer: FC<Props> = (props: Props) => {
     [propOnChange],
   );
 
-  const [{ x, y }, set] = useSpring(() => ({
+  const [{ x, y }, api] = useSpring(() => ({
     x: 0,
     y: 0,
     from: {
@@ -70,15 +70,15 @@ export const Drawer: FC<Props> = (props: Props) => {
       onDrag: ({ down, movement: [xDistance, yDistance] }) => {
         if (!closeOnSwipe || !active) return;
         if (direction === Directions.FromRight) {
-          set({
+          api.start({
             x: down && xDistance > 0 ? xDistance : 0,
           });
         } else if (direction === Directions.FromLeft) {
-          set({
+          api.start({
             x: down && xDistance < 0 ? -xDistance : 0,
           });
         } else if (direction === Directions.FromBottom) {
-          set({
+          api.start({
             y: down && yDistance > 0 ? yDistance : 0,
           });
         }
@@ -97,13 +97,13 @@ export const Drawer: FC<Props> = (props: Props) => {
     },
     {
       drag: {
-        useTouch: true,
+        pointer: { touch: true },
       },
     },
   );
 
   useEffect(() => {
-    set({
+    api.start({
       x:
         !active && (direction === Directions.FromRight || direction === Directions.FromLeft)
           ? xWidth
@@ -111,7 +111,7 @@ export const Drawer: FC<Props> = (props: Props) => {
       y: !active && direction === Directions.FromBottom ? yHeight : 0,
       config: { duration: active ? undefined : 250 },
     });
-  }, [active, set, yHeight, xWidth, direction]);
+  }, [active, api, yHeight, xWidth, direction]);
 
   return (
     <Overflow
@@ -130,7 +130,7 @@ export const Drawer: FC<Props> = (props: Props) => {
         active={active}
         direction={direction}
         style={{
-          transform: interpolate(
+          transform: to(
             [x, y],
             (x, y) => `translate(${direction === Directions.FromLeft ? -x : x}px, ${y}px)`,
           ),

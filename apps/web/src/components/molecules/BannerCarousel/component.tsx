@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ButtonLink, Carousel, H1, P } from 'components';
 import { typography } from 'core';
 import React, { FC } from 'react';

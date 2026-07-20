@@ -1,4 +1,4 @@
-import { css, SerializedStyles } from '@emotion/core';
+import { css, SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { colors, typography } from 'core';
 import { createElement, CSSProperties, FC } from 'react';

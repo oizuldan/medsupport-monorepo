@@ -1,4 +1,4 @@
-import { css, Interpolation, SerializedStyles } from '@emotion/core';
+import { css, Interpolation, SerializedStyles } from '@emotion/react';
 
 import * as fonts from './fonts';
 import { AnyTypography } from './types/AnyTypoghraphy';

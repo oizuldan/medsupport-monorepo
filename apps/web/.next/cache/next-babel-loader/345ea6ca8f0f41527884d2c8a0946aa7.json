@@ -1,1 +1,0 @@
-{"ast":null,"code":"export * from './component';\nexport { Sizes as RootSizes } from './types/Sizes';\nexport { Variants as RootVariants } from './types/Variants';","map":null,"metadata":{},"sourceType":"module"}

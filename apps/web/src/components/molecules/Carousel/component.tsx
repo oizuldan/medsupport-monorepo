@@ -2,7 +2,7 @@ import { Button, ButtonSizes, ButtonVariants, Icon } from 'components';
 import { colors, icons } from 'core';
 import React, { cloneElement, FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { animated, useSpring, useSprings } from 'react-spring';
-import { useGesture } from 'react-use-gesture';
+import { useGesture } from '@use-gesture/react';
 
 import { Dot } from './libs/Dot';
 import { Props } from './props';
@@ -57,8 +57,8 @@ export const Carousel: FC<Props> = (props: Props) => {
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
   const activeSlide = propActiveSlide !== undefined ? propActiveSlide : innerActiveSlide;
 
-  const [wrapper, setWrapper] = useSpring(() => ({ x: 0, onFrame }));
-  const [elements, setElements] = useSprings(children.length * 4, () => ({
+  const [wrapper, wrapperApi] = useSpring(() => ({ x: 0, onChange: onFrame }));
+  const [elements, elementsApi] = useSprings(children.length * 4, () => ({
     sc: 1,
   }));
 
@@ -92,24 +92,24 @@ export const Carousel: FC<Props> = (props: Props) => {
   );
   const onRest = useCallback(() => {
     if (activeSlide === -1) {
-      setWrapper({ x: children.length - 1, immediate: true });
+      wrapperApi.start({ x: children.length - 1, immediate: true });
       if (onChange) onChange(children.length - 1);
       setInnerActiveSlide(children.length - 1);
     }
     if (activeSlide >= children.length) {
       const toGoIndex = activeSlide - children.length;
-      setWrapper({ x: toGoIndex, immediate: true });
+      wrapperApi.start({ x: toGoIndex, immediate: true });
       if (onChange) onChange(toGoIndex);
       setInnerActiveSlide(toGoIndex);
     }
     if (propOnRest) propOnRest();
     setButtonsDisabled(false);
-    setWrapper({ immediate: false });
-  }, [activeSlide, children.length, onChange, propOnRest, setWrapper]);
+    wrapperApi.start({ immediate: false });
+  }, [activeSlide, children.length, onChange, propOnRest, wrapperApi]);
 
   useEffect(() => {
-    setWrapper({ x: activeSlide, config: { duration: 250 }, onRest });
-  }, [activeSlide, onRest, setWrapper]);
+    wrapperApi.start({ x: activeSlide, config: { duration: 250 }, onRest });
+  }, [activeSlide, onRest, wrapperApi]);
 
   // Get carousel root element's width using ref.
   useEffect(() => {
@@ -120,32 +120,33 @@ export const Carousel: FC<Props> = (props: Props) => {
 
   const bind = useGesture(
     {
-      onDrag: ({ down, movement: [xDelta], distance, cancel }) => {
+      onDrag: ({ down, movement: [xDelta, yDelta], cancel }) => {
         if (wrapperWidth) {
-          if (down && distance > wrapperWidth / 2 && cancel) cancel();
-          setWrapper({
+          // `@use-gesture` v10 exposes `distance` as a per-axis vector; recreate
+          // the old scalar drag magnitude.
+          const distance = Math.hypot(xDelta, yDelta);
+          if (down && distance > wrapperWidth / 2) cancel();
+          wrapperApi.start({
             x: activeSlide - xDelta / width,
             immediate: false,
             config: { duration: undefined },
           });
-          // TODO: remove `@ts-ignore` when a new major release of `react-spring` will comeout.
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          setElements(() => ({
+          elementsApi.start(() => ({
             sc: down ? 1 - distance / wrapperWidth / 2 : 1,
           }));
         }
       },
-      onDragEnd: ({ direction: [dirX], distance }) => {
+      onDragEnd: ({ direction: [dirX], movement: [mx, my] }) => {
+        const distance = Math.hypot(mx, my);
         if (wrapperWidth && distance >= wrapperWidth / 3) {
-          setWrapper({
+          wrapperApi.start({
             x: dirX > 0 ? activeSlide - 1 : activeSlide + 1,
             immediate: false,
           });
           if (onChange) onChange(dirX > 0 ? activeSlide - 1 : activeSlide + 1);
           setInnerActiveSlide((prevVal) => (dirX > 0 ? prevVal - 1 : prevVal + 1));
         } else {
-          setWrapper({
+          wrapperApi.start({
             x: activeSlide,
             immediate: false,
           });
@@ -155,7 +156,7 @@ export const Carousel: FC<Props> = (props: Props) => {
     {
       enabled: draggable,
       drag: {
-        useTouch: true,
+        pointer: { touch: true },
       },
     },
   );
@@ -172,7 +173,7 @@ export const Carousel: FC<Props> = (props: Props) => {
           display: 'flex',
           flexDirection: 'row',
 
-          transform: wrapper.x.interpolate(
+          transform: wrapper.x.to(
             (x) => `translate(${-(x + children.length) * width}px, 0px)`,
           ),
         }}
@@ -182,7 +183,7 @@ export const Carousel: FC<Props> = (props: Props) => {
             key={i}
             style={{
               display: 'block',
-              transform: withScale ? sc.interpolate((s) => `scale(${s})`) : 'none',
+              transform: withScale ? sc.to((s) => `scale(${s})`) : 'none',
             }}
           >
             {cloneElement(slides[i].el, {

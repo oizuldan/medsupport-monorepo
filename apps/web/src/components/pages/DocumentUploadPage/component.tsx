@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import axios from 'axios';
 import { Button, Dropzone, H1, Input, Layout, P, Toast } from 'components';
 import { colors, media, services, typography } from 'core';

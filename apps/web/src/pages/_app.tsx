@@ -1,40 +1,46 @@
 import 'bootstrap-4-grid';
 import 'normalize.css';
-import 'tailwindcss/tailwind.css';
+import '../styles/globals.css';
+import '../styles/design-system.css';
 
-import { ApolloClient, ApolloProvider, InMemoryCache, NormalizedCacheObject } from '@apollo/client';
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import withApollo, { WithApolloProps } from 'next-with-apollo';
-import NextApp, { AppProps } from 'next/app';
+import NextApp, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
-import React from 'react';
+import { ReactElement } from 'react';
 
-// eslint-disable-next-line functional/no-class
-class App extends NextApp<AppProps & WithApolloProps<NormalizedCacheObject>> {
-  public render(): JSX.Element {
-    // eslint-disable-next-line functional/no-this-expression
-    const { Component, pageProps, apollo } = this.props;
-    return (
-      <ApolloProvider client={apollo}>
-        <Head>
-          <title>Medsupportkz</title>
-          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head>
-        <Component {...pageProps} />
-      </ApolloProvider>
-    );
-  }
+type Props = AppProps & WithApolloProps<NormalizedCacheObject>;
+
+function App({ Component, pageProps, apollo }: Props): ReactElement {
+  return (
+    <ApolloProvider client={apollo}>
+      <Head>
+        <title>Medsupportkz</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  );
 }
 
-App.getInitialProps = async (appContext) => {
+// Defining getInitialProps on _app makes this component responsible for running
+// each page's getInitialProps. next-with-apollo hooks into this flow to inject
+// `ctx.apolloClient`, which the pages rely on for SSR data fetching.
+App.getInitialProps = async (appContext: AppContext) => {
   const appProps = await NextApp.getInitialProps(appContext);
-  return {
-    ...appProps,
-  };
+  return { ...appProps };
 };
 
-export default withApollo(({ initialState }) => {
-  return new ApolloClient({
-    uri: process.env.CMS_GRAPHQL_API_URL,
-    cache: new InMemoryCache().restore(initialState || {}),
-  });
-})(App);
+export default withApollo(
+  ({ initialState }) =>
+    new ApolloClient({
+      link: new HttpLink({ uri: process.env.CMS_GRAPHQL_API_URL }),
+      cache: new InMemoryCache().restore(initialState ?? {}),
+    }),
+)(App);

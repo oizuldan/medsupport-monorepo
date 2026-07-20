@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Anchor, H1, H2, H3, H4, H5, List, ListItem, OrderedList, P } from 'components';
 import { media, services, typography } from 'core';
 import React, {
@@ -16,19 +16,20 @@ import { Props } from './props';
 import { Component } from './types/Component';
 
 export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: Props) => {
-  const children = useMemo(() => services.transformMarkdownImages(childrenProp), [childrenProp]);
+  const children = useMemo(
+    () => services.transformMarkdownImages(childrenProp ?? ''),
+    [childrenProp],
+  );
   const transformUri = useCallback(
     (uri: string) => (uri.startsWith('http') ? uri : `${process.env.BASE_URL}${uri}`),
     [],
   );
   return (
-    <ReactMarkdown
-      className="d-flex flex-column"
-      rehypePlugins={[rehypeRaw]}
-      transformLinkUri={transformUri}
-      transformImageUri={transformUri}
-      skipHtml={false}
-      components={{
+    <div className="d-flex flex-column">
+      <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
+        urlTransform={transformUri}
+        components={{
         p: ({ node: _node, ...props }: Component<HTMLAttributes<HTMLParagraphElement>>) => (
           <P typography={typography.variants.Content.Regular16} className="mb-3" {...props} />
         ),
@@ -143,10 +144,11 @@ export const Markdown: React.FC<Props> = ({ children: childrenProp, ...rest }: P
             target="_blank"
           />
         ),
-      }}
-      {...rest}
-    >
-      {children}
-    </ReactMarkdown>
+        }}
+        {...rest}
+      >
+        {children}
+      </ReactMarkdown>
+    </div>
   );
 };

@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Anchor } from 'components';
 import { media, typography } from 'core';
 import React, { FC } from 'react';

@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Button, ButtonVariants, P, Typography } from 'components';
 import { colors, media, typography } from 'core';

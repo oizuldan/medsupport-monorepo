@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { skeletonStyles } from 'components';
 import { colors, services } from 'core';
 import { rgba } from 'emotion-rgba/dist';

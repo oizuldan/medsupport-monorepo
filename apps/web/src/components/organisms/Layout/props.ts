@@ -5,5 +5,5 @@ import { HeaderProps } from '../Header';
 
 export type Props = HeaderProps &
   FooterProps & {
-    readonly children: React.ReactFragment;
+    readonly children: React.ReactNode;
   };

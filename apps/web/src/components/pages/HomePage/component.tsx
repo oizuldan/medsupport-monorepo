@@ -1,80 +1,56 @@
-import { BannerCarouselSkeleton, H2, InteractiveCard, Layout } from 'components';
-import { media } from 'core';
+import { MskLayout } from 'components';
+import { services } from 'core';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import React from 'react';
 
 import { MainPage, MainPageVariables } from './__generated__/MainPage';
 import { queryMainPage } from './graphql';
+import { Contact } from './libs/Contact';
+import { DataStories } from './libs/DataStories';
+import { Hero } from './libs/Hero';
+import { Impact } from './libs/Impact';
+import { KbSplit } from './libs/KbSplit';
+import { Mission } from './libs/Mission';
+import { PartnerTeaser } from './libs/PartnerTeaser';
+import { PartnerWall } from './libs/PartnerWall';
+import { Portfolio } from './libs/Portfolio';
 import { InitProps, Props } from './props';
 
-const BannerCarouselMobile = dynamic(() => import('./libs/BannerCarouselMobile'), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => <BannerCarouselSkeleton />,
-});
-const BannerCarousel = dynamic(() => import('./libs/BannerCarousel'), {
-  ssr: false,
-  // eslint-disable-next-line react/display-name
-  loading: () => <BannerCarouselSkeleton />,
-});
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
 
 export const HomePage: NextComponentType<ApolloPageContext, InitProps, Props> = (props: Props) => {
-  const { lang } = props;
-  const isMobile = media.useMobileDetector().phone();
+  const cms = props.data?.data;
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links?.filter(isNotNull).map((link) => ({
+    title: link.title ?? undefined,
+    link: link.link ?? undefined,
+  }));
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
+    title: section.title,
+    links: section.links?.filter(isNotNull).map((link) => ({
+      title: link.title ?? undefined,
+      link: link.link ?? undefined,
+    })),
+  }));
 
   return (
     <>
       <Head>
-        <title>Medsupport главная</title>
-        <meta name="keywords" content="Medsupport" />
-        <meta
-          name="description"
-          content={props.data?.data?.headerBanners?.[0]?.banners?.[0]?.subtitle.substring(0, 200)}
-        />
-        <meta property="og:title" content="Medsupport главная" />
-        <meta
-          property="og:description"
-          content={props.data?.data?.headerBanners?.[0]?.banners?.[0]?.subtitle.substring(0, 200)}
-        />
-        <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
-        <meta property="og:site_name" content="medsupport" />
-        <meta property="og:type" content="article" />
-        <meta property="og:article:section" content="medicine" />
+        <title>Medsupportkz — Доказательная медицина для Казахстана</title>
       </Head>
-      <Layout
-        headerButtons={props.data?.data?.headerButtons}
-        footerSections={props.data?.data?.footerSections}
-        headerLinks={props.data?.data?.headerLinks}
-      >
-        {isMobile ? (
-          <BannerCarouselMobile banners={props.data?.data?.headerBanners} />
-        ) : (
-          <BannerCarousel banners={props.data?.data?.headerBanners} />
-        )}
-
-        <div className="mt-5 mb-3 container d-flex flex-column">
-          <H2>{props.data?.data?.homePageSpecialSection?.title}</H2>
-          <div className="tw-flex tw-flex-wrap tw-justify-center tw-mb-10 tw-mt-5">
-            {props.data?.data?.homePageSpecialSection?.interactiveCard?.map(
-              (section) =>
-                section && (
-                  <InteractiveCard
-                    key={section.id}
-                    description={section.description}
-                    title={section.title}
-                    buttonText={section.buttonText}
-                    href={section.link}
-                  />
-                ),
-            )}
-          </div>
-        </div>
-      </Layout>
+      <MskLayout dark links={headerLinks} footerSections={footerSections}>
+        <Hero />
+        <Mission />
+        <Impact />
+        <Portfolio />
+        <KbSplit />
+        <DataStories cards={cms?.homePageSpecialSection?.interactiveCard ?? []} />
+        <PartnerTeaser />
+        <PartnerWall />
+        <Contact />
+      </MskLayout>
     </>
   );
 };

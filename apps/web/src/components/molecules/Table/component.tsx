@@ -1,6 +1,6 @@
 import 'bootstrap-4-grid/css/grid.css';
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import React, { FC, useCallback } from 'react';
 
 import { Props } from './props';

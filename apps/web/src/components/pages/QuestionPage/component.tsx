@@ -1,24 +1,11 @@
-import { css } from '@emotion/core';
-import {
-  Anchor,
-  ButtonLink,
-  ButtonSizes,
-  ButtonVariants,
-  Dropdown,
-  H2,
-  Icon,
-  LastUpdated,
-  Layout,
-  P,
-} from 'components';
-import { colors, icons, media, typography } from 'core';
-import { sequence } from 'fp-ts/Array';
-import * as O from 'fp-ts/Option';
-import { pipe } from 'fp-ts/pipeable';
+import { Btn, MskLayout, MskMarkdown, PageHero } from 'components';
+import { services } from 'core';
+import { langFromCookie } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
-import React, { useEffect, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import {
   QuestionPageData,
@@ -28,159 +15,243 @@ import {
 import { queryQuestionPage } from './graphql';
 import { InitProps, Props } from './props';
 
+const isNotNull = <T,>(value: T | null): value is T => value !== null;
+
 export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props> = (
   props: Props,
 ) => {
-  const { data, id, lang } = props;
+  const { data, lang } = props;
+  const router = useRouter();
+  // SSR-safe locale derived from the cookie-based prop from getInitialProps — must not
+  // depend on useLang().lang, which is deliberately 'ru' on first paint (see useLang.ts).
+  const pageLang = langFromCookie(lang);
 
-  const questions = useMemo(
-    () =>
-      pipe(
-        O.fromNullable(data?.data?.questionCategory?.questions),
-        O.chain(O.fromPredicate((v) => Array.isArray(v))),
-        O.chain((qs) => sequence(O.option)(qs.map((q) => pipe(O.fromNullable(q))))),
-        O.getOrElse(() => [] as ReadonlyArray<QuestionPageData_questionCategory_questions>),
-      ),
-    [data?.data?.questionCategory?.questions],
+  const cms = data?.data;
+  const category = cms?.questionCategory;
+  const useLocalization = category?.locale !== lang;
+
+  const categoryTitle = useLocalization
+    ? category?.localizations?.[0]?.title ?? category?.title ?? ''
+    : category?.title ?? '';
+
+  const questions = useMemo<ReadonlyArray<QuestionPageData_questionCategory_questions>>(
+    () => category?.questions?.filter(isNotNull) ?? [],
+    [category?.questions],
   );
 
+  // Resolve the optional [id] route param up front (SSR-safe: router.query is already
+  // populated from ctx.query on the server for this getInitialProps page, matching the
+  // client's first render), so the deep-linked question is already expanded in the
+  // server-rendered HTML instead of only opening after client-side hydration.
+  const deepLinkId = router.query.id ? router.query.id.toString() : props.id;
+
+  const [openIds, setOpenIds] = useState<Set<string>>(() => {
+    const initial = new Set<string>();
+    if (deepLinkId) initial.add(deepLinkId);
+    return initial;
+  });
+
+  const toggleQuestion = (id: string) => {
+    setOpenIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   useEffect(() => {
-    if (id) {
-      const element = document.getElementById(id);
-      element?.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
-    }
+    if (!deepLinkId) return;
+    const element = document.getElementById(`q-${deepLinkId}`);
+    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const chrome = services.mskChrome(cms);
+  const headerLinks = chrome.links?.filter(isNotNull).map((link) => ({
+    title: link.title ?? undefined,
+    link: link.link ?? undefined,
+  }));
+  const footerSections = chrome.footerSections?.filter(isNotNull).map((section) => ({
+    title: section.title,
+    links: section.links?.filter(isNotNull).map((link) => ({
+      title: link.title ?? undefined,
+      link: link.link ?? undefined,
+    })),
+  }));
+
+  const questionPage = cms?.questionPage;
+  const questionMetaDescription = categoryTitle
+    ? `Ответы на вопросы по теме «${categoryTitle}» — понятно и на основе доказательной медицины.`
+    : 'Ответы на вопросы о здоровье — понятно и на основе доказательной медицины.';
 
   return (
     <>
       <Head>
-        <title>
-          {data?.data?.questionCategory?.locale === lang
-            ? data?.data?.questionCategory?.title
-            : data?.data?.questionCategory?.localizations?.[0]?.title}
-        </title>
-        <meta
-          name="keywords"
-          content={
-            data?.data?.questionCategory?.locale === lang
-              ? data?.data?.questionCategory?.title
-              : data?.data?.questionCategory?.localizations?.[0]?.title
-          }
-        />
-        <meta
-          property="og:title"
-          content={
-            data?.data?.questionCategory?.locale === lang
-              ? data?.data?.questionCategory?.title
-              : data?.data?.questionCategory?.localizations?.[0]?.title
-          }
-        />
+        <title>{categoryTitle ? `${categoryTitle} — Medsupportkz` : 'Medsupportkz — Вопросы и ответы'}</title>
+        <meta name="keywords" content={categoryTitle} />
+        <meta name="description" content={questionMetaDescription} />
+        <meta property="og:title" content={categoryTitle} />
+        <meta property="og:description" content={questionMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
-        <meta property="og:locale" content={lang === 'ru_RU' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:locale:alternate" content={lang === 'ru_RU' ? 'kz_KZ' : 'ru_RU'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
+        <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
-        <meta property="og:article:tag" content="Covid-19" />
-        <meta property="og:article:tag" content="Covid" />
-        <meta property="og:article:tag" content="вакцина" />
-        <meta property="og:article:tag" content="вакцинация" />
-        <meta property="og:article:tag" content="пандемия" />
-        <meta
-          property="og:article:modified_time"
-          content={data?.data?.questionCategory?.lastModifiedDate.toString()}
-        />
-        <meta
-          property="og:article:published_time"
-          content={data?.data?.questionCategory?.lastModifiedDate.toString()}
-        />
-        {questions.map(({ title }) => (
-          <meta key={title} property="og:article:tag" content={title} />
-        ))}
       </Head>
-      <Layout
-        headerButtons={props.data?.data?.headerButtons}
-        footerSections={props.data?.data?.footerSections}
-        headerLinks={props.data?.data?.headerLinks}
-      >
-        <div className="container mt-3 tw-mb-8">
-          <ButtonLink
-            href="/vxn"
-            variant={ButtonVariants.Flat}
-            size={ButtonSizes.Small}
-            className="pl-0"
-          >
-            <Icon
-              icon={icons.arrows.keyboardArrowLeft}
-              color={colors.variants.Neutral.Black}
-              className="mr-1"
-            />
-            <P
-              color={colors.variants.Neutral.Grey}
-              typography={typography.variants.Element.Regular12}
+      <MskLayout links={headerLinks} footerSections={footerSections}>
+        <PageHero
+          eyebrow="Вопросы и ответы"
+          eyebrowVariant="teal"
+          title={categoryTitle}
+          crumbs={[
+            { label: 'Главная', href: '/' },
+            { label: 'Вопросы', href: '/questions' },
+            { label: categoryTitle },
+          ]}
+        />
+
+        <section className="section">
+          <div className="container">
+            {questions.map((question) => {
+              const isOpen = openIds.has(question.id);
+              const questionTitle = useLocalization
+                ? question.localizations?.[0]?.title ?? question.title
+                : question.title;
+              const questionContent = useLocalization
+                ? question.localizations?.[0]?.content ?? question.content
+                : question.content;
+
+              return (
+                <div
+                  key={question.id}
+                  id={`q-${question.id}`}
+                  className={`faq-item${isOpen ? ' is-open' : ''}`}
+                  style={{
+                    border: '1px solid var(--line)',
+                    borderRadius: 'var(--radius)',
+                    padding: '22px 26px',
+                    marginBottom: 14,
+                    background: '#fff',
+                  }}
+                >
+                  <div
+                    className="faq-item__head"
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={isOpen}
+                    onClick={() => toggleQuestion(question.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleQuestion(question.id);
+                      }
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: 20,
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <h3 className="h-md" style={{ margin: 0 }}>
+                      {questionTitle}
+                    </h3>
+                    <span
+                      className="faq-item__icon"
+                      aria-hidden="true"
+                      style={{
+                        flex: 'none',
+                        width: 32,
+                        height: 32,
+                        borderRadius: '50%',
+                        border: '1px solid var(--line)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '1.2rem',
+                        lineHeight: 1,
+                        color: 'var(--teal-deep)',
+                        transition: 'transform .25s ease',
+                        transform: isOpen ? 'rotate(45deg)' : 'none',
+                      }}
+                    >
+                      +
+                    </span>
+                  </div>
+                  {isOpen && (
+                    <div className="faq-item__body" style={{ paddingTop: 18 }}>
+                      <MskMarkdown>{questionContent ?? ''}</MskMarkdown>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            <div
+              style={{
+                display: 'flex',
+                gap: 14,
+                flexWrap: 'wrap',
+                marginTop: 32,
+                alignItems: 'center',
+              }}
             >
-              {props.data?.data?.questionPage?.goToFaqButtonText}
-            </P>
-          </ButtonLink>
-          <H2 className="mb-2">
-            {data?.data?.questionCategory?.locale === lang
-              ? data?.data?.questionCategory?.title
-              : data?.data?.questionCategory?.localizations?.[0]?.title}
-          </H2>
-          <LastUpdated
-            lastUpdatedText={data?.data?.questionPage?.lastModifiesText || ''}
-            date={data?.data?.questionCategory?.lastModifiedDate || new Date()}
-            lang={lang}
-          />
-
-          {questions.map((question, i) => (
-            <Dropdown
-              id={question.id}
-              key={question.id}
-              question={question}
-              isInitiallyOpen={id === question.id ? true : !id && i === 0 ? true : false}
-              useLocalization={data?.data?.questionCategory?.locale !== lang}
-            />
-          ))}
-
-          <ButtonLink
-            className="tw-self-center tw-mt-8 tw-border"
-            variant={ButtonVariants.Flat}
-            size={ButtonSizes.Large}
-          >
-            <Anchor
-              href="/questions"
-              css={css(
-                typography.styles.elementSemiBold16,
-                media.queryStyled([
-                  typography.styles.elementSemiBold16,
-                  typography.styles.elementSemiBold16,
-                  typography.styles.headingSemiBold17,
-                ]),
+              <Btn href="/questions" variant="ghost">
+                {questionPage?.goToAllQuestionsText || 'Все вопросы'}
+              </Btn>
+              {questionPage?.goToFaqButtonText && (
+                <Btn href="/vxn" variant="ghost-teal">
+                  {questionPage.goToFaqButtonText}
+                </Btn>
               )}
-              className="tw-text-black"
-            >
-              {data?.data?.questionPage?.goToAllQuestionsText}
-            </Anchor>
-            <Icon icon={icons.arrows.keyboardArrowRight} color={colors.variants.Neutral.Black} />
-          </ButtonLink>
-          {data.data?.questionPage?.sponsor && (
-            <div className="tw-self-center tw-flex tw-flex-col tw-items-center tw-my-4 tw-text-white">
-              <P typography={typography.variants.Element.SemiBold16}>
-                {data.data.questionPage.sponsor.title}
-              </P>
-              <Anchor href={data.data.questionPage.sponsor.link} target="_blank">
-                <img
-                  className="tw-mt-2"
-                  alt={data.data.questionPage.sponsor.image?.name}
-                  src={`https://medsupport.kz/cms/${data.data.questionPage.sponsor.image?.url}`}
-                />
-              </Anchor>
             </div>
-          )}
-        </div>
-      </Layout>
+
+            {questionPage?.lastModifiesText && category?.lastModifiedDate && (
+              <p style={{ marginTop: 20, color: 'var(--ink-30)', fontSize: '.85rem' }}>
+                {questionPage.lastModifiesText}{' '}
+                {new Date(category.lastModifiedDate).toLocaleDateString(
+                  pageLang === 'kz' ? 'kk-KZ' : 'ru-RU',
+                )}
+              </p>
+            )}
+
+            {questionPage?.sponsor && (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 12,
+                  textAlign: 'center',
+                  marginTop: 40,
+                }}
+              >
+                <p style={{ fontWeight: 600 }}>{questionPage.sponsor.title}</p>
+                <a href={questionPage.sponsor.link} target="_blank" rel="noreferrer">
+                  {questionPage.sponsor.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      alt={questionPage.sponsor.image.name}
+                      src={
+                        questionPage.sponsor.image.url.startsWith('http')
+                          ? questionPage.sponsor.image.url
+                          : `${process.env.BASE_URL}${questionPage.sponsor.image.url}`
+                      }
+                      style={{ maxHeight: 48, display: 'block' }}
+                    />
+                  )}
+                </a>
+              </div>
+            )}
+          </div>
+        </section>
+      </MskLayout>
     </>
   );
 };

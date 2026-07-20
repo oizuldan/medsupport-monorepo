@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 import { Anchor, P, Typography } from 'components';
 import { MainPage_footerSections_sections } from 'components/pages/HomePage/__generated__/MainPage';

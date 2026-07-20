@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
 import { colors, services, typography } from 'core';
