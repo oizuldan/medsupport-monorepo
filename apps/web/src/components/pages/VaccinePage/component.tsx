@@ -53,24 +53,28 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
   );
 
   const pageTitle = faq?.bannerTitle || 'Вакцинация';
+  const vaxMetaDescription =
+    (faq?.bannerSubtitle || '').substring(0, 200) ||
+    'Всё о вакцинации на основе доказательной медицины: календарь прививок, ответы на частые ' +
+      'вопросы и разбор мифов.';
 
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
-        <meta name="keywords" content="Covid-19 вакцинация вакцины" />
-        <meta name="description" content={(faq?.bannerSubtitle || '').substring(0, 200)} />
+        <title>{`Medsupportkz — ${pageTitle}`}</title>
+        <meta name="keywords" content="вакцинация, прививки, иммунизация, доказательная медицина" />
+        <meta name="description" content={vaxMetaDescription} />
         <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={(faq?.bannerSubtitle || '').substring(0, 200)} />
+        <meta property="og:description" content={vaxMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
-        <meta property="og:article:tag" content="Covid-19" />
         <meta property="og:article:tag" content="вакцина" />
         <meta property="og:article:tag" content="вакцинация" />
+        <meta property="og:article:tag" content="прививки" />
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero

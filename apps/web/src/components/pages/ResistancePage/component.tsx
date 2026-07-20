@@ -39,22 +39,29 @@ export const ResistancePage: NextComponentType<ApolloPageContext, InitProps, Pro
     })),
   }));
 
+  const amrMetaDescription =
+    'Устойчивость к антибиотикам: почему она возникает, чем опасна и как её сдержать. ' +
+    'Материалы Medsupportkz на основе доказательной медицины.';
+
   return (
     <>
       <Head>
-        <title>{resistancePage?.title || 'Устойчивость к антибиотикам'}</title>
-        <meta name="keywords" content={resistancePage?.title} />
-        <meta name="description" content={resistancePage?.title} />
+        <title>{`Medsupportkz — ${resistancePage?.title || 'Устойчивость к антибиотикам'}`}</title>
+        <meta
+          name="keywords"
+          content="антибиотикорезистентность, устойчивость к антибиотикам, WAAW, доказательная медицина"
+        />
+        <meta name="description" content={amrMetaDescription} />
         <meta property="og:title" content={resistancePage?.title} />
-        <meta property="og:description" content={resistancePage?.title} />
+        <meta property="og:description" content={amrMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:site_name" content="Medsupportkz" />
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero
-          eyebrow="Устойчивость к антибиотикам"
+          eyebrow="Общественное здоровье"
           eyebrowVariant="teal"
           title={resistancePage?.title || 'Устойчивость к антибиотикам'}
           crumbs={[{ label: 'Главная', href: '/' }, { label: 'Антибиотикорезистентность' }]}

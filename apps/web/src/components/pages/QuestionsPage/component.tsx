@@ -65,25 +65,25 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
 
   const allQuestionsPage = cms?.allQuestionsPage;
   const pageTitle = allQuestionsPage?.allQuestionText || 'Вопросы и ответы';
+  const qMetaDescription =
+    'Ответы на частые вопросы о здоровье: вакцинация, первая помощь и разбор медицинских мифов — ' +
+    'понятно и на основе доказательной медицины.';
 
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
-        <meta name="keywords" content="Вопросы про вакцинацию" />
+        <title>Medsupportkz — Вопросы и ответы</title>
         <meta
-          name="description"
-          content="Здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19"
+          name="keywords"
+          content="вопросы о здоровье, вакцинация, первая помощь, медицинские мифы, доказательная медицина"
         />
+        <meta name="description" content={qMetaDescription} />
         <meta property="og:title" content={pageTitle} />
-        <meta
-          property="og:description"
-          content="Здесь вы можете найти все интересующие вас вопросы про вакцинацию Covid-19"
-        />
+        <meta property="og:description" content={qMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
       </Head>

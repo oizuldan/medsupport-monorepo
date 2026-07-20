@@ -84,17 +84,22 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
   }));
 
   const questionPage = cms?.questionPage;
+  const questionMetaDescription = categoryTitle
+    ? `Ответы на вопросы по теме «${categoryTitle}» — понятно и на основе доказательной медицины.`
+    : 'Ответы на вопросы о здоровье — понятно и на основе доказательной медицины.';
 
   return (
     <>
       <Head>
-        <title>{categoryTitle}</title>
+        <title>{categoryTitle ? `${categoryTitle} — Medsupportkz` : 'Medsupportkz — Вопросы и ответы'}</title>
         <meta name="keywords" content={categoryTitle} />
+        <meta name="description" content={questionMetaDescription} />
         <meta property="og:title" content={categoryTitle} />
+        <meta property="og:description" content={questionMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
       </Head>

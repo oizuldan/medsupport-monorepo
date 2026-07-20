@@ -112,26 +112,25 @@ export const ArticlesPage: NextComponentType<ApolloPageContext, InitProps, Props
     (card) => (filter === 'all' || card.category === filter) && (!q || card.title.toLowerCase().includes(q)),
   );
 
+  const kbMetaDescription =
+    'База знаний Medsupportkz: проверенные материалы о вакцинации, первой помощи и здоровье, ' +
+    'а также разбор медицинских мифов — на основе международных клинических данных.';
+
   return (
     <>
       <Head>
-        <title>{cms?.articlesSection?.section?.title}</title>
-        <meta name="keywords" content={cms?.articlesSection?.section?.title} />
+        <title>Medsupportkz — База знаний</title>
         <meta
-          name="description"
-          content="Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
-          Тут вы найдете инструкции по лечению и описанию болезней."
+          name="keywords"
+          content="база знаний, здоровье, вакцинация, первая помощь, медицинские мифы, доказательная медицина"
         />
-        <meta property="og:title" content={cms?.articlesSection?.section?.title} />
-        <meta
-          property="og:description"
-          content="Медицинский статьи на следующие темы: аппнедицит, бронхит, анемия, астма и многие другие.
-          Тут вы найдете инструкции по лечению и описанию болезней."
-        />
+        <meta name="description" content={kbMetaDescription} />
+        <meta property="og:title" content="Medsupportkz — База знаний" />
+        <meta property="og:description" content={kbMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
       </Head>

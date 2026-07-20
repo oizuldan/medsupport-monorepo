@@ -57,18 +57,22 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
       : `${process.env.BASE_URL}${article.previewImage.url}`
     : undefined;
 
+  const articleMetaDescription = article?.content
+    ? article.content.replace(/[#*_>`[\]()]/g, '').replace(/\s+/g, ' ').trim().substring(0, 200)
+    : 'Проверенный материал базы знаний Medsupportkz — на основе доказательной медицины.';
+
   return (
     <>
       <Head>
-        <title>{article?.title}</title>
+        <title>{article?.title ? `${article.title} — Medsupportkz` : 'Medsupportkz'}</title>
         <meta name="keywords" content={article?.title} />
-        <meta property="description" content={article?.content?.substring(0, 200)} />
+        <meta name="description" content={articleMetaDescription} />
         <meta property="og:title" content={article?.title} />
-        <meta property="og:description" content={article?.content?.substring(0, 200)} />
+        <meta property="og:description" content={articleMetaDescription} />
         <meta property="og:image" content="https://medsupport.kz/static/images/logoBig.png" />
         <meta property="og:locale" content={pageLang === 'kz' ? 'kz_KZ' : 'ru_RU'} />
         <meta property="og:locale:alternate" content={pageLang === 'kz' ? 'ru_RU' : 'kz_KZ'} />
-        <meta property="og:site_name" content="medsupport" />
+        <meta property="og:site_name" content="Medsupportkz" />
         <meta property="og:type" content="article" />
         <meta property="og:article:section" content="medicine" />
       </Head>
