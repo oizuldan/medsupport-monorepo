@@ -1,6 +1,6 @@
 import { Btn, MskLayout, MskMarkdown, PageHero } from 'components';
 import { services } from 'core';
-import { langFromCookie } from 'core/i18n';
+import { dictionary, langFromCookie } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
@@ -25,6 +25,9 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
   // SSR-safe locale derived from the cookie-based prop from getInitialProps — must not
   // depend on useLang().lang, which is deliberately 'ru' on first paint (see useLang.ts).
   const pageLang = langFromCookie(lang);
+  // Translate from the SSR-resolved language (not useLang(), which is 'ru' on
+  // first paint) so the hero renders correctly for KZ without a hydration flash.
+  const t = (key: string): string => dictionary[pageLang][key] ?? dictionary.ru[key] ?? key;
 
   const cms = data?.data;
   const category = cms?.questionCategory;
@@ -105,12 +108,12 @@ export const QuestionPage: NextComponentType<ApolloPageContext, InitProps, Props
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero
-          eyebrow="Вопросы и ответы"
+          eyebrow={t('qsp.title')}
           eyebrowVariant="teal"
           title={categoryTitle}
           crumbs={[
-            { label: 'Главная', href: '/' },
-            { label: 'Вопросы', href: '/questions' },
+            { label: t('crumb.home'), href: '/' },
+            { label: t('qsp.crumb'), href: '/questions' },
             { label: categoryTitle },
           ]}
         />

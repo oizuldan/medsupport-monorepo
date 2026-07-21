@@ -82,7 +82,7 @@ export const ArticlePage: NextComponentType<ApolloPageContext, InitProps, Props>
           eyebrowVariant="teal"
           title={article?.title ?? ''}
           crumbs={[
-            { label: 'Главная', href: '/' },
+            { label: t('crumb.home'), href: '/' },
             { label: t('nav.kb'), href: '/articles' },
             { label: article?.title ?? '' },
           ]}

@@ -1,6 +1,6 @@
 import { Btn, MskLayout, PageHero, SectionHead } from 'components';
 import { services } from 'core';
-import { langFromCookie } from 'core/i18n';
+import { dictionary, langFromCookie } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
@@ -22,6 +22,9 @@ export const ResistancePage: NextComponentType<ApolloPageContext, InitProps, Pro
   // SSR-safe locale derived from the cookie-based prop from getInitialProps — see
   // ArticlesPage/component.tsx for why this must not depend on useLang().lang.
   const pageLang = langFromCookie(props.lang);
+  // Translate from the SSR-resolved language (not useLang(), which is 'ru' on
+  // first paint) so the hero renders correctly for KZ without a hydration flash.
+  const t = (key: string): string => dictionary[pageLang][key] ?? dictionary.ru[key] ?? key;
 
   const resistancePage = cms?.resistancePage;
   const articlesGroup = resistancePage?.ResistanceArticles;
@@ -61,10 +64,10 @@ export const ResistancePage: NextComponentType<ApolloPageContext, InitProps, Pro
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero
-          eyebrow="Общественное здоровье"
+          eyebrow={t('res.eyebrow')}
           eyebrowVariant="teal"
-          title={resistancePage?.title || 'Устойчивость к антибиотикам'}
-          crumbs={[{ label: 'Главная', href: '/' }, { label: 'Антибиотикорезистентность' }]}
+          title={resistancePage?.title || t('res.title')}
+          crumbs={[{ label: t('crumb.home'), href: '/' }, { label: t('res.crumb') }]}
         />
 
         {articlesGroup && (articlesGroup.articles?.length ?? 0) > 0 && (

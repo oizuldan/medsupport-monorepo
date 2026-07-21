@@ -263,6 +263,22 @@ export const dictionary: Record<Lang, Record<string, string>> = {
     'art.d5.h': 'Протокол ведения внебольничной пневмонии',
     'art.d6.h': 'Доказательная база: витамин D — кому и когда',
 
+    /* inner page heroes (breadcrumb + eyebrow + title) */
+    'crumb.home': 'Главная',
+    'qsp.eyebrow': 'Вопросы',
+    'qsp.title': 'Вопросы и ответы',
+    'qsp.crumb': 'Вопросы',
+    'vac.eyebrow': 'Вакцинация',
+    'vac.title': 'Вакцинация',
+    'vac.crumb': 'Вакцинация',
+    'abt.eyebrow': 'О фонде',
+    'abt.title': 'О Medsupportkz',
+    'abt.lead':
+      'Независимый общественный фонд, который с 2020 года переводит доказательную медицину на понятный язык — на русском и казахском.',
+    'res.eyebrow': 'Общественное здоровье',
+    'res.title': 'Устойчивость к антибиотикам',
+    'res.crumb': 'Антибиотикорезистентность',
+
     /* backend form status strings */
     'form.sending': 'Отправка…',
     'form.error': 'Не удалось отправить. Проверьте поля и попробуйте снова.',
@@ -510,6 +526,22 @@ export const dictionary: Record<Lang, Record<string, string>> = {
     'art.d4.h': 'Таңдау: вакцинология бойынша негізгі мақалалар',
     'art.d5.h': 'Госпитальдан тыс пневмонияны жүргізу хаттамасы',
     'art.d6.h': 'Дәлелдер базасы: D дәрумені — кімге және қашан',
+
+    /* inner page heroes (breadcrumb + eyebrow + title) */
+    'crumb.home': 'Басты бет',
+    'qsp.eyebrow': 'Сұрақтар',
+    'qsp.title': 'Сұрақтар мен жауаптар',
+    'qsp.crumb': 'Сұрақтар',
+    'vac.eyebrow': 'Вакцинация',
+    'vac.title': 'Вакцинация',
+    'vac.crumb': 'Вакцинация',
+    'abt.eyebrow': 'Қор туралы',
+    'abt.title': 'Medsupportkz туралы',
+    'abt.lead':
+      'Тәуелсіз қоғамдық қор, 2020 жылдан бері дәлелді медицинаны түсінікті тілге — орыс және қазақ тілдеріне аударып келеді.',
+    'res.eyebrow': 'Қоғам денсаулығы',
+    'res.title': 'Антибиотиктерге төзімділік',
+    'res.crumb': 'Антибиотиктерге төзімділік',
 
     /* backend form status strings */
     'form.sending': 'Жіберілуде…',

@@ -111,11 +111,11 @@ export const AboutUsPage: NextComponentType<ApolloPageContext, InitProps, Props>
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero
-          eyebrow="О фонде"
+          eyebrow={t('abt.eyebrow')}
           eyebrowVariant="rose"
-          title="О Medsupportkz"
-          lead="Независимый общественный фонд, который с 2020 года переводит доказательную медицину на понятный язык — на русском и казахском."
-          crumbs={[{ label: 'Главная', href: '/' }, { label: t('nav.about') }]}
+          title={t('abt.title')}
+          lead={t('abt.lead')}
+          crumbs={[{ label: t('crumb.home'), href: '/' }, { label: t('nav.about') }]}
         />
 
         {/* Lede + mission, side by side */}

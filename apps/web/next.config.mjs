@@ -40,6 +40,11 @@ const nextConfig = {
   // The old Express server proxied these hosts; preserve them as Next rewrites.
   async rewrites() {
     return [
+      // Production nginx routes every /api/* request to the Express backend, so
+      // the Next API handlers under /pages/api/contact/* are unreachable at their
+      // real path. Exposing them under /forms/* (which nginx sends to Next) and
+      // rewriting internally lets the browser reach them without an infra change.
+      { source: '/forms/:path*', destination: '/api/contact/:path*' },
       { source: '/proxy/:path*', destination: 'https://medsupport.kz/api/:path*' },
       { source: '/proxy2/:path*', destination: 'https://drive.google.com/:path*' },
       { source: '/proxy3/:path*', destination: 'https://medsupport.kz/cms/:path*' },
