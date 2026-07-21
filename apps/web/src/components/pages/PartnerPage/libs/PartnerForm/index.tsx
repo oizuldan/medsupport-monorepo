@@ -83,7 +83,7 @@ export const PartnerForm: FC = () => {
     setStatus('sending');
     setStatusMsg('');
     try {
-      await axios.post('/api/contact/partner', values);
+      await axios.post('/forms/partner', values);
       setSubmitted(true);
       setStatus('idle');
     } catch (err) {
