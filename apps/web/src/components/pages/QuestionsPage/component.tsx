@@ -64,7 +64,7 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
   );
 
   const allQuestionsPage = cms?.allQuestionsPage;
-  const pageTitle = allQuestionsPage?.allQuestionText || 'Вопросы и ответы';
+  const pageTitle = allQuestionsPage?.allQuestionText || t('qsp.title');
   const qMetaDescription =
     'Ответы на частые вопросы о здоровье: вакцинация, первая помощь и разбор медицинских мифов — ' +
     'понятно и на основе доказательной медицины.';
@@ -89,10 +89,10 @@ export const QuestionsPage: NextComponentType<ApolloPageContext, InitProps, Prop
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero
-          eyebrow="Вопросы"
+          eyebrow={t('qsp.eyebrow')}
           eyebrowVariant="rose"
           title={pageTitle}
-          crumbs={[{ label: 'Главная', href: '/' }, { label: 'Вопросы' }]}
+          crumbs={[{ label: t('crumb.home'), href: '/' }, { label: t('qsp.crumb') }]}
         />
 
         <section className="section--tight" style={{ paddingTop: 8 }}>

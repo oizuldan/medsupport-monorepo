@@ -1,6 +1,6 @@
 import { Btn, MskLayout, PageHero, SectionHead } from 'components';
 import { services } from 'core';
-import { langFromCookie } from 'core/i18n';
+import { dictionary, langFromCookie } from 'core/i18n';
 import { NextComponentType } from 'next';
 import { ApolloPageContext } from 'next-with-apollo';
 import Head from 'next/head';
@@ -17,6 +17,9 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
   // SSR-safe locale derived from the cookie-based prop from getInitialProps — must not
   // depend on useLang().lang, which is deliberately 'ru' on first paint (see useLang.ts).
   const pageLang = langFromCookie(props.lang);
+  // Translate from the SSR-resolved language (not useLang(), which is 'ru' on
+  // first paint) so the hero renders correctly for KZ without a hydration flash.
+  const t = (key: string): string => dictionary[pageLang][key] ?? dictionary.ru[key] ?? key;
 
   const faq = cms?.faq;
 
@@ -52,7 +55,7 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
     [],
   );
 
-  const pageTitle = faq?.bannerTitle || 'Вакцинация';
+  const pageTitle = faq?.bannerTitle || t('vac.title');
   const vaxMetaDescription =
     (faq?.bannerSubtitle || '').substring(0, 200) ||
     'Всё о вакцинации на основе доказательной медицины: календарь прививок, ответы на частые ' +
@@ -78,11 +81,11 @@ export const VaccinePage: NextComponentType<ApolloPageContext, InitProps, Props>
       </Head>
       <MskLayout links={headerLinks} footerSections={footerSections}>
         <PageHero
-          eyebrow="Вакцинация"
+          eyebrow={t('vac.eyebrow')}
           eyebrowVariant="teal"
           title={pageTitle}
           lead={faq?.bannerSubtitle || undefined}
-          crumbs={[{ label: 'Главная', href: '/' }, { label: 'Вакцинация' }]}
+          crumbs={[{ label: t('crumb.home'), href: '/' }, { label: t('vac.crumb') }]}
         />
 
         {faq?.bannerImage?.url && (
